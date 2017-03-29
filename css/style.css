@@ -1366,7 +1366,7 @@ pre .javascript .function {
   max-width: 30%;
 }
 #toc.toc-article .toc-title {
-  margin: 5px;
+  margin: 8px;
 }
 #toc.toc-article h2,
 #toc.toc-article ol,
@@ -1405,13 +1405,14 @@ pre .javascript .function {
   color: #258fb8;
   text-decoration: none;
   font-family: font-logo;
-  font-size: 14.4px;
+  font-size: 15px;
 }
 #toc .toc a:hover {
   text-decoration: underline;
 }
 #toc .toc-child {
   padding-left: 1.5em;
+  line-height: 1.6em;
 }
 @media screen and (min-width: 768px) {
   #sidebar {
