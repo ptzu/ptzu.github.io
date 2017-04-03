@@ -3,17 +3,24 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Archives: 2016/10 | Kamikaze&#39;s blog</title>
+  <title>Compiler(一)：環境建制以及Lexer | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kamikaze's blog">
-<meta property="og:url" content="http://abcd40404.github.io/archives/2016/10/index.html">
+  <meta name="description" content="ANTLR 利用 .g 檔生成 Lexer定義 Token 如下:
+INT_TYPE  : ‘int’;LONGLONG_TYPE : ‘long long’;CHAR_TYPE : ‘char’;VOID_TYPE : ‘void’;FLOATTYPE: ‘float’;WHILE    : ‘while’;FOR : ‘for’;IF : ‘if’;ELSE_ : ‘else’;
+一些常見型態">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Compiler(一)：環境建制以及Lexer">
+<meta property="og:url" content="http://abcd40404.github.io/2017/04/03/compiler1/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description">
+<meta property="og:description" content="ANTLR 利用 .g 檔生成 Lexer定義 Token 如下:
+INT_TYPE  : ‘int’;LONGLONG_TYPE : ‘long long’;CHAR_TYPE : ‘char’;VOID_TYPE : ‘void’;FLOATTYPE: ‘float’;WHILE    : ‘while’;FOR : ‘for’;IF : ‘if’;ELSE_ : ‘else’;
+一些常見型態">
+<meta property="og:updated_time" content="2017-04-03T15:08:11.994Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kamikaze's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Compiler(一)：環境建制以及Lexer">
+<meta name="twitter:description" content="ANTLR 利用 .g 檔生成 Lexer定義 Token 如下:
+INT_TYPE  : ‘int’;LONGLONG_TYPE : ‘long long’;CHAR_TYPE : ‘char’;VOID_TYPE : ‘void’;FLOATTYPE: ‘float’;WHILE    : ‘while’;FOR : ‘for’;IF : ‘if’;ELSE_ : ‘else’;
+一些常見型態">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -72,61 +79,96 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/05/cf366/" class="archive-article-date">
-  <time datetime="2016-10-05T13:22:50.000Z" itemprop="datePublished">Oct 5</time>
+        <section id="main"><article id="post-compiler1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/03/compiler1/" class="article-date">
+  <time datetime="2017-04-03T14:32:26.000Z" itemprop="datePublished">2017-04-03</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/編譯器/">編譯器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/05/cf366/">Codeforces Round 366 (Div. 2)</a>
+    <h1 class="article-title" itemprop="name">
+      Compiler(一)：環境建制以及Lexer
     </h1>
   
 
-    </header>
-  </div>
-</article>
-
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/10/05/cf365/" class="archive-article-date">
-  <time datetime="2016-10-05T12:00:52.000Z" itemprop="datePublished">Oct 5</time>
-</a>
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/04/03/compiler1/" data-id="cj1294tx80021z7zr46i7sdbw" class="article-share-link">Share</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/10/05/cf365/">Codeforces Round 365 (Div. 2)</a>
-    </h1>
-  
+        <a href="http://abcd40404.github.io/2017/04/03/compiler1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  
+              
+              </div>
+          
+          
+            <p>ANTLR 利用 .g 檔生成 Lexer<br>定義 Token 如下:</p>
+<p>INT_TYPE  : ‘int’;<br>LONGLONG_TYPE : ‘long long’;<br>CHAR_TYPE : ‘char’;<br>VOID_TYPE : ‘void’;<br>FLOAT<em>TYPE: ‘float’;<br>WHILE</em>    : ‘while’;<br>FOR<em> : ‘for’;<br>IF</em> : ‘if’;<br>ELSE_ : ‘else’;</p>
+<p>一些常見型態如: int, long long, char, void, float<br>一些保留字如: while, for, if, else</p>
+<p>ASSIGN_OP : ‘=’;<br>P_OP : ‘+’;<br>M_OP : ‘-‘;<br>MU_OP : ‘<em>‘;<br>MUA_OP : ‘</em>=’;<br>D_OP : ‘/‘;<br>DA_OP : ‘/=’;<br>PA_OP : ‘+=’;<br>MA_OP : ‘-=’;<br>EQ_OP : ‘==’;<br>LE_OP : ‘&lt;=’;<br>GE_OP : ‘&gt;=’;<br>NE_OP : ‘!=’;<br>PP_OP : ‘++’;<br>MM_OP : ‘–’;<br>RSHIFT_OP : ‘&lt;&lt;’;<br>LSHIFT_OP : ‘&gt;&gt;’;</p>
+<p>各種運算子:<br>令值: ‘=’<br>加減乘除: ‘+, -, *, /‘<br>位元運算: ‘&lt;&lt;’, ‘&gt;&gt;’</p>
+<p>PUNCTUATION : (‘.’|’,’|’;’|’#’|’(‘|’)’|’{‘|’}’|’&lt;’|’&gt;’|’%’|’\‘) ;<br>標點符號: ‘. , ; # ( ) { } &lt; &gt; % \’</p>
+<p>DEC_NUM : (‘0’ | (‘1’..’9’)(DIGIT)*) ;<br>十進位數字</p>
+<p>ID : (LETTER)(LETTER | DIGIT)*;<br>變數或函數名稱</p>
+<p>LITERAL : (‘“‘)(LETTER|PUNCTUATION|NEW_LINE|’ ‘)*(‘“‘) ;<br>字串</p>
+<p>HEADER : (LETTER)+’.h’ ;<br>標頭檔</p>
+<p>REFERENCE : (‘&amp;’)(ID);<br>變數記憶體位址</p>
+<p>FLOAT_NUM: FLOAT_NUM1 | FLOAT_NUM2 | FLOAT_NUM3;<br>浮點數</p>
+<p>COMMENT1 : ‘//‘(.)<em>‘\n’;<br>COMMENT2 : ‘/</em>‘ (options{greedy=false;}: .)<em> ‘</em>/‘;<br>註解</p>
+<p>NEW_LINE: (‘\n’|’\r’);<br>換行字元</p>
+<p>fragment: 非一個 token, 可以被別人引用</p>
+<p>fragment FLOAT_NUM1: (DIGIT)+’.’(DIGIT)*;<br>fragment FLOAT_NUM2: ‘.’(DIGIT)+;<br>fragment FLOAT_NUM3: (DIGIT)+;<br>各種浮點數樣式</p>
+<p>fragment LETTER : ‘a’..’z’ | ‘A’..’Z’ | ‘_’;<br>字母<br>fragment DIGIT : ‘0’..’9’;<br>數字</p>
+<p>WS  : (‘ ‘|’\r’|’\t’)+<br>    ;<br>空白</p>
+<p>指令： 透過 MyLexer.g 生成 MyLexer.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp antlr-3.5.2-complete.jar org.antlr.Tool MyLexer.g</span><br></pre></td></tr></table></figure></p>
+<p>指令： 將你要呼叫 Lexer 的檔案和 Lexer 一起編譯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -cp ./antlr-3.5.2-complete.jar TestLexer.java MyLexer.java</span><br></pre></td></tr></table></figure></p>
+<p>指令： 執行, 並將要測試的檔名用 args 傳入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp .:antlr-3.5.2-complete.jar TestLexer input.c</span><br></pre></td></tr></table></figure></p>
+<p>其中 -cp 代表的是 -classpath, 告訴編譯器 class 的路徑<br>.:antlr-3.5.2-complete.jar<br>意思是 . 和 antlr-3.5.2-complete.jar 這兩個路徑<br>以 : 隔開, 在 windows 是以 ; 隔開</p>
 
-    </header>
+          
+      
+    </div>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/04/01/diary-20170401/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">【明天我要和昨天的妳約會】觀後感</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-  
-  
-    </div></section>
-  
 
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 
 </section>
         
@@ -228,11 +270,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
+  var disqus_url = 'http://abcd40404.github.io/2017/04/03/compiler1/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

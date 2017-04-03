@@ -74,6 +74,77 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-compiler1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/04/03/compiler1/" class="article-date">
+  <time datetime="2017-04-03T14:32:26.000Z" itemprop="datePublished">2017-04-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/編譯器/">編譯器</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/03/compiler1/">Compiler(一)：環境建制以及Lexer</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/04/03/compiler1/" data-id="cj1294tx80021z7zr46i7sdbw" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/04/03/compiler1/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>ANTLR 利用 .g 檔生成 Lexer<br>定義 Token 如下:</p>
+<p>INT_TYPE  : ‘int’;<br>LONGLONG_TYPE : ‘long long’;<br>CHAR_TYPE : ‘char’;<br>VOID_TYPE : ‘void’;<br>FLOAT<em>TYPE: ‘float’;<br>WHILE</em>    : ‘while’;<br>FOR<em> : ‘for’;<br>IF</em> : ‘if’;<br>ELSE_ : ‘else’;</p>
+<p>一些常見型態如: int, long long, char, void, float<br>一些保留字如: while, for, if, else</p>
+<p>ASSIGN_OP : ‘=’;<br>P_OP : ‘+’;<br>M_OP : ‘-‘;<br>MU_OP : ‘<em>‘;<br>MUA_OP : ‘</em>=’;<br>D_OP : ‘/‘;<br>DA_OP : ‘/=’;<br>PA_OP : ‘+=’;<br>MA_OP : ‘-=’;<br>EQ_OP : ‘==’;<br>LE_OP : ‘&lt;=’;<br>GE_OP : ‘&gt;=’;<br>NE_OP : ‘!=’;<br>PP_OP : ‘++’;<br>MM_OP : ‘–’;<br>RSHIFT_OP : ‘&lt;&lt;’;<br>LSHIFT_OP : ‘&gt;&gt;’;</p>
+<p>各種運算子:<br>令值: ‘=’<br>加減乘除: ‘+, -, *, /‘<br>位元運算: ‘&lt;&lt;’, ‘&gt;&gt;’</p>
+<p>PUNCTUATION : (‘.’|’,’|’;’|’#’|’(‘|’)’|’{‘|’}’|’&lt;’|’&gt;’|’%’|’\‘) ;<br>標點符號: ‘. , ; # ( ) { } &lt; &gt; % \’</p>
+<p>DEC_NUM : (‘0’ | (‘1’..’9’)(DIGIT)*) ;<br>十進位數字</p>
+<p>ID : (LETTER)(LETTER | DIGIT)*;<br>變數或函數名稱</p>
+<p>LITERAL : (‘“‘)(LETTER|PUNCTUATION|NEW_LINE|’ ‘)*(‘“‘) ;<br>字串</p>
+<p>HEADER : (LETTER)+’.h’ ;<br>標頭檔</p>
+<p>REFERENCE : (‘&amp;’)(ID);<br>變數記憶體位址</p>
+<p>FLOAT_NUM: FLOAT_NUM1 | FLOAT_NUM2 | FLOAT_NUM3;<br>浮點數</p>
+<p>COMMENT1 : ‘//‘(.)<em>‘\n’;<br>COMMENT2 : ‘/</em>‘ (options{greedy=false;}: .)<em> ‘</em>/‘;<br>註解</p>
+<p>NEW_LINE: (‘\n’|’\r’);<br>換行字元</p>
+<p>fragment: 非一個 token, 可以被別人引用</p>
+<p>fragment FLOAT_NUM1: (DIGIT)+’.’(DIGIT)*;<br>fragment FLOAT_NUM2: ‘.’(DIGIT)+;<br>fragment FLOAT_NUM3: (DIGIT)+;<br>各種浮點數樣式</p>
+<p>fragment LETTER : ‘a’..’z’ | ‘A’..’Z’ | ‘_’;<br>字母<br>fragment DIGIT : ‘0’..’9’;<br>數字</p>
+<p>WS  : (‘ ‘|’\r’|’\t’)+<br>    ;<br>空白</p>
+<p>指令： 透過 MyLexer.g 生成 MyLexer.java<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp antlr-3.5.2-complete.jar org.antlr.Tool MyLexer.g</span><br></pre></td></tr></table></figure></p>
+<p>指令： 將你要呼叫 Lexer 的檔案和 Lexer 一起編譯<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javac -cp ./antlr-3.5.2-complete.jar TestLexer.java MyLexer.java</span><br></pre></td></tr></table></figure></p>
+<p>指令： 執行, 並將要測試的檔名用 args 傳入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -cp .:antlr-3.5.2-complete.jar TestLexer input.c</span><br></pre></td></tr></table></figure></p>
+<p>其中 -cp 代表的是 -classpath, 告訴編譯器 class 的路徑<br>.:antlr-3.5.2-complete.jar<br>意思是 . 和 antlr-3.5.2-complete.jar 這兩個路徑<br>以 : 隔開, 在 windows 是以 ; 隔開</p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-diary-20170401" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/04/01/diary-20170401/" class="article-date">
@@ -99,7 +170,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/01/diary-20170401/" data-id="cj0zi11zp001z0dzrk13wzux4" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/04/01/diary-20170401/" data-id="cj1294u09002vz7zrnqzprme5" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/04/01/diary-20170401/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -157,7 +228,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/30/uva10684/" data-id="cj0zi122w003q0dzrenoy7rt9" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/30/uva10684/" data-id="cj1294u2e003uz7zrx6d2x490" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/30/uva10684/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -213,7 +284,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/30/cf407/" data-id="cj0zi11yf001f0dzr3xryk6zl" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/30/cf407/" data-id="cj1294twf001uz7zrpq0nlt1j" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/30/cf407/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -293,7 +364,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/30/cfedu18/" data-id="cj0zi11zj001v0dzr5dyhfvk8" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/30/cfedu18/" data-id="cj1294tyn002gz7zruriwzru9" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/30/cfedu18/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -370,7 +441,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/24/cf406/" data-id="cj0zi11y9001c0dzr8cyp2p26" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/24/cf406/" data-id="cj1294tv5001hz7zr7xw6ectm" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/24/cf406/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -437,7 +508,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/19/cf405/" data-id="cj0zi11xz00180dzrr62cxlir" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/19/cf405/" data-id="cj1294twu001yz7zrtgubev79" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/19/cf405/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -511,7 +582,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/17/uva10066/" data-id="cj0zi122l003l0dzr2osvpuq6" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/17/uva10066/" data-id="cj1294u2k003yz7zrc0vi1zf8" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/17/uva10066/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -567,7 +638,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/17/uva531/" data-id="cj0zi123d003y0dzrsbdtv3uu" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/17/uva531/" data-id="cj1294u2w0042z7zrefpwe430" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/17/uva531/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -623,7 +694,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/16/uva111/" data-id="cj0zi1237003t0dzrtc9otvvp" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/16/uva111/" data-id="cj1294u3k004az7zrse6toatw" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/16/uva111/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -658,56 +729,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-template-LCS" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/16/template-LCS/" class="article-date">
-  <time datetime="2017-03-16T02:34:32.000Z" itemprop="datePublished">2017-03-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/DP/">DP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/16/template-LCS/">LCS 模板</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/16/template-LCS/" data-id="cj0zi121t00350dzr6ps8tq0g" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/03/16/template-LCS/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>定義 dp[i][j]: s1…si 和 t1…tj 的最長共同子序列<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1, s2;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">    <span class="keyword">int</span> len1 = s1.length();</span><br><span class="line">    <span class="keyword">int</span> len2 = s2.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s1[i] == s2[j])</span><br><span class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = max(dp[i + <span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[len1][len2] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -722,7 +743,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">5</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">41</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">5</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/MySQL/">MySQL</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">41</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">5</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -751,7 +772,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -762,6 +783,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/04/03/compiler1/">Compiler(一)：環境建制以及Lexer</a>
+          </li>
         
           <li>
             <a href="/2017/04/01/diary-20170401/">【明天我要和昨天的妳約會】觀後感</a>
@@ -777,10 +802,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/03/30/cfedu18/">Educational Codeforces Round 18</a>
-          </li>
-        
-          <li>
-            <a href="/2017/03/24/cf406/">Codeforces Round 406</a>
           </li>
         
       </ul>
