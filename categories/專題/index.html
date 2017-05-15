@@ -3,27 +3,17 @@
 <head>
   <meta charset="utf-8">
   
-  <title>KMP Algorithm 探討 | Kamikaze&#39;s blog</title>
+  <title>Category: 專題 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
-<meta property="og:type" content="article">
-<meta property="og:title" content="KMP Algorithm 探討">
-<meta property="og:url" content="http://abcd40404.github.io/2016/07/28/KMP/index.html">
+  <meta name="description">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Kamikaze's blog">
+<meta property="og:url" content="http://abcd40404.github.io/categories/專題/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
-<meta property="og:updated_time" content="2016-08-01T12:13:41.356Z">
+<meta property="og:description">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP Algorithm 探討">
-<meta name="twitter:description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
+<meta name="twitter:title" content="Kamikaze's blog">
+<meta name="twitter:description">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -82,97 +72,29 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-KMP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/28/KMP/" class="article-date">
-  <time datetime="2016-07-28T05:06:36.000Z" itemprop="datePublished">2016-07-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/演算法/">演算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <section id="main"><div class="list-table">
+    <ul>
         
   
-    <h1 class="article-title" itemprop="name">
-      KMP Algorithm 探討
-    </h1>
+      
+            <li>
+    
+  
+      <a class="list" href="/2017/05/15/mosquitto-configure/">Windows 上安裝 mosquitto</a>
   
 
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/28/KMP/" data-id="cj2q7ms3f0004fazrldes5o36" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2016/07/28/KMP/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <div id="toc" class="toc-article">
-              <h2 class="toc-title"><span>Contents</span></h2>
-              
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#關於KMP"><span class="toc-number">1.</span> <span class="toc-text">關於KMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#名詞定義"><span class="toc-number">2.</span> <span class="toc-text">名詞定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立-F-函數"><span class="toc-number">3.</span> <span class="toc-text">建立 F 函數</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP-搜尋"><span class="toc-number">4.</span> <span class="toc-text">KMP 搜尋</span></a></li></ol>
-              
-              </div>
-          
-          
-            <h2 id="關於KMP"><a href="#關於KMP" class="headerlink" title="關於KMP"></a>關於KMP</h2><p>一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次<br>同時比對要搜尋的字串(pattern)<br>時間複雜度為O(nm)</p>
-<p>KMP演算法改進了一些不必要的搜尋<br>使得時間複雜度為O(n + m)</p>
-<h2 id="名詞定義"><a href="#名詞定義" class="headerlink" title="名詞定義"></a>名詞定義</h2><p>失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數</p>
-<h2 id="建立-F-函數"><a href="#建立-F-函數" class="headerlink" title="建立 F 函數"></a>建立 F 函數</h2><p>這邊放上網路上常見兩種寫法<br>不變的是 j 代表的是目前比對的字元的 ‘前一個字’<br>f[i] 代表比對失敗時, j 要變成的位置</p>
-<ol>
-<li><p>字串從 0 開始存, 沒匹配字元時, f 值為 -1</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = f[i - <span class="number">1</span>];</span><br><span class="line">        <span class="comment">//如果不相等, 先位移到適合位置</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; s[j + <span class="number">1</span>] != s[i])</span><br><span class="line">            j = f[j];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(s[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            f[i] = j + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//還是不相等, 此時 j = -1</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 </li>
-<li><p>字串從 1 開始存, 沒匹配字元時, f 值為 0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span>  </span>&#123;    </span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= s.length(); i++)&#123;  </span><br><span class="line">        <span class="keyword">int</span> j = f[i<span class="number">-1</span>];  </span><br><span class="line">        <span class="keyword">while</span> (j &amp;&amp; s[j+<span class="number">1</span>] != s[i])</span><br><span class="line">            j = f[j];  </span><br><span class="line">        <span class="keyword">if</span> (s[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            f[i] = j + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//這邊沒有 else 判斷是因為, 在全域宣告的陣列初始值為 0</span></span><br><span class="line">        <span class="comment">// 0 在這種寫法的意義和第一種寫法的 -1 相同</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="KMP-搜尋"><a href="#KMP-搜尋" class="headerlink" title="KMP 搜尋"></a>KMP 搜尋</h2><p>如果存在該字串, 回傳字串開頭位置, 否則回傳 -1<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> pat[])</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> lens = <span class="built_in">strlen</span>(S);</span><br><span class="line">  <span class="keyword">int</span> lenp = <span class="built_in">strlen</span>(pat);</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; lens &amp;&amp; j &lt; lenp)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span>(S[i] == pat[j])&#123;</span><br><span class="line">      i++; j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">0</span>)</span><br><span class="line">      i++;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      j = failure[j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ((j == lenp) ? (i-lenp) : <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-          
       
-    </div>
-  </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2016/08/01/cf93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+
+
+
         
-          Codeforces Beta Round 93 (Div. 1 Only)
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2016/07/26/cfKTUcamp2/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">KTUcamp2</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
+    </ul>
+</div>
 </section>
         
           <aside id="sidebar">
@@ -273,13 +195,11 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2016/07/28/KMP/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>

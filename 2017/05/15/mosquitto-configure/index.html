@@ -3,27 +3,74 @@
 <head>
   <meta charset="utf-8">
   
-  <title>KMP Algorithm 探討 | Kamikaze&#39;s blog</title>
+  <title>Windows 上安裝 mosquitto | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
+  <meta name="description" content="所需檔案
+Mosquitto for Windows
+
+Win32 OpenSSL
+
+pthread-win32根據路徑找到檔案下載
+
+
+安裝 mosquitto執行 mosquitto 安裝程式
+過程選擇安裝路徑
+勾選下面那個
+接著按 Next, 應該會出現以下錯誤畫面因為我們缺少 libeay32.dll 和 ssleay32.dll
+
+安裝需要的元件回到最上面說的, 在Win32 OpenS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="KMP Algorithm 探討">
-<meta property="og:url" content="http://abcd40404.github.io/2016/07/28/KMP/index.html">
+<meta property="og:title" content="Windows 上安裝 mosquitto">
+<meta property="og:url" content="http://abcd40404.github.io/2017/05/15/mosquitto-configure/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
-<meta property="og:updated_time" content="2016-08-01T12:13:41.356Z">
+<meta property="og:description" content="所需檔案
+Mosquitto for Windows
+
+Win32 OpenSSL
+
+pthread-win32根據路徑找到檔案下載
+
+
+安裝 mosquitto執行 mosquitto 安裝程式
+過程選擇安裝路徑
+勾選下面那個
+接著按 Next, 應該會出現以下錯誤畫面因為我們缺少 libeay32.dll 和 ssleay32.dll
+
+安裝需要的元件回到最上面說的, 在Win32 OpenS">
+<meta property="og:image" content="http://i.imgur.com/TRxLPbM.png">
+<meta property="og:image" content="http://i.imgur.com/icvPV92.png">
+<meta property="og:image" content="http://i.imgur.com/QPxv1VQ.png">
+<meta property="og:image" content="http://i.imgur.com/TW2E21R.png">
+<meta property="og:image" content="http://i.imgur.com/J2b4S4k.png">
+<meta property="og:image" content="http://i.imgur.com/AJu2mKj.png">
+<meta property="og:image" content="http://i.imgur.com/jqaMO77.png">
+<meta property="og:image" content="http://i.imgur.com/ktuOWuA.png">
+<meta property="og:image" content="http://i.imgur.com/vmE8fIq.png">
+<meta property="og:image" content="http://i.imgur.com/jJRhNSo.png">
+<meta property="og:image" content="http://i.imgur.com/2nnqHkJ.png">
+<meta property="og:image" content="http://i.imgur.com/KIHFQmy.png">
+<meta property="og:image" content="http://i.imgur.com/uYTgXjH.png">
+<meta property="og:image" content="http://i.imgur.com/xCVF8uJ.png">
+<meta property="og:image" content="http://i.imgur.com/oOexqvU.png">
+<meta property="og:image" content="http://i.imgur.com/EWZRPC4.png">
+<meta property="og:updated_time" content="2017-05-15T14:13:33.999Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="KMP Algorithm 探討">
-<meta name="twitter:description" content="關於KMP一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次同時比對要搜尋的字串(pattern)時間複雜度為O(nm)
-KMP演算法改進了一些不必要的搜尋使得時間複雜度為O(n + m)
-名詞定義失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數
-建立 F 函數這邊放上網路上常見兩種寫法不變的是 j 代">
+<meta name="twitter:title" content="Windows 上安裝 mosquitto">
+<meta name="twitter:description" content="所需檔案
+Mosquitto for Windows
+
+Win32 OpenSSL
+
+pthread-win32根據路徑找到檔案下載
+
+
+安裝 mosquitto執行 mosquitto 安裝程式
+過程選擇安裝路徑
+勾選下面那個
+接著按 Next, 應該會出現以下錯誤畫面因為我們缺少 libeay32.dll 和 ssleay32.dll
+
+安裝需要的元件回到最上面說的, 在Win32 OpenS">
+<meta name="twitter:image" content="http://i.imgur.com/TRxLPbM.png">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -82,14 +129,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-KMP" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-mosquitto-configure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2016/07/28/KMP/" class="article-date">
-  <time datetime="2016-07-28T05:06:36.000Z" itemprop="datePublished">2016-07-28</time>
+    <a href="/2017/05/15/mosquitto-configure/" class="article-date">
+  <time datetime="2017-05-15T12:40:31.000Z" itemprop="datePublished">2017-05-15</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/演算法/">演算法</a>
+    <a class="article-category-link" href="/categories/專題/">專題</a>
   </div>
 
   </div>
@@ -100,16 +147,16 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      KMP Algorithm 探討
+      Windows 上安裝 mosquitto
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/28/KMP/" data-id="cj2q7ms3f0004fazrldes5o36" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cj2q7ms6d002sfazrdrj7z8wz" class="article-share-link">Share</a>
       
-        <a href="http://abcd40404.github.io/2016/07/28/KMP/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://abcd40404.github.io/2017/05/15/mosquitto-configure/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -119,24 +166,39 @@ ga('send', 'pageview');
               <div id="toc" class="toc-article">
               <h2 class="toc-title"><span>Contents</span></h2>
               
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#關於KMP"><span class="toc-number">1.</span> <span class="toc-text">關於KMP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#名詞定義"><span class="toc-number">2.</span> <span class="toc-text">名詞定義</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#建立-F-函數"><span class="toc-number">3.</span> <span class="toc-text">建立 F 函數</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#KMP-搜尋"><span class="toc-number">4.</span> <span class="toc-text">KMP 搜尋</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#所需檔案"><span class="toc-number">1.</span> <span class="toc-text">所需檔案</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安裝-mosquitto"><span class="toc-number">2.</span> <span class="toc-text">安裝 mosquitto</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#安裝需要的元件"><span class="toc-number">2.1.</span> <span class="toc-text">安裝需要的元件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#啟動-mosquitto-伺服器"><span class="toc-number">3.</span> <span class="toc-text">啟動 mosquitto 伺服器</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#簡單測試-subscribe-和-publish"><span class="toc-number">4.</span> <span class="toc-text">簡單測試 subscribe 和 publish</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#訂閱"><span class="toc-number">4.1.</span> <span class="toc-text">訂閱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#發送"><span class="toc-number">4.2.</span> <span class="toc-text">發送</span></a></li></ol></li></ol>
               
               </div>
           
           
-            <h2 id="關於KMP"><a href="#關於KMP" class="headerlink" title="關於KMP"></a>關於KMP</h2><p>一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次<br>同時比對要搜尋的字串(pattern)<br>時間複雜度為O(nm)</p>
-<p>KMP演算法改進了一些不必要的搜尋<br>使得時間複雜度為O(n + m)</p>
-<h2 id="名詞定義"><a href="#名詞定義" class="headerlink" title="名詞定義"></a>名詞定義</h2><p>失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數</p>
-<h2 id="建立-F-函數"><a href="#建立-F-函數" class="headerlink" title="建立 F 函數"></a>建立 F 函數</h2><p>這邊放上網路上常見兩種寫法<br>不變的是 j 代表的是目前比對的字元的 ‘前一個字’<br>f[i] 代表比對失敗時, j 要變成的位置</p>
-<ol>
-<li><p>字串從 0 開始存, 沒匹配字元時, f 值為 -1</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</span><br><span class="line">    f[<span class="number">0</span>] = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> j = f[i - <span class="number">1</span>];</span><br><span class="line">        <span class="comment">//如果不相等, 先位移到適合位置</span></span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; s[j + <span class="number">1</span>] != s[i])</span><br><span class="line">            j = f[j];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(s[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            f[i] = j + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//還是不相等, 此時 j = -1</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            f[i] = j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <h1 id="所需檔案"><a href="#所需檔案" class="headerlink" title="所需檔案"></a>所需檔案</h1><ol>
+<li><p><a href="https://mosquitto.org/download/" target="_blank" rel="external">Mosquitto for Windows</a><br><img src="http://i.imgur.com/TRxLPbM.png" alt=""></p>
 </li>
-<li><p>字串從 1 開始存, 沒匹配字元時, f 值為 0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span>  </span>&#123;    </span><br><span class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= s.length(); i++)&#123;  </span><br><span class="line">        <span class="keyword">int</span> j = f[i<span class="number">-1</span>];  </span><br><span class="line">        <span class="keyword">while</span> (j &amp;&amp; s[j+<span class="number">1</span>] != s[i])</span><br><span class="line">            j = f[j];  </span><br><span class="line">        <span class="keyword">if</span> (s[j + <span class="number">1</span>] == s[i])</span><br><span class="line">            f[i] = j + <span class="number">1</span>;</span><br><span class="line">        <span class="comment">//這邊沒有 else 判斷是因為, 在全域宣告的陣列初始值為 0</span></span><br><span class="line">        <span class="comment">// 0 在這種寫法的意義和第一種寫法的 -1 相同</span></span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<li><p><a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">Win32 OpenSSL</a><br><img src="http://i.imgur.com/icvPV92.png" alt=""></p>
+</li>
+<li><p><a href="ftp://sourceware.org/pub/pthreads-win32" target="_blank" rel="external">pthread-win32</a><br>根據路徑找到檔案下載<br><img src="http://i.imgur.com/QPxv1VQ.png" alt=""><br><img src="http://i.imgur.com/TW2E21R.png" alt=""></p>
 </li>
 </ol>
-<h2 id="KMP-搜尋"><a href="#KMP-搜尋" class="headerlink" title="KMP 搜尋"></a>KMP 搜尋</h2><p>如果存在該字串, 回傳字串開頭位置, 否則回傳 -1<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> pat[])</span></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> lens = <span class="built_in">strlen</span>(S);</span><br><span class="line">  <span class="keyword">int</span> lenp = <span class="built_in">strlen</span>(pat);</span><br><span class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span>(i &lt; lens &amp;&amp; j &lt; lenp)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">if</span>(S[i] == pat[j])&#123;</span><br><span class="line">      i++; j++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">0</span>)</span><br><span class="line">      i++;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">      j = failure[j<span class="number">-1</span>] + <span class="number">1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> ((j == lenp) ? (i-lenp) : <span class="number">-1</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h1 id="安裝-mosquitto"><a href="#安裝-mosquitto" class="headerlink" title="安裝 mosquitto"></a>安裝 mosquitto</h1><p>執行 mosquitto 安裝程式</p>
+<p>過程選擇安裝路徑<br><img src="http://i.imgur.com/J2b4S4k.png" alt=""></p>
+<p>勾選下面那個<br><img src="http://i.imgur.com/AJu2mKj.png" alt=""></p>
+<p>接著按 Next, 應該會出現以下錯誤畫面<br>因為我們缺少 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p>
+<p><img src="http://i.imgur.com/jqaMO77.png" alt=""><br><img src="http://i.imgur.com/ktuOWuA.png" alt=""></p>
+<h2 id="安裝需要的元件"><a href="#安裝需要的元件" class="headerlink" title="安裝需要的元件"></a>安裝需要的元件</h2><p>回到最上面說的, 在Win32 OpenSSL那裡有下載了安裝檔<br>我們要安裝它來取得 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p>
+<p>選擇安裝路徑<br><img src="http://i.imgur.com/vmE8fIq.png" alt=""></p>
+<p>最後面的畫面是要你捐錢, 沒有要捐就把它勾掉吧<br><img src="http://i.imgur.com/jJRhNSo.png" alt=""></p>
+<p>然後我們到安裝好的資料夾取出 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong><br><img src="http://i.imgur.com/2nnqHkJ.png" alt=""></p>
+<p>以及在 pthread-win32 下載的 <strong>pthreadVC2.dll</strong><br>一起放到剛剛未完成安裝的 mosquitto 資料夾</p>
+<p><img src="http://i.imgur.com/KIHFQmy.png" alt=""></p>
+<p>到這邊就安裝完成了！</p>
+<h1 id="啟動-mosquitto-伺服器"><a href="#啟動-mosquitto-伺服器" class="headerlink" title="啟動 mosquitto 伺服器"></a>啟動 mosquitto 伺服器</h1><p>到工作管理員/服務<br>找到 mosquitto 啟動它<br><img src="http://i.imgur.com/uYTgXjH.png" alt=""></p>
+<h1 id="簡單測試-subscribe-和-publish"><a href="#簡單測試-subscribe-和-publish" class="headerlink" title="簡單測試 subscribe 和 publish"></a>簡單測試 subscribe 和 publish</h1><p>本機當作伺服器測試<br>打開cmd</p>
+<h2 id="訂閱"><a href="#訂閱" class="headerlink" title="訂閱"></a>訂閱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\mosquitto\mosquitto_sub.exe&quot; -d -h 127.0.0.1 -t test</span><br></pre></td></tr></table></figure>
+<h2 id="發送"><a href="#發送" class="headerlink" title="發送"></a>發送</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\mosquitto\mosquitto_pub.exe&quot; -d -h 127.0.0.1 -t test -m &quot;test message&quot;</span><br></pre></td></tr></table></figure>
+<p>參數解釋<br>-d: 開啟 debug 模式<br>-h: 主機 IP address<br>-t: 訂閱主題<br>-m: 訊息內容</p>
+<p>測試結果:<br><img src="http://i.imgur.com/xCVF8uJ.png" alt=""></p>
+<p><img src="http://i.imgur.com/oOexqvU.png" alt=""></p>
+<p><img src="http://i.imgur.com/EWZRPC4.png" alt=""></p>
 
           
       
@@ -146,19 +208,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2016/08/01/cf93/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Codeforces Beta Round 93 (Div. 1 Only)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/07/26/cfKTUcamp2/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/05/12/compiler2/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">KTUcamp2</div>
+      <div class="article-nav-title">compiler2</div>
     </a>
   
 </nav>
@@ -273,7 +326,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2016/07/28/KMP/';
+  var disqus_url = 'http://abcd40404.github.io/2017/05/15/mosquitto-configure/';
   
   (function(){
     var dsq = document.createElement('script');
