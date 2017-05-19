@@ -74,6 +74,181 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-cfKTUcamp2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/26/cfKTUcamp2/" class="article-date">
+  <time datetime="2016-07-26T14:46:21.000Z" itemprop="datePublished">2016-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Codeforces/">Codeforces</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/26/cfKTUcamp2/">KTUcamp2</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2016/07/26/cfKTUcamp2/" data-id="cj2w01fdu001ljmzr03u6dmez" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2016/07/26/cfKTUcamp2/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary-search/">binary_search</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h1 id="C-Rating-Shuffle"><a href="#C-Rating-Shuffle" class="headerlink" title="C. Rating Shuffle"></a>C. Rating Shuffle</h1><p># binary_search<br><a href="http://codeforces.com/gym/100738/problem/C" target="_blank" rel="external">題目</a></p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>給 n 個人, 每個人都有評分(rating)<br>每場比賽每個人的評分可以上升或下降 d 分<br>求需要最少幾場可以使第 i 人, 評分第 i 大<br>也就是大到小</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>可以觀察到愈多場次, 愈容易達成<br>所以可以用二分搜, 是否能使用 k 場來完成需求</p>
+<p>想法： 先將第一人直接加到最大<br>接著看第二人需要幾場可以最接近第一人<br>但不超過他, 以此類推</p>
+<p>需要注意的是奇偶數的判定<br>例如： 我們需要上升(或下降) 3 場, 而二分搜的場次為 4 場<br>但這樣不可能達成, 因為需要 +3 場, 則剩下那個一定是 -1 場<br>結果就為 +2 場</p>
+<p>所以當有奇偶數場的差別時, 可以退而求其次, 不那麼接近 prev<br>也就是 need–</p>
+<p>而判斷函式回傳 false 的條件: abs(need) &gt; mid<br>可分為兩部份討論</p>
+<ol>
+<li><p>需要加上 +need 場數: 這種情況不影響, 因為可以不那麼接近, 而且會和 mid 取 min</p>
+</li>
+<li><p>需要加上 -need 場數: 這種情況就有差別了, 因為不夠小會造成比前一個數還大的結果, 所以這種情況就會回傳 false</p>
+</li>
+</ol>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;ll&gt; vec;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;vec&gt; mat;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf push_front</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> i128 __int128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, d;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">100000</span> + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">C</span><span class="params">(ll mid)</span></span>&#123;</span><br><span class="line">    ll prev = a[<span class="number">0</span>] + d * mid;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; n; i++)&#123;</span><br><span class="line">        ll need = min(mid, (prev - a[i]) / d);</span><br><span class="line">        <span class="keyword">if</span>(a[i] + d * need &gt;= prev)</span><br><span class="line">            need--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(need) % <span class="number">2</span> == <span class="number">0</span> &amp;&amp; mid % <span class="number">2</span> == <span class="number">1</span>)</span><br><span class="line">            need--;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(<span class="built_in">abs</span>(need) % <span class="number">2</span> == <span class="number">1</span> &amp;&amp; mid % <span class="number">2</span> == <span class="number">0</span>)</span><br><span class="line">            need--;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">abs</span>(need) &gt; mid)</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        prev = a[i] + d * need;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; d;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    ll lb = <span class="number">0</span>, ub = <span class="number">1e10</span>;</span><br><span class="line">    <span class="keyword">if</span>(C(lb))&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; lb &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(ub - lb &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        ll mid = (lb + ub) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(C(mid))</span><br><span class="line">            ub = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            lb = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ub &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cf364" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/24/cf364/" class="article-date">
+  <time datetime="2016-07-24T14:58:53.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Codeforces/">Codeforces</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/cf364/">Codeforces Round 364 (Div. 2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2016/07/24/cf364/" data-id="cj2w01fbn0001jmzr7gy5ttuz" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2016/07/24/cf364/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary-search/">binary_search</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h1 id="C-They-Are-Everywhere"><a href="#C-They-Are-Everywhere" class="headerlink" title="C. They Are Everywhere"></a>C. They Are Everywhere</h1><p># binary_search # two points<br>類似題目請參考 cfedu11 C 題<br><a href="http://codeforces.com/contest/701/problem/C" target="_blank" rel="external">題目</a></p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>現有 n 間房間, 每間房間有不同類型的pokemon: a ~ z, A ~ Z<br>還真是趕的上流行的一題阿 哈哈<br>每間房間只能連到 n + 1 間, 意即只能往右走<br>求最少要經過幾間房間, 才能捉到所有類型的pokemon(input給的)</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>又是一樣的兩端點區間的題目<br>用二分搜, 長度為 x 能不能捉到所有類型的pokemon<br>判斷函式寫法, 在長度 x 下用 map 記載類型數量<br>看能否達到題目要求的數量</p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;ll&gt; vec;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;vec&gt; mat;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf push_front</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> i128 __int128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">char</span>&gt; a;</span><br><span class="line"><span class="built_in">map</span> &lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; ans;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> len)</span></span>&#123;</span><br><span class="line">    <span class="built_in">map</span> &lt;<span class="keyword">char</span>, <span class="keyword">int</span>&gt; m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</span><br><span class="line">        m[a[i]]++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(sz(m) == sz(ans))</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i + len - <span class="number">1</span> &lt; n; i++)&#123;</span><br><span class="line">        m[a[i - <span class="number">1</span>]]--;</span><br><span class="line">        <span class="keyword">if</span>(m[a[i - <span class="number">1</span>]] == <span class="number">0</span>)</span><br><span class="line">            m.erase(a[i - <span class="number">1</span>]);</span><br><span class="line">        <span class="keyword">int</span> j = i + len - <span class="number">1</span>;</span><br><span class="line">        m[a[j]]++;</span><br><span class="line">        <span class="keyword">if</span>(sz(m) == sz(ans))</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> lb = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> ub = n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(C(lb))</span><br><span class="line">        <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(ub - lb &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (lb + ub) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(C(mid))</span><br><span class="line">            ub = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            lb = mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ub;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; c;</span><br><span class="line">        a.pb(c);</span><br><span class="line">        ans[c]++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; solve() &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cfedu11" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/07/24/cfedu11/" class="article-date">
+  <time datetime="2016-07-24T14:12:59.000Z" itemprop="datePublished">2016-07-24</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Codeforces/">Codeforces</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/24/cfedu11/">Educational Codeforces Round 11</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2016/07/24/cfedu11/" data-id="cj2w01fdx001ojmzr888tbsie" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2016/07/24/cfedu11/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/binary-search/">binary_search</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h1 id="C-Hard-Process"><a href="#C-Hard-Process" class="headerlink" title="C. Hard Process"></a>C. Hard Process</h1><p># binary_search # two points<br><a href="http://codeforces.com/contest/660/problem/C" target="_blank" rel="external">題目</a></p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>給定長度為 n 只有 0, 1 的數列<br><br>現有 k 次機會可將 0 轉換成 1<br><br>求可連續的 1 最長是多少<br></p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>可利用二分搜, 假設長度 x 是否能在 k 次轉換得到<br><br>由於觀察到長度愈長, 愈難達成<br><br>有此單調性, 故可用二分搜<br><br>是 1 1 1 1 0 0 0 0 類型<br></p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pf push_front</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> i128 __int128</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MaX INT_MIN INT_MaX</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, k;</span><br><span class="line"><span class="keyword">int</span> a[<span class="number">303030</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">bool</span> <span class="title">C</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> &amp;pos)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> block_1 = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;x; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i] == <span class="number">1</span>)</span><br><span class="line">            block_1++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> need = x - block_1;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>; i + x - <span class="number">1</span> &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(a[i - <span class="number">1</span>] == <span class="number">1</span>)</span><br><span class="line">            block_1--;</span><br><span class="line">        <span class="keyword">if</span>(a[i + x - <span class="number">1</span>] == <span class="number">1</span>)</span><br><span class="line">            block_1++;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(x - block_1 &lt; need)&#123;</span><br><span class="line">            need = x - block_1;</span><br><span class="line">            pos = i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> need &lt;= k;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">binary_search</span><span class="params">(<span class="keyword">int</span> &amp;pos)</span></span>&#123;</span><br><span class="line">    <span class="comment">//[0,n], 1 1 1 1 0 0 0 0 type</span></span><br><span class="line">    <span class="keyword">int</span> lb = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ub = n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(C(lb, pos) == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(C(ub, pos) == <span class="number">1</span>)</span><br><span class="line">        <span class="keyword">return</span> n;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(ub - lb &gt; <span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> mid = (lb + ub) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span>(C(mid, pos))</span><br><span class="line">            lb = mid;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            ub = mid;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//Make the pos in the right place</span></span><br><span class="line">    C(lb, pos);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> lb;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</span><br><span class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; n &gt;&gt; k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span> &gt;&gt; a[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> pos = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> ans = binary_search(pos);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;ans; i++)&#123;</span><br><span class="line">        a[pos + i] = <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; ans &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>; i&lt;n; i++)&#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; a[i] &lt;&lt; <span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-cf89" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/07/15/cf89/" class="article-date">
@@ -99,7 +274,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/15/cf89/" data-id="cj2q82c8d001rxxzr4bi4b6y6" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/07/15/cf89/" data-id="cj2w01fe60020jmzrlcpf7v1r" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/07/15/cf89/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -158,7 +333,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/09/poj3046/" data-id="cj2q82c9s003fxxzrnqnftn9u" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/07/09/poj3046/" data-id="cj2w01ffe003njmzravew5pn0" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/07/09/poj3046/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -214,7 +389,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/09/poj1742/" data-id="cj2q82c9f0030xxzr31g6lceh" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/07/09/poj1742/" data-id="cj2w01fex0033jmzrpayneb1v" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/07/09/poj1742/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -270,7 +445,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/06/poj3280/" data-id="cj2q82c9u003jxxzrgcu6ut58" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/07/06/poj3280/" data-id="cj2w01fg1004ijmzr3sr5ldwy" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/07/06/poj3280/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -326,7 +501,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/05/28/cf340/" data-id="cj2q82c6k0006xxzr6ct7c12m" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/05/28/cf340/" data-id="cj2w01fbw0003jmzregn18vgl" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/05/28/cf340/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -412,7 +587,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -425,23 +600,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2017/05/19/css-float/">css_float</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/17/mysql-time/">mysql_time</a>
+          </li>
+        
+          <li>
+            <a href="/2017/05/17/php-time/">PHP 時間函數</a>
+          </li>
+        
+          <li>
             <a href="/2017/05/15/mosquitto-configure/">Windows 上安裝 mosquitto</a>
           </li>
         
           <li>
             <a href="/2017/05/12/compiler2/">compiler2</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/04/rs232/">RS232雜記</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/01/ITSAchallenge-5/">ITSA第五屆桂冠賽 挑戰組</a>
-          </li>
-        
-          <li>
-            <a href="/2017/04/13/js-and-input/">用 Javascript 取得 Html input</a>
           </li>
         
       </ul>
