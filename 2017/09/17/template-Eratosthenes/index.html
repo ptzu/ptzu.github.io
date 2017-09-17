@@ -3,17 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Tag: coin | Kamikaze&#39;s blog</title>
+  <title>Eratosthenes 模板 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kamikaze's blog">
-<meta property="og:url" content="http://abcd40404.github.io/tags/coin/index.html">
+  <meta name="description" content="求取小於 n 的質數
+code12345678910111213141516171819const int MAX_N = 1e5;vector &amp;lt;int&amp;gt; prime;bool is_prime[MAX_N + 10];int sieve(int n)&amp;#123;    fill(is_prime, is_prime + n, true);    is_prime[0] = is_p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Eratosthenes 模板">
+<meta property="og:url" content="http://abcd40404.github.io/2017/09/17/template-Eratosthenes/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description">
+<meta property="og:description" content="求取小於 n 的質數
+code12345678910111213141516171819const int MAX_N = 1e5;vector &amp;lt;int&amp;gt; prime;bool is_prime[MAX_N + 10];int sieve(int n)&amp;#123;    fill(is_prime, is_prime + n, true);    is_prime[0] = is_p">
+<meta property="og:updated_time" content="2017-09-17T14:40:44.545Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kamikaze's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Eratosthenes 模板">
+<meta name="twitter:description" content="求取小於 n 的質數
+code12345678910111213141516171819const int MAX_N = 1e5;vector &amp;lt;int&amp;gt; prime;bool is_prime[MAX_N + 10];int sieve(int n)&amp;#123;    fill(is_prime, is_prime + n, true);    is_prime[0] = is_p">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -72,41 +76,76 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/07/09/poj1742/" class="archive-article-date">
-  <time datetime="2016-07-09T02:11:43.000Z" itemprop="datePublished">Jul 9</time>
+        <section id="main"><article id="post-template-Eratosthenes" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/17/template-Eratosthenes/" class="article-date">
+  <time datetime="2017-09-17T14:39:17.000Z" itemprop="datePublished">2017-09-17</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/07/09/poj1742/">POJ 1742 Coins</a>
+    <h1 class="article-title" itemprop="name">
+      Eratosthenes 模板
     </h1>
   
 
-    </header>
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/09/17/template-Eratosthenes/" data-id="cj7oune7000503hzrdu9zups1" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/09/17/template-Eratosthenes/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#code"><span class="toc-number">1.</span> <span class="toc-text">code</span></a></li></ol>
+              
+              </div>
+          
+          
+            <p>求取小於 n 的質數</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1e5</span>;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; prime;</span><br><span class="line"><span class="keyword">bool</span> is_prime[MAX_N + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sieve</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    fill(is_prime, is_prime + n, <span class="literal">true</span>);</span><br><span class="line">    is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(is_prime[i])&#123;</span><br><span class="line">            <span class="comment">//紀錄質數</span></span><br><span class="line">            prime.push_back(i);</span><br><span class="line">            <span class="comment">// 消除 i 的倍數</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i * <span class="number">2</span>; j &lt;= n; j += i)&#123;</span><br><span class="line">                is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)prime.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+      
+    </div>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/17/template-extgcd/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Extgcd 模板</div>
+    </a>
+  
+</nav>
+
+  
 </article>
 
-  
-  
-    </div></section>
-  
 
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
 
 </section>
         
@@ -208,11 +247,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
+  var disqus_url = 'http://abcd40404.github.io/2017/09/17/template-Eratosthenes/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
