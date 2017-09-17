@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>併查集 Disjoint set | Kamikaze&#39;s blog</title>
+  <title>快速冪(FastPow) 模板 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="code1234567891011121314151617181920212223242526struct Union_Find &amp;#123;    int par[1010], num[1010];    void init(int n)&amp;#123;        for(int i = 0; i &amp;lt; n; i++)&amp;#123;            par[i] = i;">
+  <meta name="description" content="在 log(N) 時間內求取冪次方
+code123456789101112int fastpow(int a,int b)  &amp;#123;      int ans = 1,base = a;      while(b!=0)      &amp;#123;          if(b&amp;amp;1)              ans *= base;          base *= base;">
 <meta property="og:type" content="article">
-<meta property="og:title" content="併查集 Disjoint set">
-<meta property="og:url" content="http://abcd40404.github.io/2017/02/02/template-dsu/index.html">
+<meta property="og:title" content="快速冪(FastPow) 模板">
+<meta property="og:url" content="http://abcd40404.github.io/2017/09/18/template-fastpow/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description" content="code1234567891011121314151617181920212223242526struct Union_Find &amp;#123;    int par[1010], num[1010];    void init(int n)&amp;#123;        for(int i = 0; i &amp;lt; n; i++)&amp;#123;            par[i] = i;">
-<meta property="og:updated_time" content="2017-02-02T10:25:52.764Z">
+<meta property="og:description" content="在 log(N) 時間內求取冪次方
+code123456789101112int fastpow(int a,int b)  &amp;#123;      int ans = 1,base = a;      while(b!=0)      &amp;#123;          if(b&amp;amp;1)              ans *= base;          base *= base;">
+<meta property="og:updated_time" content="2017-09-17T17:07:39.611Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="併查集 Disjoint set">
-<meta name="twitter:description" content="code1234567891011121314151617181920212223242526struct Union_Find &amp;#123;    int par[1010], num[1010];    void init(int n)&amp;#123;        for(int i = 0; i &amp;lt; n; i++)&amp;#123;            par[i] = i;">
+<meta name="twitter:title" content="快速冪(FastPow) 模板">
+<meta name="twitter:description" content="在 log(N) 時間內求取冪次方
+code123456789101112int fastpow(int a,int b)  &amp;#123;      int ans = 1,base = a;      while(b!=0)      &amp;#123;          if(b&amp;amp;1)              ans *= base;          base *= base;">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -73,14 +76,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-template-dsu" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-template-fastpow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/02/02/template-dsu/" class="article-date">
-  <time datetime="2017-02-02T10:22:18.000Z" itemprop="datePublished">2017-02-02</time>
+    <a href="/2017/09/18/template-fastpow/" class="article-date">
+  <time datetime="2017-09-17T17:06:00.000Z" itemprop="datePublished">2017-09-18</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Date-structure/">Date structure</a>
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
   </div>
 
   </div>
@@ -91,16 +94,16 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      併查集 Disjoint set
+      快速冪(FastPow) 模板
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/02/02/template-dsu/" data-id="cj7ozw6m7005a6vzr0gctka4r" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/09/18/template-fastpow/" data-id="cj7ozw6ma005h6vzr88idzrao" class="article-share-link">Share</a>
       
-        <a href="http://abcd40404.github.io/2017/02/02/template-dsu/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://abcd40404.github.io/2017/09/18/template-fastpow/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -115,7 +118,8 @@ ga('send', 'pageview');
               </div>
           
           
-            <h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> Union_Find &#123;</span><br><span class="line">    <span class="keyword">int</span> par[<span class="number">1010</span>], num[<span class="number">1010</span>];</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            par[i] = i;</span><br><span class="line">            num[i] = <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x == par[x])</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> par[x] = find(par[x]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        a = find(a);</span><br><span class="line">        b = find(b);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(a == b)</span><br><span class="line">            <span class="keyword">return</span> ;</span><br><span class="line">        <span class="keyword">if</span>(num[a] &gt; num[b])</span><br><span class="line">            swap(a, b);</span><br><span class="line">        par[a] = b;</span><br><span class="line">        num[b] += num[a];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;U;</span><br></pre></td></tr></table></figure>
+            <p>在 log(N) 時間內求取冪次方</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fastpow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>,base = a;  </span><br><span class="line">    <span class="keyword">while</span>(b!=<span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)  </span><br><span class="line">            ans *= base;  </span><br><span class="line">        base *= base;  </span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> ans;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
       
@@ -125,19 +129,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/02/02/cf384/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Codeforces Round 384 (Div. 2)
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/01/25/cf385/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/09/17/template-Eratosthenes/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Codeforces Round 385 (Div. 2)</div>
+      <div class="article-nav-title">Eratosthenes 模板</div>
     </a>
   
 </nav>
@@ -252,7 +247,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/02/02/template-dsu/';
+  var disqus_url = 'http://abcd40404.github.io/2017/09/18/template-fastpow/';
   
   (function(){
     var dsq = document.createElement('script');
