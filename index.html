@@ -74,6 +74,57 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-template-extgcd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/17/template-extgcd/" class="article-date">
+  <time datetime="2017-09-17T07:23:05.000Z" itemprop="datePublished">2017-09-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/17/template-extgcd/">Extgcd 模板</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/09/17/template-extgcd/" data-id="cj7of77bp0051v0zry5hxz86f" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/09/17/template-extgcd/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>求取 ax + by = gcd(a, b) 此方程式之解<br>並回傳 gcd(a, b)</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> d = a;</span><br><span class="line">    <span class="keyword">if</span>(b != <span class="number">0</span>)&#123;</span><br><span class="line">        d = extgcd(b, a % b, y, x);</span><br><span class="line">        y -= (a / b) * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-rs232-implement" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/06/09/rs232-implement/" class="article-date">
@@ -99,7 +150,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/06/09/rs232-implement/" data-id="cj3pjdufi004iuqzry86077u5" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/06/09/rs232-implement/" data-id="cj7of77b6004gv0zrxqd07yf7" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/06/09/rs232-implement/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -159,7 +210,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/06/04/php-call-compiler/" data-id="cj3pjduek003luqzrvtkyf29z" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/06/04/php-call-compiler/" data-id="cj7of77ag003gv0zrcbsk0n62" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/06/04/php-call-compiler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -218,7 +269,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/" data-id="cj3pjdug40057uqzreq1u6ikj" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/" data-id="cj7of77ce0060v0zrdxic18lw" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -276,7 +327,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cj3pjdued0039uqzruucd47z5" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cj7of77a90038v0zr4kej1kcg" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/31/mysql-newuser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -328,7 +379,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cj3pjdue2002yuqzr6s7d96ob" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cj7of779w002sv0zr6exy1gzh" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/htmlinputfile/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -387,7 +438,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cj3pjdudy002quqzr5o3rpa8b" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cj7of779r002kv0zrfyv8fbou" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/div-center/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -440,7 +491,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cj3pjduau0005uqzr76gswa6j" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cj7of77760007v0zrwhekwc5l" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/ajax-form/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -499,7 +550,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cj3pjdudt002iuqzrqtvi97u4" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cj7of779m002hv0zrk7zfmaxh" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/19/css-float/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -559,7 +610,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cj3pjdueh003huqzrizegp2gc" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cj7of77ae003cv0zrf3ichcbc" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/17/mysql-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -588,68 +639,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-php-time" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/17/php-time/" class="article-date">
-  <time datetime="2017-05-17T12:57:24.000Z" itemprop="datePublished">2017-05-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/網頁設計/">網頁設計</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/17/php-time/">PHP 時間函數</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cj3pjduen003nuqzr6wp0ud4m" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/05/17/php-time/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h2 id="設定時區"><a href="#設定時區" class="headerlink" title="設定時區"></a>設定時區</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date_default_timezone_set(<span class="string">"Asia/Taipei"</span>)</span><br></pre></td></tr></table></figure>
-<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date(<span class="string">'Y-m-j'</span>);</span><br></pre></td></tr></table></figure>
-<p>2017-05-17</p>
-<p>年: Y(四位數字), y(兩位數字)<br>月: F(英文全稱), M(英文縮寫), m(數字前導), n(數字無前導)<br>日: j(沒前導), d(有前導)</p>
-<h2 id="時-分-秒"><a href="#時-分-秒" class="headerlink" title="時:分:秒"></a>時:分:秒</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">date(<span class="string">'g:i:s a'</span>);</span><br></pre></td></tr></table></figure>
-<p>11:19:30 pm</p>
-<p>時: g(12小時制無前導), h(12小時制有前導), 小寫 a 代表 am, pm, 大寫 A 代表 AM, PM</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> date(<span class="string">'T'</span>);</span><br></pre></td></tr></table></figure>
-<p>UTC<br>大寫T表示伺服器的時間區域設置</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">echo</span> date(<span class="string">'U'</span>);</span><br></pre></td></tr></table></figure>
-<p>1170769424<br>大寫U表示從1970年1月1日到現在的總秒數，就是Unix時間紀元的UNIX時間戳。</p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -664,7 +653,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">3</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">4</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -693,7 +682,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -704,6 +693,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/09/17/template-extgcd/">Extgcd 模板</a>
+          </li>
         
           <li>
             <a href="/2017/06/09/rs232-implement/">透過 RS232 進行電腦訊息互傳</a>
@@ -719,10 +712,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/05/31/mysql-newuser/">MySQL 新增使用者</a>
-          </li>
-        
-          <li>
-            <a href="/2017/05/20/htmlinputfile/">Html, PHP 如何上傳檔案？</a>
           </li>
         
       </ul>
