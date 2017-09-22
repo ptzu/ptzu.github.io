@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>IIS Express 遠端(內網)存取 | Kamikaze&#39;s blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在測試 Web API 的時候, localhost 測都沒有問題但是在不同電腦上測卻出現了 400 Bad Request找了蠻多資料才解決因為預設只開放 localhost 連線所以我們必須做一些設定才可遠端連線整理如下:
+設定IP在 cmd 輸入 ipconfig 取得本機IP
+取得專案 port
+使用 netsh 將本機 IP 及 port 加入 URL 保留區
+檢查設定1netsh ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IIS Express 遠端(內網)存取">
+<meta property="og:url" content="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/index.html">
+<meta property="og:site_name" content="Kamikaze's blog">
+<meta property="og:description" content="在測試 Web API 的時候, localhost 測都沒有問題但是在不同電腦上測卻出現了 400 Bad Request找了蠻多資料才解決因為預設只開放 localhost 連線所以我們必須做一些設定才可遠端連線整理如下:
+設定IP在 cmd 輸入 ipconfig 取得本機IP
+取得專案 port
+使用 netsh 將本機 IP 及 port 加入 URL 保留區
+檢查設定1netsh ht">
+<meta property="og:image" content="https://i.imgur.com/ExVVpLu.png">
+<meta property="og:image" content="https://i.imgur.com/7UhnTKp.png">
+<meta property="og:image" content="https://i.imgur.com/u0ZBaWd.png">
+<meta property="og:image" content="https://i.imgur.com/PK0EHXQ.png">
+<meta property="og:image" content="https://i.imgur.com/uJK6KC7.png">
+<meta property="og:image" content="https://i.imgur.com/rkrwnC0.png">
+<meta property="og:image" content="https://i.imgur.com/CJa83np.png">
+<meta property="og:updated_time" content="2017-09-22T03:08:27.096Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="IIS Express 遠端(內網)存取">
+<meta name="twitter:description" content="在測試 Web API 的時候, localhost 測都沒有問題但是在不同電腦上測卻出現了 400 Bad Request找了蠻多資料才解決因為預設只開放 localhost 連線所以我們必須做一些設定才可遠端連線整理如下:
+設定IP在 cmd 輸入 ipconfig 取得本機IP
+取得專案 port
+使用 netsh 將本機 IP 及 port 加入 URL 保留區
+檢查設定1netsh ht">
+<meta name="twitter:image" content="https://i.imgur.com/ExVVpLu.png">
+  
+    <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/f.ico">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+<!-- Google Analytics -->
+<script type="text/javascript">
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+ga('create', 'UA-92673958-1', 'auto');
+ga('send', 'pageview');
+
+</script>
+<!-- End Google Analytics -->
+
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/About">About</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-IISRemoteAccess" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/22/IISRemoteAccess/" class="article-date">
+  <time datetime="2017-09-22T02:12:28.000Z" itemprop="datePublished">2017-09-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/專題/">專題</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      IIS Express 遠端(內網)存取
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/" data-id="cj7vb4c210005o8zr5cqniewh" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#設定IP"><span class="toc-number">1.</span> <span class="toc-text">設定IP</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#取得專案-port"><span class="toc-number">1.1.</span> <span class="toc-text">取得專案 port</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用-netsh-將本機-IP-及-port-加入-URL-保留區"><span class="toc-number">1.2.</span> <span class="toc-text">使用 netsh 將本機 IP 及 port 加入 URL 保留區</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#檢查設定"><span class="toc-number">1.3.</span> <span class="toc-text">檢查設定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#刪除設定"><span class="toc-number">1.4.</span> <span class="toc-text">刪除設定</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改-IIS-Express-設定"><span class="toc-number">2.</span> <span class="toc-text">修改 IIS Express 設定</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改防火牆規則"><span class="toc-number">3.</span> <span class="toc-text">修改防火牆規則</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#測試結果"><span class="toc-number">4.</span> <span class="toc-text">測試結果</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#可能遇到的問題"><span class="toc-number">5.</span> <span class="toc-text">可能遇到的問題</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#打不開網頁"><span class="toc-number">5.1.</span> <span class="toc-text">打不開網頁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#出現-503-Service-Unvailable"><span class="toc-number">5.2.</span> <span class="toc-text">出現 503 Service Unvailable</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#參考資料"><span class="toc-number">6.</span> <span class="toc-text">參考資料</span></a></li></ol>
+              
+              </div>
+          
+          
+            <p>在測試 Web API 的時候, localhost 測都沒有問題<br>但是在不同電腦上測卻出現了 400 Bad Request<br>找了蠻多資料才解決<br>因為預設只開放 localhost 連線<br>所以我們必須做一些設定才可遠端連線<br>整理如下:</p>
+<h1 id="設定IP"><a href="#設定IP" class="headerlink" title="設定IP"></a>設定IP</h1><p>在 cmd 輸入 ipconfig 取得本機IP</p>
+<h2 id="取得專案-port"><a href="#取得專案-port" class="headerlink" title="取得專案 port"></a>取得專案 port</h2><p><img src="https://i.imgur.com/ExVVpLu.png" alt=""><br><img src="https://i.imgur.com/7UhnTKp.png" alt=""></p>
+<h2 id="使用-netsh-將本機-IP-及-port-加入-URL-保留區"><a href="#使用-netsh-將本機-IP-及-port-加入-URL-保留區" class="headerlink" title="使用 netsh 將本機 IP 及 port 加入 URL 保留區"></a>使用 netsh 將本機 IP 及 port 加入 URL 保留區</h2><p><img src="https://i.imgur.com/u0ZBaWd.png" alt=""></p>
+<h2 id="檢查設定"><a href="#檢查設定" class="headerlink" title="檢查設定"></a>檢查設定</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh http show urlacl</span><br></pre></td></tr></table></figure>
+<h2 id="刪除設定"><a href="#刪除設定" class="headerlink" title="刪除設定"></a>刪除設定</h2><p>測試完再做刪除就好<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">netsh http delete urlacl url=http://192.168.1.101:51320/</span><br></pre></td></tr></table></figure></p>
+<h1 id="修改-IIS-Express-設定"><a href="#修改-IIS-Express-設定" class="headerlink" title="修改 IIS Express 設定"></a>修改 IIS Express 設定</h1><p>在”專案”資料夾下找到<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.vs/config 資料夾中的 applicationhost.config</span><br></pre></td></tr></table></figure></p>
+<p>打開之後在裡頭添加 binding<br>註: VS2013是採用集中管理, VS2015之後將設定檔改成分散式管理, 也就是在各個專案之中, 注意版本, 修改錯設定檔會沒有效果<br><img src="https://i.imgur.com/PK0EHXQ.png" alt=""></p>
+<h1 id="修改防火牆規則"><a href="#修改防火牆規則" class="headerlink" title="修改防火牆規則"></a>修改防火牆規則</h1><p>在輸入規則添加專案所使用的 port<br>添加方法不再贅述<br><img src="https://i.imgur.com/uJK6KC7.png" alt=""></p>
+<h1 id="測試結果"><a href="#測試結果" class="headerlink" title="測試結果"></a>測試結果</h1><p>打開 IIS Express 應該要有 2 個站台<br><img src="https://i.imgur.com/rkrwnC0.png" alt=""></p>
+<h1 id="可能遇到的問題"><a href="#可能遇到的問題" class="headerlink" title="可能遇到的問題"></a>可能遇到的問題</h1><h2 id="打不開網頁"><a href="#打不開網頁" class="headerlink" title="打不開網頁"></a>打不開網頁</h2><p>請用管理員權限打開 Visual Studio<br><img src="https://i.imgur.com/CJa83np.png" alt=""></p>
+<h2 id="出現-503-Service-Unvailable"><a href="#出現-503-Service-Unvailable" class="headerlink" title="出現 503 Service Unvailable"></a>出現 503 Service Unvailable</h2><p>binding 設定沒設定好<br>注意是否修改錯檔案</p>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
+<li><a href="http://ithelp.ithome.com.tw/articles/10185364" target="_blank" rel="external">http://ithelp.ithome.com.tw/articles/10185364</a></li>
+<li><a href="https://stackoverflow.com/questions/5442551/iisexpress-returns-a-503-error-from-remote-machines" target="_blank" rel="external">https://stackoverflow.com/questions/5442551/iisexpress-returns-a-503-error-from-remote-machines</a></li>
+</ol>
+
+          
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/09/18/poj3061/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">POJ 3061 Subsequence</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">20</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">46</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">6</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary-search/">binary_search</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coin/">coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/knapsack/">knapsack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/CSS/" style="font-size: 12px;">CSS</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/LCS/" style="font-size: 14px;">LCS</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 12px;">PHP</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/binary-search/" style="font-size: 18px;">binary_search</a> <a href="/tags/coin/" style="font-size: 10px;">coin</a> <a href="/tags/dsu/" style="font-size: 14px;">dsu</a> <a href="/tags/game/" style="font-size: 12px;">game</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/knapsack/" style="font-size: 14px;">knapsack</a> <a href="/tags/math/" style="font-size: 14px;">math</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/區間/" style="font-size: 16px;">區間</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/著色/" style="font-size: 12px;">著色</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2017/09/22/IISRemoteAccess/">IIS Express 遠端(內網)存取</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/18/poj3061/">POJ 3061 Subsequence</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/18/template-fastpow/">快速冪(FastPow) 模板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/17/template-Eratosthenes/">Eratosthenes 模板</a>
+          </li>
+        
+          <li>
+            <a href="/2017/09/17/template-extgcd/">Extgcd 模板</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2017 abcd40404<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+    <a href="/About" class="mobile-nav-link">About</a>
+  
+</nav>
+    
+<script>
+  var disqus_shortname = 'abcd40404';
+  
+  var disqus_url = 'http://abcd40404.github.io/2017/09/22/IISRemoteAccess/';
+  
+  (function(){
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+  })();
+</script>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+  </div>
+</body>
+</html>
