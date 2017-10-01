@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: 其他 | Kamikaze&#39;s blog</title>
+  <title>Dijkstra Algorithm 模板 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Kamikaze's blog">
-<meta property="og:url" content="http://abcd40404.github.io/categories/解題區/Template/其他/index.html">
+  <meta name="description" content="Code1234567891011121314151617181920212223242526272829struct edge&amp;#123;    int to, w;&amp;#125;;int d[MAX_N];vector &amp;lt;edge&amp;gt; g[MAX_N];int dijkstra()&amp;#123;    priority_queue &amp;lt;pii, vector&amp;lt;pii&amp;gt;,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dijkstra Algorithm 模板">
+<meta property="og:url" content="http://abcd40404.github.io/2017/10/01/dijkstra/index.html">
 <meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description">
+<meta property="og:description" content="Code1234567891011121314151617181920212223242526272829struct edge&amp;#123;    int to, w;&amp;#125;;int d[MAX_N];vector &amp;lt;edge&amp;gt; g[MAX_N];int dijkstra()&amp;#123;    priority_queue &amp;lt;pii, vector&amp;lt;pii&amp;gt;,">
+<meta property="og:updated_time" content="2017-10-01T03:18:52.955Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kamikaze's blog">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Dijkstra Algorithm 模板">
+<meta name="twitter:description" content="Code1234567891011121314151617181920212223242526272829struct edge&amp;#123;    int to, w;&amp;#125;;int d[MAX_N];vector &amp;lt;edge&amp;gt; g[MAX_N];int dijkstra()&amp;#123;    priority_queue &amp;lt;pii, vector&amp;lt;pii&amp;gt;,">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -72,29 +73,76 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><div class="list-table">
-    <ul>
-        
-  
-      
-            <li>
+        <section id="main"><article id="post-dijkstra" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/01/dijkstra/" class="article-date">
+  <time datetime="2017-10-01T03:16:22.000Z" itemprop="datePublished">2017-10-01</time>
+</a>
     
-  
-      <a class="list" href="/2017/03/01/template-binary-search/">Template-binary_search</a>
-  
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Graph/">Graph</a>
+  </div>
 
-
-</li>
-
-      
-  
-  
-
-
-
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </ul>
-</div>
+  
+    <h1 class="article-title" itemprop="name">
+      Dijkstra Algorithm 模板
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/10/01/dijkstra/" data-id="cj886g7po002tmfzrhu33gwg2" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/10/01/dijkstra/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.</span> <span class="toc-text">Code</span></a></li></ol>
+              
+              </div>
+          
+          
+            <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> edge&#123;</span><br><span class="line">    <span class="keyword">int</span> to, w;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">int</span> d[MAX_N];</span><br><span class="line"><span class="built_in">vector</span> &lt;edge&gt; g[MAX_N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dijkstra</span><span class="params">()</span></span>&#123;</span><br><span class="line">    priority_queue &lt;pii, <span class="built_in">vector</span>&lt;pii&gt;, greater&lt;pii&gt; &gt; pq; <span class="comment">//d, v</span></span><br><span class="line">    fill(d, d + n, INF);</span><br><span class="line">    d[S] = <span class="number">0</span>;</span><br><span class="line">    pq.push((pii)&#123;<span class="number">0</span>, S&#125;);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span>(!pq.empty())&#123;</span><br><span class="line">        pii top = pq.top();</span><br><span class="line">        pq.pop();</span><br><span class="line">        <span class="keyword">int</span> u = top.nd;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(d[u] &lt; top.st) <span class="keyword">continue</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(g[u]); i++)&#123;</span><br><span class="line">            edge e = g[u][i];</span><br><span class="line">            <span class="keyword">if</span>(d[u] + e.w &lt; d[e.to])&#123;</span><br><span class="line">                d[e.to] = d[u] + e.w;</span><br><span class="line">                pq.push((pii)&#123;d[e.to], e.to&#125;);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+          
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/10/01/uva10986/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Uva 10986 - Sending email</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
 </section>
         
           <aside id="sidebar">
@@ -195,11 +243,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
+  var disqus_url = 'http://abcd40404.github.io/2017/10/01/dijkstra/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
