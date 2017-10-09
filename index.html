@@ -74,6 +74,153 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-Bigint-mod" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/09/Bigint-mod/" class="article-date">
+  <time datetime="2017-10-09T00:40:40.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/Bigint-mod/">大數取 MOD</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/10/09/Bigint-mod/" data-id="cj8jgdm2i0000gwzr5roqgrhu" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/10/09/Bigint-mod/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ll <span class="title">getMod</span><span class="params">(<span class="built_in">string</span> s, ll mod)</span></span>&#123;</span><br><span class="line">    ll r = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">char</span> c : s)</span><br><span class="line">        r = (r * <span class="number">10</span> + c - <span class="string">'0'</span>) % mod;</span><br><span class="line">    <span class="keyword">return</span> r;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-Fibonacci-logn" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/09/Fibonacci-logn/" class="article-date">
+  <time datetime="2017-10-09T00:35:53.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/Fibonacci-logn/">以 Log(n) 求取 Fibonacci 數列</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/10/09/Fibonacci-logn/" data-id="cj8jgdm300001gwzrraf8m41d" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/10/09/Fibonacci-logn/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>#<br><a href="">題目</a></p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;bits/stdc++.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">typedef pair &lt;int,int&gt; pii;</span><br><span class="line">typedef long long ll;</span><br><span class="line"></span><br><span class="line">#define pb push_back</span><br><span class="line">#define sz(a) (int)a.size()</span><br><span class="line">#define INF 0x3f3f3f3f</span><br><span class="line">#define st first</span><br><span class="line">#define nd second</span><br><span class="line">#define fio ios::sync_with_stdio(false), cin.tie(0)</span><br><span class="line">#define DEBUG(x) printf("Here: %d\n", x), exit(0);</span><br><span class="line">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span><br><span class="line"></span><br><span class="line">int n, MOD, a, b, c;</span><br><span class="line">typedef vector&lt;ll&gt; vec;</span><br><span class="line">typedef vector&lt;vec&gt; mat;</span><br><span class="line"></span><br><span class="line">mat A, B;</span><br><span class="line"></span><br><span class="line">void printMatrix(mat&amp; a)&#123;</span><br><span class="line">    for(int i = 0; i &lt; int(a.size()); i++)&#123;</span><br><span class="line">        for(int j = 0; j &lt; int(a.size()); j++)&#123;</span><br><span class="line">            printf("%lld ", a[i][j]);</span><br><span class="line">        &#125;</span><br><span class="line">        puts("");</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mat mul(const mat&amp; a, const mat&amp; b) &#123;</span><br><span class="line">    mat res(a.size(), vec(b[0].size(), 0));</span><br><span class="line">    for (int r = 0; r &lt; int(a.size()); r++)</span><br><span class="line">        for (int c = 0; c &lt; int(b[0].size()); c++)</span><br><span class="line">            for (int k = 0; k &lt; int(b.size()); k++)</span><br><span class="line">                res[r][c] = (res[r][c] + a[r][k] * b[k][c] % MOD) % MOD;</span><br><span class="line"></span><br><span class="line">    return res;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">mat fastpow(const mat&amp; a, int b) &#123;</span><br><span class="line">    mat ans(a.size(), vec(a.size(), 0));</span><br><span class="line">    for (int i = 0; i &lt; int(a.size()); i++)</span><br><span class="line">        ans[i][i] = 1;</span><br><span class="line"></span><br><span class="line">    mat base = a;</span><br><span class="line">    while (b) &#123;</span><br><span class="line">        if (b &amp; 1) ans = mul(ans, base);</span><br><span class="line">        base = mul(base, base);</span><br><span class="line">        b &gt;&gt;= 1;</span><br><span class="line">    &#125;</span><br><span class="line">    return ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int solve(int n)&#123;</span><br><span class="line">    if(n == 1 || n == 2 || n == 3)</span><br><span class="line">        return 1;</span><br><span class="line">    mat ans = fastpow(B, n - 3);</span><br><span class="line">    ans = mul(A, ans);</span><br><span class="line"></span><br><span class="line">    return ans[0][0];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main()&#123;</span><br><span class="line">    // fio;</span><br><span class="line">    // #ifdef DEBUG</span><br><span class="line">    // printf ("TEST\n");</span><br><span class="line">    // #else</span><br><span class="line">    // printf("FAIL\n");</span><br><span class="line">    // #endif</span><br><span class="line">    while(scanf("%d%d%d%d%d", &amp;n, &amp;MOD, &amp;a, &amp;b, &amp;c) != EOF)&#123;</span><br><span class="line">        A.clear();</span><br><span class="line">        B.clear();</span><br><span class="line"></span><br><span class="line">        int tmp[][3] = &#123;&#123;1, 1, 1&#125;, &#123;0, 0, 0&#125;, &#123;0, 0, 0&#125;&#125;;</span><br><span class="line">        int tmp2[][3] = &#123;&#123;a, 1, 0&#125;, &#123;b, 0, 1&#125;, &#123;c, 0, 0&#125;&#125;;</span><br><span class="line"></span><br><span class="line">        for(int i = 0; i &lt; 3; i++)&#123;</span><br><span class="line">            A.pb(vec(tmp[i], tmp[i] + 3));</span><br><span class="line">            B.pb(vec(tmp2[i], tmp2[i] + 3));</span><br><span class="line">        &#125;</span><br><span class="line">        printf("%d\n", solve(n));</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-template-mod-inverse" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/09/template-mod-inverse/" class="article-date">
+  <time datetime="2017-10-09T00:30:52.000Z" itemprop="datePublished">2017-10-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/09/template-mod-inverse/">Mod Inverse 模板</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/10/09/template-mod-inverse/" data-id="cj8jgdmjb006ogwzr7vx444h5" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/10/09/template-mod-inverse/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mod_inverse</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="comment">// x 是所求</span></span><br><span class="line">    extgcd(a, m, x, y);</span><br><span class="line">    <span class="keyword">return</span> (m + x % m) % m;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-poj1258" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/10/01/poj1258/" class="article-date">
@@ -99,7 +246,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/01/poj1258/" data-id="cj88itjfe003yqszr24pl9z41" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/01/poj1258/" data-id="cj8jgdmg1004tgwzrw685j279" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/10/01/poj1258/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -153,7 +300,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/01/dijkstra/" data-id="cj88itjcs002tqszrvsi8i737" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/01/dijkstra/" data-id="cj8jgdme2003tgwzr0w6bp7e8" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/10/01/dijkstra/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -204,7 +351,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/01/uva10986/" data-id="cj88itjje006bqszrwhs333tn" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/01/uva10986/" data-id="cj8jgdmk60076gwzribhrvuc6" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/10/01/uva10986/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -259,7 +406,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/27/poj2342/" data-id="cj88itjgc004hqszrjb9cgq07" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/09/27/poj2342/" data-id="cj8jgdmgr0058gwzrhyilbvpw" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/09/27/poj2342/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -313,7 +460,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/" data-id="cj88itj540002qszrn2vn4fit" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/" data-id="cj8jgdm3g0003gwzrgkdkuw4s" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/09/22/IISRemoteAccess/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -378,7 +525,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/18/poj3061/" data-id="cj88itjgo004oqszrt1f4tkgg" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/09/18/poj3061/" data-id="cj8jgdmgv005cgwzrzn5se7x0" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/09/18/poj3061/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -432,7 +579,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/18/template-fastpow/" data-id="cj88itjil005uqszromild6to" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/09/18/template-fastpow/" data-id="cj8jgdmiv006lgwzr9jvavpgp" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/09/18/template-fastpow/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -445,168 +592,6 @@ ga('send', 'pageview');
             <div class="toggle-content">
               <p>在 log(N) 時間內求取冪次方</p>
 <h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">fastpow</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span>  </span><br><span class="line"></span>&#123;  </span><br><span class="line">    <span class="keyword">int</span> ans = <span class="number">1</span>,base = a;  </span><br><span class="line">    <span class="keyword">while</span>(b!=<span class="number">0</span>)  </span><br><span class="line">    &#123;  </span><br><span class="line">        <span class="keyword">if</span>(b&amp;<span class="number">1</span>)  </span><br><span class="line">            ans *= base;  </span><br><span class="line">        base *= base;  </span><br><span class="line">        b&gt;&gt;=<span class="number">1</span>;  </span><br><span class="line">    &#125;  </span><br><span class="line">    <span class="keyword">return</span> ans;  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-template-Eratosthenes" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/17/template-Eratosthenes/" class="article-date">
-  <time datetime="2017-09-17T14:39:17.000Z" itemprop="datePublished">2017-09-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/template-Eratosthenes/">Eratosthenes 模板</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/17/template-Eratosthenes/" data-id="cj88itjhq005eqszrel9cg1h8" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/09/17/template-Eratosthenes/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>求取小於 n 的質數</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1e5</span>;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; prime;</span><br><span class="line"><span class="keyword">bool</span> is_prime[MAX_N + <span class="number">10</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">sieve</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    fill(is_prime, is_prime + n, <span class="literal">true</span>);</span><br><span class="line">    is_prime[<span class="number">0</span>] = is_prime[<span class="number">1</span>] = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(is_prime[i])&#123;</span><br><span class="line">            <span class="comment">//紀錄質數</span></span><br><span class="line">            prime.push_back(i);</span><br><span class="line">            <span class="comment">// 消除 i 的倍數</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = i * <span class="number">2</span>; j &lt;= n; j += i)&#123;</span><br><span class="line">                is_prime[j] = <span class="literal">false</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">int</span>)prime.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-template-extgcd" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/17/template-extgcd/" class="article-date">
-  <time datetime="2017-09-17T07:23:05.000Z" itemprop="datePublished">2017-09-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/17/template-extgcd/">Extgcd 模板</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/09/17/template-extgcd/" data-id="cj88itjif005qqszradkn6rb9" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/09/17/template-extgcd/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>求取 ax + by = gcd(a, b) 此方程式之解<br>並回傳 gcd(a, b)</p>
-<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">extgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> d = a;</span><br><span class="line">    <span class="keyword">if</span>(b != <span class="number">0</span>)&#123;</span><br><span class="line">        d = extgcd(b, a % b, y, x);</span><br><span class="line">        y -= (a / b) * x;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        x = <span class="number">1</span>;</span><br><span class="line">        y = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> d;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-rs232-implement" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/06/09/rs232-implement/" class="article-date">
-  <time datetime="2017-06-09T06:47:40.000Z" itemprop="datePublished">2017-06-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/專題/">專題</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/06/09/rs232-implement/">透過 RS232 進行電腦訊息互傳</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/06/09/rs232-implement/" data-id="cj88itjh60050qszr39k6fflx" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/06/09/rs232-implement/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>禮拜一花了 9 個小時<br>完成了電腦之間用 RS232 互傳<br>以及電腦對字幕機的寫入</p>
-<h2 id="需要器材"><a href="#需要器材" class="headerlink" title="需要器材"></a>需要器材</h2><ol>
-<li>兩條 USB 轉 RS232接線<br><img src="http://i.imgur.com/zvxP8qr.jpg" alt=""></li>
-<li>RS232 兩端母對母的線<br><img src="http://i.imgur.com/99xerSB.jpg" alt=""><br>母對母的需要對TX, RX做跳線(外面賣的是沒有跳線)</li>
-</ol>
-<h2 id="電腦之間互傳"><a href="#電腦之間互傳" class="headerlink" title="電腦之間互傳"></a>電腦之間互傳</h2><p>首先是我們在網路上找到的 RS232 C Library<br><a href="http://www.teuniz.net/RS-232/" target="_blank" rel="external">RS232 下載</a></p>
-<p>打開下載回來的 RS232 包<br><img src="http://i.imgur.com/0HLzL9Z.png" alt=""><br>可以看到裡面有 demo_tx.c 和 demo_rx.c<br>TX, RX 分別代表傳輸和接收</p>
-<h2 id="TX"><a href="#TX" class="headerlink" title="TX"></a>TX</h2><p>要修改的是 cport_nr 這個變數<br>他代表要用哪個連接埠傳輸, 可以到裝置管理員看是哪一個<br>我們的是 COM4 所以改成 cport_nr=3<br>然後 bdrate 代表的是 baud rate, 是傳輸速率<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**************************************************</span><br><span class="line"></span><br><span class="line">file: demo_tx.c</span><br><span class="line">purpose: simple demo that transmits characters to</span><br><span class="line">the serial port and print them on the screen,</span><br><span class="line">exit the program by pressing Ctrl-C</span><br><span class="line"></span><br><span class="line">compile with the command: gcc demo_tx.c rs232.c -Wall -Wextra -o2 -o test_tx</span><br><span class="line"></span><br><span class="line">**************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"rs232.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i=<span class="number">0</span>,</span><br><span class="line">      cport_nr=<span class="number">3</span>,        <span class="comment">/* /dev/ttyS0 (COM1 on windows) */</span></span><br><span class="line">      bdrate=<span class="number">9600</span>;       <span class="comment">/* 9600 baud */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span> mode[]=&#123;<span class="string">'8'</span>,<span class="string">'N'</span>,<span class="string">'1'</span>,<span class="number">0</span>&#125;,</span><br><span class="line">       str[<span class="number">2</span>][<span class="number">512</span>];</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(str[<span class="number">0</span>], <span class="string">"The quick brown fox jumped over the lazy grey dog.\n"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">strcpy</span>(str[<span class="number">1</span>], <span class="string">"Happy serial programming!\n"</span>);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(RS232_OpenComport(cport_nr, bdrate, mode))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Can not open comport\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="keyword">char</span> s[<span class="number">100</span>];</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</span><br><span class="line">    RS232_cputs(cport_nr, s);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"sent: %s\n"</span>, s);</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></span><br><span class="line">    Sleep(<span class="number">1000</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">    usleep(<span class="number">1000000</span>);  <span class="comment">/* sleep for 1 Second */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// i++;</span></span><br><span class="line">    <span class="comment">//</span></span><br><span class="line">    <span class="comment">// i %= 2;</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h2 id="RX"><a href="#RX" class="headerlink" title="RX"></a>RX</h2><p>一樣修改好連接埠</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**************************************************</span><br><span class="line"></span><br><span class="line">file: demo_rx.c</span><br><span class="line">purpose: simple demo that receives characters from</span><br><span class="line">the serial port and print them on the screen,</span><br><span class="line">exit the program by pressing Ctrl-C</span><br><span class="line"></span><br><span class="line">compile with the command: gcc demo_rx.c rs232.c -Wall -Wextra -o2 -o test_rx</span><br><span class="line"></span><br><span class="line">**************************************************/</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="string">"rs232.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i, n,</span><br><span class="line">      cport_nr=<span class="number">3</span>,        <span class="comment">/* /dev/ttyS0 (COM1 on windows) */</span></span><br><span class="line">      bdrate=<span class="number">9600</span>;       <span class="comment">/* 9600 baud */</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> buf[<span class="number">4096</span>];</span><br><span class="line"></span><br><span class="line">  <span class="keyword">char</span> mode[]=&#123;<span class="string">'8'</span>,<span class="string">'N'</span>,<span class="string">'1'</span>,<span class="number">0</span>&#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span>(RS232_OpenComport(cport_nr, bdrate, mode))</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"Can not open comport\n"</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    n = RS232_PollComport(cport_nr, buf, <span class="number">4095</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span>(n &gt; <span class="number">0</span>)</span><br><span class="line">    &#123;</span><br><span class="line">      buf[n] = <span class="number">0</span>;   <span class="comment">/* always put a "null" at the end of a string! */</span></span><br><span class="line"></span><br><span class="line">      <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; n; i++)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span>(buf[i] &lt; <span class="number">32</span>)  <span class="comment">/* replace unreadable control-codes by dots */</span></span><br><span class="line">        &#123;</span><br><span class="line">          buf[i] = <span class="string">'.'</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="built_in">printf</span>(<span class="string">"received %i bytes: %s\n"</span>, n, (<span class="keyword">char</span> *)buf);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></span><br><span class="line">    Sleep(<span class="number">100</span>);</span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line">    usleep(<span class="number">100000</span>);  <span class="comment">/* sleep for 100 milliSeconds */</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span>(<span class="number">0</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="傳輸"><a href="#傳輸" class="headerlink" title="傳輸"></a>傳輸</h2><p>接著把兩個程式碼編譯好之後<br>一台電腦執行 TX, 負責傳輸<br>一台電腦執行 RX, 負責接收</p>
 
             </div>
             <div class="toggle-input article-more-link"><a>Read More +</a></div>
@@ -634,7 +619,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">20</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">50</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">20</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">52</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">26</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">9</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -663,7 +648,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -676,23 +661,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2017/10/09/Bigint-mod/">大數取 MOD</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/Fibonacci-logn/">以 Log(n) 求取 Fibonacci 數列</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/09/template-mod-inverse/">Mod Inverse 模板</a>
+          </li>
+        
+          <li>
             <a href="/2017/10/01/poj1258/">POJ 1258 Agri-Net</a>
           </li>
         
           <li>
             <a href="/2017/10/01/dijkstra/">Dijkstra Algorithm 模板</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/01/uva10986/">Uva 10986 - Sending email</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/27/poj2342/">POJ 2342 Anniversary party</a>
-          </li>
-        
-          <li>
-            <a href="/2017/09/22/IISRemoteAccess/">IIS Express 遠端(內網)存取</a>
           </li>
         
       </ul>
