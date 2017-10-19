@@ -9,9 +9,9 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="LCS 模板">
 <meta property="og:url" content="http://abcd40404.github.io/2017/03/16/template-LCS/index.html">
-<meta property="og:site_name" content="Kamikaze's blog">
+<meta property="og:site_name" content="Kamikaze&#39;s blog">
 <meta property="og:description" content="定義 dp[i][j]: s1…si 和 t1…tj 的最長共同子序列123456789101112131415161718string s1, s2;int dp[100][100];int main()&amp;#123;    cin &amp;gt;&amp;gt; s1 &amp;gt;&amp;gt; s2;    int len1 = s1.length();    int len2 = s2.length();    f">
-<meta property="og:updated_time" content="2017-03-17T05:06:37.580Z">
+<meta property="og:updated_time" content="2017-10-19T16:49:41.312Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="LCS 模板">
 <meta name="twitter:description" content="定義 dp[i][j]: s1…si 和 t1…tj 的最長共同子序列123456789101112131415161718string s1, s2;int dp[100][100];int main()&amp;#123;    cin &amp;gt;&amp;gt; s1 &amp;gt;&amp;gt; s2;    int len1 = s1.length();    int len2 = s2.length();    f">
@@ -66,7 +66,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
       </div>
     </div>
   </div>
@@ -98,7 +98,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/16/template-LCS/" data-id="cj8ypflqt005h5szrhu09gk89" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/03/16/template-LCS/" data-id="cj8yqx9kv005n29449y5aicvl" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/03/16/template-LCS/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -115,7 +115,7 @@ ga('send', 'pageview');
               </div>
           
           
-            <p>定義 dp[i][j]: s1…si 和 t1…tj 的最長共同子序列<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">string</span> s1, s2;</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">100</span>][<span class="number">100</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;</span><br><span class="line">    <span class="keyword">int</span> len1 = s1.length();</span><br><span class="line">    <span class="keyword">int</span> len2 = s2.length();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s1[i] == s2[j])</span><br><span class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = max(dp[i + <span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; dp[len1][len2] &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+            <p>定義 dp[i][j]: s1…si 和 t1…tj 的最長共同子序列<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">string</span> s1, s2;</div><div class="line"><span class="keyword">int</span> dp[<span class="number">100</span>][<span class="number">100</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2;</div><div class="line">    <span class="keyword">int</span> len1 = s1.length();</div><div class="line">    <span class="keyword">int</span> len2 = s2.length();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len1; i++)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; len2; j++)&#123;</div><div class="line">            <span class="keyword">if</span>(s1[i] == s2[j])</div><div class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = dp[i][j] + <span class="number">1</span>;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                dp[i + <span class="number">1</span>][j + <span class="number">1</span>] = max(dp[i + <span class="number">1</span>][j], dp[i][j + <span class="number">1</span>]);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; dp[len1][len2] &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 
           
       

@@ -5,26 +5,18 @@
   
   <title>在 PHP 調用 Compiler | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧
-先講結論: 不需要 sudo 權限就可以執行 g++
-一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;);
-來查看 apach">
+  <meta name="description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧 先講結論: 不需要 sudo 權限就可以執行 g++ 一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;); 來查看 apach">
+<meta name="keywords" content="PHP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="在 PHP 調用 Compiler">
 <meta property="og:url" content="http://abcd40404.github.io/2017/06/04/php-call-compiler/index.html">
-<meta property="og:site_name" content="Kamikaze's blog">
-<meta property="og:description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧
-先講結論: 不需要 sudo 權限就可以執行 g++
-一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;);
-來查看 apach">
+<meta property="og:site_name" content="Kamikaze&#39;s blog">
+<meta property="og:description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧 先講結論: 不需要 sudo 權限就可以執行 g++ 一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;); 來查看 apach">
 <meta property="og:image" content="http://i.imgur.com/WVjMkaf.png">
-<meta property="og:updated_time" content="2017-06-04T09:48:54.399Z">
+<meta property="og:updated_time" content="2017-10-19T16:49:41.308Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="在 PHP 調用 Compiler">
-<meta name="twitter:description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧
-先講結論: 不需要 sudo 權限就可以執行 g++
-一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;);
-來查看 apach">
+<meta name="twitter:description" content="今天在做 Online Judge 時來到了調用 Compiler 來編譯的步驟在 PHP 方面有三個函數可以選擇分別是 system(), exec(), shell_exec()詳細差異就請自行去搜尋吧 先講結論: 不需要 sudo 權限就可以執行 g++ 一開始我以為呼叫 g++ 需要 sudo權限於是去找了怎麼使 apache 有權限可以呼叫1System(&apos;id&apos;); 來查看 apach">
 <meta name="twitter:image" content="http://i.imgur.com/WVjMkaf.png">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
@@ -77,7 +69,7 @@ ga('send', 'pageview');
         <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
       </div>
     </div>
   </div>
@@ -109,7 +101,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/06/04/php-call-compiler/" data-id="cj8ypflpn003s5szrqoabg05d" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/06/04/php-call-compiler/" data-id="cj8yqx9kb003x2944x9pbr0ds" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/06/04/php-call-compiler/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -130,10 +122,10 @@ ga('send', 'pageview');
           
             <p>今天在做 Online Judge 時<br>來到了調用 Compiler 來編譯的步驟<br>在 PHP 方面有三個函數可以選擇<br>分別是 system(), exec(), shell_exec()<br>詳細差異就請自行去搜尋吧</p>
 <p>先講結論: 不需要 sudo 權限就可以執行 g++</p>
-<p>一開始我以為呼叫 g++ 需要 sudo權限<br>於是去找了怎麼使 apache 有權限<br>可以呼叫<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">System(<span class="string">'id'</span>);</span><br></pre></td></tr></table></figure></p>
-<p>來查看 apache 是用什麼身份<br>我的是 www-data 這個帳號<br>接著打 visudo 來編輯 sudoer file, 不建議直接修改 sudoer file<br>因為需要更改到 sudoer file 的權限, 改來改去可能會有權限上的問題<br>我在檔案內加了這行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">www-data    ALL(ALL:ALL)    NOPASSWD:ALL</span><br></pre></td></tr></table></figure></p>
+<p>一開始我以為呼叫 g++ 需要 sudo權限<br>於是去找了怎麼使 apache 有權限<br>可以呼叫<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System(<span class="string">'id'</span>);</div></pre></td></tr></table></figure></p>
+<p>來查看 apache 是用什麼身份<br>我的是 www-data 這個帳號<br>接著打 visudo 來編輯 sudoer file, 不建議直接修改 sudoer file<br>因為需要更改到 sudoer file 的權限, 改來改去可能會有權限上的問題<br>我在檔案內加了這行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">www-data    ALL(ALL:ALL)    NOPASSWD:ALL</div></pre></td></tr></table></figure></p>
 <p>其中 NOPASSWD 是呼叫 sudo 時不用打密碼<br>本來以為終於要可以執行了<br>結果跳出了訊息 sudo: no tty present and no askpass program specified<br>雖然在找資料過程已經知道<br>apache 沒有 tty, 所以會有這個問題<br>但網路上沒有一個方法可以解決阿！<br>網路上幾乎都是提到<br>1.在sudoer file 把 Defaluts requiretty 註解掉(可是我根本沒有這一行= =)<br>2.添加 Defaluts:www-data !requiretty(同樣無效)<br>甚至我把 www-data 從 sudoer file 拿掉, 還是出現這個訊息</p>
-<p>眼看無望, 已經從早上弄到下午<br>只好求助學長<br>結果學長說: 應該不用 sudo 權限吧<br>…<br>… what?<br>真的不用欸QAQ, 因為我前面都是用 mkdir 的之類的指令再試<br>結果 g++ 不需要= =<br>最後在編譯的時候, 又出現一個訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">usr/bin/ld: cannot open output file code/t.out: Permission denied collect2: error: ld returned 1 exit status 1</span><br></pre></td></tr></table></figure></p>
+<p>眼看無望, 已經從早上弄到下午<br>只好求助學長<br>結果學長說: 應該不用 sudo 權限吧<br>…<br>… what?<br>真的不用欸QAQ, 因為我前面都是用 mkdir 的之類的指令再試<br>結果 g++ 不需要= =<br>最後在編譯的時候, 又出現一個訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usr/bin/ld: cannot open output file code/t.out: Permission denied collect2: error: ld returned 1 exit status 1</div></pre></td></tr></table></figure></p>
 <p>這個問題就好解決了, 就是輸出的資料夾權限不夠<br>把該資料夾權限改為 777 就可以了<br><img src="http://i.imgur.com/WVjMkaf.png" alt=""></p>
 <p>參考資料:<br>1.<a href="https://blog.allenchou.cc/php-compile-and-run-cpp/" target="_blank" rel="external">https://blog.allenchou.cc/php-compile-and-run-cpp/</a><br>2.<a href="http://emn178.pixnet.net/blog/post/72463845-php%E5%9F%B7%E8%A1%8C%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BC%8F" target="_blank" rel="external">http://emn178.pixnet.net/blog/post/72463845-php%E5%9F%B7%E8%A1%8C%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BC%8F</a><br>3.<a href="http://ibookmen.blogspot.tw/2010/11/unix-2.html" target="_blank" rel="external">http://ibookmen.blogspot.tw/2010/11/unix-2.html</a><br>4.<a href="http://www.jikker.net/2011/01/phprootcommand-line.html" target="_blank" rel="external">http://www.jikker.net/2011/01/phprootcommand-line.html</a><br>5.<a href="http://www.arthurtoday.com/2010/03/sudoer.html" target="_blank" rel="external">http://www.arthurtoday.com/2010/03/sudoer.html</a><br>6.<a href="http://blog.xuite.net/chingwei/blog/24939464-%E3%80%90%EF%BC%AC%E3%80%91SUSE+%3A+%E7%B0%A1%E5%96%AE%E7%9A%84sudo%E8%A8%AD%E5%AE%9A" target="_blank" rel="external">http://blog.xuite.net/chingwei/blog/24939464-%E3%80%90%EF%BC%AC%E3%80%91SUSE+%3A+%E7%B0%A1%E5%96%AE%E7%9A%84sudo%E8%A8%AD%E5%AE%9A</a></p>
 
