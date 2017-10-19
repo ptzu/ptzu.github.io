@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://abcd40404.github.io/2016/07/09/poj3046/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
 <meta property="og:description" content="題解多重背包變形給定有 T 個不同的家族,及有 A 隻螞蟻(屬於哪個家族)求利用 T 個家族,及總共S…B隻螞蟻的情況下能組出不同組合的數量 作法分割成子問題,只用前i家族的螞蟻,慢慢推到全部定義dp[i][j] ： 用前i個家族共j隻螞蟻,能組出不同組合的數量題目要求只輸出6位數,所以還要取餘數 DP遞迴dp[i][j] = sum(dp[i-1][j-k]), k為目前i家族所有的螞蟻數量概念">
-<meta property="og:updated_time" content="2017-10-19T16:49:41.312Z">
+<meta property="og:updated_time" content="2017-10-19T23:32:27.636Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="POJ 3046 Ant Counting">
 <meta name="twitter:description" content="題解多重背包變形給定有 T 個不同的家族,及有 A 隻螞蟻(屬於哪個家族)求利用 T 個家族,及總共S…B隻螞蟻的情況下能組出不同組合的數量 作法分割成子問題,只用前i家族的螞蟻,慢慢推到全部定義dp[i][j] ： 用前i個家族共j隻螞蟻,能組出不同組合的數量題目要求只輸出6位數,所以還要取餘數 DP遞迴dp[i][j] = sum(dp[i-1][j-k]), k為目前i家族所有的螞蟻數量概念">
@@ -99,7 +99,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/09/poj3046/" data-id="cj8yqx9kk004r294449a8znoz" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/07/09/poj3046/" data-id="cj8z4iui4004uag4461zlpibr" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/07/09/poj3046/#disqus_thread" class="article-comment-link">Comments</a>
       
