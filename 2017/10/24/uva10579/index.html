@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>mysql_time | Kamikaze&#39;s blog</title>
+  <title>Uva 10579 - Fibonacci Numbers | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="DATETIME create table user(id int auto_increment primary key, username char(50), password char(50)); create table picture(id int auto_increment primary key, uid int, content text, filename char(50), s">
+  <meta name="description" content="題目 題解求取 Fibonacci 數列 作法這題是大數加法, 然後求取解就好了N 沒給範圍, 不過根據結果, 是不需要用到矩陣快速冪的有關 O(logn) 作法可以參考 矩陣快速冪 AC code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql_time">
-<meta property="og:url" content="http://abcd40404.github.io/2017/05/17/mysql-time/index.html">
+<meta property="og:title" content="Uva 10579 - Fibonacci Numbers">
+<meta property="og:url" content="http://abcd40404.github.io/2017/10/24/uva10579/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="DATETIME create table user(id int auto_increment primary key, username char(50), password char(50)); create table picture(id int auto_increment primary key, uid int, content text, filename char(50), s">
-<meta property="og:updated_time" content="2017-10-20T02:38:36.942Z">
+<meta property="og:description" content="題目 題解求取 Fibonacci 數列 作法這題是大數加法, 然後求取解就好了N 沒給範圍, 不過根據結果, 是不需要用到矩陣快速冪的有關 O(logn) 作法可以參考 矩陣快速冪 AC code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455">
+<meta property="og:updated_time" content="2017-10-24T15:38:55.030Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="mysql_time">
-<meta name="twitter:description" content="DATETIME create table user(id int auto_increment primary key, username char(50), password char(50)); create table picture(id int auto_increment primary key, uid int, content text, filename char(50), s">
+<meta name="twitter:title" content="Uva 10579 - Fibonacci Numbers">
+<meta name="twitter:description" content="題目 題解求取 Fibonacci 數列 作法這題是大數加法, 然後求取解就好了N 沒給範圍, 不過根據結果, 是不需要用到矩陣快速冪的有關 O(logn) 作法可以參考 矩陣快速冪 AC code12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -73,12 +73,16 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-mysql-time" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-uva10579" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/05/17/mysql-time/" class="article-date">
-  <time datetime="2017-05-17T13:11:35.000Z" itemprop="datePublished">2017-05-17</time>
+    <a href="/2017/10/24/uva10579/" class="article-date">
+  <time datetime="2017-10-24T15:35:40.000Z" itemprop="datePublished">2017-10-24</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -87,16 +91,16 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      mysql_time
+      Uva 10579 - Fibonacci Numbers
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cj95s0mhl005mvdopf0nbxrt1" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/24/uva10579/" data-id="cj95s0min0082vdop89nypb9l" class="article-share-link">Share</a>
       
-        <a href="http://abcd40404.github.io/2017/05/17/mysql-time/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://abcd40404.github.io/2017/10/24/uva10579/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
@@ -106,16 +110,15 @@ ga('send', 'pageview');
               <div id="toc" class="toc-article">
               <h2 class="toc-title"><span>Contents</span></h2>
               
-                  
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">1.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">2.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">3.</span> <span class="toc-text">AC code</span></a></li></ol>
               
               </div>
           
           
-            <p>DATETIME</p>
-<p>create table user(id int auto_increment primary key, username char(50), password char(50));</p>
-<p>create table picture(id int auto_increment primary key, uid int, content text, filename char(50), size int, type char(50), filepic text, mtime DATETIME, foreign key(uid) references user(id));</p>
-<p>create table comment(id int auto_increment, pid int, uid int, content text, mtime DATETIME, primary key(id, pid), foreign key(pid) references picture(id), foreign key(uid) references user(id));</p>
-<p>create table likes(uid int, pid int, t_like boolean, mtime DATETIME, primary key(uid, pid), foreign key(uid) references user(id), foreign key(pid) references picture(id));</p>
+            <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=24&amp;page=show_problem&amp;problem=1520" target="_blank" rel="external">題目</a></p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>求取 Fibonacci 數列</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>這題是大數加法, 然後求取解就好了<br>N 沒給範圍, 不過根據結果, 是不需要用到矩陣快速冪的<br>有關 O(logn) 作法可以參考 <a href="">矩陣快速冪</a></p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"><span class="comment">// const int MAX_N = 30000010;</span></div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">big</span>&#123;</span></div><div class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; digit;</div><div class="line"></div><div class="line">    big()&#123;</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    big(<span class="built_in">string</span> s)&#123;</div><div class="line">        <span class="keyword">int</span> len = s.length();</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; len - <span class="number">1</span> - i &gt;= <span class="number">0</span>; i++)&#123;</div><div class="line">            digit.push_back(s[len - <span class="number">1</span> - i] - <span class="string">'0'</span>);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    big <span class="keyword">operator</span> +(<span class="keyword">const</span> big&amp; obj)<span class="keyword">const</span>&#123;</div><div class="line">        <span class="keyword">int</span> carry = <span class="number">0</span>;</div><div class="line">        <span class="keyword">int</span> maxSize = max(digit.size(), obj.digit.size()), minSize = min(digit.size(), obj.digit.size());</div><div class="line">        big res;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; minSize; i++)&#123;</div><div class="line">            <span class="keyword">int</span> num = digit[i] + obj.digit[i] + carry;</div><div class="line">            carry = num / <span class="number">10</span>;</div><div class="line">            num %= <span class="number">10</span>;</div><div class="line">            res.digit.push_back(num);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = minSize; i &lt; maxSize; i++)&#123;</div><div class="line">            <span class="keyword">int</span> num;</div><div class="line">            <span class="keyword">if</span>(digit.size() &gt; minSize)</div><div class="line">                num = digit[i] + carry;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                num = obj.digit[i] + carry;</div><div class="line">            carry = num / <span class="number">10</span>;</div><div class="line">            num %= <span class="number">10</span>;</div><div class="line">            res.digit.push_back(num);</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(carry)&#123;</div><div class="line">            res.digit.push_back(carry);</div><div class="line">            carry = <span class="number">0</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> res;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">print</span><span class="params">()</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = (<span class="keyword">int</span>)digit.size() - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</div><div class="line">            <span class="built_in">printf</span>(<span class="string">"%d"</span>, digit[i]);</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">big f[<span class="number">10000</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> x;</div><div class="line">    <span class="keyword">int</span> last = <span class="number">2</span>;</div><div class="line">    f[<span class="number">1</span>] = big(<span class="string">"1"</span>);</div><div class="line">    f[<span class="number">2</span>] = big(<span class="string">"1"</span>);</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x) != EOF)&#123;</div><div class="line">        <span class="keyword">if</span>(x &lt;= last)</div><div class="line">            f[x].print();</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = last + <span class="number">1</span>; i &lt;= x; i++)&#123;</div><div class="line">                f[i] = f[i - <span class="number">1</span>] + f[i - <span class="number">2</span>];</div><div class="line">            &#125;</div><div class="line">            last = x;</div><div class="line">            f[x].print();</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
       
@@ -125,19 +128,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/05/19/css-float/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          利用 CSS 達到 div 併排
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/05/17/php-time/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2017/10/24/template-bigint/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">PHP 時間函數</div>
+      <div class="article-nav-title">大數運算 模版</div>
     </a>
   
 </nav>
@@ -252,7 +246,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/05/17/mysql-time/';
+  var disqus_url = 'http://abcd40404.github.io/2017/10/24/uva10579/';
   
   (function(){
     var dsq = document.createElement('script');
