@@ -5,17 +5,17 @@
   
   <title>Codeforces Round 443 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="目錄1.模擬題2.模擬題 3.位元操作A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code123456789101112131415161718192021222">
+  <meta name="description" content="目錄 模擬題 模擬題 位元操作  A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code12345678910111213141516171819202122232">
 <meta name="keywords" content="Math,bit operation">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Codeforces Round 443">
 <meta property="og:url" content="http://abcd40404.github.io/2017/10/27/cf443/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="目錄1.模擬題2.模擬題 3.位元操作A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code123456789101112131415161718192021222">
-<meta property="og:updated_time" content="2017-10-27T10:14:17.981Z">
+<meta property="og:description" content="目錄 模擬題 模擬題 位元操作  A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code12345678910111213141516171819202122232">
+<meta property="og:updated_time" content="2017-10-27T10:15:26.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Codeforces Round 443">
-<meta name="twitter:description" content="目錄1.模擬題2.模擬題 3.位元操作A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code123456789101112131415161718192021222">
+<meta name="twitter:description" content="目錄 模擬題 模擬題 位元操作  A. Borya’s Diagnosis題目 input1 &amp;lt;= n &amp;lt;= 10001 &amp;lt;= s, d &amp;lt;= 1000 題解Borya 要依序看 n 個醫生每個醫生只在 si, si + di … 的日子營業請問最快要幾天才能看完所有醫生 作法模擬題 AC code12345678910111213141516171819202122232">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -99,7 +99,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/27/cf443/" data-id="cj99qqmp2002978opmbhi4ufo" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/27/cf443/" data-id="cj99qs1mf002a9bopvwmev644" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/10/27/cf443/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -113,13 +113,17 @@ ga('send', 'pageview');
               <div id="toc" class="toc-article">
               <h2 class="toc-title"><span>Contents</span></h2>
               
-                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3-位元操作"><span class="toc-number">1.</span> <span class="toc-text">3.位元操作</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Borya’s-Diagnosis"><span class="toc-number">2.</span> <span class="toc-text">A. Borya’s Diagnosis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-number">2.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">2.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">2.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">2.4.</span> <span class="toc-text">AC code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Table-Tennis"><span class="toc-number">3.</span> <span class="toc-text">B. Table Tennis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input-1"><span class="toc-number">3.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-1"><span class="toc-number">3.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法-1"><span class="toc-number">3.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code-1"><span class="toc-number">3.4.</span> <span class="toc-text">AC code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Short-Program"><span class="toc-number">4.</span> <span class="toc-text">C. Short Program</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input-2"><span class="toc-number">4.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-2"><span class="toc-number">4.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法-2"><span class="toc-number">4.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code-2"><span class="toc-number">4.4.</span> <span class="toc-text">AC code</span></a></li></ol></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#目錄"><span class="toc-number">1.</span> <span class="toc-text">目錄</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#A-Borya’s-Diagnosis"><span class="toc-number">2.</span> <span class="toc-text">A. Borya’s Diagnosis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-number">2.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">2.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">2.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">2.4.</span> <span class="toc-text">AC code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#B-Table-Tennis"><span class="toc-number">3.</span> <span class="toc-text">B. Table Tennis</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input-1"><span class="toc-number">3.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-1"><span class="toc-number">3.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法-1"><span class="toc-number">3.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code-1"><span class="toc-number">3.4.</span> <span class="toc-text">AC code</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#C-Short-Program"><span class="toc-number">4.</span> <span class="toc-text">C. Short Program</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#input-2"><span class="toc-number">4.1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解-2"><span class="toc-number">4.2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法-2"><span class="toc-number">4.3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code-2"><span class="toc-number">4.4.</span> <span class="toc-text">AC code</span></a></li></ol></li></ol>
               
               </div>
           
           
-            <p>目錄<br>1.模擬題<br>2.模擬題</p>
-<h1 id="3-位元操作"><a href="#3-位元操作" class="headerlink" title="3.位元操作"></a>3.位元操作</h1><h1 id="A-Borya’s-Diagnosis"><a href="#A-Borya’s-Diagnosis" class="headerlink" title="A. Borya’s Diagnosis"></a>A. Borya’s Diagnosis</h1><p><a href="http://codeforces.com/contest/879/problem/A" target="_blank" rel="external">題目</a></p>
+            <h1 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h1><ol>
+<li>模擬題</li>
+<li>模擬題</li>
+<li>位元操作</li>
+</ol>
+<h1 id="A-Borya’s-Diagnosis"><a href="#A-Borya’s-Diagnosis" class="headerlink" title="A. Borya’s Diagnosis"></a>A. Borya’s Diagnosis</h1><p><a href="http://codeforces.com/contest/879/problem/A" target="_blank" rel="external">題目</a></p>
 <h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>1 &lt;= n &lt;= 1000<br>1 &lt;= s, d &lt;= 1000</p>
 <h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>Borya 要依序看 n 個醫生<br>每個醫生只在 si, si + di … 的日子營業<br>請問最快要幾天才能看完所有醫生</p>
 <h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>模擬題</p>
