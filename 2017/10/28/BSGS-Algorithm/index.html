@@ -12,7 +12,7 @@
 <meta property="og:url" content="http://abcd40404.github.io/2017/10/28/BSGS-Algorithm/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
 <meta property="og:description" content="BSGS 原名Baby Steps Giant Steps，又名大小步算法用途是用來解離散對數, $a^{x}\equiv b\left( mod\ p\right)$求最小 x 的解 步驟為  令 $x=im-j$ $m = \left \lceil \sqrt{p} \right \rceil$ $a^{im-j} \equiv b(mod\ p)$ 移項 $a^{im} \equiv a^{">
-<meta property="og:updated_time" content="2017-10-28T08:54:13.340Z">
+<meta property="og:updated_time" content="2017-10-28T10:41:40.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="BSGS 演算法">
 <meta name="twitter:description" content="BSGS 原名Baby Steps Giant Steps，又名大小步算法用途是用來解離散對數, $a^{x}\equiv b\left( mod\ p\right)$求最小 x 的解 步驟為  令 $x=im-j$ $m = \left \lceil \sqrt{p} \right \rceil$ $a^{im-j} \equiv b(mod\ p)$ 移項 $a^{im} \equiv a^{">
@@ -99,7 +99,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/28/BSGS-Algorithm/" data-id="cj9b6c0xo0002boops6dbvbot" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/10/28/BSGS-Algorithm/" data-id="cj9b76qp20001svopr8dr3nab" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/10/28/BSGS-Algorithm/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -134,7 +134,7 @@ ga('send', 'pageview');
 <span>$x = im - j, i\in \left [ 1, m \right ], j\in \left [ 0, m \right ]$</span><!-- Has MathJax --> 當我們限制 i, j 在這個範圍時, x &lt;= p, 那要怎麼保證這個範圍內有解<br>根據費馬小定理的一個結論, 得到 <span>$a^{k\ mod\ p-1} \equiv a^{k}(mod\ p)$</span><!-- Has MathJax -->
 <p>所以 <span>$x\in \left [ 0, p-1 \right ]$</span><!-- Has MathJax --> 就會和 <span>$a^{x}$</span><!-- Has MathJax --> 同解</p>
 </li>
-<li><p>為何第一個 i 列舉到的 im - j 為最小？<br>要保證 im - j 最小, j 就必須最大<br>im 的增加速度會比 j 快, 且 j 的範圍是 [0, m]</p>
+<li><p>為何第一個 i 列舉到的 im - j 為最小？<br>首先不管是 i 還是 j, 計算出來的 value 都有可能重複<br>要保證 im - j 最小, j 就必須最大<br>從 j 先開始列舉, 後面覆蓋的 j, 一定會比較大<br>而我們想要 i 最小, 所以自然不能先列舉 i</p>
 </li>
 <li><p>為何 i 要從 [1, m] 開始？<br>因為 i 為 0 可能導致負數</p>
 </li>
