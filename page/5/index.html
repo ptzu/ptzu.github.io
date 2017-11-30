@@ -59,7 +59,7 @@ ga('send', 'pageview');
         
           <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Zoeken"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://abcd40404.github.io"></form>
@@ -70,6 +70,64 @@ ga('send', 'pageview');
 
       <div class="outer">
         <section id="main">
+  
+    <article id="post-ubuntu-phpmyadmin" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/31/ubuntu-phpmyadmin/" class="article-date">
+  <time datetime="2017-05-31T14:25:55.000Z" itemprop="datePublished">2017-05-31</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/資料庫/">資料庫</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/31/ubuntu-phpmyadmin/">在 Ubuntu 安裝 phpmyadmin</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/" data-id="cjalyhqx70073tfopi7r2flw8" class="article-share-link">Delen</a>
+      
+        <a href="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>在 Ubuntu 安裝 phpmyadmin 非常簡單</p>
+<h2 id="安裝-MySQL"><a href="#安裝-MySQL" class="headerlink" title="安裝 MySQL"></a>安裝 MySQL</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install mysql-server</div></pre></td></tr></table></figure>
+<p>過程中會要求你輸入 root 密碼</p>
+<h2 id="安裝-phpmyadmin"><a href="#安裝-phpmyadmin" class="headerlink" title="安裝 phpmyadmin"></a>安裝 phpmyadmin</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install phpmyadmin</div></pre></td></tr></table></figure>
+<p>過程會有<br>1.選擇伺服器(apache2)<br>2.剛剛設置的 mysql root 密碼</p>
+<p>phpMyAdmin的設置文件在: /etc/phpmyadmin/config.inc.php</p>
+<p>安裝好之後還不能馬上使用<br>需要在 apache2.conf 下添加<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Include /etc/phpmyadmin/apache.conf</div></pre></td></tr></table></figure></p>
+<p>之後在重啟 apache server</p>
+<p>就可以透過 host/phpmyadmin 來登入</p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
   
     <article id="post-mysql-newuser" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
@@ -96,7 +154,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cj9b76qqx0048svopad305h2o" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cjalyhqw9004btfoptobg5p3x" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/31/mysql-newuser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -148,7 +206,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cj9b76qqt003wsvopbbfrr6nk" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cjalyhqw5003xtfopbmjjg5vw" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/htmlinputfile/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -207,7 +265,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cj9b76qqo003ksvoplpgl9vmd" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cjalyhqw3003qtfopzsl8hxg0" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/div-center/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -260,7 +318,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cj9b76qpi000hsvop5ph8o41a" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cjalyhquu000ltfopirlq9ydn" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/ajax-form/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -319,7 +377,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cj9b76qqk0038svop9bvbaijn" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cjalyhqvz003dtfopthof4xck" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/19/css-float/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -379,7 +437,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cj9b76qqz004fsvoppm3nm2ej" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cjalyhqwb004itfoptx4x382z" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/17/mysql-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -433,7 +491,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cj9b76qr1004lsvop7fppmho2" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cjalyhqwe004otfopcs9y8e2r" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/17/php-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -495,7 +553,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cj9b76qqv0044svop8k4ihr7l" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cjalyhqw70045tfopxcomkmg4" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/15/mosquitto-configure/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -568,7 +626,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/12/compiler2/" data-id="cj9b76qqj0034svopbu480mlw" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/12/compiler2/" data-id="cjalyhqvy003atfop8r4wh8lw" class="article-share-link">Delen</a>
       
         <a href="http://abcd40404.github.io/2017/05/12/compiler2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -595,74 +653,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-rs232" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/04/rs232/" class="article-date">
-  <time datetime="2017-05-04T13:29:03.000Z" itemprop="datePublished">2017-05-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/專題/">專題</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/04/rs232/">RS232雜記</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/04/rs232/" data-id="cj9b76qrh005zsvope30s5nhc" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/05/04/rs232/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/RS232/">RS232</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>1.BuildCommDCB<br>函數原型: BOOL BuildCommDCB( LPCTSTR lpDef, LPDCB lpDCB ).<br>BuildCommDCB 函數是用來填寫 DCB 的資料,何謂 DCB 呢? DCB 的全名為 Device Control Block<br>是一資料結構,裡面定義著所有有關串列通訊(Serial Communication)的設定值,DCB 資料結構定義如下:</p>
-<p>typedef struct _DCB {<br>DWORD DCBlength; // DCB 的大小 (in byte)<br>DWORD BaudRate; // 傳輸率 (baud rate) bit/秒<br>DWORD fBinary: 1; // 二進制模式,沒有 EOF 檢查.<br>DWORD fParity: 1; // 同位元檢查 (parity checking)<br>DWORD fOutxCtsFlow:1; // CTS output flow control<br>DWORD fOutxDsrFlow:1; // DSR output flow control<br>DWORD fDtrControl:2; // DTR flow control type<br>DWORD fDsrSensitivity:1; // DSR sensitivity<br>DWORD fTXContinueOnXoff:1; // XOFF continues Tx<br>DWORD fOutX: 1; // XON/XOFF out flow control<br>DWORD fInX: 1; // XON/XOFF in flow control<br>DWORD fErrorChar: 1; // enable error replacement<br>DWORD fNull: 1; // enable null stripping<br>DWORD fRtsControl:2; // RTS flow control<br>DWORD fAbortOnError:1; // abort reads/writes on error<br>DWORD fDummy2:17; // reserved<br>WORD wReserved; // not currently used<br>WORD XonLim; // transmit XON threshold<br>WORD XoffLim; // transmit XOFF threshold<br>BYTE ByteSize; // 每一筆資料的 bit 數, 4-8<br>BYTE Parity; // 同位元 (0-4) = 無,奇同位,偶同位,mark,space<br>BYTE StopBits; // 停止位元 (0,1,2) = 1, 1.5, 2<br>char XonChar; // Tx and Rx XON character<br>char XoffChar; // Tx and Rx XOFF character<br>char ErrorChar; // error replacement character<br>char EofChar; // end of input character<br>char EvtChar; // received event character<br>WORD wReserved1; // reserved; do not use<br>} DCB;</p>
-<p>這個 DCB Structure 幾乎函蓋了所有有關串列通訊的參數,提供以後使用 SetCommState API 函數<br>對硬體進行初始化設定.透過 BuildCommDCB 函數,我們可以最簡單的方法來向 DCB Structure<br>填值,其中 LPCTSTR lpDef 指向一個叫做 device-control string 的位址,而 LPDCB lpDCB<br>正指向 DCB Structure.我們較感興趣的是 device-control string,它使用設定串列埠的語<br>法就跟以往 DOS 時代的 Mode 指令一樣,唯一不同的是它的傳輸率 (baud rate)已經不再限<br>制於 19200 bit/秒以下,並且最高可達 256000 bit/秒.例如:欲設定 COM2 的 Baud = 57600,<br>沒有同位元,資料 = 8 bit,一個停止位元,可以寫成 BuildCommDCB(“19200,n,8,1”,&amp;dcb).<br>若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p>
-<p>2.CreatFile</p>
-<p>函數原型:<br>HANDLE CreateFile(<br>LPCTSTR lpFileName,    // pointer to name of the file<br>DWORD dwDesiredAccess, // access (read-write) mode<br>DWORD dwShareMode,    // share mode<br>LPSECURITY_ATTRIBUTES lpSecurityAttributes,    // pointer to security attributes<br>DWORD dwCreationDistribution,    // how to create<br>DWORD dwFlagsAndAttributes,    // file attributes<br>HANDLE hTemplateFile // handle to file with attributes to copy<br>);<br>這個 Windows API 函數在此是用來開啟系統的 Serial Port 並取得一個 HANDLE 代碼.以後想要存取<br>Serial Port 時,只須面對這個 HANDLE 代碼即可.當然 CreateFile 函數也可以開啟其他類型的檔案,<br>例如 files,pipes,mailslots 等等,有興趣的朋友可以參考 Borland C++ 或 C++Builder 附加的 Help<br>file 內皆有詳盡的說明.</p>
-<p>此函數共有七個變數欄位,第一個變數欄位 lpFileName 指向檔案名稱或裝置名稱,要當做串列通<br>訊時, lpFileName 為 “COM1” 或 “COM2”.變數 dwDesiredAccess 設定存取型式.常數 GENERIC_READ<br>代表可讀不可寫,常數 GENERIC_WRITE 代表可寫不可讀,GENERIC_READ + GENERIC_WRITE 代表可寫亦<br>可讀.變數 dwShareMode 設定共享模式.常數 FILE_SHARE_READ 代表可以同時被多個程式讀取,而常數<br>FILE_SHARE_READ 代表可以同時被多個程式寫入,NULL 代表不開放共享.當然在 Serial Port 下<br>dwShareMode是不能開放共享的.<br>變數 lpSecurityAttributes 設定保密程度.<br>變數 dwCreationDistribution 決定檔案開啟模式.常數 OPEN_EXISTING 代表開啟一個已存在的舊檔.<br>常數CREATE_ALWAYS 代表開啟新檔.<br>變數 dwFlagsAndAttributes 決定檔案屬性.在使用 COM Port 時,檔案屬性必須設為 FILE_ATTRIBUTE_NORMAL.<br>變數 hTemplateFile 指定檔案屬性原型.</p>
-<p>3.SetCommState<br>函數原型:<br>BOOL SetCommState(<br>HANDLE hFile,    // handle of communications device<br>LPDCB lpDCB    // address of device-control block structure<br>);</p>
-<p>SetCommState 函數會根據 DCB 資料結構的內容,來設定串列通訊裝置,並對硬體重新初始化(initialize).<br>變數 hFile 存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.<br>變數 lpDCB 指向 DCB 資料結構的位址.<br>例如 : SetCommState(handle,&amp;dcb)<br>若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p>
-<p>4.SetupComm<br>函數原型:<br>BOOL SetupComm(<br>HANDLE hFile,    // handle of communications device<br>DWORD dwInQueue,    // size of input buffer<br>DWORD dwOutQueue    // size of output buffer<br>);<br>SetupComm 函數主要是用來設定輸入資料儲列(Queue)與輸出資料儲列大小.<br>變數 hFile 一樣也是存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.<br>變數 dwInQueue 設定輸入資料儲列的大小單位為 Byte.<br>變數 dwOutQueue 設定輸出資料儲列的大小單位為 Byte.<br>若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p>
-<p>5.SetCommTimeouts<br>函數原型:<br>BOOL SetCommTimeouts(<br>HANDLE hFile,    // handle of communications device<br>LPCOMMTIMEOUTS lpCommTimeouts    // address of communications time-out structure<br>);<br>本函數執行的結果,會影響 ReadFile 的讀取時間與 WriteFile 的寫入時間.<br>變數 hFile 存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.<br>變數 lpCommTimeouts 指向一個 communications time-out 的資料結構,</p>
-<p>typedef struct _COMMTIMEOUTS {<br>DWORD ReadIntervalTimeout;<br>DWORD ReadTotalTimeoutMultiplier;<br>DWORD ReadTotalTimeoutConstant;<br>DWORD WriteTotalTimeoutMultiplier;<br>DWORD WriteTotalTimeoutConstant;<br>} COMMTIMEOUTS,*LPCOMMTIMEOUTS;</p>
-<p>變數 ReadIntervalTimeout 設定讀取第一個字元與第二個字元之間的 time out 時間.單位為毫秒<br>(msec)當使用 ReadFile 函數從串列埠讀取一個字元時,若在 ReadIntervalTimeout 時間內讀取第<br>二個字元,則 ReadFile函數會繼續讀取下一個字元.若未在 ReadIntervalTimeout 時間內讀取第二<br>個字元,則ReadFile 函數將完成工作也就是跳出 ReadFile 執行下一行敘述.ReadIntervalTimeout<br>設為 0 表示關閉此功能.</p>
-<p>變數 ReadTotalTimeoutMultiplier 視讀取的字元數來決定總 time out 時間.<br>總 time out 時間 = ReadTotalTimeoutMultiplier * 欲讀取字元數 + ReadTotalTimeoutConstant.<br>將 ReadTotalTimeoutMultiplier 設為 0 表示關閉此功能.</p>
-<p>變數 ReadTotalTimeoutConstant 為 time out 時間常數.加在 ReadTotalTimeoutMultiplier 之後.</p>
-<p>變數 WriteTotalTimeoutMultiplier 與 WriteTotalTimeoutConstant 設定寫入串列埠的總 time out<br>時間.寫入串列埠的總 time out 時間 =<br>WriteTotalTimeoutMultiplier * 欲寫入之字元數 + WriteTotalTimeoutConstant.<br>將 WriteTotalTimeoutMultiplier 和 WriteTotalTimeoutConstant 設為 0 表示關閉此功能.</p>
-<p>讀取串列埠之 time out 設定的恰當與否,將會影響程式的執行效率,如果設定的總 time out 時<br>間過長,而遠端裝置又沒有回應(No Response)時通常會導致讓 User 誤判成電腦當機,所以不可以亂設<br>.一般通常都設成:<br>TimeOut.ReadIntervalTimeout = 0;<br>TimeOut.ReadTotalTimeoutMultiplier = 0;<br>TimeOut.ReadTotalTimeoutConstant = 500; //(總讀取 time out 時間 = 0.5 秒)<br>TimeOut.WriteTotalTimeoutMultiplier = 0;<br>TimeOut.WriteTotalTimeoutConstant = 500; //(總寫入 time out 時間 = 0.5 秒)<br>再執行 SetCommTimeouts(handle,&amp;TimeOut) ,即完成了communications time-out 的設定.<br>若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p>
-<p>最後再將上述的五個 Communication Function 簡單地複習一遍.<br>初始化 COM PORT 的步驟<br>1.BuildCommDCB : 建立 DCB (Device Control Block).<br>2.CreatFile : 開啟 COM Port 並取得 Handle 代碼.<br>3.SetCommState : 根據 DCB 資料結構的內容,來設定串列通訊裝置,並對硬體重新初始化(initialize).<br>4.SetupComm : 用來設定輸入資料儲列(Queue)與輸入資料儲列.<br>5.SetCommTimeouts :設定 ReadFile 的最大讀取時,間與 WriteFile 的最大寫入時間.<br>此時的 Com Port 已可隨意存取,欲存取 Com Port 請用 ReadFile() 與 WriteFile() API函數.<br>從 Com Port 讀取一個字元:<br>ReadFile(handle, &amp;lpBuf, 1, &amp;dwRead, NULL);<br>寫一個字元至 Com Port :<br>WriteFile(handle,&amp;WriteBuffer,1,&amp;NoWrite,0);</p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -675,9 +665,9 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Categories</h3>
+    <h3 class="widget-title">Categorieën</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">69</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">20</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">24</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">1</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">70</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">27</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">10</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Date-structure/">Date structure</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">21</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">1</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -685,9 +675,9 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Tags</h3>
+    <h3 class="widget-title">Labels</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">10</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Date-Structure/">Date Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary-search/">binary_search</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bit-operation/">bit operation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coin/">coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/implement/">implement</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/knapsack/">knapsack</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Date-Structure/">Date Structure</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/binary-search/">binary_search</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/bit-operation/">bit operation</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/coin/">coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/implement/">implement</a><span class="tag-list-count">9</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/knapsack/">knapsack</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/math/">math</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/test/">test</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -697,16 +687,16 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 11.43px;">BSGS Algorithm</a> <a href="/tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Date-Structure/" style="font-size: 10px;">Date Structure</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/LCS/" style="font-size: 12.86px;">LCS</a> <a href="/tags/Math/" style="font-size: 17.14px;">Math</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.43px;">PHP</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/binary-search/" style="font-size: 15.71px;">binary_search</a> <a href="/tags/bit-operation/" style="font-size: 10px;">bit operation</a> <a href="/tags/coin/" style="font-size: 10px;">coin</a> <a href="/tags/dsu/" style="font-size: 12.86px;">dsu</a> <a href="/tags/game/" style="font-size: 11.43px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/implement/" style="font-size: 18.57px;">implement</a> <a href="/tags/knapsack/" style="font-size: 12.86px;">knapsack</a> <a href="/tags/math/" style="font-size: 12.86px;">math</a> <a href="/tags/string/" style="font-size: 11.43px;">string</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/區間/" style="font-size: 14.29px;">區間</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/著色/" style="font-size: 11.43px;">著色</a>
+      <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 11.43px;">BSGS Algorithm</a> <a href="/tags/CSS/" style="font-size: 11.43px;">CSS</a> <a href="/tags/DFS/" style="font-size: 10px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Date-Structure/" style="font-size: 10px;">Date Structure</a> <a href="/tags/Graph/" style="font-size: 10px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 10px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/LCS/" style="font-size: 12.86px;">LCS</a> <a href="/tags/Math/" style="font-size: 17.14px;">Math</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.43px;">PHP</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/binary-search/" style="font-size: 15.71px;">binary_search</a> <a href="/tags/bit-operation/" style="font-size: 10px;">bit operation</a> <a href="/tags/coin/" style="font-size: 10px;">coin</a> <a href="/tags/dsu/" style="font-size: 12.86px;">dsu</a> <a href="/tags/game/" style="font-size: 11.43px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/implement/" style="font-size: 18.57px;">implement</a> <a href="/tags/knapsack/" style="font-size: 14.29px;">knapsack</a> <a href="/tags/math/" style="font-size: 12.86px;">math</a> <a href="/tags/string/" style="font-size: 11.43px;">string</a> <a href="/tags/test/" style="font-size: 10px;">test</a> <a href="/tags/區間/" style="font-size: 14.29px;">區間</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/著色/" style="font-size: 11.43px;">著色</a>
     </div>
   </div>
 
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archieven</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -714,9 +704,13 @@ ga('send', 'pageview');
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">Recente berichten</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2017/11/30/uva10130/">Uva 10130 - SuperSale</a>
+          </li>
         
           <li>
             <a href="/2017/10/28/poj2417/">POJ 2417 Discrete Logging</a>
@@ -732,10 +726,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2017/10/28/RepeatingDecimal/">求取循環節長度</a>
-          </li>
-        
-          <li>
-            <a href="/2017/10/27/cf443/">Codeforces Round 443</a>
           </li>
         
       </ul>
@@ -789,20 +779,5 @@ ga('send', 'pageview');
 <script src="/js/script.js"></script>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
