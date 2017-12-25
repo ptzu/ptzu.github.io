@@ -96,7 +96,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/24/cf454/" data-id="cjbkeymz9002cw1opwxgac2m8" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/24/cf454/" data-id="cjbme377w003n9copt75exkh7" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/24/cf454/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -128,7 +128,7 @@ ga('send', 'pageview');
 <h2 id="input-2"><a href="#input-2" class="headerlink" title="input"></a>input</h2><p>第一列輸入一正整數 n, 1 &lt;= n &lt;= 10^5<br>接著 n 列字串<br>保證總子串長度不超過 10^5</p>
 <h2 id="題解-2"><a href="#題解-2" class="headerlink" title="題解"></a>題解</h2><p>主辦單位會選一個字元<br>參賽者如果說了那個字, 就會被電擊<br>參賽者也可以猜那個字是什麼, 猜錯也會被電擊<br>每句話都會給結果: 被電擊, 沒被電擊, 猜測(分別用 ! . ? 代表)<br>題目保證最後一列才會猜中答案<br>若在過程中, 我們已經可以知道答案是哪個字<br>卻還被電擊, 就算為額外電擊<br>求額外電擊有幾次</p>
 <h2 id="作法-2"><a href="#作法-2" class="headerlink" title="作法"></a>作法</h2><p>可以用位元操作的方式<br>用 26 個 bit 1 來代表 26 個字母都有可能是答案<br>出現 ！ 就代表只剩這些 bit 有可能是答案<br>出現 . ？ 就可以把這些 bit 排除<br>當只剩下一個 bit 1 就代表之後的動作都是額外的<br>只要有被電擊就算( . 不算)</p>
-<h2 id="AC-code-2"><a href="#AC-code-2" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"><span class="comment">// const int MAX_V = 100100;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> candidate;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    fio;</div><div class="line">    candidate = (<span class="number">1</span> &lt;&lt; <span class="number">26</span>) - <span class="number">1</span>; <span class="comment">// 現在有26個 bit 1</span></div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; n;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">        <span class="keyword">char</span> ch;</div><div class="line">        <span class="built_in">string</span> s;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; ch &gt;&gt; s;</div><div class="line">        <span class="comment">// 第一個 bit 1 等於自己代表只剩一個 bit 1</span></div><div class="line">        <span class="keyword">if</span>(i != n - <span class="number">1</span> &amp;&amp; ch != <span class="string">'.'</span> &amp;&amp; candidate == (candidate &amp; -candidate))&#123;</div><div class="line">            ans++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(ch == <span class="string">'!'</span>)&#123;</div><div class="line">            <span class="keyword">int</span> now = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : s)&#123;</div><div class="line">                now |= <span class="number">1</span> &lt;&lt; (c - <span class="string">'a'</span>);</div><div class="line">            &#125;</div><div class="line">            candidate &amp;= now; <span class="comment">// 只打開這些 bit</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(ch == <span class="string">'.'</span> || ch == <span class="string">'?'</span>)&#123;</div><div class="line">            <span class="keyword">int</span> now = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : s)&#123;</div><div class="line">                now |= <span class="number">1</span> &lt;&lt; (c - <span class="string">'a'</span>);</div><div class="line">            &#125;</div><div class="line">            candidate &amp;= ~now; <span class="comment">// 關掉這些 bit</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="AC-code-2"><a href="#AC-code-2" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"><span class="comment">// const int MAX_V = 100100;</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> candidate;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    fio;</div><div class="line">    candidate = (<span class="number">1</span> &lt;&lt; <span class="number">26</span>) - <span class="number">1</span>; <span class="comment">// 現在有26個 bit 1</span></div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; n;</div><div class="line">    <span class="keyword">int</span> ans = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">        <span class="keyword">char</span> ch;</div><div class="line">        <span class="built_in">string</span> s;</div><div class="line">        <span class="built_in">cin</span> &gt;&gt; ch &gt;&gt; s;</div><div class="line">        <span class="comment">// 第一個 bit 1 等於自己代表只剩一個 bit 1</span></div><div class="line">        <span class="keyword">if</span>(i != n - <span class="number">1</span> &amp;&amp; ch != <span class="string">'.'</span> &amp;&amp; candidate == (candidate &amp; -candidate))&#123;</div><div class="line">            ans++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(ch == <span class="string">'!'</span>)&#123;</div><div class="line">            <span class="keyword">int</span> now = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : s)&#123;</div><div class="line">                now |= <span class="number">1</span> &lt;&lt; (c - <span class="string">'a'</span>);</div><div class="line">            &#125;</div><div class="line">            candidate &amp;= now; <span class="comment">// 這些 bit 保留, 其餘關閉</span></div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(ch == <span class="string">'.'</span> || ch == <span class="string">'?'</span>)&#123;</div><div class="line">            <span class="keyword">int</span> now = <span class="number">0</span>;</div><div class="line">            <span class="keyword">for</span>(<span class="keyword">auto</span> c : s)&#123;</div><div class="line">                now |= <span class="number">1</span> &lt;&lt; (c - <span class="string">'a'</span>);</div><div class="line">            &#125;</div><div class="line">            candidate &amp;= ~now; <span class="comment">// 關掉這些 bit</span></div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
             </div>
             <div class="toggle-input article-more-link"><a>Read More +</a></div>
@@ -167,7 +167,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/24/note/" data-id="cjbkeymzx004ew1op9i1v27sg" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/24/note/" data-id="cjbme378f005c9copiouh5hwg" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/24/note/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -221,7 +221,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/template-Prim/" data-id="cjbkeyn0n006nw1opfp4tpghw" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/template-Prim/" data-id="cjbme378z006z9copqtrmbi7i" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/template-Prim/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -268,7 +268,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/template-SPFA/" data-id="cjbkeyn0o006qw1opkf108kes" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/template-SPFA/" data-id="cjbme379300799copv582u1hw" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/template-SPFA/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -320,7 +320,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/template-Bellman-Ford/" data-id="cjbkeyn0k006dw1op5n5bkc89" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/template-Bellman-Ford/" data-id="cjbme3799007r9copy89aduvn" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/template-Bellman-Ford/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -370,7 +370,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva10420/" data-id="cjbkeyn1e008mw1op92dhm4x9" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/uva10420/" data-id="cjbme379u009f9cop7tgz75h6" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/uva10420/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -426,7 +426,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva10101/" data-id="cjbkeyn1a008aw1opwihgpqpv" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/uva10101/" data-id="cjbme379k008k9coprpkerhqp" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/uva10101/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -482,7 +482,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva10929/" data-id="cjbkeyn1g008uw1opwszwtcju" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/uva10929/" data-id="cjbme379q00959copit8t52as" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/uva10929/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -538,7 +538,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva100/" data-id="cjbkeyn0x007fw1op8eoz6mcg" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/uva100/" data-id="cjbme379b007u9copewwlxoy5" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/uva100/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -594,7 +594,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva10035/" data-id="cjbkeyn12007qw1opc6zk8u7v" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/12/22/uva10035/" data-id="cjbme379f00889copxit931db" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/12/22/uva10035/#disqus_thread" class="article-comment-link">Comments</a>
       
