@@ -3,19 +3,14 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Uva 10057 - A mid-summer night&#39;s dream. | Kamikaze&#39;s blog</title>
+  <title>Category: Codeforce | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="題目 input含有多筆測資, 每筆測資開頭有一正整數 N接著有 N 個數, 每個數不超過65536 題解找出一個數, 使它與其他數的絕對值差, 總和最小輸出符合條件最小的數, 以及 input 中有幾個這樣的數, 還有所有符合條件的數(含input以外的數) 作法找中位數, 當有偶數個的時候, 兩個中位數之間的數也都符合條件 AC code1234567891011121314151617181">
-<meta name="keywords" content="Math">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Uva 10057 - A mid-summer night&#39;s dream.">
-<meta property="og:url" content="http://abcd40404.github.io/2017/12/18/uva10057/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kamikaze&#39;s blog">
+<meta property="og:url" content="http://abcd40404.github.io/categories/解題區/Codeforce/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="題目 input含有多筆測資, 每筆測資開頭有一正整數 N接著有 N 個數, 每個數不超過65536 題解找出一個數, 使它與其他數的絕對值差, 總和最小輸出符合條件最小的數, 以及 input 中有幾個這樣的數, 還有所有符合條件的數(含input以外的數) 作法找中位數, 當有偶數個的時候, 兩個中位數之間的數也都符合條件 AC code1234567891011121314151617181">
-<meta property="og:updated_time" content="2017-12-18T13:46:50.460Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Uva 10057 - A mid-summer night&#39;s dream.">
-<meta name="twitter:description" content="題目 input含有多筆測資, 每筆測資開頭有一正整數 N接著有 N 個數, 每個數不超過65536 題解找出一個數, 使它與其他數的絕對值差, 總和最小輸出符合條件最小的數, 以及 input 中有幾個這樣的數, 還有所有符合條件的數(含input以外的數) 作法找中位數, 當有偶數個的時候, 兩個中位數之間的數也都符合條件 AC code1234567891011121314151617181">
+<meta name="twitter:title" content="Kamikaze&#39;s blog">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -74,91 +69,29 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-uva10057" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/12/18/uva10057/" class="article-date">
-  <time datetime="2017-12-18T13:40:11.000Z" itemprop="datePublished">2017-12-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <section id="main"><div class="list-table">
+    <ul>
         
   
-    <h1 class="article-title" itemprop="name">
-      Uva 10057 - A mid-summer night&#39;s dream.
-    </h1>
-  
-
-      </header>
+      
+            <li>
     
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/18/uva10057/" data-id="cjbz4irky008303opvwnnlckb" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/12/18/uva10057/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <div id="toc" class="toc-article">
-              <h2 class="toc-title"><span>Contents</span></h2>
-              
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-number">1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">4.</span> <span class="toc-text">AC code</span></a></li></ol>
-              
-              </div>
-          
-          
-            <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=12&amp;problem=998" target="_blank" rel="external">題目</a></p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>含有多筆測資, 每筆測資開頭有一正整數 N<br>接著有 N 個數, 每個數不超過65536</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>找出一個數, 使它與其他數的絕對值差, 總和最小<br>輸出符合條件最小的數, 以及 input 中有幾個這樣的數, 還有所有符合條件的數(含input以外的數)</p>
-<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>找中位數, 當有偶數個的時候, 兩個中位數之間的數也都符合條件</p>
-<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">1000000</span>;</div><div class="line"></div><div class="line"><span class="keyword">int</span> v[<span class="number">1000010</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> n;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF)&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">            <span class="keyword">int</span> x;</div><div class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;v[i]);</div><div class="line">        &#125;</div><div class="line">        sort(v, v + n);</div><div class="line">        <span class="comment">// 奇數個數時會一樣</span></div><div class="line">        <span class="keyword">int</span> mid1 = v[(n - <span class="number">1</span>) / <span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> mid2 = v[n / <span class="number">2</span>];</div><div class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">            <span class="keyword">if</span>(v[i] == mid1 || v[i] == mid2) cnt++;</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">printf</span>(<span class="string">"%d %d %d\n"</span>, mid1, cnt, mid2 - mid1 + <span class="number">1</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-          
-      
-    </div>
-  </div>
   
-    
-<nav id="article-nav">
+      <a class="list" href="/2017/12/24/cf454/">Codeforces Round 454</a>
   
-    <a href="/2017/12/18/uva10004/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+
+
+</li>
+
+      
+  
+  
+
+
+
         
-          Uva 10004 - Bicoloring
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/12/18/uva12019/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Uva 12019 - Doom&#39;s Day Algorithm</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
+    </ul>
+</div>
 </section>
         
           <aside id="sidebar">
@@ -259,13 +192,11 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/12/18/uva10057/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
