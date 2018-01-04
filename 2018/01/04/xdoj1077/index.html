@@ -3,23 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>【明天我要和昨天的妳約會】觀後感 | Kamikaze&#39;s blog</title>
+  <title>XDoj 1077 - 循环节长度 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天忙到中午後, 和學長約了電影。在府中站簡單吃完後, 前往板橋秀泰本來是想要看【我和我的冠軍女兒】但沒想到都沒場次換了好幾家, 從板橋跑到台北, 好幾家都沒得看最後看到了【明天我要和昨天的妳約會】這部在嘉義沒上映, 評價還不錯, 就決定是你了 ———–以下有雷———– 男主角 南山高壽在一次上學途中, 在電車上遇到了女主角 福壽愛美高壽對她一見鍾情, 並決定鼓起勇氣去搭訕簡單聊了幾句之後, 愛美">
+  <meta name="description" content="題目 input多筆測資, 輸入 a, b0 &amp;lt;= a, b &amp;lt;= 10^9 題解因為循環節長度最長不超過分母而這題的分母很大, 不能用模擬除法所以用 BSGS 來求離散對數 作法根據定理 a / b 的循環節長度為: $\min \{ e\in N,10^{e}\equiv 1(mod\ b) \}$但要注意的是當 e == 0 的時候恆成立所以我們需要小修改一下 BSGS 演算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【明天我要和昨天的妳約會】觀後感">
-<meta property="og:url" content="http://abcd40404.github.io/2017/04/01/diary-20170401/index.html">
+<meta property="og:title" content="XDoj 1077 - 循环节长度">
+<meta property="og:url" content="http://abcd40404.github.io/2018/01/04/xdoj1077/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="今天忙到中午後, 和學長約了電影。在府中站簡單吃完後, 前往板橋秀泰本來是想要看【我和我的冠軍女兒】但沒想到都沒場次換了好幾家, 從板橋跑到台北, 好幾家都沒得看最後看到了【明天我要和昨天的妳約會】這部在嘉義沒上映, 評價還不錯, 就決定是你了 ———–以下有雷———– 男主角 南山高壽在一次上學途中, 在電車上遇到了女主角 福壽愛美高壽對她一見鍾情, 並決定鼓起勇氣去搭訕簡單聊了幾句之後, 愛美">
-<meta property="og:image" content="http://i.imgur.com/41N5y5q.jpg">
-<meta property="og:image" content="http://i.imgur.com/PNm8R9p.jpg">
-<meta property="og:image" content="http://i.imgur.com/tcwXbqx.jpg">
-<meta property="og:image" content="http://i.imgur.com/U58eYce.jpg">
-<meta property="og:updated_time" content="2017-10-20T02:38:36.942Z">
+<meta property="og:description" content="題目 input多筆測資, 輸入 a, b0 &amp;lt;= a, b &amp;lt;= 10^9 題解因為循環節長度最長不超過分母而這題的分母很大, 不能用模擬除法所以用 BSGS 來求離散對數 作法根據定理 a / b 的循環節長度為: $\min \{ e\in N,10^{e}\equiv 1(mod\ b) \}$但要注意的是當 e == 0 的時候恆成立所以我們需要小修改一下 BSGS 演算法">
+<meta property="og:updated_time" content="2018-01-04T04:12:32.893Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【明天我要和昨天的妳約會】觀後感">
-<meta name="twitter:description" content="今天忙到中午後, 和學長約了電影。在府中站簡單吃完後, 前往板橋秀泰本來是想要看【我和我的冠軍女兒】但沒想到都沒場次換了好幾家, 從板橋跑到台北, 好幾家都沒得看最後看到了【明天我要和昨天的妳約會】這部在嘉義沒上映, 評價還不錯, 就決定是你了 ———–以下有雷———– 男主角 南山高壽在一次上學途中, 在電車上遇到了女主角 福壽愛美高壽對她一見鍾情, 並決定鼓起勇氣去搭訕簡單聊了幾句之後, 愛美">
-<meta name="twitter:image" content="http://i.imgur.com/41N5y5q.jpg">
+<meta name="twitter:title" content="XDoj 1077 - 循环节长度">
+<meta name="twitter:description" content="題目 input多筆測資, 輸入 a, b0 &amp;lt;= a, b &amp;lt;= 10^9 題解因為循環節長度最長不超過分母而這題的分母很大, 不能用模擬除法所以用 BSGS 來求離散對數 作法根據定理 a / b 的循環節長度為: $\min \{ e\in N,10^{e}\equiv 1(mod\ b) \}$但要注意的是當 e == 0 的時候恆成立所以我們需要小修改一下 BSGS 演算法">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -78,14 +73,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-diary-20170401" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-xdoj1077" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/04/01/diary-20170401/" class="article-date">
-  <time datetime="2017-04-01T15:28:28.000Z" itemprop="datePublished">2017-04-01</time>
+    <a href="/2018/01/04/xdoj1077/" class="article-date">
+  <time datetime="2018-01-04T04:04:29.000Z" itemprop="datePublished">2018-01-04</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/心情日記/">心情日記</a>
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/其他/">其他</a>
   </div>
 
   </div>
@@ -96,32 +91,36 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      【明天我要和昨天的妳約會】觀後感
+      XDoj 1077 - 循环节长度
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/01/diary-20170401/" data-id="cjbzzb8rt003ei0opawln5dhw" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/04/xdoj1077/" data-id="cjbzzb8up00bki0op4wxet9sy" class="article-share-link">Share</a>
       
-        <a href="http://abcd40404.github.io/2017/04/01/diary-20170401/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://abcd40404.github.io/2018/01/04/xdoj1077/#disqus_thread" class="article-comment-link">Comments</a>
       
       
     </footer>
     <div class="article-entry" itemprop="articleBody">
       
           
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-number">1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">4.</span> <span class="toc-text">AC code</span></a></li></ol>
+              
+              </div>
           
-            <p><img src="http://i.imgur.com/41N5y5q.jpg" alt=""><br>今天忙到中午後, 和學長約了電影。<br>在府中站簡單吃完後, 前往板橋秀泰<br>本來是想要看【我和我的冠軍女兒】但沒想到都沒場次<br>換了好幾家, 從板橋跑到台北, 好幾家都沒得看<br>最後看到了【明天我要和昨天的妳約會】<br>這部在嘉義沒上映, 評價還不錯, 就決定是你了</p>
-<p>———–以下有雷———–</p>
-<p>男主角 南山高壽<br>在一次上學途中, 在電車上遇到了女主角 福壽愛美<br>高壽對她一見鍾情, 並決定鼓起勇氣去搭訕<br>簡單聊了幾句之後, 愛美要離開了<br>「我們會再見面嗎？」「會的」</p>
-<p>隔天高壽沒有在電車上遇到愛美<br>反而是自己出外寫生時, 愛美突然出現, 男主角也順利要到聯絡方式<br><img src="http://i.imgur.com/PNm8R9p.jpg" alt=""><br>之後高壽好友上山幫助下, 成功追到了愛美<br><img src="http://i.imgur.com/tcwXbqx.jpg" alt=""></p>
-<p>電影前半段都在描述兩人的小情小愛<br>導演很厲害的捕捉了男女相處的那種羞澀和甜蜜<br>整個就是充滿粉紅泡泡<br>讓人好羨慕阿阿阿~~~</p>
-<p>可是在這之中, 都不經意的透露一些線索<br>為什麼愛美總是在最快樂的時候哭棄？<br>為什麼愛美會知道未來發生的事？<br>為什麼愛美知道家裡咖哩飯加了什麼？</p>
-<p>直到高壽發現了愛美的日記, 寫著未來每一天發生的事<br>原來他們兩人來自不同的世界, 時間相逆而行的世界<br>5年才能相見, 而且僅僅只有30天<br>高壽的明天, 就是愛美的昨天<br>「和你在一起好痛苦, 我們沒辦法一起分享昨天發生的事」<br>「原來至今相處的一切, 都是演出來的嗎？」</p>
-<p>我覺得愛情片中各種男女主角相處的障礙<br>時空限制是最讓人難受的<br>不管是身份差距, 理想不同而分開<br>縱然分開, 還是可以知道對方好好的活在某處<br>然而本片以相逆時間進行<br>他們以兩倍的速度相近, 然後遠離<br>「相遇, 就注定分開」<br>特別還是在片中就揭露這個事實<br>當高壽說:「她早就知道這些事情, 為什麼還能若無其事的笑著？」<br>赫然想起愛美每次不經意的流淚<br>一想到愛美是強顏歡笑的度過每天, 整個超級催淚Q_Q<br>高壽更加珍惜剩下的每一天, 因為兩人將慢慢不再是戀人…</p>
-<p>「你的第一天, 是我的最後一天」<br>「我的第一天, 是你的最後一天」<br>一拉到最一開始, 初次見面的兩人<br>『我們會再見面嗎?』『會的』<br>其實永遠不會再相見…卻還要強迫自己說出這些話<br>這種交叉錯過的感覺真讓人難受…<br>就這樣前往下一個 5 年, 去守護另個彼端的彼此<br><img src="http://i.imgur.com/U58eYce.jpg" alt="我們沒有錯過彼此。是頭與尾連接在一起，成為了一個圓"></p>
+          
+            <p><a href="http://acm.xidian.edu.cn/problem.php?id=1077" target="_blank" rel="external">題目</a></p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>多筆測資, 輸入 a, b<br>0 &lt;= a, b &lt;= 10^9</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>因為循環節長度最長不超過分母<br>而這題的分母很大, 不能用模擬除法<br>所以用 BSGS 來求離散對數</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>根據定理 a / b 的循環節長度為: <span>$\min \{ e\in N,10^{e}\equiv 1(mod\ b) \}$</span><!-- Has MathJax --><br>但要注意的是當 e == 0 的時候恆成立<br>所以我們需要小修改一下 BSGS 演算法</p>
+<p>我們可以注意到當 e == 0 時, 是在列舉到 <span>$a^{m}$</span><!-- Has MathJax --> 時相等<br>所以我們在建立 hash 表的時候, 只要建到 m - 1, 就可以避開這個 case 了</p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_V = <span class="number">100100</span>;</div><div class="line"></div><div class="line"><span class="built_in">map</span> &lt;ll, <span class="keyword">int</span>&gt; mp; <span class="comment">//value, idx</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">fastpow</span><span class="params">(ll a, ll b, <span class="keyword">int</span> P)</span></span>&#123;</div><div class="line">    ll base = a, ans = <span class="number">1</span>;</div><div class="line">    <span class="keyword">while</span>(b)&#123;</div><div class="line">        <span class="keyword">if</span>(b &amp; <span class="number">1</span>) ans = ans * base % P;</div><div class="line">        base = base * base % P;</div><div class="line">        b &gt;&gt;= <span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> ans;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">BSGS</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> P)</span></span>&#123;</div><div class="line">    mp.clear();</div><div class="line">    <span class="keyword">int</span> m = <span class="built_in">ceil</span>(<span class="built_in">sqrt</span>(P));</div><div class="line">    ll value = b % P; <span class="comment">// j = 0, value = b</span></div><div class="line">    mp[value] = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; m; j++)&#123;</div><div class="line">        value = value * a % P; <span class="comment">// a^j * b</span></div><div class="line">        mp[value] = j;</div><div class="line">    &#125;</div><div class="line">    ll t = fastpow(a, m, P); <span class="comment">// a ^ m</span></div><div class="line">    value = <span class="number">1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= m; i++)&#123;</div><div class="line">        value = value * t % P; <span class="comment">// a ^ (i*m)</span></div><div class="line">        <span class="keyword">if</span>(mp.find(value) != mp.end())&#123; <span class="comment">// 找到一樣的值</span></div><div class="line">            <span class="keyword">int</span> ans = i*m - mp[value];</div><div class="line">            <span class="keyword">return</span> ans;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">-1</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> a, b;</div><div class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;a, &amp;b) != EOF)&#123;</div><div class="line">        b /= __gcd(a, b);</div><div class="line">        <span class="keyword">while</span>(b % <span class="number">2</span> == <span class="number">0</span>) b /= <span class="number">2</span>;</div><div class="line">        <span class="keyword">while</span>(b % <span class="number">5</span> == <span class="number">0</span>) b /= <span class="number">5</span>;</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(b == <span class="number">1</span>) <span class="built_in">puts</span>(<span class="string">"0"</span>);</div><div class="line">        <span class="keyword">else</span>&#123;</div><div class="line">            <span class="keyword">int</span> ans = BSGS(<span class="number">10</span>, <span class="number">1</span>, b);</div><div class="line">            <span class="keyword">if</span>(ans == <span class="number">-1</span>) <span class="built_in">puts</span>(<span class="string">"0"</span>);</div><div class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, ans);</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
           
       
@@ -131,19 +130,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/04/03/compiler1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Compiler(一)：環境建制以及Lexer
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/30/uva10684/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/01/03/template-BSGS/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Uva 10684 - The jackpot</div>
+      <div class="article-nav-title">BSGS Algorithm</div>
     </a>
   
 </nav>
@@ -258,7 +248,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/04/01/diary-20170401/';
+  var disqus_url = 'http://abcd40404.github.io/2018/01/04/xdoj1077/';
   
   (function(){
     var dsq = document.createElement('script');
