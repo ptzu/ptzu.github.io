@@ -3,14 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: DP | Kamikaze&#39;s blog</title>
+  <title>二分匹配 | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Kamikaze&#39;s blog">
-<meta property="og:url" content="http://abcd40404.github.io/categories/解題區/Template/DP/index.html">
+  <meta name="description" content="問題描述給一張二分圖, 我們想要求取他的最大匹配那什麼是匹配呢？匹配就是一個 “邊的集合”裡面蒐集的邊有這個性質“任兩條邊的端點必不相同”我們想要的就是讓這個集合愈大愈好而在二分圖上的最大匹配就是二分匹配 名詞解釋匹配點, 非匹配點, 匹配邊, 非匹配邊:最大匹配: 匹配邊數最多的匹配完美匹配: 圖中的每一個點都是匹配點交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑增廣路">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二分匹配">
+<meta property="og:url" content="http://abcd40404.github.io/2018/01/12/Bipartite-matching/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
+<meta property="og:description" content="問題描述給一張二分圖, 我們想要求取他的最大匹配那什麼是匹配呢？匹配就是一個 “邊的集合”裡面蒐集的邊有這個性質“任兩條邊的端點必不相同”我們想要的就是讓這個集合愈大愈好而在二分圖上的最大匹配就是二分匹配 名詞解釋匹配點, 非匹配點, 匹配邊, 非匹配邊:最大匹配: 匹配邊數最多的匹配完美匹配: 圖中的每一個點都是匹配點交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑增廣路">
+<meta property="og:image" content="https://i.imgur.com/wxzpshc.png">
+<meta property="og:image" content="https://i.imgur.com/BeGrl54.png">
+<meta property="og:image" content="https://i.imgur.com/SIUUpe5.png">
+<meta property="og:image" content="https://i.imgur.com/RFKpx3i.png">
+<meta property="og:updated_time" content="2018-01-12T08:24:31.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Kamikaze&#39;s blog">
+<meta name="twitter:title" content="二分匹配">
+<meta name="twitter:description" content="問題描述給一張二分圖, 我們想要求取他的最大匹配那什麼是匹配呢？匹配就是一個 “邊的集合”裡面蒐集的邊有這個性質“任兩條邊的端點必不相同”我們想要的就是讓這個集合愈大愈好而在二分圖上的最大匹配就是二分匹配 名詞解釋匹配點, 非匹配點, 匹配邊, 非匹配邊:最大匹配: 匹配邊數最多的匹配完美匹配: 圖中的每一個點都是匹配點交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑增廣路">
+<meta name="twitter:image" content="https://i.imgur.com/wxzpshc.png">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -69,29 +78,98 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><div class="list-table">
-    <ul>
-        
-  
-      
-            <li>
+        <section id="main"><article id="post-Bipartite-matching" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/01/12/Bipartite-matching/" class="article-date">
+  <time datetime="2018-01-12T07:12:43.000Z" itemprop="datePublished">2018-01-12</time>
+</a>
     
-  
-      <a class="list" href="/2017/03/16/template-LCS/">LCS 模板</a>
-  
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/演算法/">演算法</a>
+  </div>
 
-
-</li>
-
-      
-  
-  
-
-
-
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
         
-    </ul>
-</div>
+  
+    <h1 class="article-title" itemprop="name">
+      二分匹配
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2018/01/12/Bipartite-matching/" data-id="cjcbnpzpm000650opmehx1wqv" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2018/01/12/Bipartite-matching/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+              <div id="toc" class="toc-article">
+              <h2 class="toc-title"><span>Contents</span></h2>
+              
+                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#問題描述"><span class="toc-number">1.</span> <span class="toc-text">問題描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#名詞解釋"><span class="toc-number">2.</span> <span class="toc-text">名詞解釋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演算法過程"><span class="toc-number">3.</span> <span class="toc-text">演算法過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#延伸主題"><span class="toc-number">4.</span> <span class="toc-text">延伸主題</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#名詞"><span class="toc-number"></span> <span class="toc-text">名詞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#定理"><span class="toc-number"></span> <span class="toc-text">定理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">1.</span> <span class="toc-text">參考資料</span></a></li></ol>
+              
+              </div>
+          
+          
+            <h2 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h2><p>給一張二分圖, 我們想要求取他的最大匹配<br>那什麼是匹配呢？<br>匹配就是一個 “邊的集合”<br>裡面蒐集的邊有這個性質<br>“任兩條邊的端點必不相同”<br>我們想要的就是讓這個集合愈大愈好<br>而在二分圖上的最大匹配就是二分匹配</p>
+<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>匹配點, 非匹配點, 匹配邊, 非匹配邊:<br><img src="https://i.imgur.com/wxzpshc.png" alt=""><br>最大匹配: 匹配邊數最多的匹配<br>完美匹配: 圖中的每一個點都是匹配點<br>交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑<br>增廣路徑: 從未匹配點出發, 走交替路徑, 然後可以抵達另一個未匹配點的路徑</p>
+<h2 id="演算法過程"><a href="#演算法過程" class="headerlink" title="演算法過程"></a>演算法過程</h2><p>這裡介紹匈牙利演算法, 請搭配<a href="http://abcd40404.github.io/2018/01/06/template-bipartite-matching/">模版</a>理解<br>一開始我們只要一遇到未匹配點, 那就將兩點匹配<br><img src="https://i.imgur.com/BeGrl54.png" alt=""></p>
+<p>接著從點3出發, 發現有一條增廣路徑<br><img src="https://i.imgur.com/SIUUpe5.png" alt=""></p>
+<p>然後將剛剛那條路徑的顏色交換, 也就是非匹配邊和匹配邊互換身份<br>最後都沒有增廣路徑了, 結束演算法<br><img src="https://i.imgur.com/RFKpx3i.png" alt=""><br>匹配數 = 3</p>
+<h2 id="延伸主題"><a href="#延伸主題" class="headerlink" title="延伸主題"></a>延伸主題</h2><h1 id="名詞"><a href="#名詞" class="headerlink" title="名詞"></a>名詞</h1><ol>
+<li>邊涵蓋: 一個邊集合 F, 使圖中的任意一點都至少與 F 的邊相連</li>
+<li>點涵蓋: 一個點集合 S, 使圖中的任意一條邊都至少與 S 的點相連</li>
+<li>獨立集合: 一個點集合 S, S 中的任意兩點在圖中都不相連</li>
+</ol>
+<hr>
+<h1 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h1><ol>
+<li>對沒有孤立點的圖, |最大匹配| + |最小邊涵蓋| = |V|</li>
+<li>|最大獨立集合| + |最小點涵蓋| = |V|</li>
+<li>|最大匹配| = |最小點涵蓋| (König定理)</li>
+</ol>
+<hr>
+<p>證明待補</p>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
+<li><a href="https://www.renfei.org/blog/bipartite-matching.html" target="_blank" rel="external">https://www.renfei.org/blog/bipartite-matching.html</a></li>
+<li><a href="https://read01.com/zh-tw/2z6EAR.html#.WlgtIt99JE7" target="_blank" rel="external">https://read01.com/zh-tw/2z6EAR.html#.WlgtIt99JE7</a></li>
+<li><a href="http://www.matrix67.com/blog/archives/116" target="_blank" rel="external">http://www.matrix67.com/blog/archives/116</a></li>
+</ol>
+
+          
+      
+    </div>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/12/template-kruskal/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Kruskal Algorithm</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<section id="comments">
+  <div id="disqus_thread">
+    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+  </div>
+</section>
+
 </section>
         
           <aside id="sidebar">
@@ -192,11 +270,13 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
+  var disqus_url = 'http://abcd40404.github.io/2018/01/12/Bipartite-matching/';
+  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
