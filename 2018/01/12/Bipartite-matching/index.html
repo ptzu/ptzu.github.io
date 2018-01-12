@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://i.imgur.com/BeGrl54.png">
 <meta property="og:image" content="https://i.imgur.com/SIUUpe5.png">
 <meta property="og:image" content="https://i.imgur.com/RFKpx3i.png">
-<meta property="og:updated_time" content="2018-01-12T08:24:31.000Z">
+<meta property="og:updated_time" content="2018-01-12T08:26:02.035Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="二分匹配">
 <meta name="twitter:description" content="問題描述給一張二分圖, 我們想要求取他的最大匹配那什麼是匹配呢？匹配就是一個 “邊的集合”裡面蒐集的邊有這個性質“任兩條邊的端點必不相同”我們想要的就是讓這個集合愈大愈好而在二分圖上的最大匹配就是二分匹配 名詞解釋匹配點, 非匹配點, 匹配邊, 非匹配邊:最大匹配: 匹配邊數最多的匹配完美匹配: 圖中的每一個點都是匹配點交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑增廣路">
@@ -103,7 +103,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/01/12/Bipartite-matching/" data-id="cjcbnpzpm000650opmehx1wqv" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/12/Bipartite-matching/" data-id="cjcbnryac00078bopx3t0i7gh" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/01/12/Bipartite-matching/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -115,30 +115,30 @@ ga('send', 'pageview');
               <div id="toc" class="toc-article">
               <h2 class="toc-title"><span>Contents</span></h2>
               
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#問題描述"><span class="toc-number">1.</span> <span class="toc-text">問題描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#名詞解釋"><span class="toc-number">2.</span> <span class="toc-text">名詞解釋</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#演算法過程"><span class="toc-number">3.</span> <span class="toc-text">演算法過程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#延伸主題"><span class="toc-number">4.</span> <span class="toc-text">延伸主題</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#名詞"><span class="toc-number"></span> <span class="toc-text">名詞</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#定理"><span class="toc-number"></span> <span class="toc-text">定理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#參考資料"><span class="toc-number">1.</span> <span class="toc-text">參考資料</span></a></li></ol>
+                  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#問題描述"><span class="toc-number">1.</span> <span class="toc-text">問題描述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#名詞解釋"><span class="toc-number">2.</span> <span class="toc-text">名詞解釋</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#演算法過程"><span class="toc-number">3.</span> <span class="toc-text">演算法過程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#延伸主題"><span class="toc-number">4.</span> <span class="toc-text">延伸主題</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#名詞"><span class="toc-number">4.1.</span> <span class="toc-text">名詞</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定理"><span class="toc-number">4.2.</span> <span class="toc-text">定理</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#參考資料"><span class="toc-number">5.</span> <span class="toc-text">參考資料</span></a></li></ol>
               
               </div>
           
           
-            <h2 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h2><p>給一張二分圖, 我們想要求取他的最大匹配<br>那什麼是匹配呢？<br>匹配就是一個 “邊的集合”<br>裡面蒐集的邊有這個性質<br>“任兩條邊的端點必不相同”<br>我們想要的就是讓這個集合愈大愈好<br>而在二分圖上的最大匹配就是二分匹配</p>
-<h2 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h2><p>匹配點, 非匹配點, 匹配邊, 非匹配邊:<br><img src="https://i.imgur.com/wxzpshc.png" alt=""><br>最大匹配: 匹配邊數最多的匹配<br>完美匹配: 圖中的每一個點都是匹配點<br>交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑<br>增廣路徑: 從未匹配點出發, 走交替路徑, 然後可以抵達另一個未匹配點的路徑</p>
-<h2 id="演算法過程"><a href="#演算法過程" class="headerlink" title="演算法過程"></a>演算法過程</h2><p>這裡介紹匈牙利演算法, 請搭配<a href="http://abcd40404.github.io/2018/01/06/template-bipartite-matching/">模版</a>理解<br>一開始我們只要一遇到未匹配點, 那就將兩點匹配<br><img src="https://i.imgur.com/BeGrl54.png" alt=""></p>
+            <h1 id="問題描述"><a href="#問題描述" class="headerlink" title="問題描述"></a>問題描述</h1><p>給一張二分圖, 我們想要求取他的最大匹配<br>那什麼是匹配呢？<br>匹配就是一個 “邊的集合”<br>裡面蒐集的邊有這個性質<br>“任兩條邊的端點必不相同”<br>我們想要的就是讓這個集合愈大愈好<br>而在二分圖上的最大匹配就是二分匹配</p>
+<h1 id="名詞解釋"><a href="#名詞解釋" class="headerlink" title="名詞解釋"></a>名詞解釋</h1><p>匹配點, 非匹配點, 匹配邊, 非匹配邊:<br><img src="https://i.imgur.com/wxzpshc.png" alt=""><br>最大匹配: 匹配邊數最多的匹配<br>完美匹配: 圖中的每一個點都是匹配點<br>交替路徑: 從未匹配點出發, 依序走未匹配邊, 匹配邊, 交錯下去的路徑<br>增廣路徑: 從未匹配點出發, 走交替路徑, 然後可以抵達另一個未匹配點的路徑</p>
+<h1 id="演算法過程"><a href="#演算法過程" class="headerlink" title="演算法過程"></a>演算法過程</h1><p>這裡介紹匈牙利演算法, 請搭配<a href="http://abcd40404.github.io/2018/01/06/template-bipartite-matching/">模版</a>理解<br>一開始我們只要一遇到未匹配點, 那就將兩點匹配<br><img src="https://i.imgur.com/BeGrl54.png" alt=""></p>
 <p>接著從點3出發, 發現有一條增廣路徑<br><img src="https://i.imgur.com/SIUUpe5.png" alt=""></p>
 <p>然後將剛剛那條路徑的顏色交換, 也就是非匹配邊和匹配邊互換身份<br>最後都沒有增廣路徑了, 結束演算法<br><img src="https://i.imgur.com/RFKpx3i.png" alt=""><br>匹配數 = 3</p>
-<h2 id="延伸主題"><a href="#延伸主題" class="headerlink" title="延伸主題"></a>延伸主題</h2><h1 id="名詞"><a href="#名詞" class="headerlink" title="名詞"></a>名詞</h1><ol>
+<h1 id="延伸主題"><a href="#延伸主題" class="headerlink" title="延伸主題"></a>延伸主題</h1><h2 id="名詞"><a href="#名詞" class="headerlink" title="名詞"></a>名詞</h2><ol>
 <li>邊涵蓋: 一個邊集合 F, 使圖中的任意一點都至少與 F 的邊相連</li>
 <li>點涵蓋: 一個點集合 S, 使圖中的任意一條邊都至少與 S 的點相連</li>
 <li>獨立集合: 一個點集合 S, S 中的任意兩點在圖中都不相連</li>
 </ol>
 <hr>
-<h1 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h1><ol>
+<h2 id="定理"><a href="#定理" class="headerlink" title="定理"></a>定理</h2><ol>
 <li>對沒有孤立點的圖, |最大匹配| + |最小邊涵蓋| = |V|</li>
 <li>|最大獨立集合| + |最小點涵蓋| = |V|</li>
 <li>|最大匹配| = |最小點涵蓋| (König定理)</li>
 </ol>
 <hr>
 <p>證明待補</p>
-<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
+<h1 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h1><ol>
 <li><a href="https://www.renfei.org/blog/bipartite-matching.html" target="_blank" rel="external">https://www.renfei.org/blog/bipartite-matching.html</a></li>
 <li><a href="https://read01.com/zh-tw/2z6EAR.html#.WlgtIt99JE7" target="_blank" rel="external">https://read01.com/zh-tw/2z6EAR.html#.WlgtIt99JE7</a></li>
 <li><a href="http://www.matrix67.com/blog/archives/116" target="_blank" rel="external">http://www.matrix67.com/blog/archives/116</a></li>
@@ -292,20 +292,5 @@ ga('send', 'pageview');
 <script src="/js/script.js"></script>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
