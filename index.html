@@ -96,7 +96,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/04/template-digit-dp/" data-id="cjd8anc6j008qruzrexvoe3ka" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/04/template-digit-dp/" data-id="cjd8ar0m8008qv3zru8q9gmme" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/04/template-digit-dp/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -110,7 +110,7 @@ ga('send', 'pageview');
               <p>以 旅行推銷員問題(TSP) 為例<br>這是 top-down 的作法, 我覺得有點難想, 要搭配圖案<br>複雜度: <span>$O(2^{n}n^{2})$</span><!-- Has MathJax --></p>
 <h2 id="狀態"><a href="#狀態" class="headerlink" title="狀態"></a>狀態</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S代表目前已經走過的點集合, v為目前的點</span><br><span class="line">dp[S][v]: 從 v 開始走, 走完剩餘的點, 回到起點&quot;需要的&quot;最小權重和</span><br></pre></td></tr></table></figure>
 <h2 id="轉移"><a href="#轉移" class="headerlink" title="轉移"></a>轉移</h2><p>我們要從 v 走回起點, 我們需要的子問題值是, v 下一步的點走回起點的值<br>所以我們才要用 top-down, 把前面的路都先算好, 我們再走過去</p>
-<span>$dp[S][v] = min{dis[v][u] + dp[S | 1 &lt;&lt; u][u], u \notin S}$</span><!-- Has MathJax -->
+<span>$dp[S][v] = min\left \{  dis[v][u] + dp[S | 1 &lt;&lt; u][u], u \notin S \right \}$</span><!-- Has MathJax -->
 <p>這個遞迴式意思是, 找一個不在集合的點 u<br>他走回起點的值為  dp[S | 1 &lt;&lt; u][u]<br>所以要從 v 走回起點就是: dis[v][u] + dp[S | 1 &lt;&lt; u][u]<br>而 dp[S | 1 &lt;&lt; u][u] 已經事先計算好了</p>
 <h2 id="圖解"><a href="#圖解" class="headerlink" title="圖解"></a>圖解</h2><p>初始狀態: dp[0][0] (還沒走過任何點, 從起點開始走回起點, 所需要的最小權重和)<br>結束狀態: dp[S][0] (已經走過全部點, 從起點開始走回起點, 所需要的最小權重和)<br>集合 S 從 S - 1 慢慢列舉到 0, 在每個狀態都列舉不同的目前點和下個點<br>直到 dp[0][0] 就是答案所求</p>
 <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[<span class="number">1</span> &lt;&lt; MAX_N][MAX_N], d[MAX_N][MAX_N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)&#123;</span><br><span class="line">        fill(dp[i], dp[i] + n, INF);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[(<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 已經走完所有的點, 目前點為起點 0, 所以走回起點需要的值為 0</span></span><br><span class="line">    <span class="comment">// 這個初始值想了很久, (1 &lt;&lt; n) - 1 代表所有的點都走過</span></span><br><span class="line">    <span class="comment">// 但我們要列舉他的前一步, 所以是 ((1 &lt;&lt; n) - 1) - 1</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> S = (<span class="number">1</span> &lt;&lt; n) - <span class="number">2</span>; S &gt;= <span class="number">0</span>; S--)&#123; <span class="comment">// 列舉所有狀態</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; n; v++)&#123; <span class="comment">// 列舉目前起點</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++)&#123; <span class="comment">// 列舉下一步的點</span></span><br><span class="line">                <span class="keyword">if</span> (!((S &gt;&gt; u) &amp; <span class="number">1</span>))</span><br><span class="line">                    dp[S][v] = min(dp[S][v], dp[S | <span class="number">1</span> &lt;&lt; u][u] + d[v][u]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 什麼點都還沒走, 目前的點是起點 0, 要走完剩餘的點回到起點的值即為答案</span></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -152,7 +152,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/04/poj3311/" data-id="cjd8anc5e006uruzr0v0sathx" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/04/poj3311/" data-id="cjd8ar0l6006uv3zruxph3klt" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/04/poj3311/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -208,7 +208,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/02/uva562/" data-id="cjd8anc9n00drruzrjn2325v9" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/02/uva562/" data-id="cjd8ar0pb00drv3zrdeamm0ms" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/02/uva562/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -264,7 +264,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/02/template-01knaspack/" data-id="cjd8anc5s007mruzrnttbmnh4" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/02/template-01knaspack/" data-id="cjd8ar0lj007mv3zrb8moletu" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/02/template-01knaspack/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -321,7 +321,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/02/template-chairman-tree/" data-id="cjd8anc6h008nruzrkpmxl4bv" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/02/template-chairman-tree/" data-id="cjd8ar0m6008nv3zr3ev203fq" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/02/template-chairman-tree/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -376,7 +376,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/02/zoj2112/" data-id="cjd8anc9r00dzruzr3f9yzuow" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/02/zoj2112/" data-id="cjd8ar0pg00dzv3zr0a6egw7l" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/02/zoj2112/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -430,7 +430,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/01/29/chairman-tree/" data-id="cjd8anc350033ruzr2oozh9lu" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/29/chairman-tree/" data-id="cjd8ar0ir0033v3zr85j11geu" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/01/29/chairman-tree/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -493,7 +493,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/01/28/poj2104/" data-id="cjd8anc4o005hruzrmj7gxri2" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/28/poj2104/" data-id="cjd8ar0kj005hv3zr0hc1ujda" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/01/28/poj2104/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -551,7 +551,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/01/24/template-BIT/" data-id="cjd8anc5x007oruzrqom1r8zs" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/24/template-BIT/" data-id="cjd8ar0ll007ov3zruaemxvqj" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/01/24/template-BIT/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -611,7 +611,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/01/24/poj1990/" data-id="cjd8anc4m005druzr0ore847e" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/01/24/poj1990/" data-id="cjd8ar0kh005dv3zr9xcsfhyg" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/01/24/poj1990/#disqus_thread" class="article-comment-link">Comments</a>
       
