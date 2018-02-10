@@ -3,19 +3,21 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Uva 10035 - Primary Arithmetic | Kamikaze&#39;s blog</title>
+  <title>POJ 2084 Game of Connections | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="題目 input多筆測資, 每筆輸入兩個 10 位的正整數輸入 0 0 代表結束 題解兩個數字相加, 求有幾次進位 作法用大數加法去算有幾次進位 AC code123456789101112131415161718192021222324252627282930313233343536373839404142#include &amp;lt;bits/stdc++.h&amp;gt;using namespace">
-<meta name="keywords" content="Implement">
+  <meta name="description" content="題目 input多筆測資, 每筆輸入 n, 1 &amp;lt;= n &amp;lt;= 100輸入 -1 結束測資 題解有 2 * n 個點順時針排序, 任兩點連線, 但線不准交叉求有幾種連法 作法卡塔蘭數固定點 1, 向周圍的點畫線可以把圖分成左右兩塊, 左右兩塊的點數都是偶數(因為奇數必不能兩兩互連)我們可以得到以下結論h(0) = 1,h(1) = 1 遞迴式：h(n) = h(0)*h(n-1) +">
+<meta name="keywords" content="Math,DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Uva 10035 - Primary Arithmetic">
-<meta property="og:url" content="http://abcd40404.github.io/2017/12/22/uva10035/index.html">
+<meta property="og:title" content="POJ 2084 Game of Connections">
+<meta property="og:url" content="http://abcd40404.github.io/2018/02/10/poj2084/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="題目 input多筆測資, 每筆輸入兩個 10 位的正整數輸入 0 0 代表結束 題解兩個數字相加, 求有幾次進位 作法用大數加法去算有幾次進位 AC code123456789101112131415161718192021222324252627282930313233343536373839404142#include &amp;lt;bits/stdc++.h&amp;gt;using namespace">
-<meta property="og:updated_time" content="2017-12-31T04:11:06.760Z">
+<meta property="og:description" content="題目 input多筆測資, 每筆輸入 n, 1 &amp;lt;= n &amp;lt;= 100輸入 -1 結束測資 題解有 2 * n 個點順時針排序, 任兩點連線, 但線不准交叉求有幾種連法 作法卡塔蘭數固定點 1, 向周圍的點畫線可以把圖分成左右兩塊, 左右兩塊的點數都是偶數(因為奇數必不能兩兩互連)我們可以得到以下結論h(0) = 1,h(1) = 1 遞迴式：h(n) = h(0)*h(n-1) +">
+<meta property="og:image" content="https://i.imgur.com/eA458OL.png">
+<meta property="og:updated_time" content="2018-02-10T07:12:01.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Uva 10035 - Primary Arithmetic">
-<meta name="twitter:description" content="題目 input多筆測資, 每筆輸入兩個 10 位的正整數輸入 0 0 代表結束 題解兩個數字相加, 求有幾次進位 作法用大數加法去算有幾次進位 AC code123456789101112131415161718192021222324252627282930313233343536373839404142#include &amp;lt;bits/stdc++.h&amp;gt;using namespace">
+<meta name="twitter:title" content="POJ 2084 Game of Connections">
+<meta name="twitter:description" content="題目 input多筆測資, 每筆輸入 n, 1 &amp;lt;= n &amp;lt;= 100輸入 -1 結束測資 題解有 2 * n 個點順時針排序, 任兩點連線, 但線不准交叉求有幾種連法 作法卡塔蘭數固定點 1, 向周圍的點畫線可以把圖分成左右兩塊, 左右兩塊的點數都是偶數(因為奇數必不能兩兩互連)我們可以得到以下結論h(0) = 1,h(1) = 1 遞迴式：h(n) = h(0)*h(n-1) +">
+<meta name="twitter:image" content="https://i.imgur.com/eA458OL.png">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -74,14 +76,14 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-uva10035" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-poj2084" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2017/12/22/uva10035/" class="article-date">
-  <time datetime="2017-12-22T03:00:09.000Z" itemprop="datePublished">2017-12-22</time>
+    <a href="/2018/02/10/poj2084/" class="article-date">
+  <time datetime="2018-02-10T06:41:25.000Z" itemprop="datePublished">2018-02-10</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/POJ/">POJ</a>
   </div>
 
   </div>
@@ -92,19 +94,19 @@ ga('send', 'pageview');
         
   
     <h1 class="article-title" itemprop="name">
-      Uva 10035 - Primary Arithmetic
+      POJ 2084 Game of Connections
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/12/22/uva10035/" data-id="cjdh0wh2500b89lzrzo5vhqmf" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/10/poj2084/" data-id="cjdh0wgxl005p9lzrwobqt2bl" class="article-share-link">Share</a>
       
-        <a href="http://abcd40404.github.io/2017/12/22/uva10035/#disqus_thread" class="article-comment-link">Comments</a>
+        <a href="http://abcd40404.github.io/2018/02/10/poj2084/#disqus_thread" class="article-comment-link">Comments</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Implement/">Implement</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
 
     </footer>
     <div class="article-entry" itemprop="articleBody">
@@ -118,11 +120,11 @@ ga('send', 'pageview');
               </div>
           
           
-            <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=12&amp;problem=976" target="_blank" rel="noopener">題目</a></p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>多筆測資, 每筆輸入兩個 10 位的正整數<br>輸入 0 0 代表結束</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>兩個數字相加, 求有幾次進位</p>
-<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>用大數加法去算有幾次進位</p>
-<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    fio;</span><br><span class="line">    <span class="built_in">string</span> s1, s2;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">cin</span> &gt;&gt; s1 &gt;&gt; s2)&#123;</span><br><span class="line">        <span class="keyword">if</span>(s1 == <span class="string">"0"</span> &amp;&amp; s2 == <span class="string">"0"</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">if</span>(s1.length() &lt; s2.length()) swap(s1, s2);</span><br><span class="line">        reverse(s1.begin(), s1.end());</span><br><span class="line">        reverse(s2.begin(), s2.end());</span><br><span class="line">        <span class="keyword">int</span> cnt = <span class="number">0</span>, carry = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s2.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> num = s1[i] - <span class="string">'0'</span> + s2[i] - <span class="string">'0'</span> + carry;</span><br><span class="line">            carry = num / <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(carry) cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = s2.length(); i &lt; s1.length(); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> num = s1[i] - <span class="string">'0'</span> + carry;</span><br><span class="line">            carry = num / <span class="number">10</span>;</span><br><span class="line">            <span class="keyword">if</span>(carry) cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(cnt == <span class="number">0</span>) <span class="built_in">puts</span>(<span class="string">"No carry operation."</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(cnt == <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"%d carry operation.\n"</span>, cnt);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%d carry operations.\n"</span>, cnt);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+            <p><a href="http://poj.org/problem?id=2084" target="_blank" rel="noopener">題目</a></p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>多筆測資, 每筆輸入 n, 1 &lt;= n &lt;= 100<br>輸入 -1 結束測資</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>有 2 * n 個點順時針排序, 任兩點連線, 但線不准交叉<br>求有幾種連法</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>卡塔蘭數<br>固定點 1, 向周圍的點畫線<br>可以把圖分成左右兩塊, 左右兩塊的點數都是偶數(因為奇數必不能兩兩互連)<br><img src="https://i.imgur.com/eA458OL.png" alt=""><br>我們可以得到以下結論<br>h(0) = 1,h(1) = 1 遞迴式：<br>h(n) = h(0)*h(n-1) + h(1)*h(n-2) + … + h(n-1)h(0) (其中 n &gt;= 2)<br>即為卡塔蘭數</p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> base 10000</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; dp[<span class="number">110</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mul</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> carry = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(a); i++)&#123;</span><br><span class="line">        carry += a[i] * num;</span><br><span class="line">        a[i] = carry % base;</span><br><span class="line">        carry /= base;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(carry) a.pb(carry);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">divide</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt; &amp;a, <span class="keyword">int</span> num)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> borrow = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = sz(a) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        borrow = borrow * base + a[i];</span><br><span class="line">        a[i] = borrow / num;</span><br><span class="line">        borrow %= num;</span><br><span class="line">        <span class="keyword">if</span>(sz(a) != <span class="number">1</span> &amp;&amp; a[i] == <span class="number">0</span>) a.pop_back();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    dp[<span class="number">1</span>].pb(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= <span class="number">100</span>; i++)&#123;</span><br><span class="line">        dp[i] = dp[i - <span class="number">1</span>];</span><br><span class="line">        mul(dp[i], <span class="number">4</span> * i - <span class="number">2</span>);</span><br><span class="line">        divide(dp[i], i + <span class="number">1</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF)&#123;</span><br><span class="line">        <span class="keyword">if</span>(n == <span class="number">-1</span>) <span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = sz(dp[n]) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i == sz(dp[n]) - <span class="number">1</span>) <span class="built_in">printf</span>(<span class="string">"%d"</span>, dp[n][i]);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">"%04d"</span>, dp[n][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">puts</span>(<span class="string">""</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
           
       
@@ -132,19 +134,10 @@ ga('send', 'pageview');
     
 <nav id="article-nav">
   
-    <a href="/2017/12/22/uva100/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Uva 100 - The 3n + 1 problem
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/12/22/uva10055/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2018/02/10/template-Catalan-number/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Uva 10055 - Hashmat the Brave Warrior</div>
+      <div class="article-nav-title">卡塔蘭數 Catalan number</div>
     </a>
   
 </nav>
@@ -259,7 +252,7 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/12/22/uva10035/';
+  var disqus_url = 'http://abcd40404.github.io/2018/02/10/poj2084/';
   
   (function(){
     var dsq = document.createElement('script');
