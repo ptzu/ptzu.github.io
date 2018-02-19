@@ -3,19 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>Uva 374 - Big Mod | Kamikaze&#39;s blog</title>
+  <title>Tag: Binary search | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="題目 input0 &amp;lt;= B, P, M &amp;lt;= 2147483647 題解求出 B^P % M 作法利用快速冪即可, 可參考 求取指數完整題型包含大數指數, 以及底數和指數都是大數 AC code123456789101112131415161718192021222324252627282930313233343536373839#include &amp;lt;bits/stdc++.h&amp;">
-<meta name="keywords" content="Math">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Uva 374 - Big Mod">
-<meta property="og:url" content="http://abcd40404.github.io/2017/10/25/uva374/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kamikaze&#39;s blog">
+<meta property="og:url" content="http://abcd40404.github.io/tags/Binary-search/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="題目 input0 &amp;lt;= B, P, M &amp;lt;= 2147483647 題解求出 B^P % M 作法利用快速冪即可, 可參考 求取指數完整題型包含大數指數, 以及底數和指數都是大數 AC code123456789101112131415161718192021222324252627282930313233343536373839#include &amp;lt;bits/stdc++.h&amp;">
-<meta property="og:updated_time" content="2017-12-31T04:11:06.764Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Uva 374 - Big Mod">
-<meta name="twitter:description" content="題目 input0 &amp;lt;= B, P, M &amp;lt;= 2147483647 題解求出 B^P % M 作法利用快速冪即可, 可參考 求取指數完整題型包含大數指數, 以及底數和指數都是大數 AC code123456789101112131415161718192021222324252627282930313233343536373839#include &amp;lt;bits/stdc++.h&amp;">
+<meta name="twitter:title" content="Kamikaze&#39;s blog">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -74,90 +69,41 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-uva374" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/10/25/uva374/" class="article-date">
-  <time datetime="2017-10-24T23:29:49.000Z" itemprop="datePublished">2017-10-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+        <section id="main">
   
-    <h1 class="article-title" itemprop="name">
-      Uva 374 - Big Mod
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2018/02/18/cf448/" class="archive-article-date">
+  <time datetime="2018-02-17T16:20:12.000Z" itemprop="datePublished">Feb 18</time>
+</a>
+      
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/02/18/cf448/">Codeforces Round 448</a>
     </h1>
   
 
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/10/25/uva374/" data-id="cjdudcwq600fj0pzrkmd68a3f" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/10/25/uva374/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Math/">Math</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <div id="toc" class="toc-article">
-              <h2 class="toc-title"><span>Contents</span></h2>
-              
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#input"><span class="toc-number">1.</span> <span class="toc-text">input</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#題解"><span class="toc-number">2.</span> <span class="toc-text">題解</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#作法"><span class="toc-number">3.</span> <span class="toc-text">作法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AC-code"><span class="toc-number">4.</span> <span class="toc-text">AC code</span></a></li></ol>
-              
-              </div>
-          
-          
-            <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=24&amp;problem=310" target="_blank" rel="noopener">題目</a></p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>0 &lt;= B, P, M &lt;= 2147483647</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>求出 B^P % M</p>
-<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>利用快速冪即可, 可參考 <a href="">求取指數完整題型</a><br>包含大數指數, 以及底數和指數都是大數</p>
-<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"><span class="comment">// const int MAX_N = 30000010;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">()</span></span>&#123;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">fastpow</span><span class="params">(ll B, ll P, ll M)</span></span>&#123;</span><br><span class="line">    ll base = B, ans = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(P)&#123;</span><br><span class="line">        <span class="keyword">if</span>(P &amp; <span class="number">1</span>) ans = ans * base % M;</span><br><span class="line">        base = base * base % M;</span><br><span class="line">        P &gt;&gt;= <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    ll B, P, M;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%lld%lld%lld"</span>, &amp;B, &amp;P, &amp;M) != EOF)&#123;</span><br><span class="line">        ll ans = fastpow(B, P, M);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>, ans);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-          
-      
-    </div>
+    </header>
   </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2017/10/25/uva369/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Uva 369 - Combinations
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2017/10/25/uva10107/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">Uva 10107 - What is the Median?</div>
-    </a>
-  
-</nav>
-
-  
 </article>
 
+  
+  
+    </div></section>
+  
 
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
 
 </section>
         
@@ -259,13 +205,11 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2017/10/25/uva374/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
