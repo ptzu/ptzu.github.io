@@ -71,6 +71,176 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-template-extgcd" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/17/template-extgcd/" class="article-date">
+  <time datetime="2017-09-17T07:23:05.000Z" itemprop="datePublished">2017-09-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/17/template-extgcd/">Extgcd 模板</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/09/17/template-extgcd/" data-id="cjele8ol200cjc5opzpgfquxm" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/09/17/template-extgcd/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>求取 ax + by = gcd(a, b) 此方程式之解<br>並回傳 gcd(a, b)</p>
+<h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">extgcd</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b, <span class="keyword">int</span> &amp;x, <span class="keyword">int</span> &amp;y)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> d = a;</div><div class="line">    <span class="keyword">if</span>(b != <span class="number">0</span>)&#123;</div><div class="line">        d = extgcd(b, a % b, y, x);</div><div class="line">        y -= (a / b) * x;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        x = <span class="number">1</span>;</div><div class="line">        y = <span class="number">0</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> d;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-rs232-implement" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/09/rs232-implement/" class="article-date">
+  <time datetime="2017-06-09T06:47:40.000Z" itemprop="datePublished">2017-06-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/專題/">專題</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/09/rs232-implement/">透過 RS232 進行電腦訊息互傳</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/06/09/rs232-implement/" data-id="cjele8ok5009wc5opl0qv3pfv" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/06/09/rs232-implement/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>禮拜一花了 9 個小時<br>完成了電腦之間用 RS232 互傳<br>以及電腦對字幕機的寫入</p>
+<h2 id="需要器材"><a href="#需要器材" class="headerlink" title="需要器材"></a>需要器材</h2><ol>
+<li>兩條 USB 轉 RS232接線<br><img src="http://i.imgur.com/zvxP8qr.jpg" alt=""></li>
+<li>RS232 兩端母對母的線<br><img src="http://i.imgur.com/99xerSB.jpg" alt=""><br>母對母的需要對TX, RX做跳線(外面賣的是沒有跳線)</li>
+</ol>
+<h2 id="電腦之間互傳"><a href="#電腦之間互傳" class="headerlink" title="電腦之間互傳"></a>電腦之間互傳</h2><p>首先是我們在網路上找到的 RS232 C Library<br><a href="http://www.teuniz.net/RS-232/" target="_blank" rel="external">RS232 下載</a></p>
+<p>打開下載回來的 RS232 包<br><img src="http://i.imgur.com/0HLzL9Z.png" alt=""><br>可以看到裡面有 demo_tx.c 和 demo_rx.c<br>TX, RX 分別代表傳輸和接收</p>
+<h2 id="TX"><a href="#TX" class="headerlink" title="TX"></a>TX</h2><p>要修改的是 cport_nr 這個變數<br>他代表要用哪個連接埠傳輸, 可以到裝置管理員看是哪一個<br>我們的是 COM4 所以改成 cport_nr=3<br>然後 bdrate 代表的是 baud rate, 是傳輸速率<br><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**************************************************</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">file: demo_tx.c</span></div><div class="line"><span class="comment">purpose: simple demo that transmits characters to</span></div><div class="line"><span class="comment">the serial port and print them on the screen,</span></div><div class="line"><span class="comment">exit the program by pressing Ctrl-C</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">compile with the command: gcc demo_tx.c rs232.c -Wall -Wextra -o2 -o test_tx</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">**************************************************/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"rs232.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">int</span> i=<span class="number">0</span>,</div><div class="line">      cport_nr=<span class="number">3</span>,        <span class="comment">/* /dev/ttyS0 (COM1 on windows) */</span></div><div class="line">      bdrate=<span class="number">9600</span>;       <span class="comment">/* 9600 baud */</span></div><div class="line"></div><div class="line">  <span class="keyword">char</span> mode[]=&#123;<span class="string">'8'</span>,<span class="string">'N'</span>,<span class="string">'1'</span>,<span class="number">0</span>&#125;,</div><div class="line">       str[<span class="number">2</span>][<span class="number">512</span>];</div><div class="line"></div><div class="line"></div><div class="line">  <span class="built_in">strcpy</span>(str[<span class="number">0</span>], <span class="string">"The quick brown fox jumped over the lazy grey dog.\n"</span>);</div><div class="line"></div><div class="line">  <span class="built_in">strcpy</span>(str[<span class="number">1</span>], <span class="string">"Happy serial programming!\n"</span>);</div><div class="line"></div><div class="line">  <span class="keyword">if</span>(RS232_OpenComport(cport_nr, bdrate, mode))</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Can not open comport\n"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</div><div class="line">  &#123;</div><div class="line">    <span class="keyword">char</span> s[<span class="number">100</span>];</div><div class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>, s);</div><div class="line">    RS232_cputs(cport_nr, s);</div><div class="line"></div><div class="line">    <span class="built_in">printf</span>(<span class="string">"sent: %s\n"</span>, s);</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">    Sleep(<span class="number">1000</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    usleep(<span class="number">1000000</span>);  <span class="comment">/* sleep for 1 Second */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line">    <span class="comment">// i++;</span></div><div class="line">    <span class="comment">//</span></div><div class="line">    <span class="comment">// i %= 2;</span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span>(<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="RX"><a href="#RX" class="headerlink" title="RX"></a>RX</h2><p>一樣修改好連接埠</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">/**************************************************</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">file: demo_rx.c</span></div><div class="line"><span class="comment">purpose: simple demo that receives characters from</span></div><div class="line"><span class="comment">the serial port and print them on the screen,</span></div><div class="line"><span class="comment">exit the program by pressing Ctrl-C</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">compile with the command: gcc demo_rx.c rs232.c -Wall -Wextra -o2 -o test_rx</span></div><div class="line"><span class="comment"></span></div><div class="line"><span class="comment">**************************************************/</span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdlib.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;Windows.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;unistd.h&gt;</span></span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"rs232.h"</span></span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line"><span class="function"></span>&#123;</div><div class="line">  <span class="keyword">int</span> i, n,</div><div class="line">      cport_nr=<span class="number">3</span>,        <span class="comment">/* /dev/ttyS0 (COM1 on windows) */</span></div><div class="line">      bdrate=<span class="number">9600</span>;       <span class="comment">/* 9600 baud */</span></div><div class="line"></div><div class="line">  <span class="keyword">unsigned</span> <span class="keyword">char</span> buf[<span class="number">4096</span>];</div><div class="line"></div><div class="line">  <span class="keyword">char</span> mode[]=&#123;<span class="string">'8'</span>,<span class="string">'N'</span>,<span class="string">'1'</span>,<span class="number">0</span>&#125;;</div><div class="line"></div><div class="line"></div><div class="line">  <span class="keyword">if</span>(RS232_OpenComport(cport_nr, bdrate, mode))</div><div class="line">  &#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"Can not open comport\n"</span>);</div><div class="line"></div><div class="line">    <span class="keyword">return</span>(<span class="number">0</span>);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">while</span>(<span class="number">1</span>)</div><div class="line">  &#123;</div><div class="line">    n = RS232_PollComport(cport_nr, buf, <span class="number">4095</span>);</div><div class="line"></div><div class="line">    <span class="keyword">if</span>(n &gt; <span class="number">0</span>)</div><div class="line">    &#123;</div><div class="line">      buf[n] = <span class="number">0</span>;   <span class="comment">/* always put a "null" at the end of a string! */</span></div><div class="line"></div><div class="line">      <span class="keyword">for</span>(i=<span class="number">0</span>; i &lt; n; i++)</div><div class="line">      &#123;</div><div class="line">        <span class="keyword">if</span>(buf[i] &lt; <span class="number">32</span>)  <span class="comment">/* replace unreadable control-codes by dots */</span></div><div class="line">        &#123;</div><div class="line">          buf[i] = <span class="string">'.'</span>;</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line"></div><div class="line">      <span class="built_in">printf</span>(<span class="string">"received %i bytes: %s\n"</span>, n, (<span class="keyword">char</span> *)buf);</div><div class="line">    &#125;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> _WIN32</span></div><div class="line">    Sleep(<span class="number">100</span>);</div><div class="line"><span class="meta">#<span class="meta-keyword">else</span></span></div><div class="line">    usleep(<span class="number">100000</span>);  <span class="comment">/* sleep for 100 milliSeconds */</span></div><div class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">return</span>(<span class="number">0</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="傳輸"><a href="#傳輸" class="headerlink" title="傳輸"></a>傳輸</h2><p>接著把兩個程式碼編譯好之後<br>一台電腦執行 TX, 負責傳輸<br>一台電腦執行 RX, 負責接收</p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-php-call-compiler" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/04/php-call-compiler/" class="article-date">
+  <time datetime="2017-06-04T09:24:29.000Z" itemprop="datePublished">2017-06-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/網頁設計/">網頁設計</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/04/php-call-compiler/">在 PHP 調用 Compiler</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/06/04/php-call-compiler/" data-id="cjele8oiu0064c5opbo9bpzgv" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/06/04/php-call-compiler/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>今天在做 Online Judge 時<br>來到了調用 Compiler 來編譯的步驟<br>在 PHP 方面有三個函數可以選擇<br>分別是 system(), exec(), shell_exec()<br>詳細差異就請自行去搜尋吧</p>
+<p>先講結論: 不需要 sudo 權限就可以執行 g++</p>
+<p>一開始我以為呼叫 g++ 需要 sudo權限<br>於是去找了怎麼使 apache 有權限<br>可以呼叫<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">System(<span class="string">'id'</span>);</div></pre></td></tr></table></figure></p>
+<p>來查看 apache 是用什麼身份<br>我的是 www-data 這個帳號<br>接著打 visudo 來編輯 sudoer file, 不建議直接修改 sudoer file<br>因為需要更改到 sudoer file 的權限, 改來改去可能會有權限上的問題<br>我在檔案內加了這行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">www-data    ALL(ALL:ALL)    NOPASSWD:ALL</div></pre></td></tr></table></figure></p>
+<p>其中 NOPASSWD 是呼叫 sudo 時不用打密碼<br>本來以為終於要可以執行了<br>結果跳出了訊息 sudo: no tty present and no askpass program specified<br>雖然在找資料過程已經知道<br>apache 沒有 tty, 所以會有這個問題<br>但網路上沒有一個方法可以解決阿！<br>網路上幾乎都是提到<br>1.在sudoer file 把 Defaluts requiretty 註解掉(可是我根本沒有這一行= =)<br>2.添加 Defaluts:www-data !requiretty(同樣無效)<br>甚至我把 www-data 從 sudoer file 拿掉, 還是出現這個訊息</p>
+<p>眼看無望, 已經從早上弄到下午<br>只好求助學長<br>結果學長說: 應該不用 sudo 權限吧<br>…<br>… what?<br>真的不用欸QAQ, 因為我前面都是用 mkdir 的之類的指令再試<br>結果 g++ 不需要= =<br>最後在編譯的時候, 又出現一個訊息<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">usr/bin/ld: cannot open output file code/t.out: Permission denied collect2: error: ld returned 1 exit status 1</div></pre></td></tr></table></figure></p>
+<p>這個問題就好解決了, 就是輸出的資料夾權限不夠<br>把該資料夾權限改為 777 就可以了<br><img src="http://i.imgur.com/WVjMkaf.png" alt=""></p>
+<p>參考資料:<br>1.<a href="https://blog.allenchou.cc/php-compile-and-run-cpp/" target="_blank" rel="external">https://blog.allenchou.cc/php-compile-and-run-cpp/</a><br>2.<a href="http://emn178.pixnet.net/blog/post/72463845-php%E5%9F%B7%E8%A1%8C%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BC%8F" target="_blank" rel="external">http://emn178.pixnet.net/blog/post/72463845-php%E5%9F%B7%E8%A1%8C%E5%A4%96%E9%83%A8%E7%A8%8B%E5%BC%8F</a><br>3.<a href="http://ibookmen.blogspot.tw/2010/11/unix-2.html" target="_blank" rel="external">http://ibookmen.blogspot.tw/2010/11/unix-2.html</a><br>4.<a href="http://www.jikker.net/2011/01/phprootcommand-line.html" target="_blank" rel="external">http://www.jikker.net/2011/01/phprootcommand-line.html</a><br>5.<a href="http://www.arthurtoday.com/2010/03/sudoer.html" target="_blank" rel="external">http://www.arthurtoday.com/2010/03/sudoer.html</a><br>6.<a href="http://blog.xuite.net/chingwei/blog/24939464-%E3%80%90%EF%BC%AC%E3%80%91SUSE+%3A+%E7%B0%A1%E5%96%AE%E7%9A%84sudo%E8%A8%AD%E5%AE%9A" target="_blank" rel="external">http://blog.xuite.net/chingwei/blog/24939464-%E3%80%90%EF%BC%AC%E3%80%91SUSE+%3A+%E7%B0%A1%E5%96%AE%E7%9A%84sudo%E8%A8%AD%E5%AE%9A</a></p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-ubuntu-phpmyadmin" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/31/ubuntu-phpmyadmin/" class="article-date">
@@ -96,7 +266,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/" data-id="cjeicnb1v00e6x7opw5jx1hdm" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/" data-id="cjele8ole00dcc5opvu8ss2i5" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/31/ubuntu-phpmyadmin/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -154,7 +324,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cjeicnayv005vx7opmb1zm24x" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/31/mysql-newuser/" data-id="cjele8oio005mc5op9zp09g1e" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/31/mysql-newuser/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -206,7 +376,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cjeicnayq005fx7opflvxs8w0" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/htmlinputfile/" data-id="cjele8oij0056c5opqyjaekyy" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/htmlinputfile/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -265,7 +435,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cjeicnayl004vx7opp0xetu9s" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/div-center/" data-id="cjele8oia004ic5opzp98v1nj" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/div-center/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -318,7 +488,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cjeicnax1000ix7op9tga8tz2" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/20/ajax-form/" data-id="cjele8ogu000kc5opylhl9zeb" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/20/ajax-form/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -377,7 +547,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cjeicnayh004kx7op23yh46r0" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/19/css-float/" data-id="cjele8oi60046c5opap48or5u" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/19/css-float/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -437,7 +607,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cjeicnayy0063x7opsa1ns4fi" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cjele8oiq005tc5opes33row4" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/17/mysql-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -466,193 +636,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-php-time" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/17/php-time/" class="article-date">
-  <time datetime="2017-05-17T12:57:24.000Z" itemprop="datePublished">2017-05-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/網頁設計/">網頁設計</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/17/php-time/">PHP 時間函數</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cjeicnaz3006ix7oppsi61g3s" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/05/17/php-time/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/PHP/">PHP</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h2 id="設定時區"><a href="#設定時區" class="headerlink" title="設定時區"></a>設定時區</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date_default_timezone_set(<span class="string">"Asia/Taipei"</span>)</div></pre></td></tr></table></figure>
-<h2 id="日期"><a href="#日期" class="headerlink" title="日期"></a>日期</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date(<span class="string">'Y-m-j'</span>);</div></pre></td></tr></table></figure>
-<p>2017-05-17</p>
-<p>年: Y(四位數字), y(兩位數字)<br>月: F(英文全稱), M(英文縮寫), m(數字前導), n(數字無前導)<br>日: j(沒前導), d(有前導)</p>
-<h2 id="時-分-秒"><a href="#時-分-秒" class="headerlink" title="時:分:秒"></a>時:分:秒</h2><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">date(<span class="string">'g:i:s a'</span>);</div></pre></td></tr></table></figure>
-<p>11:19:30 pm</p>
-<p>時: g(12小時制無前導), h(12小時制有前導), 小寫 a 代表 am, pm, 大寫 A 代表 AM, PM</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> date(<span class="string">'T'</span>);</div></pre></td></tr></table></figure>
-<p>UTC<br>大寫T表示伺服器的時間區域設置</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">echo</span> date(<span class="string">'U'</span>);</div></pre></td></tr></table></figure>
-<p>1170769424<br>大寫U表示從1970年1月1日到現在的總秒數，就是Unix時間紀元的UNIX時間戳。</p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-mosquitto-configure" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/15/mosquitto-configure/" class="article-date">
-  <time datetime="2017-05-15T12:40:31.000Z" itemprop="datePublished">2017-05-15</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/專題/">專題</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/15/mosquitto-configure/">Windows 上安裝 mosquitto</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cjeicnayu005rx7op22sbmdbb" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/05/15/mosquitto-configure/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h1 id="所需檔案"><a href="#所需檔案" class="headerlink" title="所需檔案"></a>所需檔案</h1><ol>
-<li><p><a href="https://mosquitto.org/download/" target="_blank" rel="external">Mosquitto for Windows</a><br><img src="http://i.imgur.com/TRxLPbM.png" alt=""></p>
-</li>
-<li><p><a href="https://slproweb.com/products/Win32OpenSSL.html" target="_blank" rel="external">Win32 OpenSSL</a><br><img src="http://i.imgur.com/icvPV92.png" alt=""></p>
-</li>
-<li><p><a href="ftp://sourceware.org/pub/pthreads-win32" target="_blank" rel="external">pthread-win32</a><br>根據路徑找到檔案下載<br><img src="http://i.imgur.com/QPxv1VQ.png" alt=""><br><img src="http://i.imgur.com/TW2E21R.png" alt=""></p>
-</li>
-</ol>
-<h1 id="安裝-mosquitto"><a href="#安裝-mosquitto" class="headerlink" title="安裝 mosquitto"></a>安裝 mosquitto</h1><p>執行 mosquitto 安裝程式</p>
-<p>過程選擇安裝路徑<br><img src="http://i.imgur.com/J2b4S4k.png" alt=""></p>
-<p>勾選下面那個<br><img src="http://i.imgur.com/AJu2mKj.png" alt=""></p>
-<p>接著按 Next, 應該會出現以下錯誤畫面<br>因為我們缺少 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p>
-<p><img src="http://i.imgur.com/jqaMO77.png" alt=""><br><img src="http://i.imgur.com/ktuOWuA.png" alt=""></p>
-<h2 id="安裝需要的元件"><a href="#安裝需要的元件" class="headerlink" title="安裝需要的元件"></a>安裝需要的元件</h2><p>回到最上面說的, 在Win32 OpenSSL那裡有下載了安裝檔<br>我們要安裝它來取得 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p>
-<p>選擇安裝路徑<br><img src="http://i.imgur.com/vmE8fIq.png" alt=""></p>
-<p>最後面的畫面是要你捐錢, 沒有要捐就把它勾掉吧<br><img src="http://i.imgur.com/jJRhNSo.png" alt=""></p>
-<p>然後我們到安裝好的資料夾取出 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong><br><img src="http://i.imgur.com/2nnqHkJ.png" alt=""></p>
-<p>以及在 pthread-win32 下載的 <strong>pthreadVC2.dll</strong><br>一起放到剛剛未完成安裝的 mosquitto 資料夾</p>
-<p><img src="http://i.imgur.com/KIHFQmy.png" alt=""></p>
-<p>到這邊就安裝完成了！</p>
-<h1 id="啟動-mosquitto-伺服器"><a href="#啟動-mosquitto-伺服器" class="headerlink" title="啟動 mosquitto 伺服器"></a>啟動 mosquitto 伺服器</h1><p>到工作管理員/服務<br>找到 mosquitto 啟動它<br><img src="http://i.imgur.com/uYTgXjH.png" alt=""></p>
-<h1 id="簡單測試-subscribe-和-publish"><a href="#簡單測試-subscribe-和-publish" class="headerlink" title="簡單測試 subscribe 和 publish"></a>簡單測試 subscribe 和 publish</h1><p>本機當作伺服器測試<br>打開cmd</p>
-<h2 id="訂閱"><a href="#訂閱" class="headerlink" title="訂閱"></a>訂閱</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;C:\Program Files (x86)\mosquitto\mosquitto_sub.exe&quot; -d -h 127.0.0.1 -t test</div></pre></td></tr></table></figure>
-<h2 id="發送"><a href="#發送" class="headerlink" title="發送"></a>發送</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&quot;C:\Program Files (x86)\mosquitto\mosquitto_pub.exe&quot; -d -h 127.0.0.1 -t test -m &quot;test message&quot;</div></pre></td></tr></table></figure>
-<p>參數解釋<br>-d: 開啟 debug 模式<br>-h: 主機 IP address<br>-t: 訂閱主題<br>-m: 訊息內容</p>
-<p>測試結果:<br><img src="http://i.imgur.com/xCVF8uJ.png" alt=""></p>
-<p><img src="http://i.imgur.com/oOexqvU.png" alt=""></p>
-<p><img src="http://i.imgur.com/EWZRPC4.png" alt=""></p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-compiler2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/05/12/compiler2/" class="article-date">
-  <time datetime="2017-05-12T04:00:33.000Z" itemprop="datePublished">2017-05-12</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/05/12/compiler2/">compiler2</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/12/compiler2/" data-id="cjeicnayf004fx7op4uopfhhm" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/05/12/compiler2/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>java -cp antlr-3.5.2-complete.jar org.antlr.Tool myC.g</p>
-<p>javac -cp ./antlr-3.5.2-complete.jar:. myC_test.java</p>
-<p>java -cp .:antlr-3.5.2-complete.jar myC_test input1.c</p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -667,7 +650,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">160</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">37</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">42</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">9</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">163</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">34</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">37</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">44</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">10</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -677,7 +660,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2-SAT/">2-SAT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCC/">BCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BIT/">BIT</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bellman/">Bellman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bit-operation/">Bit operation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brute-Force/">Brute Force</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coin/">Coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geometry/">Geometry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Implement/">Implement</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knapsack/">Knapsack</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LIS/">LIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Max-flow/">Max_flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCC/">SCC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vertex-Cover/">Vertex Cover</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/單調隊列/">單調隊列</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/掃描線/">掃描線</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/水題/">水題</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑動視窗/">滑動視窗</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/線段樹/">線段樹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/關節點、橋/">關節點、橋</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/離散化/">離散化</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2-SAT/">2-SAT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCC/">BCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BIT/">BIT</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bellman/">Bellman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bit-operation/">Bit operation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brute-Force/">Brute Force</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coin/">Coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geometry/">Geometry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Implement/">Implement</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knapsack/">Knapsack</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LIS/">LIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">17</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Max-flow/">Max_flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Probability/">Probability</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCC/">SCC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vertex-Cover/">Vertex Cover</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/單調隊列/">單調隊列</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/掃描線/">掃描線</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/水題/">水題</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑動視窗/">滑動視窗</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/線段樹/">線段樹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/關節點、橋/">關節點、橋</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/離散化/">離散化</a><span class="tag-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -687,7 +670,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2-SAT/" style="font-size: 10px;">2-SAT</a> <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BCC/" style="font-size: 10px;">BCC</a> <a href="/tags/BIT/" style="font-size: 11.25px;">BIT</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 12.5px;">BSGS Algorithm</a> <a href="/tags/Bellman/" style="font-size: 10px;">Bellman</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Bit-operation/" style="font-size: 12.5px;">Bit operation</a> <a href="/tags/Brute-Force/" style="font-size: 13.75px;">Brute Force</a> <a href="/tags/CSS/" style="font-size: 11.25px;">CSS</a> <a href="/tags/Coin/" style="font-size: 10px;">Coin</a> <a href="/tags/DFS/" style="font-size: 12.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 16.25px;">Data Structure</a> <a href="/tags/Geometry/" style="font-size: 10px;">Geometry</a> <a href="/tags/Graph/" style="font-size: 12.5px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Implement/" style="font-size: 18.75px;">Implement</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knapsack/" style="font-size: 15px;">Knapsack</a> <a href="/tags/LCS/" style="font-size: 12.5px;">LCS</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/MST/" style="font-size: 11.25px;">MST</a> <a href="/tags/Math/" style="font-size: 17.5px;">Math</a> <a href="/tags/Max-flow/" style="font-size: 10px;">Max_flow</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/SCC/" style="font-size: 11.25px;">SCC</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/tags/Vertex-Cover/" style="font-size: 10px;">Vertex Cover</a> <a href="/tags/dsu/" style="font-size: 12.5px;">dsu</a> <a href="/tags/game/" style="font-size: 11.25px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/區間/" style="font-size: 13.75px;">區間</a> <a href="/tags/單調隊列/" style="font-size: 10px;">單調隊列</a> <a href="/tags/掃描線/" style="font-size: 10px;">掃描線</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/水題/" style="font-size: 10px;">水題</a> <a href="/tags/滑動視窗/" style="font-size: 11.25px;">滑動視窗</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/線段樹/" style="font-size: 15px;">線段樹</a> <a href="/tags/著色/" style="font-size: 12.5px;">著色</a> <a href="/tags/關節點、橋/" style="font-size: 13.75px;">關節點、橋</a> <a href="/tags/離散化/" style="font-size: 10px;">離散化</a>
+      <a href="/tags/2-SAT/" style="font-size: 10px;">2-SAT</a> <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BCC/" style="font-size: 10px;">BCC</a> <a href="/tags/BIT/" style="font-size: 11.25px;">BIT</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 12.5px;">BSGS Algorithm</a> <a href="/tags/Bellman/" style="font-size: 10px;">Bellman</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Bit-operation/" style="font-size: 12.5px;">Bit operation</a> <a href="/tags/Brute-Force/" style="font-size: 13.75px;">Brute Force</a> <a href="/tags/CSS/" style="font-size: 11.25px;">CSS</a> <a href="/tags/Coin/" style="font-size: 10px;">Coin</a> <a href="/tags/DFS/" style="font-size: 12.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 16.25px;">Data Structure</a> <a href="/tags/Geometry/" style="font-size: 10px;">Geometry</a> <a href="/tags/Graph/" style="font-size: 12.5px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Implement/" style="font-size: 18.75px;">Implement</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/Knapsack/" style="font-size: 15px;">Knapsack</a> <a href="/tags/LCS/" style="font-size: 12.5px;">LCS</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/MST/" style="font-size: 11.25px;">MST</a> <a href="/tags/Math/" style="font-size: 17.5px;">Math</a> <a href="/tags/Max-flow/" style="font-size: 10px;">Max_flow</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/SCC/" style="font-size: 11.25px;">SCC</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/Tree/" style="font-size: 10px;">Tree</a> <a href="/tags/Vertex-Cover/" style="font-size: 10px;">Vertex Cover</a> <a href="/tags/dsu/" style="font-size: 12.5px;">dsu</a> <a href="/tags/game/" style="font-size: 11.25px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/區間/" style="font-size: 13.75px;">區間</a> <a href="/tags/單調隊列/" style="font-size: 10px;">單調隊列</a> <a href="/tags/掃描線/" style="font-size: 10px;">掃描線</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/水題/" style="font-size: 10px;">水題</a> <a href="/tags/滑動視窗/" style="font-size: 11.25px;">滑動視窗</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/線段樹/" style="font-size: 15px;">線段樹</a> <a href="/tags/著色/" style="font-size: 12.5px;">著色</a> <a href="/tags/關節點、橋/" style="font-size: 13.75px;">關節點、橋</a> <a href="/tags/離散化/" style="font-size: 10px;">離散化</a>
     </div>
   </div>
 
@@ -696,7 +679,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">13</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -709,23 +692,23 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2018/03/10/hdu1466/">HDU 1466 计算直线的交点数</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/uva10285/">Uva 10285 - Longest Run on a Snowboard</a>
+          </li>
+        
+          <li>
+            <a href="/2018/03/08/uva10056/">Uva 10056 - What is the Probability ?</a>
+          </li>
+        
+          <li>
             <a href="/2018/03/08/uva10319/">Uva 10319 - Manhattan</a>
           </li>
         
           <li>
             <a href="/2018/03/08/template-twoSAT/">2-SAT</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/06/poj1523/">POJ 1523 SPF</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/06/poj2117/">POJ 2117 Electricity</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/06/poj3352/">POJ 3352 Road Construction</a>
           </li>
         
       </ul>
@@ -779,20 +762,5 @@ ga('send', 'pageview');
 <script src="/js/script.js"></script>
 
   </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
