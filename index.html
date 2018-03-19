@@ -96,7 +96,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/18/poj3461/" data-id="cjew5oqhb00c0siopbrlrik5x" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/18/poj3461/" data-id="cjey47w5t00aqtioplknl0wns" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/18/poj3461/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -152,7 +152,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/18/template-KMP/" data-id="cjew5oqhv00dpsiopntnywdyi" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/18/template-KMP/" data-id="cjey47w6300bltiopo4pyy7dz" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/18/template-KMP/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -167,6 +167,9 @@ ga('send', 'pageview');
 <h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = ...;</div><div class="line"></div><div class="line"><span class="keyword">int</span> fail[MAX_N];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">getf</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</div><div class="line">    fail[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">int</span> idx = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++)&#123;</div><div class="line">        <span class="keyword">while</span>(idx != <span class="number">-1</span> &amp;&amp; s[i] != s[idx + <span class="number">1</span>])&#123;</div><div class="line">            idx = fail[idx];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(s[i] == s[idx + <span class="number">1</span>])&#123;</div><div class="line">            fail[i] = idx + <span class="number">1</span>;</div><div class="line">            idx++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">else</span> fail[i] = <span class="number">-1</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">KMP</span><span class="params">(<span class="built_in">string</span> s, <span class="built_in">string</span> t)</span></span>&#123;</div><div class="line">    <span class="keyword">int</span> idx = <span class="number">-1</span>, t_len = t.length();</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; s.length(); i++)&#123;</div><div class="line">        <span class="keyword">while</span>(idx != <span class="number">-1</span> &amp;&amp; s[i] != t[idx + <span class="number">1</span>])&#123;</div><div class="line">            idx = fail[idx];</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(s[i] == t[idx + <span class="number">1</span>])&#123;</div><div class="line">            idx++;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">if</span>(idx == t_len - <span class="number">1</span>)&#123;</div><div class="line">            idx = fail[idx];</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h2 id="例題"><a href="#例題" class="headerlink" title="例題"></a>例題</h2><ol>
 <li>POJ 3461</li>
+</ol>
+<h2 id="參考資料"><a href="#參考資料" class="headerlink" title="參考資料"></a>參考資料</h2><ol>
+<li><a href="https://www.ptt.cc/bbs/b99902HW/M.1300796484.A.EE1.html" target="_blank" rel="external">https://www.ptt.cc/bbs/b99902HW/M.1300796484.A.EE1.html</a></li>
 </ol>
 
             </div>
@@ -206,7 +209,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/17/poj1741/" data-id="cjew5oqgg009fsiop6wp0u5q8" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/17/poj1741/" data-id="cjey47w4f007btiop70w16b3t" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/17/poj1741/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -266,7 +269,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/17/template-tree-decomposition/" data-id="cjew5oqiw00flsiopddak8d23" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/17/template-tree-decomposition/" data-id="cjey47w7300dztiop7d941coj" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/17/template-tree-decomposition/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -327,7 +330,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/14/poj1655/" data-id="cjew5oqgf009csiop5k4ewpqk" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/14/poj1655/" data-id="cjey47w4d0078tiopkzigtnoh" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/14/poj1655/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -383,7 +386,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/14/template-tree-centroid/" data-id="cjew5oqiv00fjsiop5ij8e5bf" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/14/template-tree-centroid/" data-id="cjey47w7100dwtiop9srstv5z" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/14/template-tree-centroid/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -438,7 +441,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/13/poj1830/" data-id="cjew5oqgn00a2siopcx9ehxbg" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/13/poj1830/" data-id="cjey47w4t007ytiopmtok5s0k" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/13/poj1830/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -494,7 +497,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/13/template-gauss-elimination/" data-id="cjew5oqiu00fhsiopnwudixhp" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/13/template-gauss-elimination/" data-id="cjey47w7000dutiopagbyquxn" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/13/template-gauss-elimination/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -547,7 +550,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/12/uva684/" data-id="cjew5oqku00jssiopu064b2yx" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/12/uva684/" data-id="cjey47w9b00i9tiopvm04ids1" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/12/uva684/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -603,7 +606,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/" data-id="cjew5oqio00f7siopbdm6zwiv" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/" data-id="cjey47w6w00ditiopmmgd3rm4" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/#disqus_thread" class="article-comment-link">Comments</a>
       
