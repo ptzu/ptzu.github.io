@@ -71,6 +71,107 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-template-dsu" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/02/02/template-dsu/" class="article-date">
+  <time datetime="2017-02-02T10:22:18.000Z" itemprop="datePublished">2017-02-02</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/02/template-dsu/">併查集 Disjoint set</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/02/02/template-dsu/" data-id="cjfxpy6rz00drjmopbp9fefvt" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/02/02/template-dsu/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h2 id="code"><a href="#code" class="headerlink" title="code"></a>code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = ...;</div><div class="line"></div><div class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Union_Find</span> &#123;</span></div><div class="line">    <span class="keyword">int</span> par[MAX_N], num[MAX_N];</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</div><div class="line">            par[i] = i;</div><div class="line">            num[i] = <span class="number">1</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</div><div class="line">        <span class="keyword">if</span>(x == par[x]) <span class="keyword">return</span> x;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">return</span> par[x] = find(par[x]);</div><div class="line">    &#125;</div><div class="line">    <span class="function"><span class="keyword">void</span> <span class="title">unite</span><span class="params">(<span class="keyword">int</span> a, <span class="keyword">int</span> b)</span></span>&#123;</div><div class="line">        a = find(a);</div><div class="line">        b = find(b);</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(a == b) <span class="keyword">return</span> ;</div><div class="line">        <span class="keyword">if</span>(num[a] &gt; num[b]) swap(a, b);</div><div class="line">        par[a] = b;</div><div class="line">        num[b] += num[a];</div><div class="line">    &#125;</div><div class="line">&#125;U;</div></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-cf385" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/01/25/cf385/" class="article-date">
+  <time datetime="2017-01-25T03:08:09.000Z" itemprop="datePublished">2017-01-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Codeforces/">Codeforces</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/01/25/cf385/">Codeforces Round 385 (Div. 2)</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/01/25/cf385/" data-id="cjfxpy6nj0016jmopf873mhb9" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/01/25/cf385/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h1 id="A-Hongcow-Learns-the-Cyclic-Shift"><a href="#A-Hongcow-Learns-the-Cyclic-Shift" class="headerlink" title="A. Hongcow Learns the Cyclic Shift"></a>A. Hongcow Learns the Cyclic Shift</h1><p><a href="http://codeforces.com/contest/745/problem/A" target="_blank" rel="external">題目</a></p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"></div><div class="line"><span class="built_in">map</span> &lt;<span class="built_in">string</span>, <span class="keyword">bool</span>&gt; m;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    <span class="built_in">string</span> s;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; s;</div><div class="line">    <span class="keyword">int</span> len = s.length();</div><div class="line">    <span class="keyword">int</span> cnt = <span class="number">0</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; len; i++)&#123;</div><div class="line">        <span class="built_in">string</span> ss = s.substr(i, len);</div><div class="line">        <span class="keyword">if</span>(m[ss] == <span class="literal">false</span>)</div><div class="line">            cnt++;</div><div class="line">        s += s[i];</div><div class="line">        m[ss] = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="built_in">cout</span> &lt;&lt; cnt &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-poj3624" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/01/18/poj3624/" class="article-date">
@@ -96,7 +197,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/01/18/poj3624/" data-id="cjfx6pou200abvqopgpyy88as" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/01/18/poj3624/" data-id="cjfxpy6qu00aljmop75f6vuss" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/01/18/poj3624/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -150,7 +251,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/12/11/poj2155/" data-id="cjfx6pot1007zvqop1pot0rco" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/12/11/poj2155/" data-id="cjfxpy6pw007zjmoplt8elo69" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/12/11/poj2155/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -202,7 +303,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/12/07/cf383/" data-id="cjfx6poqe001qvqopkdabb7rh" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/12/07/cf383/" data-id="cjfxpy6ni0012jmop1tkx25xc" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/12/07/cf383/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -270,7 +371,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/12/04/segment-tree/" data-id="cjfx6pou600amvqopjavw8ygy" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/12/04/segment-tree/" data-id="cjfxpy6qy00awjmopwsmqz5f0" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/12/04/segment-tree/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -324,7 +425,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/10/05/cf366/" data-id="cjfx6poq30015vqopb1u0t96l" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/10/05/cf366/" data-id="cjfxpy6nb000njmopd7rnd5ab" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/10/05/cf366/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -392,7 +493,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/10/05/cf365/" data-id="cjfx6poq20012vqopgr3w5j2p" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/10/05/cf365/" data-id="cjfxpy6n9000kjmop3ih4w48j" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/10/05/cf365/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -448,7 +549,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/08/09/poj1988/" data-id="cjfx6poss007hvqopg7qadj1q" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/08/09/poj1988/" data-id="cjfxpy6pp007hjmopmavfw0gl" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/08/09/poj1988/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -510,7 +611,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/08/09/poj2236/" data-id="cjfx6pot9008bvqopfwque2ff" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2016/08/09/poj2236/" data-id="cjfxpy6q4008bjmophm7793b7" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2016/08/09/poj2236/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -543,129 +644,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-cf93" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/01/cf93/" class="article-date">
-  <time datetime="2016-08-01T13:10:58.000Z" itemprop="datePublished">2016-08-01</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Codeforces/">Codeforces</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/08/01/cf93/">Codeforces Beta Round 93 (Div. 1 Only)</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/08/01/cf93/" data-id="cjfx6porb003lvqopkg62c0w9" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2016/08/01/cf93/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/string/">string</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h1 id="B-Password"><a href="#B-Password" class="headerlink" title="B. Password"></a>B. Password</h1><p># string<br><a href="http://codeforces.com/problemset/problem/126/B" target="_blank" rel="external">題目</a></p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>給一字串<br>尋找是否有一子字串<br>出現在前綴(開頭), 中間, 以及後綴<br>輸出符合條件的最長子字串<br>如果沒有就輸出 Just a legend</p>
-<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>字串搜尋類型的題目<br>暴力搜尋會花上 O(nm) 的時間<br>為了這題, 又去重新理解一次KMP<br>果然這東西還是很難記住啊~~</p>
-<p>這題有兩種作法</p>
-<ol>
-<li>用failure function 的特性</li>
-<li>用rolling hash(尚未研究)</li>
-</ol>
-<p>如果還不懂何謂KMP<br>先去看看演算法教學吧~~<br>—-以下開始—-<br>當建好 f 函數時<br>把所有有匹配到的字元, 做上標記(不標記最後一字元)<br>然後看字串最後一個字元的 f 函數值是多少<br>假如前綴和後綴都有, 那我們就要來看中間是否有出現過啦<br>作法就是以最後一字元的函數值做回溯</p>
-<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></div><div class="line"></div><div class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</div><div class="line"></div><div class="line"><span class="keyword">typedef</span> pair&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</div><div class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</div><div class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;ll&gt; vec;</div><div class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span> &lt;vec&gt; mat;</div><div class="line"></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> pf push_front</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> mp make_pair</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> i128 __int128</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></div><div class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></div><div class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></div><div class="line"></div><div class="line"><span class="keyword">int</span> f[<span class="number">1000000</span> + <span class="number">10</span>];</div><div class="line"><span class="keyword">bool</span> flag[<span class="number">1000000</span> + <span class="number">10</span>];</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</div><div class="line">    f[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++)&#123;</div><div class="line">        <span class="keyword">int</span> j = f[i - <span class="number">1</span>];</div><div class="line"></div><div class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; s[j + <span class="number">1</span>] != s[i])</div><div class="line">            j = f[j];</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(s[j + <span class="number">1</span>] == s[i])</div><div class="line">            f[i] = j + <span class="number">1</span>;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i] = j;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</div><div class="line">    ios::sync_with_stdio(<span class="literal">false</span>);</div><div class="line">    <span class="built_in">cin</span>.tie(<span class="number">0</span>);</div><div class="line"></div><div class="line">    <span class="built_in">string</span> s;</div><div class="line">    <span class="built_in">cin</span> &gt;&gt; s;</div><div class="line">    getF(s);</div><div class="line"></div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length() - <span class="number">1</span>; i++)&#123;</div><div class="line">        flag[f[i]] = <span class="literal">true</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> x = f[s.length() - <span class="number">1</span>];</div><div class="line">    <span class="comment">//回溯</span></div><div class="line">    <span class="keyword">while</span>(x != <span class="number">-1</span> &amp;&amp; !flag[x])&#123;</div><div class="line">        x = f[x];</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span>(x == <span class="number">-1</span>)</div><div class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"Just a legend\n"</span>;</div><div class="line">    <span class="keyword">else</span>&#123;</div><div class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt;= x; i++)</div><div class="line">            <span class="built_in">cout</span> &lt;&lt; s[i];</div><div class="line">         <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-KMP" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/07/28/KMP/" class="article-date">
-  <time datetime="2016-07-28T05:06:36.000Z" itemprop="datePublished">2016-07-28</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/演算法/">演算法</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/28/KMP/">KMP Algorithm 探討</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2016/07/28/KMP/" data-id="cjfx6popu000pvqopu1i1zvi7" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2016/07/28/KMP/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h2 id="關於KMP"><a href="#關於KMP" class="headerlink" title="關於KMP"></a>關於KMP</h2><p>一般再搜尋字串時, 暴力搜尋將每個位置都搜尋一次<br>同時比對要搜尋的字串(pattern)<br>時間複雜度為O(nm)</p>
-<p>KMP演算法改進了一些不必要的搜尋<br>使得時間複雜度為O(n + m)</p>
-<h2 id="名詞定義"><a href="#名詞定義" class="headerlink" title="名詞定義"></a>名詞定義</h2><p>失敗函數(failure function): 當比對失敗時, pattern需位移幾位才能成為前綴, 一般用在字串比對失敗時查找, 故稱失敗函數</p>
-<h2 id="建立-F-函數"><a href="#建立-F-函數" class="headerlink" title="建立 F 函數"></a>建立 F 函數</h2><p>這邊放上網路上常見兩種寫法<br>不變的是 j 代表的是目前比對的字元的 ‘前一個字’<br>f[i] 代表比對失敗時, j 要變成的位置</p>
-<ol>
-<li><p>字串從 0 開始存, 沒匹配字元時, f 值為 -1</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span></span>&#123;</div><div class="line">    f[<span class="number">0</span>] = <span class="number">-1</span>;</div><div class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; i &lt; s.length(); i++)&#123;</div><div class="line">        <span class="keyword">int</span> j = f[i - <span class="number">1</span>];</div><div class="line">        <span class="comment">//如果不相等, 先位移到適合位置</span></div><div class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span> &amp;&amp; s[j + <span class="number">1</span>] != s[i])</div><div class="line">            j = f[j];</div><div class="line"></div><div class="line">        <span class="keyword">if</span>(s[j + <span class="number">1</span>] == s[i])</div><div class="line">            f[i] = j + <span class="number">1</span>;</div><div class="line">        <span class="comment">//還是不相等, 此時 j = -1</span></div><div class="line">        <span class="keyword">else</span></div><div class="line">            f[i] = j;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-<li><p>字串從 1 開始存, 沒匹配字元時, f 值為 0</p>
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">void</span> <span class="title">getF</span><span class="params">(<span class="built_in">string</span> s)</span>  </span>&#123;    </div><div class="line">   <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= s.length(); i++)&#123;  </div><div class="line">        <span class="keyword">int</span> j = f[i<span class="number">-1</span>];  </div><div class="line">        <span class="keyword">while</span> (j &amp;&amp; s[j+<span class="number">1</span>] != s[i])</div><div class="line">            j = f[j];  </div><div class="line">        <span class="keyword">if</span> (s[j + <span class="number">1</span>] == s[i])</div><div class="line">            f[i] = j + <span class="number">1</span>;</div><div class="line">        <span class="comment">//這邊沒有 else 判斷是因為, 在全域宣告的陣列初始值為 0</span></div><div class="line">        <span class="comment">// 0 在這種寫法的意義和第一種寫法的 -1 相同</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-</li>
-</ol>
-<h2 id="KMP-搜尋"><a href="#KMP-搜尋" class="headerlink" title="KMP 搜尋"></a>KMP 搜尋</h2><p>如果存在該字串, 回傳字串開頭位置, 否則回傳 -1<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">KMP</span><span class="params">(<span class="keyword">char</span> S[], <span class="keyword">char</span> pat[])</span></span>&#123;</div><div class="line">  <span class="keyword">int</span> lens = <span class="built_in">strlen</span>(S);</div><div class="line">  <span class="keyword">int</span> lenp = <span class="built_in">strlen</span>(pat);</div><div class="line">  <span class="keyword">int</span> i = <span class="number">0</span>, j = <span class="number">0</span>;</div><div class="line">  <span class="keyword">while</span>(i &lt; lens &amp;&amp; j &lt; lenp)</div><div class="line">  &#123;</div><div class="line">    <span class="keyword">if</span>(S[i] == pat[j])&#123;</div><div class="line">      i++; j++;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span>(j == <span class="number">0</span>)</div><div class="line">      i++;</div><div class="line">    <span class="keyword">else</span></div><div class="line">      j = failure[j<span class="number">-1</span>] + <span class="number">1</span>;</div><div class="line">  &#125;</div><div class="line">  <span class="keyword">return</span> ((j == lenp) ? (i-lenp) : <span class="number">-1</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -680,7 +658,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">175</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">39</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">11</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">176</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">45</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">11</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -690,7 +668,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2-SAT/">2-SAT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCC/">BCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BIT/">BIT</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bellman/">Bellman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bit-operation/">Bit operation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brute-Force/">Brute Force</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coin/">Coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geometry/">Geometry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Implement/">Implement</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMP/">KMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knapsack/">Knapsack</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LIS/">LIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Max-flow/">Max_flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Probability/">Probability</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCC/">SCC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vertex-Cover/">Vertex Cover</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/單調隊列/">單調隊列</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/差分約束/">差分約束</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/掃描線/">掃描線</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/水題/">水題</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑動視窗/">滑動視窗</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/線段樹/">線段樹</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/關節點、橋/">關節點、橋</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/離散化/">離散化</a><span class="tag-list-count">2</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/2-SAT/">2-SAT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/2DBIT/">2DBIT</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Ajax/">Ajax</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BCC/">BCC</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BIT/">BIT</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/BSGS-Algorithm/">BSGS Algorithm</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bellman/">Bellman</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Binary-Search/">Binary Search</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Bit-operation/">Bit operation</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Brute-Force/">Brute Force</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CSS/">CSS</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Coin/">Coin</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DFS/">DFS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/DP/">DP</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Geometry/">Geometry</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Graph/">Graph</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hexo/">Hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ITSA/">ITSA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Implement/">Implement</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Javascript/">Javascript</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/KMP/">KMP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Knapsack/">Knapsack</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LCS/">LCS</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LIS/">LIS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MST/">MST</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Math/">Math</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Max-flow/">Max_flow</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/MySQL/">MySQL</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/PHP/">PHP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Probability/">Probability</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/RS232/">RS232</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SCC/">SCC</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SPFA/">SPFA</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Tree/">Tree</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Vertex-Cover/">Vertex Cover</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dsu/">dsu</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/game/">game</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/graph/">graph</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/greedy/">greedy</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/string/">string</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/區間/">區間</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/單調隊列/">單調隊列</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/差分約束/">差分約束</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/掃描線/">掃描線</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/樹DP/">樹DP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/水題/">水題</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/滑動視窗/">滑動視窗</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/爬行法/">爬行法</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/線段樹/">線段樹</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/著色/">著色</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/關節點、橋/">關節點、橋</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/離散化/">離散化</a><span class="tag-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -700,7 +678,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/2-SAT/" style="font-size: 10px;">2-SAT</a> <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BCC/" style="font-size: 10px;">BCC</a> <a href="/tags/BIT/" style="font-size: 11.25px;">BIT</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 12.5px;">BSGS Algorithm</a> <a href="/tags/Bellman/" style="font-size: 10px;">Bellman</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Bit-operation/" style="font-size: 12.5px;">Bit operation</a> <a href="/tags/Brute-Force/" style="font-size: 13.75px;">Brute Force</a> <a href="/tags/CSS/" style="font-size: 11.25px;">CSS</a> <a href="/tags/Coin/" style="font-size: 10px;">Coin</a> <a href="/tags/DFS/" style="font-size: 12.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 16.25px;">Data Structure</a> <a href="/tags/Geometry/" style="font-size: 10px;">Geometry</a> <a href="/tags/Graph/" style="font-size: 12.5px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Implement/" style="font-size: 17.5px;">Implement</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/Knapsack/" style="font-size: 15px;">Knapsack</a> <a href="/tags/LCS/" style="font-size: 12.5px;">LCS</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/MST/" style="font-size: 11.25px;">MST</a> <a href="/tags/Math/" style="font-size: 18.75px;">Math</a> <a href="/tags/Max-flow/" style="font-size: 10px;">Max_flow</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/SCC/" style="font-size: 11.25px;">SCC</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Vertex-Cover/" style="font-size: 10px;">Vertex Cover</a> <a href="/tags/dsu/" style="font-size: 12.5px;">dsu</a> <a href="/tags/game/" style="font-size: 11.25px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/區間/" style="font-size: 13.75px;">區間</a> <a href="/tags/單調隊列/" style="font-size: 10px;">單調隊列</a> <a href="/tags/差分約束/" style="font-size: 10px;">差分約束</a> <a href="/tags/掃描線/" style="font-size: 11.25px;">掃描線</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/水題/" style="font-size: 10px;">水題</a> <a href="/tags/滑動視窗/" style="font-size: 11.25px;">滑動視窗</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/線段樹/" style="font-size: 16.25px;">線段樹</a> <a href="/tags/著色/" style="font-size: 12.5px;">著色</a> <a href="/tags/關節點、橋/" style="font-size: 13.75px;">關節點、橋</a> <a href="/tags/離散化/" style="font-size: 11.25px;">離散化</a>
+      <a href="/tags/2-SAT/" style="font-size: 10px;">2-SAT</a> <a href="/tags/2DBIT/" style="font-size: 10px;">2DBIT</a> <a href="/tags/Ajax/" style="font-size: 10px;">Ajax</a> <a href="/tags/BCC/" style="font-size: 10px;">BCC</a> <a href="/tags/BIT/" style="font-size: 11.25px;">BIT</a> <a href="/tags/BSGS-Algorithm/" style="font-size: 12.5px;">BSGS Algorithm</a> <a href="/tags/Bellman/" style="font-size: 10px;">Bellman</a> <a href="/tags/Binary-Search/" style="font-size: 16.25px;">Binary Search</a> <a href="/tags/Bit-operation/" style="font-size: 12.5px;">Bit operation</a> <a href="/tags/Brute-Force/" style="font-size: 13.75px;">Brute Force</a> <a href="/tags/CSS/" style="font-size: 11.25px;">CSS</a> <a href="/tags/Coin/" style="font-size: 10px;">Coin</a> <a href="/tags/DFS/" style="font-size: 12.5px;">DFS</a> <a href="/tags/DP/" style="font-size: 20px;">DP</a> <a href="/tags/Data-Structure/" style="font-size: 16.25px;">Data Structure</a> <a href="/tags/Geometry/" style="font-size: 10px;">Geometry</a> <a href="/tags/Graph/" style="font-size: 12.5px;">Graph</a> <a href="/tags/Hexo/" style="font-size: 11.25px;">Hexo</a> <a href="/tags/ITSA/" style="font-size: 10px;">ITSA</a> <a href="/tags/Implement/" style="font-size: 17.5px;">Implement</a> <a href="/tags/Javascript/" style="font-size: 10px;">Javascript</a> <a href="/tags/KMP/" style="font-size: 10px;">KMP</a> <a href="/tags/Knapsack/" style="font-size: 15px;">Knapsack</a> <a href="/tags/LCS/" style="font-size: 12.5px;">LCS</a> <a href="/tags/LIS/" style="font-size: 10px;">LIS</a> <a href="/tags/MST/" style="font-size: 11.25px;">MST</a> <a href="/tags/Math/" style="font-size: 18.75px;">Math</a> <a href="/tags/Max-flow/" style="font-size: 10px;">Max_flow</a> <a href="/tags/MySQL/" style="font-size: 10px;">MySQL</a> <a href="/tags/PHP/" style="font-size: 11.25px;">PHP</a> <a href="/tags/Probability/" style="font-size: 10px;">Probability</a> <a href="/tags/RS232/" style="font-size: 10px;">RS232</a> <a href="/tags/SCC/" style="font-size: 11.25px;">SCC</a> <a href="/tags/SPFA/" style="font-size: 10px;">SPFA</a> <a href="/tags/Tree/" style="font-size: 12.5px;">Tree</a> <a href="/tags/Vertex-Cover/" style="font-size: 10px;">Vertex Cover</a> <a href="/tags/dsu/" style="font-size: 12.5px;">dsu</a> <a href="/tags/game/" style="font-size: 11.25px;">game</a> <a href="/tags/graph/" style="font-size: 10px;">graph</a> <a href="/tags/greedy/" style="font-size: 10px;">greedy</a> <a href="/tags/string/" style="font-size: 10px;">string</a> <a href="/tags/區間/" style="font-size: 13.75px;">區間</a> <a href="/tags/單調隊列/" style="font-size: 10px;">單調隊列</a> <a href="/tags/差分約束/" style="font-size: 11.25px;">差分約束</a> <a href="/tags/掃描線/" style="font-size: 11.25px;">掃描線</a> <a href="/tags/樹DP/" style="font-size: 10px;">樹DP</a> <a href="/tags/水題/" style="font-size: 10px;">水題</a> <a href="/tags/滑動視窗/" style="font-size: 11.25px;">滑動視窗</a> <a href="/tags/爬行法/" style="font-size: 10px;">爬行法</a> <a href="/tags/線段樹/" style="font-size: 16.25px;">線段樹</a> <a href="/tags/著色/" style="font-size: 12.5px;">著色</a> <a href="/tags/關節點、橋/" style="font-size: 13.75px;">關節點、橋</a> <a href="/tags/離散化/" style="font-size: 11.25px;">離散化</a>
     </div>
   </div>
 
@@ -709,7 +687,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -722,6 +700,14 @@ ga('send', 'pageview');
       <ul>
         
           <li>
+            <a href="/2018/04/13/poj1201/">POJ 1201 Intervals</a>
+          </li>
+        
+          <li>
+            <a href="/2018/04/13/template-difference-constraint/">template-difference-constraint</a>
+          </li>
+        
+          <li>
             <a href="/2018/04/13/poj3169/">POJ 3169 Layout</a>
           </li>
         
@@ -731,14 +717,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2018/03/18/poj3461/">POJ 3461 Oulipo</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/18/template-KMP/">KMP Algorithm</a>
-          </li>
-        
-          <li>
-            <a href="/2018/03/17/poj1741/">POJ 1741 Tree</a>
           </li>
         
       </ul>
