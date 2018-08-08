@@ -3,18 +3,14 @@
 <head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
   
-  <title>矩陣行列式 Matrix Determinant | Kamikaze&#39;s blog</title>
+  <title>Category: 視覺SLAM | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Code1234567891011121314151617181920212223242526typedef vector&amp;lt;ll&amp;gt; vec;typedef vector&amp;lt;vec&amp;gt; mat;ll determinant(mat m)&amp;#123;    int n = m.size();    ll det = 1;    for(int col = 0; col &amp;lt; n">
-<meta property="og:type" content="article">
-<meta property="og:title" content="矩陣行列式 Matrix Determinant">
-<meta property="og:url" content="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Kamikaze&#39;s blog">
+<meta property="og:url" content="http://abcd40404.github.io/categories/學習札記/視覺SLAM/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="Code1234567891011121314151617181920212223242526typedef vector&amp;lt;ll&amp;gt; vec;typedef vector&amp;lt;vec&amp;gt; mat;ll determinant(mat m)&amp;#123;    int n = m.size();    ll det = 1;    for(int col = 0; col &amp;lt; n">
-<meta property="og:updated_time" content="2018-05-03T15:34:10.043Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="矩陣行列式 Matrix Determinant">
-<meta name="twitter:description" content="Code1234567891011121314151617181920212223242526typedef vector&amp;lt;ll&amp;gt; vec;typedef vector&amp;lt;vec&amp;gt; mat;ll determinant(mat m)&amp;#123;    int n = m.size();    ll det = 1;    for(int col = 0; col &amp;lt; n">
+<meta name="twitter:title" content="Kamikaze&#39;s blog">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -73,88 +69,29 @@ ga('send', 'pageview');
 </header>
 
       <div class="outer">
-        <section id="main"><article id="post-template-matrix-determinant" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/03/11/template-matrix-determinant/" class="article-date">
-  <time datetime="2018-03-11T08:44:05.000Z" itemprop="datePublished">2018-03-11</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Math/">Math</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+        <section id="main"><div class="list-table">
+    <ul>
         
   
-    <h1 class="article-title" itemprop="name">
-      矩陣行列式 Matrix Determinant
-    </h1>
-  
-
-      </header>
+      
+            <li>
     
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/" data-id="cjklcyg5400etls6xcf6qustj" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2018/03/11/template-matrix-determinant/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-              <div id="toc" class="toc-article">
-              <h2 class="toc-title"><span>Contents</span></h2>
-              
-                  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Code"><span class="toc-number">1.</span> <span class="toc-text">Code</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例題"><span class="toc-number">2.</span> <span class="toc-text">例題</span></a></li></ol>
-              
-              </div>
-          
-          
-            <h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;ll&gt; vec;</span><br><span class="line"><span class="keyword">typedef</span> <span class="built_in">vector</span>&lt;vec&gt; mat;</span><br><span class="line"></span><br><span class="line"><span class="function">ll <span class="title">determinant</span><span class="params">(mat m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n = m.size();</span><br><span class="line">    ll det = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> col = <span class="number">0</span>; col &lt; n; col++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> row = col + <span class="number">1</span>; row &lt; n; row++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x = col, y = row; <span class="comment">// 目前列, 下一列</span></span><br><span class="line">            <span class="keyword">while</span>(m[y][col])&#123; <span class="comment">// 下一列不為 0 就繼續做</span></span><br><span class="line">                ll q = m[x][col] / m[y][col];</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++)&#123;</span><br><span class="line">                    m[x][k] -= m[y][k] * q;</span><br><span class="line">                &#125;</span><br><span class="line">                swap(x, y);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(x != col)&#123;</span><br><span class="line">                swap(m[col], m[row]);</span><br><span class="line">                det = -det;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(m[col][col] == <span class="number">0</span>) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">else</span> det *= m[col][col];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> det;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例題"><a href="#例題" class="headerlink" title="例題"></a>例題</h2><ol>
-<li>Uva 684</li>
-</ol>
+  
+      <a class="list" href="/2018/08/08/camera-frame-world-frame/">相機座標系、世界座標系</a>
+  
 
-          
+
+</li>
+
       
-    </div>
-  </div>
   
-    
-<nav id="article-nav">
   
-    <a href="/2018/03/12/uva684/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
+
+
+
         
-          Uva 684 - Integral Determinant
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2018/03/10/hdu1466/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">HDU 1466 计算直线的交点数</div>
-    </a>
-  
-</nav>
-
-  
-</article>
-
-
-<section id="comments">
-  <div id="disqus_thread">
-    <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-  </div>
-</section>
-
+    </ul>
+</div>
 </section>
         
           <aside id="sidebar">
@@ -255,13 +192,11 @@ ga('send', 'pageview');
 <script>
   var disqus_shortname = 'abcd40404';
   
-  var disqus_url = 'http://abcd40404.github.io/2018/03/11/template-matrix-determinant/';
-  
   (function(){
     var dsq = document.createElement('script');
     dsq.type = 'text/javascript';
     dsq.async = true;
-    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    dsq.src = '//' + disqus_shortname + '.disqus.com/count.js';
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   })();
 </script>
