@@ -71,6 +71,56 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-mysql-time" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/05/17/mysql-time/" class="article-date">
+  <time datetime="2017-05-17T13:11:35.000Z" itemprop="datePublished">2017-05-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/05/17/mysql-time/">mysql_time</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2017/05/17/mysql-time/" data-id="cjklckz6n006hf46xcqyp795g" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2017/05/17/mysql-time/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>DATETIME</p>
+<p>create table user(id int auto_increment primary key, username char(50), password char(50));</p>
+<p>create table picture(id int auto_increment primary key, uid int, content text, filename char(50), size int, type char(50), filepic text, mtime DATETIME, foreign key(uid) references user(id));</p>
+<p>create table comment(id int auto_increment, pid int, uid int, content text, mtime DATETIME, primary key(id, pid), foreign key(pid) references picture(id), foreign key(uid) references user(id));</p>
+<p>create table likes(uid int, pid int, t_like boolean, mtime DATETIME, primary key(uid, pid), foreign key(uid) references user(id), foreign key(pid) references picture(id));</p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-php-time" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/05/17/php-time/" class="article-date">
@@ -96,7 +146,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cjjr8mmt5006ppt6xqkj6g519" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/17/php-time/" data-id="cjklckz6x007bf46xt8rj7d74" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/17/php-time/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -158,7 +208,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cjjr8mmsx0060pt6xtk2z4t58" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/15/mosquitto-configure/" data-id="cjklckz6i0066f46xc2z02mxe" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/15/mosquitto-configure/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -231,7 +281,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/12/compiler2/" data-id="cjjr8mmsg004gpt6xa4ezc9qu" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/12/compiler2/" data-id="cjklckz5z004if46xvucrrd5m" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/12/compiler2/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -283,7 +333,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/04/rs232/" data-id="cjjr8mmvc00bnpt6xwe2cs6cb" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/04/rs232/" data-id="cjklckz8o00bxf46xg30a4p1g" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/04/rs232/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -351,7 +401,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/05/01/ITSAchallenge-5/" data-id="cjjr8mmq70007pt6xlo2lwjt4" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/05/01/ITSAchallenge-5/" data-id="cjklckz40000af46xc05tfpd4" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/05/01/ITSAchallenge-5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -408,7 +458,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/13/js-and-input/" data-id="cjjr8mmsv005vpt6xffhx6bzc" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/04/13/js-and-input/" data-id="cjklckz6f005tf46xa1on1fsz" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/04/13/js-and-input/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -473,7 +523,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/07/sql-instruction/" data-id="cjjr8mmv800bcpt6xkzhdp541" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/04/07/sql-instruction/" data-id="cjklckz8j00bhf46xicoy7etm" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/04/07/sql-instruction/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -535,7 +585,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/03/compiler1/" data-id="cjjr8mmsf004cpt6xzeyb3p4u" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/04/03/compiler1/" data-id="cjklckz5x004af46xmrkubjik" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/04/03/compiler1/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -617,7 +667,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/04/01/diary-20170401/" data-id="cjjr8mmsk004wpt6xn9avhc72" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2017/04/01/diary-20170401/" data-id="cjklckz660052f46xavsqvp62" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2017/04/01/diary-20170401/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -637,62 +687,6 @@ ga('send', 'pageview');
 <p>直到高壽發現了愛美的日記, 寫著未來每一天發生的事<br>原來他們兩人來自不同的世界, 時間相逆而行的世界<br>5年才能相見, 而且僅僅只有30天<br>高壽的明天, 就是愛美的昨天<br>「和你在一起好痛苦, 我們沒辦法一起分享昨天發生的事」<br>「原來至今相處的一切, 都是演出來的嗎？」</p>
 <p>我覺得愛情片中各種男女主角相處的障礙<br>時空限制是最讓人難受的<br>不管是身份差距, 理想不同而分開<br>縱然分開, 還是可以知道對方好好的活在某處<br>然而本片以相逆時間進行<br>他們以兩倍的速度相近, 然後遠離<br>「相遇, 就注定分開」<br>特別還是在片中就揭露這個事實<br>當高壽說:「她早就知道這些事情, 為什麼還能若無其事的笑著？」<br>赫然想起愛美每次不經意的流淚<br>一想到愛美是強顏歡笑的度過每天, 整個超級催淚Q_Q<br>高壽更加珍惜剩下的每一天, 因為兩人將慢慢不再是戀人…</p>
 <p>「你的第一天, 是我的最後一天」<br>「我的第一天, 是你的最後一天」<br>一拉到最一開始, 初次見面的兩人<br>『我們會再見面嗎?』『會的』<br>其實永遠不會再相見…卻還要強迫自己說出這些話<br>這種交叉錯過的感覺真讓人難受…<br>就這樣前往下一個 5 年, 去守護另個彼端的彼此<br><img src="http://i.imgur.com/U58eYce.jpg" alt="我們沒有錯過彼此。是頭與尾連接在一起，成為了一個圓"></p>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-uva10684" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/03/30/uva10684/" class="article-date">
-  <time datetime="2017-03-30T14:45:00.000Z" itemprop="datePublished">2017-03-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/30/uva10684/">Uva 10684 - The jackpot</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2017/03/30/uva10684/" data-id="cjjr8mmxx00hnpt6x3009oofg" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2017/03/30/uva10684/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/DP/">DP</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/區間/">區間</a></li></ul>
-
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;category=18&amp;page=show_problem&amp;problem=1625" target="_blank" rel="noopener">題目</a></p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>n 個數: n &lt;= 10000<br>數字 x: 0 &lt; x &lt; 1000</p>
-<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>Manuel 想要快速變有錢, 所以他決定去賭博<br>他精心計劃了贏錢的策略<br>每個下注可能贏錢或輸錢<br>求一段連續的下注最多可以獲得多少錢<br>ps: 題目說負值輸出 losing, 但根據測資, 0 也算 losing</p>
-<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>最大連續區間和裸題</p>
-<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">10101</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">while</span>(<span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;n) != EOF &amp;&amp; n)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(dp, <span class="number">0</span>, <span class="keyword">sizeof</span>(dp));</span><br><span class="line">        <span class="keyword">int</span> ans = - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;x);</span><br><span class="line">            sum += x;</span><br><span class="line">            <span class="keyword">if</span>(sum &lt; <span class="number">0</span>) sum = <span class="number">0</span>;</span><br><span class="line">            ans = max(ans, sum);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(ans &gt; <span class="number">0</span>)</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"The maximum winning streak is %d.\n"</span>, ans);</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"Losing streak.\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
             </div>
             <div class="toggle-input article-more-link"><a>Read More +</a></div>
@@ -749,7 +743,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -760,6 +754,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/08/camera-frame-world-frame/">相機座標系、世界座標系</a>
+          </li>
         
           <li>
             <a href="/2018/07/18/mac-x11-forward/">Mac OSX 遠端連線 GUI</a>
@@ -775,10 +773,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2018/04/14/tioj1072/">TIOJ 1072 A.誰先晚餐</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/14/uva11389/">Uva 11389 - The Bus Driver Problem</a>
           </li>
         
       </ul>

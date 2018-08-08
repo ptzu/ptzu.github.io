@@ -71,6 +71,61 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-template-Catalan-number" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/02/10/template-Catalan-number/" class="article-date">
+  <time datetime="2018-02-09T16:02:58.000Z" itemprop="datePublished">2018-02-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/DP/">DP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/02/10/template-Catalan-number/">卡塔蘭數 Catalan number</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2018/02/10/template-Catalan-number/" data-id="cjklckz8v00cdf46xsl8e1jkj" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2018/02/10/template-Catalan-number/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>一般式: <span>$C_{n} = \dfrac {1}{n+1}\binom{2n}{n} = \dfrac {\left( 2n\right) !}{\left( n+1\right) !n!}$</span><!-- Has MathJax --><br>遞迴式: <span>$C_{n} = \dfrac {4*n-2}{n+1}C_{n-1}$</span><!-- Has MathJax --><br>若可以觀察出<br>h(0) = 1,h(1) = 1<br>h(n) = h(0)*h(n-1) + h(1)*h(n-2) + … + h(n-1)h(0) (其中 n &gt;= 2)<br>則有可能是卡塔蘭數<br>可用於 二元樹種類個數…等問題</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">big fac[MAX_N * <span class="number">2</span>];</span><br><span class="line">big res = fac[<span class="number">2</span> * n] / fac[n + <span class="number">1</span>] / fac[n];</span><br></pre></td></tr></table></figure>
+<h2 id="例題"><a href="#例題" class="headerlink" title="例題"></a>例題</h2><ol>
+<li>Uva 10007</li>
+<li>POJ 2084</li>
+</ol>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-diary-20180209" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/02/09/diary-20180209/" class="article-date">
@@ -96,7 +151,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/09/diary-20180209/" data-id="cjjr8mmsi004opt6xho92d4ho" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/09/diary-20180209/" data-id="cjklckz65004xf46x9prwhq03" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/09/diary-20180209/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -147,7 +202,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/09/uva10007/" data-id="cjjr8mmx900ggpt6x76iwxgg8" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/09/uva10007/" data-id="cjklckzaj00g8f46xlakgssml" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/09/uva10007/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -205,7 +260,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/09/template-FFT/" data-id="cjjr8mmvo00cjpt6xt10mavfz" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/09/template-FFT/" data-id="cjklckz8y00clf46xqevaa525" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/09/template-FFT/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -255,7 +310,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/08/template-bitonic-tsp/" data-id="cjjr8mmw900dxpt6xrynjtola" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/08/template-bitonic-tsp/" data-id="cjklckz9n00e2f46x165bvwdf" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/08/template-bitonic-tsp/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -323,7 +378,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/08/poj2677/" data-id="cjjr8mmu8009gpt6xn0r5nlk6" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/08/poj2677/" data-id="cjklckz7t009lf46x0sjmwy2u" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/08/poj2677/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -379,7 +434,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/07/zj-b177/" data-id="cjjr8mmz200k8pt6x5nwvmstx" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/07/zj-b177/" data-id="cjklckzch00kof46xsbvr2ktd" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/07/zj-b177/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -439,7 +494,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/05/uva10032/" data-id="cjjr8mmxa00gjpt6x5dqf7fh6" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/05/uva10032/" data-id="cjklckzan00gcf46xxmw8ij5z" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/05/uva10032/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -495,7 +550,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/05/template-floyd-warshall/" data-id="cjjr8mmwh00ehpt6x231ioflm" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/05/template-floyd-warshall/" data-id="cjklckza500fbf46xwdcsjmw1" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/05/template-floyd-warshall/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -546,7 +601,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/05/hdu5418/" data-id="cjjr8mmsl0050pt6xry4tjmtk" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/02/05/hdu5418/" data-id="cjklckz69005af46xngvzf54r" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/02/05/hdu5418/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -564,70 +619,6 @@ ga('send', 'pageview');
 <h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>Victor 想環遊世界, 求拜訪每個國家並回到起點的最少花費<br>每個國家可拜訪不只一次</p>
 <h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>同 POJ 3311<br>只是這題的距離不是給相鄰矩陣<br>先用 floyd 求一下距離</p>
 <h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_N = <span class="number">303030</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> n, m;</span><br><span class="line"><span class="keyword">int</span> d[<span class="number">50</span>][<span class="number">50</span>];</span><br><span class="line"><span class="keyword">int</span> dp[<span class="number">1</span> &lt;&lt; <span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">(<span class="keyword">int</span> V)</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; V; k++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; V; j++)&#123;</span><br><span class="line">                d[i][j] = min(d[i][j], d[i][k] + d[k][j]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> TC;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;TC);</span><br><span class="line">    <span class="keyword">while</span>(TC--)&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">20</span>; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; <span class="number">20</span>; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i == j) d[i][j] = <span class="number">0</span>;</span><br><span class="line">                <span class="keyword">else</span> d[i][j] = INF;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>, &amp;n, &amp;m);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; m; i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> u, v, w;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;u, &amp;v, &amp;w);</span><br><span class="line">            u--;v--;</span><br><span class="line">            d[u][v] = d[v][u] = min(d[u][v], w);</span><br><span class="line">        &#125;</span><br><span class="line">        floyd(n);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)&#123;</span><br><span class="line">            fill(dp[i], dp[i] + n, INF);</span><br><span class="line">        &#125;</span><br><span class="line">        dp[(<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> S = (<span class="number">1</span> &lt;&lt; n) - <span class="number">2</span>; S &gt;= <span class="number">0</span>; S--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; n; v++)&#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++)&#123;</span><br><span class="line">                    dp[S][v] = min(dp[S][v], dp[S | <span class="number">1</span> &lt;&lt; u][u] + d[v][u]);</span><br><span class="line">                    <span class="comment">// if(S == 2 &amp;&amp; v == 1) cout &lt;&lt; dp[S | 1 &lt;&lt; u][u] &lt;&lt; " " &lt;&lt; u&lt;&lt; endl;</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>, dp[<span class="number">0</span>][<span class="number">0</span>]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-template-digit-dp" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/04/template-digit-dp/" class="article-date">
-  <time datetime="2018-02-04T03:54:45.000Z" itemprop="datePublished">2018-02-04</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/DP/">DP</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/04/template-digit-dp/">位元DP</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/04/template-digit-dp/" data-id="cjjr8mmw800dupt6x1rct5ban" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2018/02/04/template-digit-dp/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>以 旅行推銷員問題(TSP) 為例<br>複雜度: <span>$O(2^{n}n^{2})$</span><!-- Has MathJax --></p>
-<h1 id="BOTTOM-UP"><a href="#BOTTOM-UP" class="headerlink" title="BOTTOM UP"></a>BOTTOM UP</h1><h2 id="狀態"><a href="#狀態" class="headerlink" title="狀態"></a>狀態</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S代表目前已經走過的點集合, v為目前的點</span><br><span class="line">dp[S][v]: 已經走完 S, 目前在 v, 所花費的最小權重和</span><br></pre></td></tr></table></figure>
-<h2 id="轉移"><a href="#轉移" class="headerlink" title="轉移"></a>轉移</h2><p>找一點不在集合的點 u, 列舉集合的點 v 走到 u 的距離<br><span>$dp[S | (1 &lt;&lt; u)][u] = min\left \{  dp[S | (1 &lt;&lt; u)][i], dp[S][v] + d[v][u], u \notin S \right \}$</span><!-- Has MathJax --></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)</span><br><span class="line">    fill(dp[i], dp[i] + n, INF);</span><br><span class="line">dp[<span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">int</span> S = <span class="number">1</span>; S &lt; (<span class="number">1</span> &lt;&lt; n); S++)&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>((S &amp; (<span class="number">1</span> &lt;&lt; i)) == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j = <span class="number">0</span>; j &lt; n; j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(S &amp; (<span class="number">1</span> &lt;&lt; j))</span><br><span class="line">                    dp[S | (<span class="number">1</span> &lt;&lt; i)][i] = min(dp[S | (<span class="number">1</span> &lt;&lt; i)][i], dp[S][j] + d[j][i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="TOP-DOWN-作法"><a href="#TOP-DOWN-作法" class="headerlink" title="TOP DOWN 作法"></a>TOP DOWN 作法</h1><p>top-down 的作法, 我覺得有點難想, 要搭配圖案</p>
-<h2 id="狀態-1"><a href="#狀態-1" class="headerlink" title="狀態"></a>狀態</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">S代表目前已經走過的點集合, v為目前的點</span><br><span class="line">dp[S][v]: 從 v 開始走, 走完剩餘的點, 回到起點&quot;需要的&quot;最小權重和</span><br></pre></td></tr></table></figure>
-<h2 id="轉移-1"><a href="#轉移-1" class="headerlink" title="轉移"></a>轉移</h2><p>我們要從 v 走回起點, 我們需要的子問題值是, v 下一步的點走回起點的值<br>所以我們才要用 top-down, 把前面的路都先算好, 我們再走過去</p>
-<span>$dp[S][v] = min\left \{  dis[v][u] + dp[S | 1 &lt;&lt; u][u], u \notin S \right \}$</span><!-- Has MathJax -->
-<p>這個遞迴式意思是, 找一個不在集合的點 u<br>他走回起點的值為  dp[S | 1 &lt;&lt; u][u]<br>所以要從 v 走回起點就是: dis[v][u] + dp[S | 1 &lt;&lt; u][u]<br>而 dp[S | 1 &lt;&lt; u][u] 已經事先計算好了</p>
-<h2 id="圖解"><a href="#圖解" class="headerlink" title="圖解"></a>圖解</h2><p>初始狀態: dp[0][0] (還沒走過任何點, 從起點開始走回起點, 所需要的最小權重和)<br>結束狀態: dp[S][0] (已經走過全部點, 從起點開始走回起點, 所需要的最小權重和)<br>集合 S 從 S - 1 慢慢列舉到 0, 在每個狀態都列舉不同的目前點和下個點<br>直到 dp[0][0] 就是答案所求</p>
-<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> dp[<span class="number">1</span> &lt;&lt; MAX_N][MAX_N], d[MAX_N][MAX_N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; (<span class="number">1</span> &lt;&lt; n); i++)&#123;</span><br><span class="line">        fill(dp[i], dp[i] + n, INF);</span><br><span class="line">    &#125;</span><br><span class="line">    dp[(<span class="number">1</span> &lt;&lt; n) - <span class="number">1</span>][<span class="number">0</span>] = <span class="number">0</span>; <span class="comment">// 已經走完所有的點, 目前點為起點 0, 所以走回起點需要的值為 0</span></span><br><span class="line">    <span class="comment">// 這個初始值想了很久, (1 &lt;&lt; n) - 1 代表所有的點都走過</span></span><br><span class="line">    <span class="comment">// 但我們要列舉他的前一步, 所以是 ((1 &lt;&lt; n) - 1) - 1</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> S = (<span class="number">1</span> &lt;&lt; n) - <span class="number">2</span>; S &gt;= <span class="number">0</span>; S--)&#123; <span class="comment">// 列舉所有狀態</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> v = <span class="number">0</span>; v &lt; n; v++)&#123; <span class="comment">// 列舉目前起點</span></span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> u = <span class="number">0</span>; u &lt; n; u++)&#123; <span class="comment">// 列舉下一步的點</span></span><br><span class="line">                <span class="keyword">if</span> (!((S &gt;&gt; u) &amp; <span class="number">1</span>))</span><br><span class="line">                    dp[S][v] = min(dp[S][v], dp[S | <span class="number">1</span> &lt;&lt; u][u] + d[v][u]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 什麼點都還沒走, 目前的點是起點 0, 要走完剩餘的點回到起點的值即為答案</span></span><br><span class="line">    <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例題"><a href="#例題" class="headerlink" title="例題"></a>例題</h2><ol>
-<li>POJ 3311</li>
-<li>HDU 5418</li>
-</ol>
 
             </div>
             <div class="toggle-input article-more-link"><a>Read More +</a></div>
@@ -684,7 +675,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -695,6 +686,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/08/08/camera-frame-world-frame/">相機座標系、世界座標系</a>
+          </li>
         
           <li>
             <a href="/2018/07/18/mac-x11-forward/">Mac OSX 遠端連線 GUI</a>
@@ -710,10 +705,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2018/04/14/tioj1072/">TIOJ 1072 A.誰先晚餐</a>
-          </li>
-        
-          <li>
-            <a href="/2018/04/14/uva11389/">Uva 11389 - The Bus Driver Problem</a>
           </li>
         
       </ul>
