@@ -77,6 +77,10 @@ ga('send', 'pageview');
   <time datetime="2018-09-14T02:29:17.000Z" itemprop="datePublished">2018-09-14</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/Linux/">Linux</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -85,14 +89,14 @@ ga('send', 'pageview');
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/14/cmake-find-package/">cmake-find-package</a>
+      <a class="article-title" href="/2018/09/14/cmake-find-package/">CMake 搜尋函式庫 find_package()</a>
     </h1>
   
 
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/09/14/cmake-find-package/" data-id="cjm1go08r004m086xpx0kp1ud" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/09/14/cmake-find-package/" data-id="cjm26sylm004giq6xrquiap9p" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/09/14/cmake-find-package/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -103,9 +107,19 @@ ga('send', 'pageview');
           
           
             <div class="toggle-content">
-              <h1 id="目錄"><a href="#目錄" class="headerlink" title="目錄"></a>目錄</h1><p>#<br><a href="">題目</a></p>
-<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><pre><code class="cpp">
-</code></pre>
+              <p>最近使用 CMake 時<br>使用到了 OpenCV 這個庫<br>不過因為我電腦裡面有兩個版本<br>一個是 ROS 自裝的, 一個是自己編譯好的<br>他一直找到舊版本的函式庫<br>於是自己就好奇他是如何找到的</p>
+<p>當我們呼叫 find_package(套件) 時, 他會從以下步驟搜尋 Find<name>.cmake 檔</name></p>
+<ol>
+<li>從 ${CMAKE_MODULE_PATH} 這個變數中的路徑去搜尋<br>通常這個是 project 中的 cmake 資料夾</li>
+<li>如果找不到, 會到 cmake 中的模組搜尋, 路徑通常是 /usr/share/cmake-x.y/Modules</li>
+<li>最後一種是套件安裝時, 會在他自己的資料夾產生 .cmake 檔讓別人搜尋, 稱為配置模式, 尋找 <name>Config.cmake</name></li>
+</ol>
+<p>當找到 .cmake 檔時<br>會配置以下變數<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;NAME&gt;_FOUND</span><br><span class="line">&lt;NAME&gt;_INCLUDE_DIRS or &lt;NAME&gt;_INCLUDES</span><br><span class="line">&lt;NAME&gt;_LIBRARIES or &lt;NAME&gt;_LIBRARIES or &lt;NAME&gt;_LIBS</span><br><span class="line">&lt;NAME&gt;_DEFINITIONS</span><br></pre></td></tr></table></figure></p>
+<p>以 OpenCV 為例, 就會先在模組找 FindOpenCV.cmake<br>找不到再去找 OpenCVConfig.cmake</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ol>
+<li><a href="https://blog.csdn.net/u011092188/article/details/61425924" target="_blank" rel="noopener">https://blog.csdn.net/u011092188/article/details/61425924</a></li>
+<li><a href="https://blog.csdn.net/haluoluo211/article/details/80559341" target="_blank" rel="noopener">https://blog.csdn.net/haluoluo211/article/details/80559341</a></li>
+</ol>
 
             </div>
             <div class="toggle-input article-more-link"><a>Read More +</a></div>
@@ -144,7 +158,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/09/11/bluetooth-keyboard-dual-boot-ubuntu/" data-id="cjm1go075000k086xarz5wklg" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/09/11/bluetooth-keyboard-dual-boot-ubuntu/" data-id="cjm26syjp000miq6x8qgenciz" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/09/11/bluetooth-keyboard-dual-boot-ubuntu/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -229,7 +243,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/08/08/camera-frame-world-frame/" data-id="cjm1go07d0015086x725hiju0" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/08/08/camera-frame-world-frame/" data-id="cjm26syju000uiq6xxrnn2q27" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/08/08/camera-frame-world-frame/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -348,7 +362,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/07/18/mac-x11-forward/" data-id="cjm1go09e006i086xmr17wd3c" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/07/18/mac-x11-forward/" data-id="cjm26symg006miq6xc87mehpe" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/07/18/mac-x11-forward/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -409,7 +423,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/05/06/ML-Get-Started-1/" data-id="cjm1go078000q086xnf7rc5ny" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/05/06/ML-Get-Started-1/" data-id="cjm26syjt000siq6xelfot5dl" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/05/06/ML-Get-Started-1/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -458,7 +472,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/04/14/uva11269/" data-id="cjm1go0e300i2086xtiwoo0bc" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/04/14/uva11269/" data-id="cjm26syr800imiq6xflvi72i5" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/04/14/uva11269/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -514,7 +528,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/04/14/tioj1072/" data-id="cjm1go0d200fj086xh8i69p13" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/04/14/tioj1072/" data-id="cjm26sypw00fqiq6xca9immpd" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/04/14/tioj1072/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -571,7 +585,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/04/14/uva11389/" data-id="cjm1go0e400i5086x1wy01xiw" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/04/14/uva11389/" data-id="cjm26syrc00iwiq6x2vr449rh" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/04/14/uva11389/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -627,7 +641,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/04/13/job-scheduling/" data-id="cjm1go0990063086xqp5ztpwu" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/04/13/job-scheduling/" data-id="cjm26sym90066iq6xp5odr9rm" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/04/13/job-scheduling/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -689,7 +703,7 @@ Z_{w}\\
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/04/13/poj1201/" data-id="cjm1go09s007l086xmir6xset" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/04/13/poj1201/" data-id="cjm26syml0075iq6xj3wp6w87" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/04/13/poj1201/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -736,7 +750,7 @@ Z_{w}\\
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">31</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">180</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">32</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">180</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -778,7 +792,7 @@ Z_{w}\\
       <ul>
         
           <li>
-            <a href="/2018/09/14/cmake-find-package/">cmake-find-package</a>
+            <a href="/2018/09/14/cmake-find-package/">CMake 搜尋函式庫 find_package()</a>
           </li>
         
           <li>
