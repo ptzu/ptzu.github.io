@@ -72,6 +72,71 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-uva10319" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2018/03/08/uva10319/" class="article-date">
+  <time datetime="2018-03-08T04:02:59.000Z" itemprop="datePublished">2018-03-08</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Uva/">Uva</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/03/08/uva10319/">Uva 10319 - Manhattan</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2018/03/08/uva10319/" data-id="cjn72v7ld00hxew6xmkj525qu" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2018/03/08/uva10319/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/2-SAT/">2-SAT</a></li></ul>
+
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&amp;Itemid=8&amp;page=show_problem&amp;category=15&amp;problem=1260" target="_blank" rel="noopener">題目</a></p>
+<h2 id="input"><a href="#input" class="headerlink" title="input"></a>input</h2><p>含多筆測資, 輸入 T, 代表 T 座城市<br>每筆測資開頭輸入 r, c, m (0 &lt;= r,c &lt;= 20)(0 &lt;= m &lt;= 200)<br>代表 street, avenue, route 數量<br>接著 m 條 route<br>輸入起點與終點</p>
+<h2 id="題解"><a href="#題解" class="headerlink" title="題解"></a>題解</h2><p>每座城市有 r 條 street(東西向), c 條 avenue(南北向)<br>替每條路指定方向(只能往東南西北一個方向)<br>定義一條合法的 route 為起點走到終點, 走的路都為指定方向<br>而一條 simple route, 就是路程中最多一次轉向</p>
+<p>給 M 對起點終點, 若有至少一條 simple route 就輸出 Yes<br>反之 No</p>
+<h2 id="作法"><a href="#作法" class="headerlink" title="作法"></a>作法</h2><p>判斷 2-SAT 是否為 true</p>
+<p>將一條路當成一個邏輯變數<br>先定義向東以及向南為 True<br>假設起點為 (r1, c1), 終點為 (r2, c2)</p>
+<p><center><span>$(r1\wedge c2)\vee (c1\wedge r2)$</span><!-- Has MathJax --></center><br><img src="https://i.imgur.com/umrd6BO.png" alt=""></p>
+<p>若有<span>$r1 &gt; r2 or c1 &gt; c2$</span><!-- Has MathJax -->的狀況<br>就會有一邊要走反向, 也就是對那個變數取 not</p>
+<p><center><span>$(\neg r1\wedge \neg c2)\vee (\neg c1\wedge \neg r2)$</span><!-- Has MathJax --></center><br><img src="https://i.imgur.com/G85p2fw.png" alt=""></p>
+<p>利用分配率, 可以將原式整理成</p>
+<p><center><span>$((r1\wedge c2)\vee c1)\wedge ((r1\wedge c2)\vee r2)$</span><!-- Has MathJax --></center></p>
+<p><center><span>$(r1\vee c1)\wedge (c2\vee c1)\wedge (r1\vee r2)\wedge (c2\vee r2)$</span><!-- Has MathJax --></center><br>然後就可以用 2-SAT 求解了</p>
+<p>另外當 r1 == r2, c1 == c2 時只會有一條路<br>但不影響求解</p>
+<h2 id="AC-code"><a href="#AC-code" class="headerlink" title="AC code"></a>AC code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">typedef</span> pair &lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt; pii;</span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> pb push_back</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> sz(a) (int)a.size()</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> INF 0x3f3f3f3f</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> st first</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> nd second</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> fio ios::sync_with_stdio(false), cin.tie(0)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> DEBUG(x) printf(<span class="meta-string">"Here: %d\n"</span>, x), exit(0);</span></span><br><span class="line"><span class="comment">// LLONG_MIN LLONG_MAX INT_MIN INT_MAX</span></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_V = <span class="number">10010</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> r, c, m;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">TwoSAT</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> V, E;</span><br><span class="line">    <span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; g[MAX_V * <span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> dfn[MAX_V * <span class="number">2</span>], low[MAX_V * <span class="number">2</span>], sccid[MAX_V * <span class="number">2</span>], tot, scc_cnt;</span><br><span class="line">    <span class="built_in">stack</span> &lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line">    <span class="keyword">bool</span> in_stack[MAX_V * <span class="number">2</span>];</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>-&gt;V = n * <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++) g[i].clear();</span><br><span class="line">        <span class="built_in">memset</span>(dfn, <span class="number">0</span>, <span class="keyword">sizeof</span>(dfn));</span><br><span class="line">        <span class="built_in">memset</span>(low, <span class="number">0</span>, <span class="keyword">sizeof</span>(low));</span><br><span class="line">        <span class="built_in">memset</span>(sccid, <span class="number">0</span>, <span class="keyword">sizeof</span>(sccid));</span><br><span class="line">        tot = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">addClause</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> xflag, <span class="keyword">int</span> y, <span class="keyword">int</span> yflag)</span></span>&#123;</span><br><span class="line">        x = x * <span class="number">2</span> + xflag;</span><br><span class="line">        y = y * <span class="number">2</span> + yflag;</span><br><span class="line">        g[x ^ <span class="number">1</span>].pb(y);</span><br><span class="line">        g[y ^ <span class="number">1</span>].pb(x);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        dfn[x] = low[x] = ++tot;</span><br><span class="line">        in_stack[x] = <span class="literal">true</span>;</span><br><span class="line">        S.push(x);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(g[x]); i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> v = g[x][i];</span><br><span class="line">            <span class="keyword">if</span>(!dfn[v])&#123;</span><br><span class="line">                dfs(v);</span><br><span class="line">                low[x] = min(low[x], low[v]);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(in_stack[v])&#123;</span><br><span class="line">                low[x] = min(low[x], dfn[v]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(dfn[x] == low[x])&#123;</span><br><span class="line">            <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> v = S.top(); S.pop();</span><br><span class="line">                in_stack[v] = <span class="literal">false</span>;</span><br><span class="line">                sccid[v] = scc_cnt;</span><br><span class="line">                <span class="keyword">if</span>(v == x) <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            scc_cnt++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">()</span></span>&#123;</span><br><span class="line">        scc_cnt = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(!dfn[i]) dfs(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">bool</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">        tarjan();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i += <span class="number">2</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(sccid[i] == sccid[i ^ <span class="number">1</span>]) <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;solver;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> TC;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>, &amp;TC);</span><br><span class="line">    <span class="keyword">while</span>(TC--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>, &amp;r, &amp;c, &amp;m);</span><br><span class="line">        solver.init(r + c);</span><br><span class="line">        <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">            <span class="keyword">int</span> r1, c1, r2, c2;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%d%d%d%d"</span>, &amp;r1, &amp;c1, &amp;r2, &amp;c2);</span><br><span class="line">            r1--;c1--;r2--;c2--;</span><br><span class="line">            c1 += r; c2 += r;</span><br><span class="line">            <span class="keyword">int</span> rflag = c1 &lt; c2, cflag = r1 &lt; r2;</span><br><span class="line">            <span class="keyword">if</span>(r1 == r2 &amp;&amp; c1 == c2) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(r1 == r2) solver.addClause(r1, rflag, r2, rflag);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(c1 == c2) solver.addClause(c1, cflag, c2, cflag);</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                solver.addClause(r1, rflag, c1, cflag);</span><br><span class="line">                solver.addClause(c2, cflag, c1, cflag);</span><br><span class="line">                solver.addClause(r1, rflag, r2, rflag);</span><br><span class="line">                solver.addClause(c2, cflag, r2, rflag);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(solver.solve()) <span class="built_in">puts</span>(<span class="string">"Yes"</span>);</span><br><span class="line">        <span class="keyword">else</span> <span class="built_in">puts</span>(<span class="string">"No"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-template-twoSAT" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/03/08/template-twoSAT/" class="article-date">
@@ -97,7 +162,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/08/template-twoSAT/" data-id="cjmj42c7u00g0uc6xmn67egxc" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/08/template-twoSAT/" data-id="cjn72v7k000fuew6xzoyy2lbg" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/08/template-twoSAT/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -174,7 +239,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/06/poj1523/" data-id="cjmj42c3d007xuc6x5tqa5oxd" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/06/poj1523/" data-id="cjn72v7gx0087ew6x86nbcy0u" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/06/poj1523/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -230,7 +295,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/06/poj2117/" data-id="cjmj42c3n008tuc6x2lf2vh5r" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/06/poj2117/" data-id="cjn72v7h7008pew6xxfyczf4r" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/06/poj2117/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -286,7 +351,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/06/poj3352/" data-id="cjmj42c4w00b9uc6xpsut3d70" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/06/poj3352/" data-id="cjn72v7i300b8ew6xc56ymm7g" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/06/poj3352/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -345,7 +410,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/04/uva796/" data-id="cjmj42c9v00kguc6x16l8mm7r" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/04/uva796/" data-id="cjn72v7mu00l1ew6x5u73curn" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/04/uva796/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -401,7 +466,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/04/template-bcc/" data-id="cjmj42c5s00dpuc6xqfc1r1zd" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/04/template-bcc/" data-id="cjn72v7j500drew6x365dbwn9" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/04/template-bcc/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -482,7 +547,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/02/template-Articulation-Point/" data-id="cjmj42c5b00ccuc6xdfn6m9vq" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/02/template-Articulation-Point/" data-id="cjn72v7io00ckew6x84cku9le" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/02/template-Articulation-Point/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -555,7 +620,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/02/poj1144/" data-id="cjmj42c37007guc6xf9oojb8z" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/02/poj1144/" data-id="cjn72v7gl007few6x91jh87kz" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/02/poj1144/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -612,7 +677,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/03/01/uoj146/" data-id="cjmj42c8000gauc6xo5g989du" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/03/01/uoj146/" data-id="cjn72v7ki00geew6xrd6uap55" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/03/01/uoj146/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -644,79 +709,6 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-template-scc" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/02/27/template-scc/" class="article-date">
-  <time datetime="2018-02-27T15:58:21.000Z" itemprop="datePublished">2018-02-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/解題區/">解題區</a>►<a class="article-category-link" href="/categories/解題區/Template/">Template</a>►<a class="article-category-link" href="/categories/解題區/Template/Graph/">Graph</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/02/27/template-scc/">強連通單元 SCC</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/02/27/template-scc/" data-id="cjmj42c7h00fkuc6x6v1f3wl8" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2018/02/27/template-scc/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>強連通單元為一集合, 集合內任取兩點, 都可以互相連通<br>任何有向圖都能分解成幾個 SCC<br>將 SCC 縮成一個點就會變成 DAG<br>求 SCC 數量方法有兩種</p>
-<ol>
-<li>Tarjan</li>
-<li>跑兩次 DFS</li>
-</ol>
-<h1 id="Tarjan"><a href="#Tarjan" class="headerlink" title="Tarjan"></a>Tarjan</h1><p>dfn[i]: DFS的順序(時間編號)<br>low[i]: <del>能到達 i 的最小的時間編號</del> i 能達到的最小時間編號</p>
-<p>在理解的時候有幾個問題</p>
-<ol>
-<li>stack 的作用？<br>用來存放已經走過, 但還沒變成 SCC 的點</li>
-<li>in_stack 陣列存在的必要性？<br>在看網路很多模版的時候, 他們是取作 vis 陣列的<br>而我想說既然有 dfn 陣列, 那還沒有時間戳的點肯定是沒走過的<br>為何需要 vis 陣列？<br>首先走過的點可分為兩種<br>一種是在 stack 裏面, 另一種是不在了<br>當一個點不在 stack 內, 代表已經成為一個 SCC<br>若我們拿別的 SCC 來更新自己 low 值肯定出錯<br>因為已成為 SCC 的點不可能再走到當前點了<br>所以我認為取做 in_stack 更加恰當, 只有在 stack 的點可以更新當前 low 值</li>
-<li>要用 dfn 還是 low 更新？<br>第 19 行網路上幾乎都是用 dfn 更新<br>但我想想, 在 stack 的點若可走到當前點<br>那個點的 low 值也一定可以走到當前點<br>所以用 low 值更新應該沒錯吧(?<br>而且也比較好記</li>
-</ol>
-<font color="red"><br>更新: 原來自己 low 的定義搞錯了<br>low 是 i 可以走到的最小點, 而不是走到 i 的最小點<br>所以拿 dfn 更新是正確的<br>雖然拿 low 更新, 在算 SCC 時不會錯<br>因為如果那點可以走到某個點, 那我接上他, 我必定可以走到那個點<br>不過在算關節點就會錯了GG(因為會以為有一條邊連到祖先)<br></font>
-
-
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_V = <span class="number">10010</span>;</span><br><span class="line"><span class="keyword">int</span> V, E;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; g[MAX_V];</span><br><span class="line"><span class="keyword">int</span> dfn[MAX_V], low[MAX_V], component[MAX_V], tot, ans, scc_cnt;</span><br><span class="line"><span class="built_in">stack</span> &lt;<span class="keyword">int</span>&gt; S;</span><br><span class="line"><span class="keyword">bool</span> in_stack[MAX_V];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    dfn[x] = low[x] = ++tot;</span><br><span class="line">    in_stack[x] = <span class="literal">true</span>;</span><br><span class="line">    S.push(x);</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(g[x]); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> v = g[x][i];</span><br><span class="line">        <span class="keyword">if</span>(!dfn[v])&#123;</span><br><span class="line">            dfs(v);</span><br><span class="line">            low[x] = min(low[x], low[v]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(in_stack[v])&#123;</span><br><span class="line">            low[x] = min(low[x], dfn[v]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(dfn[x] == low[x])&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> v = S.top(); S.pop();</span><br><span class="line">            in_stack[v] = <span class="literal">false</span>;</span><br><span class="line">            component[v] = scc_cnt;</span><br><span class="line">            <span class="keyword">if</span>(v == x) <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        scc_cnt++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">tarjan</span><span class="params">()</span></span>&#123;</span><br><span class="line">    scc_cnt = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!dfn[i]) dfs(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h1 id="兩次-DFS"><a href="#兩次-DFS" class="headerlink" title="兩次 DFS"></a>兩次 DFS</h1><p>首先建圖的時候還要額外建一個反向後的圖<br>然後跑第一次 DFS, 回溯時替點加上編號, 也就是愈晚拜訪的編號愈小<br>最後再從編號最大的跑第二次 DFS, 而這次 DFS 跑的是反向的邊<br>所有經過的點就是一個 SCC</p>
-<p>為何這樣就可以找到 SCC 呢？<br>原因是 SCC 內的點互通, 反向後不影響連通性<br>但 SCC 外的點由於是指向 SCC, 所以反向後就斷開了</p>
-<p>時間複雜度： O(|V|+|E|)</p>
-<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> MAX_V = <span class="number">10010</span>;</span><br><span class="line"><span class="keyword">int</span> V, E;</span><br><span class="line"><span class="built_in">vector</span> &lt;<span class="keyword">int</span>&gt; g[MAX_V], rg[MAX_V], vs;</span><br><span class="line"><span class="keyword">bool</span> vis[MAX_V];</span><br><span class="line"><span class="keyword">int</span> component[MAX_V];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    vis[x] = <span class="literal">true</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(g[x]); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = g[x][i];</span><br><span class="line">        <span class="keyword">if</span>(!vis[u]) dfs(u);</span><br><span class="line">    &#125;</span><br><span class="line">    vs.pb(x);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rdfs</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> k)</span></span>&#123;</span><br><span class="line">    vis[x] = <span class="literal">true</span>;</span><br><span class="line">    component[x] = k;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; sz(rg[x]); i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u = rg[x][i];</span><br><span class="line">        <span class="keyword">if</span>(!vis[u]) rdfs(u, k);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">scc</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">    vs.clear();</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; V; i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[i]) dfs(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">memset</span>(vis, <span class="number">0</span>, <span class="keyword">sizeof</span>(vis));</span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i = sz(vs) - <span class="number">1</span>; i &gt;= <span class="number">0</span>; i--)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!vis[vs[i]]) rdfs(vs[i], k++);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> k;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="例題"><a href="#例題" class="headerlink" title="例題"></a>例題</h2><ol>
-<li>POJ 2186(非裸題)</li>
-<li>UOJ 146</li>
-</ol>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
@@ -731,7 +723,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">35</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">180</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">35</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">180</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">40</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">42</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">47</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -760,7 +752,7 @@ ga('send', 'pageview');
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -771,6 +763,10 @@ ga('send', 'pageview');
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2018/10/13/diary-20181013/">踩坑無數的一週...</a>
+          </li>
         
           <li>
             <a href="/2018/09/24/epipolar-geometry/">對極幾何 Epipolar Geometry</a>
@@ -786,10 +782,6 @@ ga('send', 'pageview');
         
           <li>
             <a href="/2018/09/14/cmake-find-package/">CMake 搜尋函式庫 find_package()</a>
-          </li>
-        
-          <li>
-            <a href="/2018/09/11/bluetooth-keyboard-dual-boot-ubuntu/">藍芽鍵盤於 Windows 和 Ubuntu 雙系統之配對與開機</a>
           </li>
         
       </ul>
