@@ -5,17 +5,17 @@
   
   <title>Manacher&#39;s algorithm | Kamikaze&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: $#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
+  <meta name="description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: \$#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Manacher&#39;s algorithm">
 <meta property="og:url" content="http://abcd40404.github.io/2018/12/02/template-Manacher/index.html">
 <meta property="og:site_name" content="Kamikaze&#39;s blog">
-<meta property="og:description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: $#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
+<meta property="og:description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: \$#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2018-12-02T02:25:42.692Z">
+<meta property="og:updated_time" content="2018-12-02T02:40:52.394Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Manacher&#39;s algorithm">
-<meta name="twitter:description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: $#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
+<meta name="twitter:description" content="求出最長迴文子字串時間複雜度: $O(n)$ 原字串: abcba變成: \$#a#b#c#b#a# 輸入這樣做的原因是方便處理奇偶數長度的字串符號 $ 只是讓字串在擴展的時候有個中止條件 若以每個點為中心展開去找迴文的話是$O(n^{2})$為什麼這個演算法可以達到 O(n) ?他巧妙的利用到了迴文字串左右對稱的特性因此有很多子字串不必重複計算 網路上很多文章都寫得很複雜其實這演算法就分為兩部分">
   
     <link rel="alternate" href="/atom.xml" title="Kamikaze&#39;s blog" type="application/atom+xml">
   
@@ -99,7 +99,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/12/02/template-Manacher/" data-id="cjp69klql00e4nu6xplut4xz8" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/12/02/template-Manacher/" data-id="cjp6a442p00dqqr6xsuop80fq" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/12/02/template-Manacher/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -117,7 +117,7 @@ ga('send', 'pageview');
           
           
             <p>求出最長迴文子字串<br>時間複雜度: <span>$O(n)$</span><!-- Has MathJax --></p>
-<p>原字串: abcba<br>變成: $#a#b#c#b#a# 輸入<br>這樣做的原因是方便處理奇偶數長度的字串<br>符號 $ 只是讓字串在擴展的時候有個中止條件</p>
+<p>原字串: abcba<br>變成: \$#a#b#c#b#a# 輸入<br>這樣做的原因是方便處理奇偶數長度的字串<br>符號 $ 只是讓字串在擴展的時候有個中止條件</p>
 <p>若以每個點為中心展開去找迴文的話是<span>$O(n^{2})$</span><!-- Has MathJax --><br>為什麼這個演算法可以達到 O(n) ?<br>他巧妙的利用到了迴文字串左右對稱的特性<br>因此有很多子字串不必重複計算</p>
 <p>網路上很多文章都寫得很複雜<br>其實這演算法就分為兩部分</p>
 <ol>
