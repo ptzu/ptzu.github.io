@@ -72,6 +72,192 @@ ga('send', 'pageview');
       <div class="outer">
         <section id="main">
   
+    <article id="post-homography-matrix" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/26/homography-matrix/" class="article-date">
+  <time datetime="2019-03-26T14:22:39.000Z" itemprop="datePublished">2019-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/視覺SLAM/">視覺SLAM</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/26/homography-matrix/">Homograpy matrix 的求解與應用</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2019/03/26/homography-matrix/" data-id="cju5o2v7v006l1j6xla254oll" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2019/03/26/homography-matrix/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <h1 id="什麼是-Homography-matrix"><a href="#什麼是-Homography-matrix" class="headerlink" title="什麼是 Homography matrix ?"></a>什麼是 Homography matrix ?</h1><p>Homography matrix(單應性矩陣) 是描述兩個二維平面間的轉換</p>
+<p>原本在三維轉換有這樣的關係式:<br><span>$$\begin{bmatrix}
+x\\ 
+y\\ 
+1
+\end{bmatrix}=
+K\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; r_{13} &amp; t_{1} \\ 
+r_{21} &amp; r_{22} &amp; r_{23} &amp; t_{2} \\ 
+r_{31} &amp; r_{32} &amp; r_{33} &amp; t_{3}
+\end{bmatrix}
+\begin{bmatrix}
+X\\ 
+Y\\ 
+Z\\
+1
+\end{bmatrix}$$</span><!-- Has MathJax --></p>
+<p>但是現在是兩個平面間的轉換<br>所以 Z = 0<br>改寫式子成<br><span>$$\begin{bmatrix}
+x\\ 
+y\\ 
+w
+\end{bmatrix}=
+K\begin{bmatrix}
+r_{11} &amp; r_{12} &amp; t_{1} \\ 
+r_{21} &amp; r_{22} &amp; t_{2} \\ 
+r_{31} &amp; r_{32} &amp;  t_{3}
+\end{bmatrix}
+\begin{bmatrix}
+X\\ 
+Y\\ 
+W
+\end{bmatrix}$$</span><!-- Has MathJax --><br>令中間的轉換矩陣為 H<br>也就是我們要的 Homography matrix<br><span>$$\begin{bmatrix}
+x\\ 
+y\\ 
+w
+\end{bmatrix}=
+H
+\begin{bmatrix}
+X\\ 
+Y\\ 
+W
+\end{bmatrix}$$</span><!-- Has MathJax --></p>
+<h1 id="如何求得-Homography-matrix"><a href="#如何求得-Homography-matrix" class="headerlink" title="如何求得 Homography matrix ?"></a>如何求得 Homography matrix ?</h1><p>我們先將 H 寫成下面形式:<br><span>$$\begin{bmatrix}
+x\\ 
+y\\ 
+w
+\end{bmatrix}=
+\begin{bmatrix}
+h_{11} &amp; h_{12} &amp; h_{13} \\ 
+h_{21} &amp; h_{22} &amp; h_{23} \\ 
+h_{31} &amp; h_{32} &amp; h_{33} 
+\end{bmatrix}
+\begin{bmatrix}
+X\\ 
+Y\\ 
+W
+\end{bmatrix}$$</span><!-- Has MathJax --><br>其中 w = W = 1<br>由於是齊次座標, 所以<br><span>$${x}&apos; = \frac{x}{w}\\
+{y}&apos; = \frac{y}{w}$$</span><!-- Has MathJax --><br>然後將式子展開:<br><span>$${x}&apos; = \frac{h_{11}X+h_{12}Y+h_{13}W}{h_{31}X+h_{32}Y+h_{33}W}\\
+{y}&apos; = \frac{h_{21}X+h_{22}Y+h_{23}W}{h_{31}X+h_{32}Y+h_{33}W}$$</span><!-- Has MathJax --><br>整理式子得到:<br><span>$${x}&apos;Xh_{31}+{x}&apos;Yh_{32}+{x}&apos;h_{33}-Xh_{11}-Yh_{12}-h_{13}=0\\
+{y}&apos;Xh_{31}+{y}&apos;Yh_{32}+{y}&apos;h_{33}-Xh_{21}-Yh_{22}-h_{23}=0$$</span><!-- Has MathJax --><br>寫成矩陣形式:<br><span>$$\begin{bmatrix}
+-X &amp; -Y &amp; -1 &amp; 0 &amp; 0 &amp; 0 &amp; X{x}&apos; &amp; Y{x}&apos; &amp; {x}&apos;\\ 
+0 &amp; 0 &amp; 0 &amp; -X &amp; -Y &amp; -1 &amp; X{y}&apos; &amp; Y{y}&apos; &amp; {y}&apos;\\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; \\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; \\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; \\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; \\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; \\ 
+ &amp;  &amp;  &amp;  &amp; . &amp;  &amp;  &amp;  &amp; 
+\end{bmatrix}
+\begin{bmatrix}
+h_{11}\\ 
+h_{12}\\ 
+h_{13}\\ 
+h_{21}\\ 
+h_{22}\\ 
+h_{23}\\ 
+h_{31}\\ 
+h_{32}\\ 
+h_{33}
+\end{bmatrix} = 0$$</span><!-- Has MathJax --><br>H 矩陣有 8 自由度<br>有了 4 組對應點<br>我們可以透過 SVD 求得 H(???不懂)</p>
+<h1 id="虛擬佈告欄-應用"><a href="#虛擬佈告欄-應用" class="headerlink" title="虛擬佈告欄 應用"></a>虛擬佈告欄 應用</h1><p>待補</p>
+<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ol>
+<li><a href="http://ros-developer.com/2017/12/26/finding-homography-matrix-using-singular-value-decomposition-and-ransac-in-opencv-and-matlab/" target="_blank" rel="noopener">Finding Homography Matrix using Singular-value Decomposition and RANSAC in OpenCV and Matlab</a></li>
+<li><a href="https://math.stackexchange.com/questions/494238/how-to-compute-homography-matrix-h-from-corresponding-points-2d-2d-planar-homog" target="_blank" rel="noopener">How to compute homography matrix H from corresponding points (2d-2d planar Homography)</a></li>
+<li><a href="https://www.learnopencv.com/homography-examples-using-opencv-python-c/" target="_blank" rel="noopener">Homography Examples using OpenCV ( Python / C ++ )</a></li>
+<li><a href="https://loopvoid.github.io/2017/02/20/%E5%8D%95%E6%98%A0%E6%80%A7%E5%8F%98%E6%8D%A2/" target="_blank" rel="noopener">单映性变换</a></li>
+</ol>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
+    <article id="post-grub-repair" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/26/grub-repair/" class="article-date">
+  <time datetime="2019-03-26T14:17:53.000Z" itemprop="datePublished">2019-03-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/26/grub-repair/">Grub 修復</a>
+    </h1>
+  
+
+      </header>
+    
+    <footer class="article-footer">
+      <a data-url="http://abcd40404.github.io/2019/03/26/grub-repair/" data-id="cju5o2v7j005l1j6x5z6pj2zn" class="article-share-link">Share</a>
+      
+        <a href="http://abcd40404.github.io/2019/03/26/grub-repair/#disqus_thread" class="article-comment-link">Comments</a>
+      
+      
+    </footer>
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+          
+            <div class="toggle-content">
+              <p>最近更新 Linux 的時候<br>其中一項提到了 grub<br>當下覺得不妙, 只好硬是選了一個看起來不影響的設定<br>結果還是悲劇了<br>之前用 EasyBCD 的開機選單就消失了<br>完全回不去 Windows<br>Grub 裡面也沒有 Windows 的選項<br>最後找到了這個東西順利修復<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo add-apt-repository ppa:yannubuntu/boot-repair</span><br><span class="line"></span><br><span class="line">sudo apt-get update</span><br><span class="line"></span><br><span class="line">sudo apt-get install -y boot-repair</span><br></pre></td></tr></table></figure></p>
+
+            </div>
+            <div class="toggle-input article-more-link"><a>Read More +</a></div>
+          
+      
+    </div>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-template-Manacher" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2018/12/02/template-Manacher/" class="article-date">
@@ -97,7 +283,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/12/02/template-Manacher/" data-id="cjtpo8k2t00du346x6iji44c7" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/12/02/template-Manacher/" data-id="cju5o2vaw00eb1j6xa7tpups6" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/12/02/template-Manacher/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -166,7 +352,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/12/02/leetcode5/" data-id="cjtpo8jzy006m346x7p5rh7ft" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/12/02/leetcode5/" data-id="cju5o2v7z006x1j6xu6hoxuks" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/12/02/leetcode5/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -222,7 +408,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/11/22/bundler-sfm-introduction/" data-id="cjtpo8jxr0016346xnoqosx8v" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/11/22/bundler-sfm-introduction/" data-id="cju5o2v5m000s1j6x46hyexfo" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/11/22/bundler-sfm-introduction/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -296,7 +482,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/11/21/poj1651/" data-id="cjtpo8k0q008k346xbclo0pz3" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/11/21/poj1651/" data-id="cju5o2v8p008x1j6xl2gqoosg" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/11/21/poj1651/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -352,7 +538,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/11/21/uva348/" data-id="cjtpo8k5t00ko346xwnkdpfbj" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/11/21/uva348/" data-id="cju5o2vey00qm1j6x26v2e0sr" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/11/21/uva348/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -408,7 +594,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/10/20/hidden-surface-removal/" data-id="cjtpo8jzn005y346x3nx2x2tx" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/10/20/hidden-surface-removal/" data-id="cju5o2v7u006h1j6xgvrk2yf3" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/10/20/hidden-surface-removal/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -482,7 +668,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/10/20/OpenGL-on-Windows/" data-id="cjtpo8jxh000i346xeumcb8or" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/10/20/OpenGL-on-Windows/" data-id="cju5o2v5j000k1j6xy9cnvqoi" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/10/20/OpenGL-on-Windows/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -546,7 +732,7 @@ ga('send', 'pageview');
       </header>
     
     <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/10/13/diary-20181013/" data-id="cjtpo8jze0057346xbkt4n2uw" class="article-share-link">Share</a>
+      <a data-url="http://abcd40404.github.io/2018/10/13/diary-20181013/" data-id="cju5o2v7i005h1j6x09zi4wms" class="article-share-link">Share</a>
       
         <a href="http://abcd40404.github.io/2018/10/13/diary-20181013/#disqus_thread" class="article-comment-link">Comments</a>
       
@@ -589,235 +775,10 @@ ga('send', 'pageview');
 
 
   
-    <article id="post-epipolar-geometry" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/24/epipolar-geometry/" class="article-date">
-  <time datetime="2018-09-24T02:40:17.000Z" itemprop="datePublished">2018-09-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/24/epipolar-geometry/">對極幾何 Epipolar Geometry</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/09/24/epipolar-geometry/" data-id="cjtpo8jzp0063346x2agl8ey3" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2018/09/24/epipolar-geometry/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <p>對於一個場景, 透過兩個位置不同的相機觀看<br>這兩幅圖像之間會有一些點對應關係<br>整張圖所形成的幾何關係稱為 Epipolar Gemometry<br>如下圖:<br><img src="https://i.imgur.com/Z61FHfJ.png" alt=""></p>
-<p>兩個相機中心分別為 <span>$O_{1},\ O_{2}$</span><!-- Has MathJax --><br>三維世界座標點 <span>$P$</span><!-- Has MathJax --><br>在兩個像平面 <span>$A_{1},\ A_{2}$</span><!-- Has MathJax --> 投影的點為 <span>$p_{1},\ p_{2}$</span><!-- Has MathJax --><br>而 <span>$P,\ O_{1}\ O_{2}$</span><!-- Has MathJax --> 三點所形成的平面稱為極平面(Epipolar plane)<br><span>$O_{1}O_{2}$</span><!-- Has MathJax -->稱為基線(Baseline), 穿越兩個像平面的點分別為 <span>$e_{1},\ e_{2}$</span><!-- Has MathJax --> 稱為極點(Epipoles)<br>投影點與極點連成的線稱為極線(Epipolar Line): <span>$l_{1},\ l_{2}$</span><!-- Has MathJax --></p>
-<p>我們可以透過兩幀圖像之間的特徵點對應, 進而求出相機的運動</p>
-<h1 id="推導"><a href="#推導" class="headerlink" title="推導"></a>推導</h1><p>設點三維做標點<br><span>$P=[X,Y,Z]^{T}$</span><!-- Has MathJax --><br>對於兩個投影點<br><span>$s_{1}p_{1}=KP\\s_{2}p_{2}=K(RP+t)$</span><!-- Has MathJax --><br>K 是內參矩陣<br>若是用齊次座標, 可以將 s 去除, 因為常數項不影響<br>接著我們覺得 K 有點麻煩, 所以我們用<a href="https://zhuanlan.zhihu.com/p/33583981" target="_blank" rel="noopener">歸一化座標</a><br><span>$x_{1}=K^{-1}p_{1},\ x_{2}=K^{-1}p_{2}$</span><!-- Has MathJax --><br>看公式可以知道這東西其實就是 P<br>而我們不想透過 K 來得到投影點座標<br>反而是直接假設有一個距離相機 z = 1 的平面<br>投影在上面的座標為:<br><span>$$P=\begin{bmatrix}
-\frac{X}{Z}\\ 
-\frac{Y}{Z}\\ 
-1
-\end{bmatrix}$$</span><!-- Has MathJax --><br>來得到二維座標<br>我們可以得到這樣的關係:<br><span>$x_{2}=Rx_{1} + t$</span><!-- Has MathJax --><br>接下來就是數學的一些變換:<br>兩邊同時乘上 <span>$\hat{t}$</span><!-- Has MathJax -->, 相當於與 t 做外積<br><span>$\hat{t}x_{2}=\hat{t}Rx_{1}$</span><!-- Has MathJax --><br>上面的 t 因為和自己做外積, 所以消失了<br>接著左乘 <span>$x_{2}^{T}$</span><!-- Has MathJax --><br>因為 <span>$\hat{t}x_{2}$</span><!-- Has MathJax --> 是一個和 <span>$t,\ x_{2}$</span><!-- Has MathJax --> 垂直的向量<br>再和<span>$x_{2}$</span><!-- Has MathJax --> 做內積就會是 0<br>得到以下式子:<br><span>$x_{2}^{T}\hat{t}Rx_{1} = 0$</span><!-- Has MathJax --><br>此式就稱為 對極約束(Epipolar Constraint)<br>代入 <span>$p_{1}, p_{2}$</span><!-- Has MathJax --><br><span>$p_{2}^{T}K^{-T}\hat{t}RK^{-1}p_{1} = 0$</span><!-- Has MathJax --><br>幾何意義是 <span>$P,\ O_{1},\ O_{2}$</span><!-- Has MathJax --> 共平面<br>將 <span>$\hat{t}R$</span><!-- Has MathJax --> 令成 E, 這東西就稱為本質矩陣(Essential Matrix)<br>若是有包含內參, 就是基本矩陣(Fundamental Matrix)<br><span>$E=\hat{t}R,\ F=K^{-T}EK^{-1}$</span><!-- Has MathJax --><br>進一步簡化約束式:<br><span>$x_{2}^{T}Ex_{1}=p_{2}^{T}Fp_{1}=0$</span><!-- Has MathJax --></p>
-<p>到這邊我們可以得到一個和 x 有關的式子<br>可以藉由配對點對來求得 E 或 F<br>再根據 E 或 F 取得 R, t<br>以上推導來自高翔.</p>
-<h1 id="延伸"><a href="#延伸" class="headerlink" title="延伸"></a>延伸</h1><p>由於約束式的幾何意義是三點共面<br>所以有這樣的式子:<br><span>$(P - p_{1})[(O_{1}-O_{2})\times (P - p_{2})]=0$</span><!-- Has MathJax --><br>我想從這個推回去約束式, 不過一直沒有成功QQ<br>時間關係只好先擱著</p>
-<p>而基本矩陣有一些基本特性:</p>
-<ol>
-<li>rank = 2</li>
-<li>自由度為 5</li>
-</ol>
-<p>可以參考<a href="https://www.youtube.com/watch?v=DgGV3l82NTk" target="_blank" rel="noopener">這首歌</a>ＸＤ</p>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ol>
-<li><a href="https://www.zhihu.com/question/51510464" target="_blank" rel="noopener">相机位姿求解问题？</a></li>
-<li><a href="https://www.zhihu.com/question/27581884" target="_blank" rel="noopener">本质矩阵和基础矩阵的区别是什么？</a></li>
-<li><a href="http://silverwind1982.pixnet.net/blog/post/153221294-pinhole-camera%3A-epipolar-geometry" target="_blank" rel="noopener">Pinhole Camera: Epipolar Geometry(感覺推導有些問題)</a></li>
-<li><a href="http://www.cs.toronto.edu/~jepson/csc420/notes/epiPolarGeom.pdf" target="_blank" rel="noopener">Epipolar Geometry</a></li>
-</ol>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-zhang-method" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2018/09/16/zhang-method/" class="article-date">
-  <time datetime="2018-09-16T13:17:55.000Z" itemprop="datePublished">2018-09-16</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/學習札記/">學習札記</a>►<a class="article-category-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/09/16/zhang-method/">相機內外參數校正與實作 - 張正友法</a>
-    </h1>
-  
-
-      </header>
-    
-    <footer class="article-footer">
-      <a data-url="http://abcd40404.github.io/2018/09/16/zhang-method/" data-id="cjtpo8k6f00ly346xo2w227e3" class="article-share-link">Share</a>
-      
-        <a href="http://abcd40404.github.io/2018/09/16/zhang-method/#disqus_thread" class="article-comment-link">Comments</a>
-      
-      
-    </footer>
-    <div class="article-entry" itemprop="articleBody">
-      
-          
-          
-            <div class="toggle-content">
-              <h1 id="Why-Calitration"><a href="#Why-Calitration" class="headerlink" title="Why Calitration"></a>Why Calitration</h1><p>校正主要分為兩個參數</p>
-<h2 id="內部參數"><a href="#內部參數" class="headerlink" title="內部參數"></a>內部參數</h2><p>相機記錄的是 3D 物體投影到 2D 的影像<br>也就是 image frame, 此時是連續的點<br>而相機中的 CCD sensor 是將這些點存成一格一格離散的 pixel<br>所以我們需要內部參數, 來將 image frame 轉換到 pixel frame<br>內部參數只與相機有關, 和位置無關<br>也就是說每台相機都有自己的內參, 而相機的位置在哪裡並不影響內參</p>
-<h2 id="外部參數"><a href="#外部參數" class="headerlink" title="外部參數"></a>外部參數</h2><p>外部參數則是描述 world frame 和 camera frame 之間的轉換<br>可以由一個旋轉矩陣和平移向量表示<br><span>$$[R|t] = \begin{bmatrix}
-r_{1,1} &amp; r_{1,2} &amp; r_{1,3} &amp; t_{1} \\ 
-r_{2,1} &amp; r_{2,2} &amp; r_{2,3} &amp; t_{2} \\ 
-r_{3,1} &amp; r_{3,2} &amp; r_{3,3} &amp; t_{3} \\ 
-\end{bmatrix}$$</span><!-- Has MathJax --></p>
-<h2 id="為什麼重要"><a href="#為什麼重要" class="headerlink" title="為什麼重要?"></a>為什麼重要?</h2><p>為了精準表達捕捉到的像素, 在真實世界的位置<br>如果參數不準, 我們在利用這些資訊的時候就會有很大的誤差</p>
-<h1 id="計算單應性矩陣-H"><a href="#計算單應性矩陣-H" class="headerlink" title="計算單應性矩陣 H"></a>計算單應性矩陣 H</h1><p>先前在相機模型中, 設三維世界點 <span>$X = [X, Y, Z, 1]^{T}$</span><!-- Has MathJax -->, 二維相機像素座標 <span>$m=[u, v, 1]^{T}$</span><!-- Has MathJax --><br>我們知道這樣的轉換關係: <span>$sm = K[R, T]X$</span><!-- Has MathJax --><br>其中 s 是尺度因子, K 是內參<br><span>$$K = \begin{bmatrix}
-f_{0} &amp; \gamma  &amp; u\\ 
-0 &amp;  f_{1}&amp; v\\ 
-0 &amp;  0&amp; 1
-\end{bmatrix}$$</span><!-- Has MathJax --><br>在棋盤格上我們可以當成是 Z = 0 的平面:<br><span>$$s\begin{bmatrix}
-u\\ 
-v\\ 
-1
-\end{bmatrix}
-= K \begin{bmatrix}
-r_{1} &amp; r_{2} &amp; r_{3} &amp; t
-\end{bmatrix}
-\begin{bmatrix}
-X\\ 
-Y\\ 
-0\\ 
-1
-\end{bmatrix}
-= K \begin{bmatrix}
-r_{1} &amp; r_{2} &amp; t
-\end{bmatrix}
-\begin{bmatrix}
-X\\ 
-Y\\ 
-1
-\end{bmatrix}$$</span><!-- Has MathJax --><br>將 <span>$K[r1, r2, t]$</span><!-- Has MathJax --> 稱為 <a href="http://www.cnblogs.com/wangguchangqing/p/8287585.html" target="_blank" rel="noopener">單應性矩陣(Homography matrix) H</a><br>如此可以用 H 來約束內參和外參<br>而 H 可以透過棋盤和成像平面上的點對應計算出來(尚待學習)<br><span>$$s\begin{bmatrix}
-u\\ 
-v\\ 
-1
-\end{bmatrix}
-= H\begin{bmatrix}
-X\\ 
-Y\\ 
-1
-\end{bmatrix}\\
-H = [h_{1}\  h_{2}\ h_{3}] =\lambda K[r_{1}\ r_{2}\ t]$$</span><!-- Has MathJax --></p>
-<h1 id="計算內參"><a href="#計算內參" class="headerlink" title="計算內參"></a>計算內參</h1><p>我們可以得到<br><span>$$\lambda = \frac{1}{s}
-\\r_{1} = \frac{1}{\lambda }K^{-1}h_{1}
-\\r_{2} = \frac{1}{\lambda }K^{-1}h_{2}$$</span><!-- Has MathJax --><br>因為旋轉矩陣, 所以 r 1  和 r 2 是 orthonormal basis<br>所以r 1  和 r 2的內積為 0 且向量長度均相同為 1<br><span>$$r_{1}^{T}r_{2} = 0
-\\\left \| r1 \right \| = \left \| r2 \right \| = 1$$</span><!-- Has MathJax --><br>代入得到:<br><span>$$h_{1}^{T}K^{-T}K^{-1}h_{2} = 0
-\\h_{1}^{T}K^{-T}K^{-1}h_{1} = h_{2}^{T}K^{-T}K^{-1}h_{2}\\
-K^{-1} = \frac{1}{f_{0}f_{1}}\begin{bmatrix}
-f_{1} &amp;  0&amp; 0\\ 
-\gamma  &amp;  f_{0}&amp; 0\\ 
-\gamma v-f_{1}u &amp;  v&amp; 1
-\end{bmatrix}$$</span><!-- Has MathJax --><br>為了方便計算, 我們定義 B:<br><span>$$B = K^{-T}K^{-1} = \begin{bmatrix}
-B_{11} &amp; B_{12} &amp;B_{13} \\ 
-B_{21} &amp; B_{22} &amp; B_{23}\\ 
-B_{31} &amp; B_{32} &amp; B_{33}
-\end{bmatrix} = 
-\begin{bmatrix}
-\frac{1}{f_{0}^{2}} &amp; -\frac{\gamma }{f_{0}^{2}f_{1}} &amp; \frac{\gamma v_{0} - f_{1}u}{f_{0}^{2}f_{1}}\\ 
--\frac{\gamma }{f_{0}^{2}f_{1}} &amp;  \frac{\gamma ^{2}}{f_{0}^{2}f_{1}^{2}}&amp; -\frac {\gamma (\gamma v-f_{1}u)}{f_{0}^{2}f_{1}^{2}} - \frac{v}{f_{1}^{2}}\\ 
-\frac{\gamma v_{0} - f_{1}u}{f_{0}^{2}f_{1}} &amp;  -\frac {\gamma (\gamma v-f_{1}u)}{f_{0}^{2}f_{1}^{2}} - \frac{v}{f_{1}^{2}}&amp; \frac {(\gamma v-f_{1}u)^{2}}{f_{0}^{2}f_{1}^{2}} + \frac{v^{2}}{f_{1}^{2}} + 1
-\end{bmatrix}$$</span><!-- Has MathJax --><br>發現 B 是斜對稱矩陣, 所以有效元素 6 個, 寫成 b:<br><span>$b = [B_{11}\ B_{12}\ B_{22}\ B_{13}\ B_{23}\ B_{33}]^{T}$</span><!-- Has MathJax --><br>展開推導可得到:<br><span>$$h_{i}^{T}Bh_{j} = \begin{bmatrix}
-h_{i1}h_{j1}\\ 
-h_{i1}h_{j2} + h_{i2}h_{j1}\\ 
-h_{i2}h_{j2}\\ 
-h_{i3}h_{j1} + h_{i1}h_{j3}\\ 
-h_{i3}h_{j2} + h_{i2}h_{j3}\\ 
-h_{i3}h_{j3}
-\end{bmatrix} ^{T}
-\begin{bmatrix}
-B_{11}\\ 
-B_{12}\\ 
-B_{22}\\ 
-B_{13}\\ 
-B_{23}\\ 
-B_{33}
-\end{bmatrix}^{T}
-= v_{ij}^{T}b
-\\ v_{ij}^{T} = [h_{i1}h_{j1}\ h_{i1}h_{j2} + h_{i2}h_{j1}\ h_{i2}h_{j2}\ h_{i3}h_{j1} + h_{i1}h_{j3}\ h_{i3}h_{j2} + h_{i2}h_{j3}\ h_{i3}h_{j3}]$$</span><!-- Has MathJax --><br>回到我們一開始得到的約束式:<br><span>$$\left\{\begin{matrix}
-h_{1}^{T}K^{-T}K^{-1}h_{2} = 0\\ 
-\\h_{1}^{T}K^{-T}K^{-1}h_{1} = h_{2}^{T}K^{-T}K^{-1}h_{2}
-\end{matrix}\right.
-\Rightarrow \left\{\begin{matrix}
-v_{12}^{T} b= 0\\
-v_{11}b = v_{22}b 
-
-\end{matrix}\right.$$</span><!-- Has MathJax --><br>寫成矩陣:<br><span>$$\begin{bmatrix}
-v_{12}^{T}\\ 
-(v_{11}-v_{22})^{T}
-\end{bmatrix}b = 0$$</span><!-- Has MathJax --><br>這邊的 V 其實就是由 H 組成, b 由內參組成<br>每張校正板可以求出一個 H 矩陣, 得到一個 <span>$Vb = 0$</span><!-- Has MathJax --> 的式子<br>可以提供兩個方程式, 內參有五個變數, 所以理論上要三張圖片才能求解<br>我們可以將這些方程式組成一個大線性系統<br>求解出 b 後就能得到內參的各個參數</p>
-<h1 id="計算外參"><a href="#計算外參" class="headerlink" title="計算外參"></a>計算外參</h1><p>得到內參之後<br>就能求得外參<br><span>$$\lambda = 1 / \left \| K^{-1}h_{1} \right \| \\
-r_{1} = \lambda K^{-1}h_{1} \\
-r_{2} = \lambda K^{-1}h_{2} \\
-r_{3} = r_{1} \times r_{2} \\
-t =  \lambda K^{-1}h_{3}$$</span><!-- Has MathJax --></p>
-<h1 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h1><p>待補</p>
-<h1 id="參考"><a href="#參考" class="headerlink" title="參考"></a>參考</h1><ol>
-<li><a href="https://kushalvyas.github.io/calib.html" target="_blank" rel="noopener">Computing the intrinsic camera matrix using Zhangs algorithm</a></li>
-<li><a href="http://hackpad.g0v.link/YYvM1CE8lv2.html" target="_blank" rel="noopener">Camera Calibration(相機校正)</a></li>
-<li><a href="https://blog.csdn.net/u010128736/article/details/52860364" target="_blank" rel="noopener">张正友标定算法原理详解</a></li>
-<li><a href="https://www.cnblogs.com/wangguchangqing/p/8335131.html" target="_blank" rel="noopener">SLAM入门之视觉里程计(6)：相机标定 张正友经典标定法详解</a></li>
-<li><a href="https://blog.csdn.net/dcrmg/article/details/52939318" target="_blank" rel="noopener">张正友相机标定Opencv实现以及标定流程&amp;&amp;标定结果评价&amp;&amp;图像矫正流程解析（附标定程序和棋盘图</a></li>
-<li><a href="https://www.zhihu.com/question/29448299" target="_blank" rel="noopener">机器视觉的相机标定到底是什么？</a></li>
-</ol>
-
-            </div>
-            <div class="toggle-input article-more-link"><a>Read More +</a></div>
-          
-      
-    </div>
-  </div>
-  
-</article>
-
-
-
-  
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/23/">23</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/24/">24</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
   </nav>
 
 </section>
@@ -828,7 +789,7 @@ t =  \lambda K^{-1}h_{3}$$</span><!-- Has MathJax --></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">38</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/計算機圖學/">計算機圖學</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">184</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Leetcode/">Leetcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/">學習札記</a><span class="category-list-count">38</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/其他/">其他</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/專題/">專題</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/數論/">數論</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/機器學習/">機器學習</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/演算法/">演算法</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/網頁設計/">網頁設計</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/編譯器/">編譯器</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/視覺SLAM/">視覺SLAM</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/計算機圖學/">計算機圖學</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料庫/">資料庫</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/學習札記/資料結構/">資料結構</a><span class="category-list-count">2</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/心情日記/">心情日記</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/視覺SLAM/">視覺SLAM</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/">解題區</a><span class="category-list-count">184</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Codeforces/">Codeforces</a><span class="category-list-count">38</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Leetcode/">Leetcode</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/POJ/">POJ</a><span class="category-list-count">41</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/">Template</a><span class="category-list-count">43</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/DP/">DP</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Data-Structure/">Data Structure</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Graph/">Graph</a><span class="category-list-count">13</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Math/">Math</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/String/">String</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/Tree/">Tree</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Template/其他/">其他</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/Uva/">Uva</a><span class="category-list-count">48</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/解題區/其他/">其他</a><span class="category-list-count">13</span></li></ul></li></ul>
     </div>
   </div>
 
@@ -857,7 +818,7 @@ t =  \lambda K^{-1}h_{3}$$</span><!-- Has MathJax --></p>
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/12/">December 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/11/">November 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/10/">October 2018</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/09/">September 2018</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/08/">August 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/07/">July 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a><span class="archive-list-count">24</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/02/">February 2018</a><span class="archive-list-count">42</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a><span class="archive-list-count">19</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">18</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">31</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/09/">September 2017</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">June 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/05/">May 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/03/">March 2017</a><span class="archive-list-count">16</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/02/">February 2017</a><span class="archive-list-count">12</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/01/">January 2017</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">December 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/07/">July 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">May 2016</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -870,6 +831,14 @@ t =  \lambda K^{-1}h_{3}$$</span><!-- Has MathJax --></p>
       <ul>
         
           <li>
+            <a href="/2019/03/26/homography-matrix/">Homograpy matrix 的求解與應用</a>
+          </li>
+        
+          <li>
+            <a href="/2019/03/26/grub-repair/">Grub 修復</a>
+          </li>
+        
+          <li>
             <a href="/2018/12/02/template-Manacher/">Manacher&#39;s algorithm</a>
           </li>
         
@@ -879,14 +848,6 @@ t =  \lambda K^{-1}h_{3}$$</span><!-- Has MathJax --></p>
         
           <li>
             <a href="/2018/11/22/bundler-sfm-introduction/">在 Ubuntu 下使用 Bundler SFM</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/21/poj1651/">POJ 1651 Multiplication Puzzle</a>
-          </li>
-        
-          <li>
-            <a href="/2018/11/21/uva348/">Uva 348 - Optimal Array Multiplication Sequence</a>
           </li>
         
       </ul>
