@@ -2,3 +2,30 @@ baseURL = 'https://ptzu.github.io/'
 languageCode = 'en-us'
 title = "Ptzu's blog"
 theme = "m10c"
+paginate = 8
+
+[menu]
+  [[menu.main]]
+    identifier = "home"
+    name = "Home"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    identifier = "tags"
+    name = "Tags"
+    url = "/tags/"
+    weight = 2
+  [[menu.main]]
+    identifier = "about"
+    name = "About"
+    url = "/about/"
+    weight = 3
+
+
+[params]
+  author = "Roger Lin"
+  description = "Record of My Life."
+  [[params.social]]
+    icon = "github"
+    name = "My Github"
+    url = "https://github.com/ptzu"
