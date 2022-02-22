@@ -1,0 +1,79 @@
+<!doctype html><html lang=en-us><head><title>2-SAT // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="2-SAT"><meta name=twitter:description content="當有{%math%}(a\vee b){%endmath%}這種型式的時候 可以轉成{%math%}(\neg a\Rightarrow b\wedge \neg b\Rightarrow a){%endmath%} 箭頭左邊建一條邊到右邊
+addClause 的 flag 是代表該變數要不要取 not
+只要{%math%}x, \neg x{%endmath%}不在同一個 SCC 內, 命題為真
+邏輯定律  肯定前件律(MP): {%math%}p\supset q,\ p/\ q{%endmath%} 否定後件律(MT): {%math%}p\supset q,\ \neg q/\ \neg p{%endmath%} 連言律(Conj): {%math%}p,\ q/\ p\wedge q{%endmath%} 簡化律(Simp): {%math%}p\wedge q/\ p{%endmath%} 選言三段論(DS): {%math%}p\vee q,\ \neg p/\ q{%endmath%} 假言三段論(HS): {%math%}p\supset q,\ q\supset r/\ p\supset r{%endmath%} 添加律(Add): {%math%}p/\ p\vee q{%endmath%} 建構兩難律(CD): {%math%}p\supset q,\ r\supset s,\ p\vee r/\ q\vee s{%endmath%} 雙重否定律(DN): {%math%}p\equiv \neg \neg p{%endmath%} 笛摩根定律(DeM): {%math%}\neg (p\wedge q)\equiv \neg p \vee \neg q{%endmath%} 交換律(Comm): {%math%}p\vee q\equiv q\vee p{%endmath%} 結合律(Assoc): {%math%}p\vee (q\vee r) \equiv (p\vee q)\vee r{%endmath%} 分配律(Dist): {%math%}p\wedge (q\vee r)\equiv (p\wedge q)\vee (p\wedge r){%endmath%} {%math%}p\vee (q\wedge r)\equiv (p\vee q)\wedge (p\vee r){%endmath%} 換值換位律(Contra): {%math%}p\supset q\equiv \neg q\supset \neg p{%endmath%} 蘊涵律(Impl): {%math%}p\supset q\equiv \neg p\vee q{%endmath%} 等值律(Equiv): {%math%}(p\equiv q)\equiv (p\supset q)\wedge (q\supset p)\equiv (p\wedge q)\vee (\neg p\wedge \neg q){%endmath%} 移出律(Exp): {%math%}(p\wedge q)\supset r\equiv p\supset (q\supset r){%endmath%} 恆真律(Taut): {%math%}p\supset q\equiv \neg p\vee q{%endmath%}  其中 {%math%}\supset {%endmath%} 是條件符號"><meta property="og:title" content="2-SAT"><meta property="og:description" content="當有{%math%}(a\vee b){%endmath%}這種型式的時候 可以轉成{%math%}(\neg a\Rightarrow b\wedge \neg b\Rightarrow a){%endmath%} 箭頭左邊建一條邊到右邊
+addClause 的 flag 是代表該變數要不要取 not
+只要{%math%}x, \neg x{%endmath%}不在同一個 SCC 內, 命題為真
+邏輯定律  肯定前件律(MP): {%math%}p\supset q,\ p/\ q{%endmath%} 否定後件律(MT): {%math%}p\supset q,\ \neg q/\ \neg p{%endmath%} 連言律(Conj): {%math%}p,\ q/\ p\wedge q{%endmath%} 簡化律(Simp): {%math%}p\wedge q/\ p{%endmath%} 選言三段論(DS): {%math%}p\vee q,\ \neg p/\ q{%endmath%} 假言三段論(HS): {%math%}p\supset q,\ q\supset r/\ p\supset r{%endmath%} 添加律(Add): {%math%}p/\ p\vee q{%endmath%} 建構兩難律(CD): {%math%}p\supset q,\ r\supset s,\ p\vee r/\ q\vee s{%endmath%} 雙重否定律(DN): {%math%}p\equiv \neg \neg p{%endmath%} 笛摩根定律(DeM): {%math%}\neg (p\wedge q)\equiv \neg p \vee \neg q{%endmath%} 交換律(Comm): {%math%}p\vee q\equiv q\vee p{%endmath%} 結合律(Assoc): {%math%}p\vee (q\vee r) \equiv (p\vee q)\vee r{%endmath%} 分配律(Dist): {%math%}p\wedge (q\vee r)\equiv (p\wedge q)\vee (p\wedge r){%endmath%} {%math%}p\vee (q\wedge r)\equiv (p\vee q)\wedge (p\vee r){%endmath%} 換值換位律(Contra): {%math%}p\supset q\equiv \neg q\supset \neg p{%endmath%} 蘊涵律(Impl): {%math%}p\supset q\equiv \neg p\vee q{%endmath%} 等值律(Equiv): {%math%}(p\equiv q)\equiv (p\supset q)\wedge (q\supset p)\equiv (p\wedge q)\vee (\neg p\wedge \neg q){%endmath%} 移出律(Exp): {%math%}(p\wedge q)\supset r\equiv p\supset (q\supset r){%endmath%} 恆真律(Taut): {%math%}p\supset q\equiv \neg p\vee q{%endmath%}  其中 {%math%}\supset {%endmath%} 是條件符號"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/template-twosat/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-08T12:02:50+00:00"><meta property="article:modified_time" content="2018-03-08T12:02:50+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>2-SAT</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Mar 8, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/template/>Template</a></div></div></header><div class=post-content><p>當有{%math%}(a\vee b){%endmath%}這種型式的時候
+可以轉成{%math%}(\neg a\Rightarrow b\wedge \neg b\Rightarrow a){%endmath%}
+箭頭左邊建一條邊到右邊</p><p>addClause 的 flag 是代表該變數要不要取 not</p><p>只要{%math%}x, \neg x{%endmath%}不在同一個 SCC 內, 命題為真</p><h2 id=邏輯定律>邏輯定律</h2><ol><li>肯定前件律(MP): {%math%}p\supset q,\ p/\ q{%endmath%}</li><li>否定後件律(MT): {%math%}p\supset q,\ \neg q/\ \neg p{%endmath%}</li><li>連言律(Conj): {%math%}p,\ q/\ p\wedge q{%endmath%}</li><li>簡化律(Simp): {%math%}p\wedge q/\ p{%endmath%}</li><li>選言三段論(DS): {%math%}p\vee q,\ \neg p/\ q{%endmath%}</li><li>假言三段論(HS): {%math%}p\supset q,\ q\supset r/\ p\supset r{%endmath%}</li><li>添加律(Add): {%math%}p/\ p\vee q{%endmath%}</li><li>建構兩難律(CD): {%math%}p\supset q,\ r\supset s,\ p\vee r/\ q\vee s{%endmath%}</li><li>雙重否定律(DN): {%math%}p\equiv \neg \neg p{%endmath%}</li><li>笛摩根定律(DeM): {%math%}\neg (p\wedge q)\equiv \neg p \vee \neg q{%endmath%}</li><li>交換律(Comm): {%math%}p\vee q\equiv q\vee p{%endmath%}</li><li>結合律(Assoc): {%math%}p\vee (q\vee r) \equiv (p\vee q)\vee r{%endmath%}</li><li>分配律(Dist): {%math%}p\wedge (q\vee r)\equiv (p\wedge q)\vee (p\wedge r){%endmath%}
+{%math%}p\vee (q\wedge r)\equiv (p\vee q)\wedge (p\vee r){%endmath%}</li><li>換值換位律(Contra): {%math%}p\supset q\equiv \neg q\supset \neg p{%endmath%}</li><li>蘊涵律(Impl): {%math%}p\supset q\equiv \neg p\vee q{%endmath%}</li><li>等值律(Equiv): {%math%}(p\equiv q)\equiv (p\supset q)\wedge (q\supset p)\equiv (p\wedge q)\vee (\neg p\wedge \neg q){%endmath%}</li><li>移出律(Exp): {%math%}(p\wedge q)\supset r\equiv p\supset (q\supset r){%endmath%}</li><li>恆真律(Taut): {%math%}p\supset q\equiv \neg p\vee q{%endmath%}</li></ol><p>其中 {%math%}\supset {%endmath%} 是條件符號</p><h2 id=code>Code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_V <span style=color:#f92672>=</span> ...;
+
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>TwoSAT</span>{
+    <span style=color:#66d9ef>int</span> V, E;
+    vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[MAX_V <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>];
+    <span style=color:#66d9ef>int</span> dfn[MAX_V <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>], low[MAX_V <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>], sccid[MAX_V <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>], tot, scc_cnt;
+    stack <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> S;
+    <span style=color:#66d9ef>bool</span> in_stack[MAX_V <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>];
+
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(<span style=color:#66d9ef>int</span> n){
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>V <span style=color:#f92672>=</span> n <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>) g[i].clear();
+        memset(dfn, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(dfn));
+        memset(low, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(low));
+        memset(sccid, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(sccid));
+        tot <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    }
+
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>addClause</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> xflag, <span style=color:#66d9ef>int</span> y, <span style=color:#66d9ef>int</span> yflag){
+        x <span style=color:#f92672>=</span> x <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> xflag;
+        y <span style=color:#f92672>=</span> y <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> yflag;
+        g[x <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>].pb(y);
+        g[y <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>].pb(x);
+    }
+
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> x){
+        dfn[x] <span style=color:#f92672>=</span> low[x] <span style=color:#f92672>=</span> <span style=color:#f92672>++</span>tot;
+        in_stack[x] <span style=color:#f92672>=</span> true;
+        S.push(x);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[x]); i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> g[x][i];
+            <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[v]){
+                dfs(v);
+                low[x] <span style=color:#f92672>=</span> min(low[x], low[v]);
+            }
+            <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(in_stack[v]){
+                low[x] <span style=color:#f92672>=</span> min(low[x], dfn[v]);
+            }
+        }
+        <span style=color:#66d9ef>if</span>(dfn[x] <span style=color:#f92672>==</span> low[x]){
+            <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>){
+                <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> S.top(); S.pop();
+                in_stack[v] <span style=color:#f92672>=</span> false;
+                sccid[v] <span style=color:#f92672>=</span> scc_cnt;
+                <span style=color:#66d9ef>if</span>(v <span style=color:#f92672>==</span> x) <span style=color:#66d9ef>break</span>;
+            }
+            scc_cnt<span style=color:#f92672>++</span>;
+        }
+    }
+    
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>tarjan</span>(){
+        scc_cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[i]) dfs(i);
+        }
+    }
+
+    <span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>solve</span>(){
+        tarjan();
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i <span style=color:#f92672>+=</span> <span style=color:#ae81ff>2</span>){
+            <span style=color:#66d9ef>if</span>(sccid[i] <span style=color:#f92672>==</span> sccid[i <span style=color:#f92672>^</span> <span style=color:#ae81ff>1</span>]) <span style=color:#66d9ef>return</span> false;
+        }
+        <span style=color:#66d9ef>return</span> true;
+    }
+}solver;
+</code></pre></div><h1 id=例題>例題</h1><ol><li>Uva 10319</li></ol></div><div class=post-footer></div></article></main></body></html>

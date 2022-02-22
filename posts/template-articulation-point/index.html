@@ -1,0 +1,116 @@
+<!doctype html><html lang=en-us><head><title>關節點、橋 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="關節點、橋"><meta name=twitter:description content="關節點 關節點必須符合兩個性質其中一個：
+ 假設目前點為 x, 子孫為 v, low[v] >= dfn 若該點是 root(起始點), 則他的小孩數量 > 1  先來看第一個性質, 當 low[v] 都大於等於當前的編號 就代表所有子孫不會連到當前點的祖先 也就是當前點斷掉的話, 就會分成兩塊
+接下來看為何為特別將 root 設個條件(搭配下面的測資) root 的子孫 low 值一定都比 dfn[root] 大 那拿掉 root 一定可以斷開嘛？ 答案是否, 當圖案為一直線 拿掉起點不會產生新的 SCC 只有當 root_child > 1 時才會
+相關測資 #root Input: 5 1 2 2 3 3 4 4 5 0 0 Output: 3 # dfn and low Input: 5 1 3 2 2 4 5 3 4 5 0 5 1 2 3 2 3 4 5 4 5 0 Output: 1 1 Code // 割點的 bccid 沒有意義 const int MAX_V = ."><meta property="og:title" content="關節點、橋"><meta property="og:description" content="關節點 關節點必須符合兩個性質其中一個：
+ 假設目前點為 x, 子孫為 v, low[v] >= dfn 若該點是 root(起始點), 則他的小孩數量 > 1  先來看第一個性質, 當 low[v] 都大於等於當前的編號 就代表所有子孫不會連到當前點的祖先 也就是當前點斷掉的話, 就會分成兩塊
+接下來看為何為特別將 root 設個條件(搭配下面的測資) root 的子孫 low 值一定都比 dfn[root] 大 那拿掉 root 一定可以斷開嘛？ 答案是否, 當圖案為一直線 拿掉起點不會產生新的 SCC 只有當 root_child > 1 時才會
+相關測資 #root Input: 5 1 2 2 3 3 4 4 5 0 0 Output: 3 # dfn and low Input: 5 1 3 2 2 4 5 3 4 5 0 5 1 2 3 2 3 4 5 4 5 0 Output: 1 1 Code // 割點的 bccid 沒有意義 const int MAX_V = ."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/template-articulation-point/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-02T12:59:19+00:00"><meta property="article:modified_time" content="2018-03-02T12:59:19+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>關節點、橋</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Mar 2, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/template/>Template</a></div></div></header><div class=post-content><h1 id=關節點>關節點</h1><p>關節點必須符合兩個性質其中一個：</p><ol><li>假設目前點為 x, 子孫為 v, low[v] >= dfn<input checked disabled type=checkbox></li><li>若該點是 root(起始點), 則他的小孩數量 > 1</li></ol><p>先來看第一個性質, 當 low[v] 都大於等於當前的編號
+就代表所有子孫不會連到當前點的祖先
+也就是當前點斷掉的話, 就會分成兩塊</p><p>接下來看為何為特別將 root 設個條件(搭配下面的測資)
+root 的子孫 low 值一定都比 dfn[root] 大
+那拿掉 root 一定可以斷開嘛？
+答案是否, 當圖案為一直線
+拿掉起點不會產生新的 SCC
+只有當 root_child > 1 時才會</p><h2 id=相關測資>相關測資</h2><pre><code>#root
+Input:
+5
+1 2
+2 3
+3 4
+4 5
+0
+0
+Output:
+3
+# dfn and low
+Input:
+5
+1 3 2
+2 4 5 3
+4 5
+0
+5
+1 2 3
+2 3 4 5
+4 5
+0
+Output:
+1
+1
+</code></pre><h2 id=code>Code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>// 割點的 bccid 沒有意義
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_V <span style=color:#f92672>=</span> ...;
+<span style=color:#66d9ef>int</span> V, E;
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[MAX_V];
+<span style=color:#66d9ef>int</span> dfn[MAX_V], low[MAX_V], tot, bccid[MAX_V], bcc_cnt;
+<span style=color:#66d9ef>bool</span> cut[MAX_V];
+stack <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> S;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> fa){
+    <span style=color:#66d9ef>int</span> child <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    dfn[x] <span style=color:#f92672>=</span> low[x] <span style=color:#f92672>=</span> <span style=color:#f92672>++</span>tot;
+    S.push(x);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[x]); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> g[x][i];
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[v]){
+            dfs(v, x);
+            child<span style=color:#f92672>++</span>;
+            low[x] <span style=color:#f92672>=</span> min(low[x], low[v]);
+            <span style=color:#66d9ef>if</span>(low[v] <span style=color:#f92672>&gt;=</span> dfn[x]){
+                cut[x] <span style=color:#f92672>=</span> true;
+                <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>){
+                    <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> S.top(); S.pop();
+                    bccid[u] <span style=color:#f92672>=</span> bcc_cnt;
+                    <span style=color:#66d9ef>if</span>(u <span style=color:#f92672>==</span> v) <span style=color:#66d9ef>break</span>;
+                }
+                bccid[x] <span style=color:#f92672>=</span> bcc_cnt;
+                bcc_cnt<span style=color:#f92672>++</span>;
+            }
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(dfn[v] <span style=color:#f92672>&lt;</span> dfn[x] <span style=color:#f92672>&amp;&amp;</span> v <span style=color:#f92672>!=</span> fa){ <span style=color:#75715e>// 反向邊
+</span><span style=color:#75715e></span>            low[x] <span style=color:#f92672>=</span> min(low[x], dfn[v]);
+        }
+    }
+    <span style=color:#75715e>// 樹根
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(fa <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> child <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>) cut[x] <span style=color:#f92672>=</span> false;
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>bcc_tarjan</span>(){
+    bcc_cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[i]) dfs(i, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+    }
+}
+</code></pre></div><h1 id=橋>橋</h1><p>求橋就簡單多了, 不需要 stack 去紀錄點</p><h2 id=code-1>code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_V <span style=color:#f92672>=</span> <span style=color:#ae81ff>10010</span>;
+<span style=color:#66d9ef>int</span> V, E;
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[MAX_V];
+<span style=color:#66d9ef>int</span> dfn[MAX_V], low[MAX_V], tot;
+vector <span style=color:#f92672>&lt;</span>pii<span style=color:#f92672>&gt;</span> ans;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> fa){
+    dfn[x] <span style=color:#f92672>=</span> low[x] <span style=color:#f92672>=</span> <span style=color:#f92672>++</span>tot;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[x]); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> g[x][i];
+        <span style=color:#66d9ef>if</span>(v <span style=color:#f92672>==</span> fa) <span style=color:#66d9ef>continue</span>;
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[v]){
+            dfs(v, x);
+            low[x] <span style=color:#f92672>=</span> min(low[x], low[v]);
+            <span style=color:#66d9ef>if</span>(low[v] <span style=color:#f92672>&gt;</span> dfn[x]){
+                ans.pb({x, v});
+            }
+        }
+        <span style=color:#66d9ef>else</span>{
+            low[x] <span style=color:#f92672>=</span> min(low[x], dfn[v]);
+        }
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>bcc_tarjan</span>(){
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[i]) dfs(i, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+    }
+}
+</code></pre></div><h1 id=例題>例題</h1><ol><li>POJ 1144</li><li>Uva 796</li><li>POJ 2117 (求拿掉割點增加的連通單元)</li><li>POJ 1523 (求拿掉割點增加的連通單元)</li></ol><h1 id=參考資料>參考資料</h1><ol><li><a href=http://www.voidcn.com/article/p-mvhamgfv-sm.html>http://www.voidcn.com/article/p-mvhamgfv-sm.html</a></li><li><a href="http://www.voidcn.com/link?url=http://www.cnblogs.com/en-heng/p/4002658.html">www.voidcn.com/link?url=http://www.cnblogs.com/en-heng/p/4002658.html</a></li><li><a href=http://www.cnblogs.com/c1299401227/p/5402747.html>http://www.cnblogs.com/c1299401227/p/5402747.html</a></li><li><a href=http://blog.csdn.net/fuyukai/article/details/51303292>http://blog.csdn.net/fuyukai/article/details/51303292</a></li><li><a href=http://sunmoon-template.blogspot.tw/2016/01/bridge-bridge-connected-component-bcc.html>http://sunmoon-template.blogspot.tw/2016/01/bridge-bridge-connected-component-bcc.html</a></li></ol></div><div class=post-footer></div></article></main></body></html>

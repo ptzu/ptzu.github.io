@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>SQL on Ptzu's blog</title><link>https://ptzu.github.io/tags/sql/</link><description>Recent content in SQL on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 07 Apr 2017 23:18:31 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/sql/index.xml" rel="self" type="application/rss+xml"/><item><title>SQL 常見指令</title><link>https://ptzu.github.io/posts/sql-instruction/</link><pubDate>Fri, 07 Apr 2017 23:18:31 +0000</pubDate><guid>https://ptzu.github.io/posts/sql-instruction/</guid><description>建立資料庫: create database 資料庫名稱;
+列出所有資料庫: show databases;
+使用資料庫: use 資料庫名稱;
+建立資料表: create table 資料表名稱(欄位名稱 型態,&amp;hellip;) 型態有: integer, real, char()
+刪除資料表: drop table 資料表名稱;
+新增資料表欄位: alter table 資料表名稱 add 欄位名稱 型態
+刪除資料表欄位: alter table 資料表名稱 drop 欄位名稱 型態
+插入資料: insert into 資料表名稱(欄位1, 欄位2, &amp;hellip;) values(&amp;lsquo;值1&amp;rsquo;, &amp;lsquo;值2&amp;rsquo;, &amp;hellip;)
+刪除資料: delete from 資料表名稱 where 條件式 ex: delete from Students as S where S.name = &amp;lsquo;Smith&amp;rsquo;; 其中 as S 是縮寫寫法, as 可以不用加
+更新資料: update 資料表名稱 set 欄位名稱 = 值, &amp;hellip; where 條件式</description></item></channel></rss>

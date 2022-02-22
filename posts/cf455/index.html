@@ -1,0 +1,246 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 455 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 455"><meta name=twitter:description content="目錄  組成字典序最小字串 線段重疊 Python語法 分堆刪除  A. Generate Login 題目
+input 輸入一字串 s (1 <= |s| <= 10) 包含 first name, last name
+題解 first name, last name 各取 prefix (不可為空), 組成一字串 求字典序最小的字串
+作法 暴力法列舉
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ fio; string s1, s2; cin >> s1 >> s2; string ans = s1 + s2; string temp; for(int i = 0; i < s1."><meta property="og:title" content="Codeforces Round 455"><meta property="og:description" content="目錄  組成字典序最小字串 線段重疊 Python語法 分堆刪除  A. Generate Login 題目
+input 輸入一字串 s (1 <= |s| <= 10) 包含 first name, last name
+題解 first name, last name 各取 prefix (不可為空), 組成一字串 求字典序最小的字串
+作法 暴力法列舉
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ fio; string s1, s2; cin >> s1 >> s2; string ans = s1 + s2; string temp; for(int i = 0; i < s1."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf455/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-21T22:09:31+00:00"><meta property="article:modified_time" content="2018-02-21T22:09:31+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 455</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 21, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>組成字典序最小字串</li><li>線段重疊</li><li>Python語法</li><li>分堆刪除</li></ol><h1 id=a-generate-login>A. Generate Login</h1><p><a href=http://codeforces.com/contest/909/problem/A>題目</a></p><h2 id=input>input</h2><p>輸入一字串 s (1 &lt;= |s| &lt;= 10)
+包含 first name, last name</p><h2 id=題解>題解</h2><p>first name, last name
+各取 prefix (不可為空), 組成一字串
+求字典序最小的字串</p><h2 id=作法>作法</h2><p>暴力法列舉</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    fio;
+    string s1, s2;
+    cin <span style=color:#f92672>&gt;&gt;</span> s1 <span style=color:#f92672>&gt;&gt;</span> s2;
+    string ans <span style=color:#f92672>=</span> s1 <span style=color:#f92672>+</span> s2;
+    string temp;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> s1.length(); i<span style=color:#f92672>++</span>){
+        temp <span style=color:#f92672>=</span> s1.substr(<span style=color:#ae81ff>0</span>, i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> s2.length(); j<span style=color:#f92672>++</span>){
+            temp <span style=color:#f92672>+=</span> s2[j];
+            <span style=color:#66d9ef>if</span>(temp <span style=color:#f92672>&lt;</span> ans){
+                ans <span style=color:#f92672>=</span> temp;
+            }
+        }
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-segments>B. Segments</h1><p><a href=http://codeforces.com/contest/909/problem/B>題目</a></p><h2 id=input-1>input</h2><p>輸入 N (1 ≤ N ≤ 100)</p><h2 id=題解-1>題解</h2><p>現有終點 1 ~ N 的各種線段(不同長度, 起點)
+現將不同線段畫在同一層, 不可重疊
+最少需要幾層</p><h2 id=作法-1>作法</h2><p>由於 N 蠻小的, 可以暴力法
+在每個被覆蓋的點上 + 1, 則最大值就是答案</p><p>更加優雅的作法, 對於長度 1 的線段
+[i, i + 1] 若是有人覆蓋他, 必定屬於不同層
+要覆蓋他的條件
+起始點必須為 0, 1, &mldr;, i
+終點必須為 i + 1, &mldr;, N
+總數為 (i + 1)*(N - i)
+O(n) 可求最大值</p><p>再想想何時會最大值
+一定是中間的線段會被覆蓋最多次
+所以取 {%math%}i = \left \lfloor \frac{2}{N} \right \rfloor {%endmath%}
+而 {%math%}N = \left \lfloor \frac{N}{2} \right \rfloor + \left \lceil \frac{N}{2} \right \rceil{%endmath%}
+所以答案即為 {%math%}(\left \lfloor \frac{N}{2} \right \rfloor + 1) * \left \lceil \frac{N}{2} \right \rceil{%endmath%}
+O(1) 的作法！</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> cnt[<span style=color:#ae81ff>1000</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> len <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; len <span style=color:#f92672>&lt;=</span> n; len<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>+</span> len <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i; j <span style=color:#f92672>&lt;</span> i <span style=color:#f92672>+</span> len; j<span style=color:#f92672>++</span>){
+                cnt[j]<span style=color:#f92672>++</span>;
+            }
+        }
+    }
+    <span style=color:#66d9ef>int</span> mx <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>){
+        mx <span style=color:#f92672>=</span> max(cnt[i], mx);
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, mx);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h2 id=ac-code-2>AC code 2</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>int</span> mx <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>INF;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        mx <span style=color:#f92672>=</span> max(mx, (i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>*</span> (n <span style=color:#f92672>-</span> i));
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, mx);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h2 id=ac-code-3>AC code 3</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>int</span> mid <span style=color:#f92672>=</span> (n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, (mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>*</span> (n <span style=color:#f92672>-</span> mid));
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-python-indentation>C. Python Indentation</h1><p><a href=http://codeforces.com/contest/909/problem/C>題目</a></p><h2 id=input-2>input</h2><p>輸入 N (1 ≤ N ≤ 5000)
+代表有幾行程式碼
+接著輸入 N 行程式碼
+可為 s or f</p><h2 id=題解-2>題解</h2><p>Python 語法有兩種
+for 迴圈或是 Simple Statement
+若是 for loop, 下一行必定要縮排
+給定 N 行指令, 求有幾種排法</p><h2 id=作法-2>作法</h2><p>定義 dp[i][j]: 第 i 行第 j 個縮排有幾種方法
+若上一行為 f, 那 dp[i][j] = dp[i - 1][j - 1]
+若為 s, 代表目前可以在任意位置
+就把上一排的所有可能加總就好
+從右邊做過來會比較省時</p><h2 id=ac-code-4>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MOD <span style=color:#f92672>=</span> <span style=color:#ae81ff>1e9</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>7</span>;
+
+<span style=color:#66d9ef>int</span> n;
+string s[<span style=color:#ae81ff>5050</span>];
+<span style=color:#66d9ef>int</span> dp[<span style=color:#ae81ff>5050</span>][<span style=color:#ae81ff>5050</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    fio;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+        cin <span style=color:#f92672>&gt;&gt;</span> s[i];
+    dp[<span style=color:#ae81ff>0</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(s[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;f&#39;</span>){
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; j <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>)
+                dp[i][j] <span style=color:#f92672>=</span> dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+        }
+        <span style=color:#66d9ef>else</span>{
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; j <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>; j<span style=color:#f92672>--</span>)
+                dp[i][j] <span style=color:#f92672>=</span> (dp[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][j] <span style=color:#f92672>+</span> dp[i][j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]) <span style=color:#f92672>%</span> MOD;
+        }
+    }
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        ans <span style=color:#f92672>=</span> (ans <span style=color:#f92672>+</span> dp[n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>][i]) <span style=color:#f92672>%</span> MOD;
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=d-colorful-points>D. Colorful Points</h1><p><a href=http://codeforces.com/contest/909/problem/D>題目</a></p><h2 id=input-3>input</h2><p>輸入一字串 s (1 &lt;= |s| &lt;= 10^6)
+包含 a-z 字母</p><h2 id=題解-3>題解</h2><p>每個點都有個顏色, 用字母表示
+現有一操作, 將左右鄰居的點, 若顏色不同就刪除
+問最少要幾次操作, 使最後沒有點可以刪除</p><h2 id=作法-3>作法</h2><p>一樣先將相同的弄成一堆
+在邊界的每次會 -1, 其餘 -2
+做完操作再將還有剩的點保留</p><h2 id=ac-code-5>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+string s;
+vector <span style=color:#f92672>&lt;</span>pii<span style=color:#f92672>&gt;</span> v, temp;
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    cin <span style=color:#f92672>&gt;&gt;</span> s;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, j; i <span style=color:#f92672>&lt;</span> s.length(); i <span style=color:#f92672>=</span> j){
+        <span style=color:#66d9ef>for</span>(j <span style=color:#f92672>=</span> i; j <span style=color:#f92672>&lt;</span> s.length() <span style=color:#f92672>&amp;&amp;</span> s[j] <span style=color:#f92672>==</span> s[i]; j<span style=color:#f92672>++</span>);
+        v.pb(pii{s[i], j <span style=color:#f92672>-</span> i});
+    }
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span>(sz(v) <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>1</span>){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(v); i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>||</span> i <span style=color:#f92672>==</span> sz(v) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) v[i].nd<span style=color:#f92672>--</span>;
+            <span style=color:#66d9ef>else</span> v[i].nd <span style=color:#f92672>-=</span> <span style=color:#ae81ff>2</span>;
+        }
+        temp.clear();
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(v); i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>if</span>(v[i].nd <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>0</span>) <span style=color:#66d9ef>continue</span>;
+            <span style=color:#66d9ef>if</span>(sz(temp) <span style=color:#f92672>&amp;&amp;</span> v[i].st <span style=color:#f92672>==</span> temp.back().st){
+                temp.back().nd <span style=color:#f92672>+=</span> v[i].nd;
+            }
+            <span style=color:#66d9ef>else</span> temp.pb(v[i]);
+        }
+        ans<span style=color:#f92672>++</span>;
+        swap(v, temp);
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

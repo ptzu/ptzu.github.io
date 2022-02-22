@@ -1,0 +1,165 @@
+<!doctype html><html lang=en-us><head><title>ICM Technex 2017 and Codeforces Round 400 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="ICM Technex 2017 and Codeforces Round 400"><meta name=twitter:description content="目錄  實作題 判斷質數 組出多個數字的區間和有幾個  A. A Serial Killer 題目
+input 兩個名字： s1, s2 n: 接下來有幾天 字串a, b: a 代表誰被殺, b 代表誰去取代被殺人的位置
+題解 有個連續殺人魔, 一開始鎖定了兩個人 接下來 n 天, 他都會殺了 a, 並再找一個 b 請問每天他可以選擇的人名有誰？
+作法 簡單實作題, 不斷替換字串就好
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ ios::sync_with_stdio(false); cin."><meta property="og:title" content="ICM Technex 2017 and Codeforces Round 400"><meta property="og:description" content="目錄  實作題 判斷質數 組出多個數字的區間和有幾個  A. A Serial Killer 題目
+input 兩個名字： s1, s2 n: 接下來有幾天 字串a, b: a 代表誰被殺, b 代表誰去取代被殺人的位置
+題解 有個連續殺人魔, 一開始鎖定了兩個人 接下來 n 天, 他都會殺了 a, 並再找一個 b 請問每天他可以選擇的人名有誰？
+作法 簡單實作題, 不斷替換字串就好
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ ios::sync_with_stdio(false); cin."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf400/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-02-24T19:30:50+00:00"><meta property="article:modified_time" content="2017-02-24T19:30:50+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>ICM Technex 2017 and Codeforces Round 400</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 24, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a>
+<a class=tag href=https://ptzu.github.io/tags/%E5%8D%80%E9%96%93/>區間</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>實作題</li><li>判斷質數</li><li>組出多個數字的區間和有幾個</li></ol><h1 id=a-a-serial-killer>A. A Serial Killer</h1><p><a href=http://codeforces.com/contest/776/problem/A>題目</a></p><h2 id=input>input</h2><p>兩個名字： s1, s2
+n: 接下來有幾天
+字串a, b: a 代表誰被殺, b 代表誰去取代被殺人的位置</p><h2 id=題解>題解</h2><p>有個連續殺人魔, 一開始鎖定了兩個人
+接下來 n 天, 他都會殺了 a, 並再找一個 b
+請問每天他可以選擇的人名有誰？</p><h2 id=作法>作法</h2><p>簡單實作題, 不斷替換字串就好</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+    cin.tie(<span style=color:#ae81ff>0</span>);
+    string s1, s2;
+    cin <span style=color:#f92672>&gt;&gt;</span> s1 <span style=color:#f92672>&gt;&gt;</span> s2;
+    <span style=color:#66d9ef>int</span> n;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    cout <span style=color:#f92672>&lt;&lt;</span> s1 <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>&lt;&lt;</span> s2 <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        string a, b;
+        cin <span style=color:#f92672>&gt;&gt;</span> a <span style=color:#f92672>&gt;&gt;</span> b;
+        <span style=color:#66d9ef>if</span>(s1 <span style=color:#f92672>==</span> a)
+            s1 <span style=color:#f92672>=</span> b;
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(s2 <span style=color:#f92672>==</span> a)
+            s2 <span style=color:#f92672>=</span> b;
+        cout <span style=color:#f92672>&lt;&lt;</span> s1 <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span> <span style=color:#f92672>&lt;&lt;</span> s2 <span style=color:#f92672>&lt;&lt;</span> endl;
+    }
+
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-sherlock-and-his-girlfriend>B. Sherlock and his girlfriend</h1><p><a href=http://codeforces.com/contest/776/problem/B>題目</a></p><h2 id=input-1>input</h2><p>n 個珠寶碎片： 1 &lt;= n &lt;= 10^5</p><h2 id=題解-1>題解</h2><p>第 i 個碎片的價值為 i + 1
+現在要替碎片上色
+規則是 如果這個碎片的價值是另一個碎片價值的"質因數"
+則不可以同色</p><h2 id=作法-1>作法</h2><p>只要將質因數都上同一色, 其他的上同一色就好
+因為質因數不可能是質因數的質因數(好饒口XD)
+而非質因數也不會是另一個非質因數的質因數</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>is_prime</span>(<span style=color:#66d9ef>int</span> n){
+	<span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>; i <span style=color:#f92672>*</span> i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>){
+		<span style=color:#66d9ef>if</span>(n <span style=color:#f92672>%</span> i <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>)
+			<span style=color:#66d9ef>return</span> false;
+	}
+	<span style=color:#66d9ef>return</span> true;
+}
+
+<span style=color:#66d9ef>int</span> ans[<span style=color:#ae81ff>101010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+    cin.tie(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>int</span> n;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    set <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> s;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> n <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>2</span>; i<span style=color:#f92672>--</span>){
+        <span style=color:#66d9ef>if</span>(is_prime(i)){
+            ans[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            s.insert(<span style=color:#ae81ff>1</span>);
+        }
+        <span style=color:#66d9ef>else</span>{
+            ans[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>2</span>;
+            s.insert(<span style=color:#ae81ff>2</span>);
+        }
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> sz(s) <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>)
+        cout <span style=color:#f92672>&lt;&lt;</span> ans[i] <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+    cout <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-mollys-chemicals>C. Molly&rsquo;s Chemicals</h1><p># 區間
+<a href=http://codeforces.com/contest/776/problem/C>題目</a></p><h2 id=input-2>input</h2><p>n 個化學物品, 以及數字 k: 1 &lt;= n &lt;= 10^5, 1 &lt;= |k| &lt;= 10
+化學值a: -10^9 &lt;= a &lt;= 10^9</p><h2 id=題解-2>題解</h2><p>一段的區間和是數字 k 的非負整數次方
+求這樣的區間有幾個</p><h2 id=作法-2>作法</h2><p>窮舉所有區間是行不通的, 因此我們只要尋找這樣的區間
+試想我們如果要找長度為 6 的區間
+隨意假設一個開頭數字 -1 好了
+那這個區間的前綴和必定長成這樣 -1,&mldr;,5
+所以我們只要做前綴和, 然後針對目前的前綴和去扣掉區間長度
+去看能組出這個結果的有幾個(0個就是無法組出)
+時間複雜度為O(nlog(10^14))</p><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+map <span style=color:#f92672>&lt;</span>ll, <span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> m;
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+    cin.tie(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>int</span> n, k;
+    cin <span style=color:#f92672>&gt;&gt;</span> n <span style=color:#f92672>&gt;&gt;</span> k;
+    ll sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    m[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> x;
+        cin <span style=color:#f92672>&gt;&gt;</span> x;
+        sum <span style=color:#f92672>+=</span> x;
+        m[sum]<span style=color:#f92672>++</span>;
+        <span style=color:#66d9ef>if</span>(k <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>){
+            ans <span style=color:#f92672>+=</span> m[sum <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(k <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>){
+            <span style=color:#75715e>//k^0
+</span><span style=color:#75715e></span>            ans <span style=color:#f92672>+=</span> m[sum <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+            <span style=color:#75715e>//k^1
+</span><span style=color:#75715e></span>            ans <span style=color:#f92672>+=</span> m[sum <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>];
+        }
+        <span style=color:#66d9ef>else</span>{
+            ll power <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+            <span style=color:#66d9ef>while</span>(<span style=color:#f92672>-</span><span style=color:#ae81ff>1e14</span> <span style=color:#f92672>&lt;=</span> power <span style=color:#f92672>&amp;&amp;</span> power <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>1e14</span>){
+                ans <span style=color:#f92672>+=</span> m[sum <span style=color:#f92672>-</span> power];
+                power <span style=color:#f92672>*=</span> k;
+            }
+        }
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

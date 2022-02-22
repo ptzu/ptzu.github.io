@@ -1,0 +1,91 @@
+<!doctype html><html lang=en-us><head><title>Uva 10986 - Sending email // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Uva 10986 - Sending email"><meta name=twitter:description content="目錄  題目
+題解 有 n 台 server, 之間用 cable 連結 每條 cable 有傳送延遲 請問從 server S to server T 最少需要多少時間？
+作法 Dijkstra 裸題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) // #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  struct edge{ int to, w; }; int n, m, S, T; int d[20010]; vector <edge> g[20010]; int dijkstra(){ priority_queue <pii, vector<pii>, greater<pii> > pq; //d, v  fill(d, d + n, INF); d[S] = 0; pq."><meta property="og:title" content="Uva 10986 - Sending email"><meta property="og:description" content="目錄  題目
+題解 有 n 台 server, 之間用 cable 連結 每條 cable 有傳送延遲 請問從 server S to server T 最少需要多少時間？
+作法 Dijkstra 裸題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) // #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  struct edge{ int to, w; }; int n, m, S, T; int d[20010]; vector <edge> g[20010]; int dijkstra(){ priority_queue <pii, vector<pii>, greater<pii> > pq; //d, v  fill(d, d + n, INF); d[S] = 0; pq."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/uva10986/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-10-01T10:34:39+00:00"><meta property="article:modified_time" content="2017-10-01T10:34:39+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Uva 10986 - Sending email</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Oct 1, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/uva/>Uva</a>
+<a class=tag href=https://ptzu.github.io/tags/graph/>Graph</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><h1 id=heading></h1><p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=21&page=show_problem&problem=1927">題目</a></p><h2 id=題解>題解</h2><p>有 n 台 server, 之間用 cable 連結
+每條 cable 有傳送延遲
+請問從 server S to server T 最少需要多少時間？</p><h2 id=作法>作法</h2><p>Dijkstra 裸題</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e></span><span style=color:#75715e>// #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>edge</span>{
+    <span style=color:#66d9ef>int</span> to, w;
+};
+<span style=color:#66d9ef>int</span> n, m, S, T;
+<span style=color:#66d9ef>int</span> d[<span style=color:#ae81ff>20010</span>];
+vector <span style=color:#f92672>&lt;</span>edge<span style=color:#f92672>&gt;</span> g[<span style=color:#ae81ff>20010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>dijkstra</span>(){
+    priority_queue <span style=color:#f92672>&lt;</span>pii, vector<span style=color:#f92672>&lt;</span>pii<span style=color:#f92672>&gt;</span>, greater<span style=color:#f92672>&lt;</span>pii<span style=color:#f92672>&gt;</span> <span style=color:#f92672>&gt;</span> pq; <span style=color:#75715e>//d, v
+</span><span style=color:#75715e></span>    fill(d, d <span style=color:#f92672>+</span> n, INF);
+    d[S] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    pq.push((pii){<span style=color:#ae81ff>0</span>, S});
+
+    <span style=color:#66d9ef>while</span>(<span style=color:#f92672>!</span>pq.empty()){
+        pii top <span style=color:#f92672>=</span> pq.top();
+        pq.pop();
+        <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> top.nd;
+
+        <span style=color:#66d9ef>if</span>(d[u] <span style=color:#f92672>&lt;</span> top.st) <span style=color:#66d9ef>continue</span>;
+
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[u]); i<span style=color:#f92672>++</span>){
+            edge e <span style=color:#f92672>=</span> g[u][i];
+            <span style=color:#66d9ef>if</span>(d[u] <span style=color:#f92672>+</span> e.w <span style=color:#f92672>&lt;</span> d[e.to]){
+                d[e.to] <span style=color:#f92672>=</span> d[u] <span style=color:#f92672>+</span> e.w;
+                pq.push((pii){d[e.to], e.to});
+            }
+        }
+    }
+    <span style=color:#66d9ef>if</span>(d[T] <span style=color:#f92672>==</span> INF) <span style=color:#66d9ef>return</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>return</span> d[T];
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#75715e>// fio;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// #ifdef DEBUG
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// printf (&#34;TEST\n&#34;);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// #else
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// printf(&#34;FAIL\n&#34;);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// #endif
+</span><span style=color:#75715e></span>
+    <span style=color:#66d9ef>int</span> TC;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>TC);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> tc <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; tc <span style=color:#f92672>&lt;=</span> TC; tc<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>20010</span>; i<span style=color:#f92672>++</span>)
+            g[i].clear();
+        scanf(<span style=color:#e6db74>&#34;%d%d%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>n, <span style=color:#f92672>&amp;</span>m, <span style=color:#f92672>&amp;</span>S, <span style=color:#f92672>&amp;</span>T);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> m; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> u, v, w;
+            scanf(<span style=color:#e6db74>&#34;%d%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>u, <span style=color:#f92672>&amp;</span>v, <span style=color:#f92672>&amp;</span>w);
+            g[u].pb((edge){v, w});
+            g[v].pb((edge){u, w});
+        }
+        <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> dijkstra();
+        printf(<span style=color:#e6db74>&#34;Case #%d: &#34;</span>, tc);
+        <span style=color:#66d9ef>if</span>(ans <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+            puts(<span style=color:#e6db74>&#34;unreachable&#34;</span>);
+        <span style=color:#66d9ef>else</span>
+            printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BCC on Ptzu's blog</title><link>https://ptzu.github.io/tags/bcc/</link><description>Recent content in BCC on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 06 Mar 2018 17:47:24 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/bcc/index.xml" rel="self" type="application/rss+xml"/><item><title>POJ 3352 Road Construction</title><link>https://ptzu.github.io/posts/poj3352/</link><pubDate>Tue, 06 Mar 2018 17:47:24 +0000</pubDate><guid>https://ptzu.github.io/posts/poj3352/</guid><description>題目
+input 多筆測資, 每筆測資開頭輸入 V, E (3 ≤ V ≤ 1000)(2 ≤ E ≤ 1000) 分別代表點數和邊數 接著輸入 E 條邊
+注意輸入和輸出的中文字都是沒有的
+題解 有一座島上有 V 個名勝景點, 他們之間有許多路互相連接 現在想要維修&amp;quot;一條&amp;quot;路, 所以這條路就不能走了 然而不想讓這些名勝景點斷開連結 所以決定建造一些路, 使得之間仍然連通, 建造中的路可以行走 問最少需要建造幾條路？ 維修中的路不能走, 建造中的路可以走, 真是神邏輯&amp;hellip;
+作法 邊-雙連通分量
+拔掉一個邊還要連通, 那代表該圖要是雙連通分量 作法是找到雙連通分量, 縮點後 想要將此圖建成雙連通 需要加的邊數為 (度數為 1 的點) + 1 / 2
+AC code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt;#include &amp;lt;stack&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.</description></item></channel></rss>

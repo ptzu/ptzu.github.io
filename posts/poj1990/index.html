@@ -1,0 +1,90 @@
+<!doctype html><html lang=en-us><head><title>POJ 1990 MooFest // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="POJ 1990 MooFest"><meta name=twitter:description content="題目
+input 第一列輸入一正整數 N, 1 <= N <= 20000 代表 N 頭牛 接著輸入每頭牛的耳背值 v, 位置 x
+題解 有 N 頭牛想互相交談 任兩頭牛交談產生的音量是 max(vi, vj) * 距離 求兩兩交談後產生的總音量是多少
+作法 如果直接枚舉就炸了 那我們處理的時候一定是選耳背值最大的那個 所以就從耳背值小到大一個一個處理 在處理第 i 個的時候 我們想知道這頭牛, 左邊有幾頭, 右邊有幾頭？ 也想知道左邊的座標和是多少, 右邊的座標和是多少？ 這時候如果每次都去算一次, 那就跟直接枚舉一樣了 所以就交給 BIT 去算！ num_bit: 代表到 pos[i] 總共有幾頭牛 dis_bit: 代表到 pos[i] 的座標總和
+每做完一頭牛記得要把他加入到 BIT 裡
+AC code #include <cstdio>#include <algorithm> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:title" content="POJ 1990 MooFest"><meta property="og:description" content="題目
+input 第一列輸入一正整數 N, 1 <= N <= 20000 代表 N 頭牛 接著輸入每頭牛的耳背值 v, 位置 x
+題解 有 N 頭牛想互相交談 任兩頭牛交談產生的音量是 max(vi, vj) * 距離 求兩兩交談後產生的總音量是多少
+作法 如果直接枚舉就炸了 那我們處理的時候一定是選耳背值最大的那個 所以就從耳背值小到大一個一個處理 在處理第 i 個的時候 我們想知道這頭牛, 左邊有幾頭, 右邊有幾頭？ 也想知道左邊的座標和是多少, 右邊的座標和是多少？ 這時候如果每次都去算一次, 那就跟直接枚舉一樣了 所以就交給 BIT 去算！ num_bit: 代表到 pos[i] 總共有幾頭牛 dis_bit: 代表到 pos[i] 的座標總和
+每做完一頭牛記得要把他加入到 BIT 裡
+AC code #include <cstdio>#include <algorithm> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/poj1990/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-24T16:13:21+00:00"><meta property="article:modified_time" content="2018-01-24T16:13:21+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>POJ 1990 MooFest</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Jan 24, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/poj/>POJ</a>
+<a class=tag href=https://ptzu.github.io/tags/bit/>BIT</a></div></div></header><div class=post-content><p><a href="http://poj.org/problem?id=1990">題目</a></p><h2 id=input>input</h2><p>第一列輸入一正整數 N, 1 &lt;= N &lt;= 20000
+代表 N 頭牛
+接著輸入每頭牛的耳背值 v, 位置 x</p><h2 id=題解>題解</h2><p>有 N 頭牛想互相交談
+任兩頭牛交談產生的音量是 max(vi, vj) * 距離
+求兩兩交談後產生的總音量是多少</p><h2 id=作法>作法</h2><p>如果直接枚舉就炸了
+那我們處理的時候一定是選耳背值最大的那個
+所以就從耳背值小到大一個一個處理
+在處理第 i 個的時候
+我們想知道這頭牛, 左邊有幾頭, 右邊有幾頭？
+也想知道左邊的座標和是多少, 右邊的座標和是多少？
+這時候如果每次都去算一次, 那就跟直接枚舉一樣了
+所以就交給 BIT 去算！
+num_bit: 代表到 pos[i] 總共有幾頭牛
+dis_bit: 代表到 pos[i] 的座標總和</p><p>每做完一頭牛記得要把他加入到 BIT 裡</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdio&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> <span style=color:#ae81ff>20000</span>;
+
+<span style=color:#66d9ef>int</span> num_bit[MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>], dis_bit[MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>int</span> n;
+pii cow[MAX_N];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>add</span>(<span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>bit, <span style=color:#66d9ef>int</span> i, <span style=color:#66d9ef>int</span> x){
+    <span style=color:#66d9ef>while</span>(i <span style=color:#f92672>&lt;=</span> MAX_N){
+        bit[i] <span style=color:#f92672>+=</span> x;
+        i <span style=color:#f92672>+=</span> i <span style=color:#f92672>&amp;</span> <span style=color:#f92672>-</span>i;
+    }
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>sum</span>(<span style=color:#66d9ef>int</span> <span style=color:#f92672>*</span>bit, <span style=color:#66d9ef>int</span> i){
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span>(i){
+        ans <span style=color:#f92672>+=</span> bit[i];
+        i <span style=color:#f92672>-=</span> i <span style=color:#f92672>&amp;</span> <span style=color:#f92672>-</span>i;
+    }
+    <span style=color:#66d9ef>return</span> ans;
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>cow[i].st, <span style=color:#f92672>&amp;</span>cow[i].nd);
+    }
+    sort(cow, cow <span style=color:#f92672>+</span> n);
+    ll ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> cow[i].st;
+        <span style=color:#66d9ef>int</span> pos <span style=color:#f92672>=</span> cow[i].nd;
+
+        <span style=color:#66d9ef>int</span> left_num <span style=color:#f92672>=</span> sum(num_bit, pos <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>);
+        <span style=color:#66d9ef>int</span> right_num <span style=color:#f92672>=</span> i <span style=color:#f92672>-</span> left_num;
+
+        ans <span style=color:#f92672>+=</span> v <span style=color:#f92672>*</span> (<span style=color:#ae81ff>1LL</span> <span style=color:#f92672>*</span> left_num <span style=color:#f92672>*</span> pos <span style=color:#f92672>-</span> sum(dis_bit, pos <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>));
+        ans <span style=color:#f92672>+=</span> v <span style=color:#f92672>*</span> (sum(dis_bit, MAX_N) <span style=color:#f92672>-</span> sum(dis_bit, pos) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1LL</span> <span style=color:#f92672>*</span> right_num <span style=color:#f92672>*</span> pos);
+
+        add(num_bit, pos, <span style=color:#ae81ff>1</span>);
+        add(dis_bit, pos, pos);
+    }
+    printf(<span style=color:#e6db74>&#34;%lld</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

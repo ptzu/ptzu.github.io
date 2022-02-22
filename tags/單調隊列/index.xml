@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>單調隊列 on Ptzu's blog</title><link>https://ptzu.github.io/tags/%E5%96%AE%E8%AA%BF%E9%9A%8A%E5%88%97/</link><description>Recent content in 單調隊列 on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Feb 2018 17:50:24 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/%E5%96%AE%E8%AA%BF%E9%9A%8A%E5%88%97/index.xml" rel="self" type="application/rss+xml"/><item><title>POJ 2823 Sliding Window</title><link>https://ptzu.github.io/posts/poj2823/</link><pubDate>Sat, 17 Feb 2018 17:50:24 +0000</pubDate><guid>https://ptzu.github.io/posts/poj2823/</guid><description>題目
+input 輸入 n, k (n ≤ 10^6) n 個數字及視窗大小 k
+題解 視窗由左而右平移, 輸出每個視窗內的最小/大值
+作法 利用單調隊列, 看有人用大小堆作, 之後再來試看看 首先單增隊列維護最小值, 同時紀錄隊列內每個值的 index, 用來判斷是否還在視窗內 將當前元素和隊尾做比較, 如果該元素比較小, 則把隊尾 pop, 直到遇到比該元素還大的 然後就把該元素塞進去, 此時的隊頭即為最小值 同理可以用單減隊列維護最大值, 作法同上
+為何單增不能維護最大值呢？因為只要遇到比較小的元素, 就會被 pop 例如 3, 2, 1 最後只會留下 1
+PS: 一直不太喜歡 POJ 的 compiler, 這題用 G++ 提交會超時, C++ 不會 明明同樣一份 code, 時間差了至少一倍以上
+AC code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.</description></item></channel></rss>

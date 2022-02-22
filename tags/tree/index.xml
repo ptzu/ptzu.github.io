@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tree on Ptzu's blog</title><link>https://ptzu.github.io/tags/tree/</link><description>Recent content in Tree on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 17 Mar 2018 16:11:25 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/tree/index.xml" rel="self" type="application/rss+xml"/><item><title>POJ 1741 Tree</title><link>https://ptzu.github.io/posts/poj1741/</link><pubDate>Sat, 17 Mar 2018 16:11:25 +0000</pubDate><guid>https://ptzu.github.io/posts/poj1741/</guid><description>題目
+input 多筆測資, 每筆開頭輸入 n, k (n &amp;lt;= 10000) 代表 n 個點, 路徑長 k 接著輸入 n - 1 條邊 u, v, w 代表 u 連到 v 權重 w
+題解 給一棵樹 求點對 (u, v) 長度不超過 k 有幾個點對
+作法 利用重心分解的技巧 每次都從重心做樹分治 複雜度: {%math%}O(logn){%endmath%} 針對每個重心, 跑一次DFS 每個子樹我們可以求點到根的距離 cal(x) 可以求取以 x 為根, 經過 x 的路徑有幾條 經過排序後, 可以在 O(n) 時間內求取所有點對 瓶頸在排序, 複雜度：{%math%}O(nlogn){%endmath%}
+由於當 k 夠大時, cal(x) 會計算到不經過 x, 但長度為 &amp;lt;= k 的路徑 因此每次都要扣掉子樹的數量
+總複雜度: {%math%}O(nlog^{2}n){%endmath%}</description></item><item><title>POJ 1655 Balancing Act</title><link>https://ptzu.github.io/posts/poj1655/</link><pubDate>Wed, 14 Mar 2018 14:42:58 +0000</pubDate><guid>https://ptzu.github.io/posts/poj1655/</guid><description>題目
+input 含多筆測資, 每筆測資開頭輸入 V (1 &amp;lt;= V &amp;lt;= 20,000) 代表 V 個點 接著輸入 V - 1 條樹邊
+題解 找樹重心, 有多個就輸出編號最小的
+作法 找樹重心, 有多個就輸出編號最小的
+AC code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;algorithm&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) #define DEBUG(x) printf(&amp;#34;Here: %d\n&amp;#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX vector &amp;lt;int&amp;gt; g[20010]; int son[20010], centroid, balance_size; int V; void init(){ for(int i = 0; i &amp;lt; V; i++) g[i].</description></item><item><title>POJ 1330 Nearest Common Ancestors</title><link>https://ptzu.github.io/posts/poj1330/</link><pubDate>Fri, 16 Feb 2018 19:52:38 +0000</pubDate><guid>https://ptzu.github.io/posts/poj1330/</guid><description>題目
+input 第一列輸入 T, 代表 T cases 每筆第一列輸入 N (2 &amp;lt;= N &amp;lt;= 10,000) 代表樹有 N 個點 接著輸入 N - 1 條邊 u, v 代表 u 是 v 的父節點 最後一列輸入 qu, qv, 求 qu, qv 的 LCA
+題解 找出最近共同祖先
+作法 LCA 裸題
+AC code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;iostream&amp;gt;#include &amp;lt;vector&amp;gt;#include &amp;lt;cstring&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.</description></item></channel></rss>

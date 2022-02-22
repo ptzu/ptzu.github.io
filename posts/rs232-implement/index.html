@@ -1,0 +1,161 @@
+<!doctype html><html lang=en-us><head><title>透過 RS232 進行電腦訊息互傳 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="透過 RS232 進行電腦訊息互傳"><meta name=twitter:description content="禮拜一花了 9 個小時 完成了電腦之間用 RS232 互傳 以及電腦對字幕機的寫入
+需要器材  兩條 USB 轉 RS232接線  RS232 兩端母對母的線 母對母的需要對TX, RX做跳線(外面賣的是沒有跳線)  電腦之間互傳 首先是我們在網路上找到的 RS232 C Library RS232 下載
+打開下載回來的 RS232 包 可以看到裡面有 demo_tx.c 和 demo_rx.c TX, RX 分別代表傳輸和接收
+TX 要修改的是 cport_nr 這個變數 他代表要用哪個連接埠傳輸, 可以到裝置管理員看是哪一個 我們的是 COM4 所以改成 cport_nr=3 然後 bdrate 代表的是 baud rate, 是傳輸速率
+/************************************************** file: demo_tx.c purpose: simple demo that transmits characters to the serial port and print them on the screen, exit the program by pressing Ctrl-C compile with the command: gcc demo_tx."><meta property="og:title" content="透過 RS232 進行電腦訊息互傳"><meta property="og:description" content="禮拜一花了 9 個小時 完成了電腦之間用 RS232 互傳 以及電腦對字幕機的寫入
+需要器材  兩條 USB 轉 RS232接線  RS232 兩端母對母的線 母對母的需要對TX, RX做跳線(外面賣的是沒有跳線)  電腦之間互傳 首先是我們在網路上找到的 RS232 C Library RS232 下載
+打開下載回來的 RS232 包 可以看到裡面有 demo_tx.c 和 demo_rx.c TX, RX 分別代表傳輸和接收
+TX 要修改的是 cport_nr 這個變數 他代表要用哪個連接埠傳輸, 可以到裝置管理員看是哪一個 我們的是 COM4 所以改成 cport_nr=3 然後 bdrate 代表的是 baud rate, 是傳輸速率
+/************************************************** file: demo_tx.c purpose: simple demo that transmits characters to the serial port and print them on the screen, exit the program by pressing Ctrl-C compile with the command: gcc demo_tx."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/rs232-implement/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-06-09T14:47:40+00:00"><meta property="article:modified_time" content="2017-06-09T14:47:40+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>透過 RS232 進行電腦訊息互傳</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Jun 9, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/rs232/>RS232</a></div></div></header><div class=post-content><p>禮拜一花了 9 個小時
+完成了電腦之間用 RS232 互傳
+以及電腦對字幕機的寫入</p><h2 id=需要器材>需要器材</h2><ol><li>兩條 USB 轉 RS232接線
+<img src=http://i.imgur.com/zvxP8qr.jpg alt></li><li>RS232 兩端母對母的線
+<img src=http://i.imgur.com/99xerSB.jpg alt>
+母對母的需要對TX, RX做跳線(外面賣的是沒有跳線)</li></ol><h2 id=電腦之間互傳>電腦之間互傳</h2><p>首先是我們在網路上找到的 RS232 C Library
+<a href=http://www.teuniz.net/RS-232/>RS232 下載</a></p><p>打開下載回來的 RS232 包
+<img src=http://i.imgur.com/0HLzL9Z.png alt>
+可以看到裡面有 demo_tx.c 和 demo_rx.c
+TX, RX 分別代表傳輸和接收</p><h2 id=tx>TX</h2><p>要修改的是 cport_nr 這個變數
+他代表要用哪個連接埠傳輸, 可以到裝置管理員看是哪一個
+我們的是 COM4 所以改成 cport_nr=3
+然後 bdrate 代表的是 baud rate, 是傳輸速率</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c><span style=color:#75715e>/**************************************************
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>file: demo_tx.c
+</span><span style=color:#75715e>purpose: simple demo that transmits characters to
+</span><span style=color:#75715e>the serial port and print them on the screen,
+</span><span style=color:#75715e>exit the program by pressing Ctrl-C
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>compile with the command: gcc demo_tx.c rs232.c -Wall -Wextra -o2 -o test_tx
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>**************************************************/</span>
+
+<span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdlib.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#ifdef _WIN32
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;Windows.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#else
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#endif
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;rs232.h&#34;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
+{
+  <span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>,
+      cport_nr<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,        <span style=color:#75715e>/* /dev/ttyS0 (COM1 on windows) */</span>
+      bdrate<span style=color:#f92672>=</span><span style=color:#ae81ff>9600</span>;       <span style=color:#75715e>/* 9600 baud */</span>
+
+  <span style=color:#66d9ef>char</span> mode[]<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#39;8&#39;</span>,<span style=color:#e6db74>&#39;N&#39;</span>,<span style=color:#e6db74>&#39;1&#39;</span>,<span style=color:#ae81ff>0</span>},
+       str[<span style=color:#ae81ff>2</span>][<span style=color:#ae81ff>512</span>];
+
+
+  strcpy(str[<span style=color:#ae81ff>0</span>], <span style=color:#e6db74>&#34;The quick brown fox jumped over the lazy grey dog.</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+
+  strcpy(str[<span style=color:#ae81ff>1</span>], <span style=color:#e6db74>&#34;Happy serial programming!</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+
+  <span style=color:#66d9ef>if</span>(RS232_OpenComport(cport_nr, bdrate, mode))
+  {
+    printf(<span style=color:#e6db74>&#34;Can not open comport</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+
+    <span style=color:#66d9ef>return</span>(<span style=color:#ae81ff>0</span>);
+  }
+
+  <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>)
+  {
+    <span style=color:#66d9ef>char</span> s[<span style=color:#ae81ff>100</span>];
+    scanf(<span style=color:#e6db74>&#34;%s&#34;</span>, s);
+    RS232_cputs(cport_nr, s);
+
+    printf(<span style=color:#e6db74>&#34;sent: %s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, s);
+
+<span style=color:#75715e>#ifdef _WIN32
+</span><span style=color:#75715e></span>    Sleep(<span style=color:#ae81ff>1000</span>);
+<span style=color:#75715e>#else
+</span><span style=color:#75715e></span>    usleep(<span style=color:#ae81ff>1000000</span>);  <span style=color:#75715e>/* sleep for 1 Second */</span>
+<span style=color:#75715e>#endif
+</span><span style=color:#75715e></span>
+    <span style=color:#75715e>// i++;
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// i %= 2;
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#66d9ef>return</span>(<span style=color:#ae81ff>0</span>);
+}
+</code></pre></div><h2 id=rx>RX</h2><p>一樣修改好連接埠</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-c data-lang=c>
+<span style=color:#75715e>/**************************************************
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>file: demo_rx.c
+</span><span style=color:#75715e>purpose: simple demo that receives characters from
+</span><span style=color:#75715e>the serial port and print them on the screen,
+</span><span style=color:#75715e>exit the program by pressing Ctrl-C
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>compile with the command: gcc demo_rx.c rs232.c -Wall -Wextra -o2 -o test_rx
+</span><span style=color:#75715e>
+</span><span style=color:#75715e>**************************************************/</span>
+
+<span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdlib.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stdio.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#ifdef _WIN32
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;Windows.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#else
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;unistd.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#endif
+</span><span style=color:#75715e></span>
+<span style=color:#75715e>#include</span> <span style=color:#75715e>&#34;rs232.h&#34;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>()
+{
+  <span style=color:#66d9ef>int</span> i, n,
+      cport_nr<span style=color:#f92672>=</span><span style=color:#ae81ff>3</span>,        <span style=color:#75715e>/* /dev/ttyS0 (COM1 on windows) */</span>
+      bdrate<span style=color:#f92672>=</span><span style=color:#ae81ff>9600</span>;       <span style=color:#75715e>/* 9600 baud */</span>
+
+  <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>char</span> buf[<span style=color:#ae81ff>4096</span>];
+
+  <span style=color:#66d9ef>char</span> mode[]<span style=color:#f92672>=</span>{<span style=color:#e6db74>&#39;8&#39;</span>,<span style=color:#e6db74>&#39;N&#39;</span>,<span style=color:#e6db74>&#39;1&#39;</span>,<span style=color:#ae81ff>0</span>};
+
+
+  <span style=color:#66d9ef>if</span>(RS232_OpenComport(cport_nr, bdrate, mode))
+  {
+    printf(<span style=color:#e6db74>&#34;Can not open comport</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+
+    <span style=color:#66d9ef>return</span>(<span style=color:#ae81ff>0</span>);
+  }
+
+  <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>)
+  {
+    n <span style=color:#f92672>=</span> RS232_PollComport(cport_nr, buf, <span style=color:#ae81ff>4095</span>);
+
+    <span style=color:#66d9ef>if</span>(n <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>0</span>)
+    {
+      buf[n] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;   <span style=color:#75715e>/* always put a &#34;null&#34; at the end of a string! */</span>
+
+      <span style=color:#66d9ef>for</span>(i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+      {
+        <span style=color:#66d9ef>if</span>(buf[i] <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>32</span>)  <span style=color:#75715e>/* replace unreadable control-codes by dots */</span>
+        {
+          buf[i] <span style=color:#f92672>=</span> <span style=color:#e6db74>&#39;.&#39;</span>;
+        }
+      }
+
+      printf(<span style=color:#e6db74>&#34;received %i bytes: %s</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, n, (<span style=color:#66d9ef>char</span> <span style=color:#f92672>*</span>)buf);
+    }
+
+<span style=color:#75715e>#ifdef _WIN32
+</span><span style=color:#75715e></span>    Sleep(<span style=color:#ae81ff>100</span>);
+<span style=color:#75715e>#else
+</span><span style=color:#75715e></span>    usleep(<span style=color:#ae81ff>100000</span>);  <span style=color:#75715e>/* sleep for 100 milliSeconds */</span>
+<span style=color:#75715e>#endif
+</span><span style=color:#75715e></span>  }
+
+  <span style=color:#66d9ef>return</span>(<span style=color:#ae81ff>0</span>);
+}
+
+</code></pre></div><h2 id=傳輸>傳輸</h2><p>接著把兩個程式碼編譯好之後
+一台電腦執行 TX, 負責傳輸
+一台電腦執行 RX, 負責接收</p></div><div class=post-footer></div></article></main></body></html>

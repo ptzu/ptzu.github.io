@@ -1,0 +1,132 @@
+<!doctype html><html lang=en-us><head><title>RS232雜記 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="RS232雜記"><meta name=twitter:description content="1.BuildCommDCB 函數原型: BOOL BuildCommDCB( LPCTSTR lpDef, LPDCB lpDCB ). BuildCommDCB 函數是用來填寫 DCB 的資料,何謂 DCB 呢? DCB 的全名為 Device Control Block 是一資料結構,裡面定義著所有有關串列通訊(Serial Communication)的設定值,DCB 資料結構定義如下:
+typedef struct _DCB { DWORD DCBlength; // DCB 的大小 (in byte) DWORD BaudRate; // 傳輸率 (baud rate) bit/秒 DWORD fBinary: 1; // 二進制模式,沒有 EOF 檢查. DWORD fParity: 1; // 同位元檢查 (parity checking) DWORD fOutxCtsFlow:1; // CTS output flow control DWORD fOutxDsrFlow:1; // DSR output flow control DWORD fDtrControl:2; // DTR flow control type DWORD fDsrSensitivity:1; // DSR sensitivity DWORD fTXContinueOnXoff:1; // XOFF continues Tx DWORD fOutX: 1; // XON/XOFF out flow control DWORD fInX: 1; // XON/XOFF in flow control DWORD fErrorChar: 1; // enable error replacement DWORD fNull: 1; // enable null stripping DWORD fRtsControl:2; // RTS flow control DWORD fAbortOnError:1; // abort reads/writes on error DWORD fDummy2:17; // reserved WORD wReserved; // not currently used WORD XonLim; // transmit XON threshold WORD XoffLim; // transmit XOFF threshold BYTE ByteSize; // 每一筆資料的 bit 數, 4-8 BYTE Parity; // 同位元 (0-4) = 無,奇同位,偶同位,mark,space BYTE StopBits; // 停止位元 (0,1,2) = 1, 1."><meta property="og:title" content="RS232雜記"><meta property="og:description" content="1.BuildCommDCB 函數原型: BOOL BuildCommDCB( LPCTSTR lpDef, LPDCB lpDCB ). BuildCommDCB 函數是用來填寫 DCB 的資料,何謂 DCB 呢? DCB 的全名為 Device Control Block 是一資料結構,裡面定義著所有有關串列通訊(Serial Communication)的設定值,DCB 資料結構定義如下:
+typedef struct _DCB { DWORD DCBlength; // DCB 的大小 (in byte) DWORD BaudRate; // 傳輸率 (baud rate) bit/秒 DWORD fBinary: 1; // 二進制模式,沒有 EOF 檢查. DWORD fParity: 1; // 同位元檢查 (parity checking) DWORD fOutxCtsFlow:1; // CTS output flow control DWORD fOutxDsrFlow:1; // DSR output flow control DWORD fDtrControl:2; // DTR flow control type DWORD fDsrSensitivity:1; // DSR sensitivity DWORD fTXContinueOnXoff:1; // XOFF continues Tx DWORD fOutX: 1; // XON/XOFF out flow control DWORD fInX: 1; // XON/XOFF in flow control DWORD fErrorChar: 1; // enable error replacement DWORD fNull: 1; // enable null stripping DWORD fRtsControl:2; // RTS flow control DWORD fAbortOnError:1; // abort reads/writes on error DWORD fDummy2:17; // reserved WORD wReserved; // not currently used WORD XonLim; // transmit XON threshold WORD XoffLim; // transmit XOFF threshold BYTE ByteSize; // 每一筆資料的 bit 數, 4-8 BYTE Parity; // 同位元 (0-4) = 無,奇同位,偶同位,mark,space BYTE StopBits; // 停止位元 (0,1,2) = 1, 1."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/rs232/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-05-04T21:29:03+00:00"><meta property="article:modified_time" content="2017-05-04T21:29:03+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>RS232雜記</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 4, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>4 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/rs232/>RS232</a></div></div></header><div class=post-content><p>1.BuildCommDCB
+函數原型: BOOL BuildCommDCB( LPCTSTR lpDef, LPDCB lpDCB ).
+BuildCommDCB 函數是用來填寫 DCB 的資料,何謂 DCB 呢? DCB 的全名為 Device Control Block
+是一資料結構,裡面定義著所有有關串列通訊(Serial Communication)的設定值,DCB 資料結構定義如下:</p><p>typedef struct _DCB {
+DWORD DCBlength; // DCB 的大小 (in byte)
+DWORD BaudRate; // 傳輸率 (baud rate) bit/秒
+DWORD fBinary: 1; // 二進制模式,沒有 EOF 檢查.
+DWORD fParity: 1; // 同位元檢查 (parity checking)
+DWORD fOutxCtsFlow:1; // CTS output flow control
+DWORD fOutxDsrFlow:1; // DSR output flow control
+DWORD fDtrControl:2; // DTR flow control type
+DWORD fDsrSensitivity:1; // DSR sensitivity
+DWORD fTXContinueOnXoff:1; // XOFF continues Tx
+DWORD fOutX: 1; // XON/XOFF out flow control
+DWORD fInX: 1; // XON/XOFF in flow control
+DWORD fErrorChar: 1; // enable error replacement
+DWORD fNull: 1; // enable null stripping
+DWORD fRtsControl:2; // RTS flow control
+DWORD fAbortOnError:1; // abort reads/writes on error
+DWORD fDummy2:17; // reserved
+WORD wReserved; // not currently used
+WORD XonLim; // transmit XON threshold
+WORD XoffLim; // transmit XOFF threshold
+BYTE ByteSize; // 每一筆資料的 bit 數, 4-8
+BYTE Parity; // 同位元 (0-4) = 無,奇同位,偶同位,mark,space
+BYTE StopBits; // 停止位元 (0,1,2) = 1, 1.5, 2
+char XonChar; // Tx and Rx XON character
+char XoffChar; // Tx and Rx XOFF character
+char ErrorChar; // error replacement character
+char EofChar; // end of input character
+char EvtChar; // received event character
+WORD wReserved1; // reserved; do not use
+} DCB;</p><p>這個 DCB Structure 幾乎函蓋了所有有關串列通訊的參數,提供以後使用 SetCommState API 函數
+對硬體進行初始化設定.透過 BuildCommDCB 函數,我們可以最簡單的方法來向 DCB Structure
+填值,其中 LPCTSTR lpDef 指向一個叫做 device-control string 的位址,而 LPDCB lpDCB
+正指向 DCB Structure.我們較感興趣的是 device-control string,它使用設定串列埠的語
+法就跟以往 DOS 時代的 Mode 指令一樣,唯一不同的是它的傳輸率 (baud rate)已經不再限
+制於 19200 bit/秒以下,並且最高可達 256000 bit/秒.例如:欲設定 COM2 的 Baud = 57600,
+沒有同位元,資料 = 8 bit,一個停止位元,可以寫成 BuildCommDCB(&ldquo;19200,n,8,1&rdquo;,&dcb).
+若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p><p>2.CreatFile</p><p>函數原型:
+HANDLE CreateFile(
+LPCTSTR lpFileName, // pointer to name of the file
+DWORD dwDesiredAccess, // access (read-write) mode
+DWORD dwShareMode, // share mode
+LPSECURITY_ATTRIBUTES lpSecurityAttributes, // pointer to security attributes
+DWORD dwCreationDistribution, // how to create
+DWORD dwFlagsAndAttributes, // file attributes
+HANDLE hTemplateFile // handle to file with attributes to copy
+);
+這個 Windows API 函數在此是用來開啟系統的 Serial Port 並取得一個 HANDLE 代碼.以後想要存取
+Serial Port 時,只須面對這個 HANDLE 代碼即可.當然 CreateFile 函數也可以開啟其他類型的檔案,
+例如 files,pipes,mailslots 等等,有興趣的朋友可以參考 Borland C++ 或 C++Builder 附加的 Help
+file 內皆有詳盡的說明.</p><p>此函數共有七個變數欄位,第一個變數欄位 lpFileName 指向檔案名稱或裝置名稱,要當做串列通
+訊時, lpFileName 為 &ldquo;COM1&rdquo; 或 &ldquo;COM2&rdquo;.變數 dwDesiredAccess 設定存取型式.常數 GENERIC_READ
+代表可讀不可寫,常數 GENERIC_WRITE 代表可寫不可讀,GENERIC_READ + GENERIC_WRITE 代表可寫亦
+可讀.變數 dwShareMode 設定共享模式.常數 FILE_SHARE_READ 代表可以同時被多個程式讀取,而常數
+FILE_SHARE_READ 代表可以同時被多個程式寫入,NULL 代表不開放共享.當然在 Serial Port 下
+dwShareMode是不能開放共享的.
+變數 lpSecurityAttributes 設定保密程度.
+變數 dwCreationDistribution 決定檔案開啟模式.常數 OPEN_EXISTING 代表開啟一個已存在的舊檔.
+常數CREATE_ALWAYS 代表開啟新檔.
+變數 dwFlagsAndAttributes 決定檔案屬性.在使用 COM Port 時,檔案屬性必須設為 FILE_ATTRIBUTE_NORMAL.
+變數 hTemplateFile 指定檔案屬性原型.</p><p>3.SetCommState
+函數原型:
+BOOL SetCommState(
+HANDLE hFile, // handle of communications device
+LPDCB lpDCB // address of device-control block structure
+);</p><p>SetCommState 函數會根據 DCB 資料結構的內容,來設定串列通訊裝置,並對硬體重新初始化(initialize).
+變數 hFile 存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.
+變數 lpDCB 指向 DCB 資料結構的位址.
+例如 : SetCommState(handle,&dcb)
+若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p><p>4.SetupComm
+函數原型:
+BOOL SetupComm(
+HANDLE hFile, // handle of communications device
+DWORD dwInQueue, // size of input buffer
+DWORD dwOutQueue // size of output buffer
+);
+SetupComm 函數主要是用來設定輸入資料儲列(Queue)與輸出資料儲列大小.
+變數 hFile 一樣也是存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.
+變數 dwInQueue 設定輸入資料儲列的大小單位為 Byte.
+變數 dwOutQueue 設定輸出資料儲列的大小單位為 Byte.
+若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p><p>5.SetCommTimeouts
+函數原型:
+BOOL SetCommTimeouts(
+HANDLE hFile, // handle of communications device
+LPCOMMTIMEOUTS lpCommTimeouts // address of communications time-out structure
+);
+本函數執行的結果,會影響 ReadFile 的讀取時間與 WriteFile 的寫入時間.
+變數 hFile 存放著執行 CreatFile 函數後所傳回的 HANDLE 代碼.
+變數 lpCommTimeouts 指向一個 communications time-out 的資料結構,</p><p>typedef struct _COMMTIMEOUTS {
+DWORD ReadIntervalTimeout;
+DWORD ReadTotalTimeoutMultiplier;
+DWORD ReadTotalTimeoutConstant;
+DWORD WriteTotalTimeoutMultiplier;
+DWORD WriteTotalTimeoutConstant;
+} COMMTIMEOUTS,*LPCOMMTIMEOUTS;</p><p>變數 ReadIntervalTimeout 設定讀取第一個字元與第二個字元之間的 time out 時間.單位為毫秒
+(msec)當使用 ReadFile 函數從串列埠讀取一個字元時,若在 ReadIntervalTimeout 時間內讀取第
+二個字元,則 ReadFile函數會繼續讀取下一個字元.若未在 ReadIntervalTimeout 時間內讀取第二
+個字元,則ReadFile 函數將完成工作也就是跳出 ReadFile 執行下一行敘述.ReadIntervalTimeout
+設為 0 表示關閉此功能.</p><p>變數 ReadTotalTimeoutMultiplier 視讀取的字元數來決定總 time out 時間.
+總 time out 時間 = ReadTotalTimeoutMultiplier * 欲讀取字元數 + ReadTotalTimeoutConstant.
+將 ReadTotalTimeoutMultiplier 設為 0 表示關閉此功能.</p><p>變數 ReadTotalTimeoutConstant 為 time out 時間常數.加在 ReadTotalTimeoutMultiplier 之後.</p><p>變數 WriteTotalTimeoutMultiplier 與 WriteTotalTimeoutConstant 設定寫入串列埠的總 time out
+時間.寫入串列埠的總 time out 時間 =
+WriteTotalTimeoutMultiplier * 欲寫入之字元數 + WriteTotalTimeoutConstant.
+將 WriteTotalTimeoutMultiplier 和 WriteTotalTimeoutConstant 設為 0 表示關閉此功能.</p><p>讀取串列埠之 time out 設定的恰當與否,將會影響程式的執行效率,如果設定的總 time out 時
+間過長,而遠端裝置又沒有回應(No Response)時通常會導致讓 User 誤判成電腦當機,所以不可以亂設
+.一般通常都設成:
+TimeOut.ReadIntervalTimeout = 0;
+TimeOut.ReadTotalTimeoutMultiplier = 0;
+TimeOut.ReadTotalTimeoutConstant = 500; //(總讀取 time out 時間 = 0.5 秒)
+TimeOut.WriteTotalTimeoutMultiplier = 0;
+TimeOut.WriteTotalTimeoutConstant = 500; //(總寫入 time out 時間 = 0.5 秒)
+再執行 SetCommTimeouts(handle,&TimeOut) ,即完成了communications time-out 的設定.
+若涵數執行成功,將傳回一個非零的值.若執行失敗則傳回零.</p><p>最後再將上述的五個 Communication Function 簡單地複習一遍.
+初始化 COM PORT 的步驟
+1.BuildCommDCB : 建立 DCB (Device Control Block).
+2.CreatFile : 開啟 COM Port 並取得 Handle 代碼.
+3.SetCommState : 根據 DCB 資料結構的內容,來設定串列通訊裝置,並對硬體重新初始化(initialize).
+4.SetupComm : 用來設定輸入資料儲列(Queue)與輸入資料儲列.
+5.SetCommTimeouts :設定 ReadFile 的最大讀取時,間與 WriteFile 的最大寫入時間.
+此時的 Com Port 已可隨意存取,欲存取 Com Port 請用 ReadFile() 與 WriteFile() API函數.
+從 Com Port 讀取一個字元:
+ReadFile(handle, &lpBuf, 1, &dwRead, NULL);
+寫一個字元至 Com Port :
+WriteFile(handle,&WriteBuffer,1,&NoWrite,0);</p></div><div class=post-footer></div></article></main></body></html>

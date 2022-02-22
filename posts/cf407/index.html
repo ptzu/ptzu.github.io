@@ -1,0 +1,160 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 407 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 407"><meta name=twitter:description content="目錄  微動腦實作 math 最大連續區間和變形  A. Anastasia and pebbles 題目
+input n 種石頭, 口袋能放 k 個: 1 ≤ n ≤ 10^5, 1 ≤ k ≤ 10^9 石頭數量 w1&mldr;wn: 1 ≤ wi ≤ 10^4
+題解 Anastasia 決定在公園裡蒐集石頭 他有兩個口袋, 每個口袋可以放 k 個石頭 公園裡有 n 種石頭, 第 i 種石頭有 wi 個 在同一個口袋不能放不同種類的石頭 她一天只能來公園蒐集一次石頭(兩個口袋滿) 請問要幾天才能蒐集完公園裡全部石頭？
+作法 由於每次只能裝 k 個, 而且不能混別種石頭 所以就每 k 個當作一堆, 每天能裝 2 堆 看要幾天
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:title" content="Codeforces Round 407"><meta property="og:description" content="目錄  微動腦實作 math 最大連續區間和變形  A. Anastasia and pebbles 題目
+input n 種石頭, 口袋能放 k 個: 1 ≤ n ≤ 10^5, 1 ≤ k ≤ 10^9 石頭數量 w1&mldr;wn: 1 ≤ wi ≤ 10^4
+題解 Anastasia 決定在公園裡蒐集石頭 他有兩個口袋, 每個口袋可以放 k 個石頭 公園裡有 n 種石頭, 第 i 種石頭有 wi 個 在同一個口袋不能放不同種類的石頭 她一天只能來公園蒐集一次石頭(兩個口袋滿) 請問要幾天才能蒐集完公園裡全部石頭？
+作法 由於每次只能裝 k 個, 而且不能混別種石頭 所以就每 k 個當作一堆, 每天能裝 2 堆 看要幾天
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf407/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-03-30T16:32:28+00:00"><meta property="article:modified_time" content="2017-03-30T16:32:28+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 407</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Mar 30, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a>
+<a class=tag href=https://ptzu.github.io/tags/math/>Math</a>
+<a class=tag href=https://ptzu.github.io/tags/dp/>DP</a>
+<a class=tag href=https://ptzu.github.io/tags/%E5%8D%80%E9%96%93/>區間</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>微動腦實作</li><li>math</li><li>最大連續區間和變形</li></ol><h1 id=a-anastasia-and-pebbles>A. Anastasia and pebbles</h1><p><a href=http://codeforces.com/contest/789/problem/A>題目</a></p><h2 id=input>input</h2><p>n 種石頭, 口袋能放 k 個: 1 ≤ n ≤ 10^5, 1 ≤ k ≤ 10^9
+石頭數量 w1&mldr;wn: 1 ≤ wi ≤ 10^4</p><h2 id=題解>題解</h2><p>Anastasia 決定在公園裡蒐集石頭
+他有兩個口袋, 每個口袋可以放 k 個石頭
+公園裡有 n 種石頭, 第 i 種石頭有 wi 個
+在同一個口袋不能放不同種類的石頭
+她一天只能來公園蒐集一次石頭(兩個口袋滿)
+請問要幾天才能蒐集完公園裡全部石頭？</p><h2 id=作法>作法</h2><p>由於每次只能裝 k 個, 而且不能混別種石頭
+所以就每 k 個當作一堆, 每天能裝 2 堆
+看要幾天</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    fio;
+    <span style=color:#66d9ef>int</span> n, m;
+    cin <span style=color:#f92672>&gt;&gt;</span> n <span style=color:#f92672>&gt;&gt;</span> m;
+    <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> x;
+        cin <span style=color:#f92672>&gt;&gt;</span> x;
+        cnt <span style=color:#f92672>+=</span> x <span style=color:#f92672>/</span> m;
+        <span style=color:#66d9ef>if</span>(x <span style=color:#f92672>%</span> m <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>)
+            cnt<span style=color:#f92672>++</span>;
+    }
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> cnt <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+    <span style=color:#66d9ef>if</span>(cnt <span style=color:#f92672>%</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>) ans<span style=color:#f92672>++</span>;
+    cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-masha-and-geometric-depression>B. Masha and geometric depression</h1><p># math
+<a href=http://codeforces.com/contest/789/problem/B>題目</a></p><h2 id=input-1>input</h2><p>初始值 b1, 公比 q, L, m 個 bad 數: -10^9 ≤ b1, q ≤ 10^9, 1 ≤ l ≤ 10^9, 1 ≤ m ≤ 10^5
+bad 數 a1&mldr;am: -10^9 ≤ ai ≤ 10^9</p><h2 id=題解-1>題解</h2><p>給一等比級數(geometric progression), for i > 1, bi = bi-1 * q
+b 和 q 可以為 0, 再給 m 個 bad 數, 和 L
+對該等比級數, |b| &lt;= L, 而且不為 bad 數, 就寫在黑板
+請問黑板有幾個數字, 若是無限多個, 輸出 &ldquo;inf&rdquo;</p><h2 id=作法-1>作法</h2><p>先講比較複雜, 但是詳細的作法</p><ol><li>q = 0, 則數列為 b, 0, 0,&mldr;
+如果 0 不是 bad, 則答案為 inf, 反之就看 b 是不是 bad</li><li>q = 1, 則數列為 b, b, b,&mldr;
+答案不是 inf, 就是 0</li><li>q = -1, 則數列為 b, -b, b, -b,&mldr;
+需要 b, -b 都為 bad, 答案是 0, 反之答案皆為 inf</li><li>其他就跟著做, 找符合條件有幾個就好</li></ol><hr><p>接著講比較簡單作法, 由於數字範圍都在 int 內
+而乘法數字是成長很快的, 所以我們跑一定數量的迴圈
+int 範圍是 2^31, 所以只要乘超過 31 次, 一定超過 int
+因此可以推斷, 超過 31 次的一定是有數字在循環, 也就是 inf</p><p>ps: 如果 |b1| > L, 就直接結束了, 答案是 0
+123 0 21 4
+543453 -123 6 1424
+這筆測資卡死我了&mldr;</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+ll b, q, l, m;
+set <span style=color:#f92672>&lt;</span>ll<span style=color:#f92672>&gt;</span> bad;
+<span style=color:#66d9ef>int</span> cnt;
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    fio;
+    cin <span style=color:#f92672>&gt;&gt;</span> b <span style=color:#f92672>&gt;&gt;</span> q <span style=color:#f92672>&gt;&gt;</span> l <span style=color:#f92672>&gt;&gt;</span> m;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> m; i<span style=color:#f92672>++</span>){
+        ll x;
+        cin <span style=color:#f92672>&gt;&gt;</span> x;
+        bad.insert(x);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>100</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(abs(b) <span style=color:#f92672>&gt;</span> l) <span style=color:#66d9ef>break</span>;
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>bad.count(b)) cnt<span style=color:#f92672>++</span>;
+        b <span style=color:#f92672>*=</span> q;
+    }
+    <span style=color:#66d9ef>if</span>(cnt <span style=color:#f92672>&gt;</span> <span style=color:#ae81ff>32</span>) puts(<span style=color:#e6db74>&#34;inf&#34;</span>);
+    <span style=color:#66d9ef>else</span> cout <span style=color:#f92672>&lt;&lt;</span> cnt <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-functions-again>C. Functions again</h1><p># 區間 # DP
+<a href=http://codeforces.com/contest/789/problem/C>題目</a></p><h2 id=input-2>input</h2><p>n 個數字: 2 ≤ n ≤ 10^5
+數字 a: -10^9 ≤ ai ≤ 10^9</p><h2 id=題解-2>題解</h2><p>打不出數學式&mldr;</p><h2 id=作法-2>作法</h2><p>和求最大連續區間和類似
+只是會有個 -1 在影響
+跑 2 次迴圈原因就是在處理這個
+假如 1, 2, 3, 4, 5
+可以想成
+1, -2, 3, -4, 5
+-1, 2, -3, 4, -5
+在這兩個數列求最大</p><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> n;
+<span style=color:#66d9ef>int</span> a[<span style=color:#ae81ff>101010</span>];
+ll dp[<span style=color:#ae81ff>101010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    fio;
+    <span style=color:#66d9ef>int</span> n;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        cin <span style=color:#f92672>&gt;&gt;</span> a[i];
+    }
+    ll ans <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>2</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> flag <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+        memset(dp, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(dp));
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i; j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>){
+            dp[j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> dp[j] <span style=color:#f92672>+</span> abs(a[j] <span style=color:#f92672>-</span> a[j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]) <span style=color:#f92672>*</span> flag;
+            <span style=color:#66d9ef>if</span>(dp[j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>0</span>) dp[j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+            ans <span style=color:#f92672>=</span> max(ans, dp[j <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]);
+            flag <span style=color:#f92672>=</span> <span style=color:#f92672>-</span>flag;
+        }
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

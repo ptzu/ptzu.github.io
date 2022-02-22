@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Greedy on Ptzu's blog</title><link>https://ptzu.github.io/tags/greedy/</link><description>Recent content in Greedy on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sat, 14 Apr 2018 19:42:12 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/greedy/index.xml" rel="self" type="application/rss+xml"/><item><title>Uva 11269 - Setting Problems</title><link>https://ptzu.github.io/posts/uva11269/</link><pubDate>Sat, 14 Apr 2018 19:42:12 +0000</pubDate><guid>https://ptzu.github.io/posts/uva11269/</guid><description>題目
+input 多筆測資, 每筆開頭輸入 n (1 &amp;lt;= n &amp;lt;= 20) 代表有 n 道題目 下一列輸入 Sultan 準備這道題目要花多久 再下一列輸入 GolapiBaba 準備這道題目要花多久
+題解 Sultan 和 GolapiBaba 想準備 N 道題目 兩人分工準備一道題目, 分別花上不同的時間 Sultan 做完他的部份, GolapiBaba 才可以接著做 每個人都不能同時準備兩道以上的題目 問最少要花多少時間
+作法 完全想不到&amp;hellip; 這似乎叫作相鄰交換法 一次考慮兩個任務 a, b 我們想知道 ab, ba 這兩種順序 何者花的時間比較少 若是 a 先做, 花的時間為 a.st + max(a.nd, b.st) + b.nd 反之一樣 排序好之後, 去計算時間即可
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.</description></item><item><title>TIOJ 1072 A.誰先晚餐</title><link>https://ptzu.github.io/posts/tioj1072/</link><pubDate>Sat, 14 Apr 2018 17:02:34 +0000</pubDate><guid>https://ptzu.github.io/posts/tioj1072/</guid><description>題目
+input 輸入檔包含多組測試資料，每一組測試資料的第一行有一個整數N (1 ≤ N ≤ 10000)，代表跟小尹去吃飯的人數，接下來的N行每行有兩個以空白字元分隔的整數Ci Ei ( 1 ≤ i ≤ N, 1 ≤ Ci, Ei ≤ 1000)，其中Ci代表烹煮第i個人點的餐點所需要的時間，Ei代表第i個人把他點的餐點吃完所需要的時間。讀到N = 0的時候代表測試檔案的結尾，不需要對於這個數字作任何輸出。
+題解 有 N 個人要吃飯 因為有人吃的快，有人吃的慢 每道餐點做的時間也不一樣 老闆只有一個廚具 要如何安排順序 使飯局結束時間最早
+作法 由於不管怎麼排，老闆都是一直做菜 所以做完所有餐點的總時間都是一樣的 而結束時間就會是最後一道菜 加上那個人吃的時間 要使結束時間最短 最後一個人必須吃最快
+以這樣的想法去 greedy 即可 另外也有可能最早吃的人 吃太久而超過最後一個人 所以每個人吃的時間都要維護最大值
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.</description></item><item><title>Uva 11389 - The Bus Driver Problem</title><link>https://ptzu.github.io/posts/uva11389/</link><pubDate>Sat, 14 Apr 2018 16:38:26 +0000</pubDate><guid>https://ptzu.github.io/posts/uva11389/</guid><description>題目
+input 多筆測資, 每筆測資開頭輸入 n, d, r (1 &amp;lt;= n &amp;lt;= 100)(1 &amp;lt;= d &amp;lt;= 10000)(1 &amp;lt;= r &amp;lt;= 5) 下一列輸入 n 個早上路徑 再下一列輸入 n 個下午路徑
+題解 有 n 位司機, 每位司機會被分配到一個早上和下午路徑 若是一天的總路程超過 d, 則每一單位長度要付 r 元 求如何安排使加班費最少
+作法 大的配小的
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.</description></item><item><title>Educational Codeforces Round 18</title><link>https://ptzu.github.io/posts/cfedu18/</link><pubDate>Thu, 30 Mar 2017 16:32:26 +0000</pubDate><guid>https://ptzu.github.io/posts/cfedu18/</guid><description>目錄 距離 sort 使用 vector erase 數字 digit 總於除 3 A. New Bus Route 題目
+input n 個城市: 2 ≤ n ≤ 2·10^5 城市座標: - 10^9 ≤ a ≤ 10^9
+題解 有 n 座城市, 要規劃新的公車路線 所以要求出任兩城市的最短距離, 以及符合該距離的 pair 有幾個？
+作法 sort
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.</description></item></channel></rss>

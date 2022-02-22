@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>資料庫 on Ptzu's blog</title><link>https://ptzu.github.io/categories/%E8%B3%87%E6%96%99%E5%BA%AB/</link><description>Recent content in 資料庫 on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Wed, 31 May 2017 22:25:55 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/categories/%E8%B3%87%E6%96%99%E5%BA%AB/index.xml" rel="self" type="application/rss+xml"/><item><title>在 Ubuntu 安裝 phpmyadmin</title><link>https://ptzu.github.io/posts/ubuntu-phpmyadmin/</link><pubDate>Wed, 31 May 2017 22:25:55 +0000</pubDate><guid>https://ptzu.github.io/posts/ubuntu-phpmyadmin/</guid><description>在 Ubuntu 安裝 phpmyadmin 非常簡單
+安裝 MySQL sudo apt-get install mysql-server 過程中會要求你輸入 root 密碼
+安裝 phpmyadmin sudo apt-get install phpmyadmin 過程會有 1.選擇伺服器(apache2) 2.剛剛設置的 mysql root 密碼
+phpMyAdmin的設置文件在: /etc/phpmyadmin/config.inc.php
+安裝好之後還不能馬上使用 需要在 apache2.conf 下添加
+Include /etc/phpmyadmin/apache.conf 之後在重啟 apache server
+就可以透過 host/phpmyadmin 來登入</description></item><item><title>MySQL 新增使用者</title><link>https://ptzu.github.io/posts/mysql-newuser/</link><pubDate>Wed, 31 May 2017 21:38:43 +0000</pubDate><guid>https://ptzu.github.io/posts/mysql-newuser/</guid><description>新增帳號 mysql&amp;gt; GRANT 權限 ON 資料庫(或資料表TABLE) TO user@host IDENTIFIED BY &amp;lsquo;密碼&amp;rsquo;;
+資料庫的權限有 15 種： ALTER CREATE DELETE DROP FILE INDEX INSERT PROCESS REFERENCES RELOAD SELECT SHUTDOWN UPDATE USAGE ALL PRIVILEGES(以上全部開放)
+host 為主機, 如果架在本機, 就打 localhost</description></item><item><title>SQL 常見指令</title><link>https://ptzu.github.io/posts/sql-instruction/</link><pubDate>Fri, 07 Apr 2017 23:18:31 +0000</pubDate><guid>https://ptzu.github.io/posts/sql-instruction/</guid><description>建立資料庫: create database 資料庫名稱;
+列出所有資料庫: show databases;
+使用資料庫: use 資料庫名稱;
+建立資料表: create table 資料表名稱(欄位名稱 型態,&amp;hellip;) 型態有: integer, real, char()
+刪除資料表: drop table 資料表名稱;
+新增資料表欄位: alter table 資料表名稱 add 欄位名稱 型態
+刪除資料表欄位: alter table 資料表名稱 drop 欄位名稱 型態
+插入資料: insert into 資料表名稱(欄位1, 欄位2, &amp;hellip;) values(&amp;lsquo;值1&amp;rsquo;, &amp;lsquo;值2&amp;rsquo;, &amp;hellip;)
+刪除資料: delete from 資料表名稱 where 條件式 ex: delete from Students as S where S.name = &amp;lsquo;Smith&amp;rsquo;; 其中 as S 是縮寫寫法, as 可以不用加
+更新資料: update 資料表名稱 set 欄位名稱 = 值, &amp;hellip; where 條件式</description></item><item><title>MySQL CSV檔匯入 Invalid uft8 character</title><link>https://ptzu.github.io/posts/mysql-problem1/</link><pubDate>Sun, 12 Mar 2017 23:22:42 +0000</pubDate><guid>https://ptzu.github.io/posts/mysql-problem1/</guid><description>環境: Windows 今天在匯入 csv 檔到資料表時 指令:
+load data local infile &amp;#39;D:\\HW1_excel\\book.csv&amp;#39; into table mytable fields terminated by &amp;#39;,&amp;#39; lines terminated by &amp;#39;\r\n&amp;#39;; 跳出了錯誤: Invalid uft8 character string: &amp;quot; 查了發現是編碼問題 請先確認欄位的編碼和文件編碼是否相同 欄位查詢可以使用:
+show full fields from TABLE名稱 文件部份: 可以使用 nodepad++ 『Encoding』-&amp;gt; 『Convert to UTF-8』 小心不要像我腦殘選成 Encode in UTF-8, 這樣是不會轉換的&amp;hellip;
+如果已經確定編碼都相同 我還遇到一個問題: 1366 incorrect integer value 除了是你資料和欄位型態不同之外 還有可能是你的編碼含BOM, 所以同上改變編碼(不要選有BOM的喔！)
+ps: 如果要讀txt檔, 欄位資料之間用TAB隔開
+4/26 更新： 在MySQL中, 預設的資料分隔是 TAB, 換行則是 &amp;lsquo;\n&amp;rsquo; 而在 Windows 中, 換行符號則是 &amp;lsquo;\r\n&amp;rsquo; 如果沒有 lines terminated by &amp;lsquo;\r\n&amp;rsquo; 這段, &amp;lsquo;\r&amp;rsquo;會被保留下來 導致可能資料看起來明明是對的, 但其實在結尾多了 &amp;lsquo;\r&amp;rsquo; 需特別注意！！</description></item></channel></rss>

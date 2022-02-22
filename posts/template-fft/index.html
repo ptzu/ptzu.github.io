@@ -1,0 +1,110 @@
+<!doctype html><html lang=en-us><head><title>快速傅利葉轉換 FFT // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="快速傅利葉轉換 FFT"><meta name=twitter:description content="Code const int N = 500005; const double PI = acos(-1.0); struct Virt{ double r,i; Virt(double r=0.0,double i=0.0){ this->r=r; this->i=i; } Virt operator+(const Virt &x){ return Virt(r+x.r,i+x.i); } Virt operator-(const Virt &x){ return Virt(r-x.r,i-x.i); } Virt operator*(const Virt &x){ return Virt(r*x.r-i*x.i,i*x.r+r*x.i); } }; //雷德算法--倒位序 void Rader(Virt F[],int len){ int j=len>>1; for(int i=1;i<len-1;i++){ if(i<j)swap(F[i],F[j]); int k = len >> 1; while(j>=k){ j-=k; k>>=1; } if(j<k)j+=k; } } //FFT实现 void FFT(Virt F[],int len,int on){ Rader(F, len); for(int h=2;h<=len;h<<=1) //分治后计算长度为h的DFT  { Virt wn(cos(-on*2*PI/h),sin(-on*2*PI/h)); //单位复根e^(2*PI/m)用欧拉公式展开  for(int j=0; j<len; j+=h) { Virt w(1,0); //旋转因子  for(int k=j;k<j+h/2;k++) { Virt u=F[k]; Virt t=w*F[k+h/2]; F[k]=u+t; //蝴蝶合并操作  F[k+h/2]=u-t; w=w*wn; //更新旋转因子  } } } if(on==-1) for(int i=0;i<len;i++) F[i]."><meta property="og:title" content="快速傅利葉轉換 FFT"><meta property="og:description" content="Code const int N = 500005; const double PI = acos(-1.0); struct Virt{ double r,i; Virt(double r=0.0,double i=0.0){ this->r=r; this->i=i; } Virt operator+(const Virt &x){ return Virt(r+x.r,i+x.i); } Virt operator-(const Virt &x){ return Virt(r-x.r,i-x.i); } Virt operator*(const Virt &x){ return Virt(r*x.r-i*x.i,i*x.r+r*x.i); } }; //雷德算法--倒位序 void Rader(Virt F[],int len){ int j=len>>1; for(int i=1;i<len-1;i++){ if(i<j)swap(F[i],F[j]); int k = len >> 1; while(j>=k){ j-=k; k>>=1; } if(j<k)j+=k; } } //FFT实现 void FFT(Virt F[],int len,int on){ Rader(F, len); for(int h=2;h<=len;h<<=1) //分治后计算长度为h的DFT  { Virt wn(cos(-on*2*PI/h),sin(-on*2*PI/h)); //单位复根e^(2*PI/m)用欧拉公式展开  for(int j=0; j<len; j+=h) { Virt w(1,0); //旋转因子  for(int k=j;k<j+h/2;k++) { Virt u=F[k]; Virt t=w*F[k+h/2]; F[k]=u+t; //蝴蝶合并操作  F[k+h/2]=u-t; w=w*wn; //更新旋转因子  } } } if(on==-1) for(int i=0;i<len;i++) F[i]."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/template-fft/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-09T21:03:48+00:00"><meta property="article:modified_time" content="2018-02-09T21:03:48+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>快速傅利葉轉換 FFT</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 9, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/template/>Template</a></div></div></header><div class=post-content><h2 id=code>Code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> N <span style=color:#f92672>=</span> <span style=color:#ae81ff>500005</span>;
+<span style=color:#66d9ef>const</span> <span style=color:#66d9ef>double</span> PI <span style=color:#f92672>=</span> acos(<span style=color:#f92672>-</span><span style=color:#ae81ff>1.0</span>);
+
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Virt</span>{
+    <span style=color:#66d9ef>double</span> r,i;
+    Virt(<span style=color:#66d9ef>double</span> r<span style=color:#f92672>=</span><span style=color:#ae81ff>0.0</span>,<span style=color:#66d9ef>double</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0.0</span>){
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>r<span style=color:#f92672>=</span>r;
+        <span style=color:#66d9ef>this</span><span style=color:#f92672>-&gt;</span>i<span style=color:#f92672>=</span>i;
+    }
+    Virt <span style=color:#66d9ef>operator</span><span style=color:#f92672>+</span>(<span style=color:#66d9ef>const</span> Virt <span style=color:#f92672>&amp;</span>x){
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Virt</span>(r<span style=color:#f92672>+</span>x.r,i<span style=color:#f92672>+</span>x.i);
+    }
+    Virt <span style=color:#66d9ef>operator</span><span style=color:#f92672>-</span>(<span style=color:#66d9ef>const</span> Virt <span style=color:#f92672>&amp;</span>x){
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Virt</span>(r<span style=color:#f92672>-</span>x.r,i<span style=color:#f92672>-</span>x.i);
+    }
+    Virt <span style=color:#66d9ef>operator</span><span style=color:#f92672>*</span>(<span style=color:#66d9ef>const</span> Virt <span style=color:#f92672>&amp;</span>x){
+        <span style=color:#66d9ef>return</span> <span style=color:#a6e22e>Virt</span>(r<span style=color:#f92672>*</span>x.r<span style=color:#f92672>-</span>i<span style=color:#f92672>*</span>x.i,i<span style=color:#f92672>*</span>x.r<span style=color:#f92672>+</span>r<span style=color:#f92672>*</span>x.i);
+    }
+};
+<span style=color:#75715e>//雷德算法--倒位序
+</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>Rader</span>(Virt F[],<span style=color:#66d9ef>int</span> len){
+    <span style=color:#66d9ef>int</span> j<span style=color:#f92672>=</span>len<span style=color:#f92672>&gt;&gt;</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>;i<span style=color:#f92672>&lt;</span>len<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(i<span style=color:#f92672>&lt;</span>j)swap(F[i],F[j]);
+        <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> len <span style=color:#f92672>&gt;&gt;</span> <span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>while</span>(j<span style=color:#f92672>&gt;=</span>k){
+            j<span style=color:#f92672>-=</span>k;
+            k<span style=color:#f92672>&gt;&gt;=</span><span style=color:#ae81ff>1</span>;
+        }
+        <span style=color:#66d9ef>if</span>(j<span style=color:#f92672>&lt;</span>k)j<span style=color:#f92672>+=</span>k;
+    }
+}
+<span style=color:#75715e>//FFT实现
+</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>FFT</span>(Virt F[],<span style=color:#66d9ef>int</span> len,<span style=color:#66d9ef>int</span> on){
+    Rader(F, len);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> h<span style=color:#f92672>=</span><span style=color:#ae81ff>2</span>;h<span style=color:#f92672>&lt;=</span>len;h<span style=color:#f92672>&lt;&lt;=</span><span style=color:#ae81ff>1</span>) <span style=color:#75715e>//分治后计算长度为h的DFT
+</span><span style=color:#75715e></span>    {
+        Virt wn(cos(<span style=color:#f92672>-</span>on<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>PI<span style=color:#f92672>/</span>h),sin(<span style=color:#f92672>-</span>on<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span><span style=color:#f92672>*</span>PI<span style=color:#f92672>/</span>h));  <span style=color:#75715e>//单位复根e^(2*PI/m)用欧拉公式展开
+</span><span style=color:#75715e></span>        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; j<span style=color:#f92672>&lt;</span>len; j<span style=color:#f92672>+=</span>h)
+        {
+            Virt w(<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>);            <span style=color:#75715e>//旋转因子
+</span><span style=color:#75715e></span>            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> k<span style=color:#f92672>=</span>j;k<span style=color:#f92672>&lt;</span>j<span style=color:#f92672>+</span>h<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>;k<span style=color:#f92672>++</span>)
+            {
+                Virt u<span style=color:#f92672>=</span>F[k];
+                Virt t<span style=color:#f92672>=</span>w<span style=color:#f92672>*</span>F[k<span style=color:#f92672>+</span>h<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>];
+                F[k]<span style=color:#f92672>=</span>u<span style=color:#f92672>+</span>t;     <span style=color:#75715e>//蝴蝶合并操作
+</span><span style=color:#75715e></span>                F[k<span style=color:#f92672>+</span>h<span style=color:#f92672>/</span><span style=color:#ae81ff>2</span>]<span style=color:#f92672>=</span>u<span style=color:#f92672>-</span>t;
+                w<span style=color:#f92672>=</span>w<span style=color:#f92672>*</span>wn;      <span style=color:#75715e>//更新旋转因子
+</span><span style=color:#75715e></span>            }
+        }
+    }
+    <span style=color:#66d9ef>if</span>(on<span style=color:#f92672>==-</span><span style=color:#ae81ff>1</span>)
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>len;i<span style=color:#f92672>++</span>)
+    F[i].r<span style=color:#f92672>/=</span>len;
+}
+<span style=color:#75715e>//求卷积
+</span><span style=color:#75715e></span><span style=color:#66d9ef>void</span> <span style=color:#a6e22e>Conv</span>(Virt a[],Virt b[],<span style=color:#66d9ef>int</span> len){
+    FFT(a,len,<span style=color:#ae81ff>1</span>);
+    FFT(b,len,<span style=color:#ae81ff>1</span>);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>len;i<span style=color:#f92672>++</span>)
+        a[i]<span style=color:#f92672>=</span>a[i]<span style=color:#f92672>*</span>b[i];
+    FFT(a,len,<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>);
+}
+Virt va[N],vb[N];
+<span style=color:#66d9ef>int</span> sum[N];
+string <span style=color:#66d9ef>operator</span><span style=color:#f92672>*</span>(string <span style=color:#f92672>&amp;</span>a,string <span style=color:#f92672>&amp;</span>b){
+    memset(va,<span style=color:#ae81ff>0</span>,<span style=color:#66d9ef>sizeof</span>(va));
+    memset(vb,<span style=color:#ae81ff>0</span>,<span style=color:#66d9ef>sizeof</span>(vb));
+    memset(sum,<span style=color:#ae81ff>0</span>,<span style=color:#66d9ef>sizeof</span>(sum));
+    <span style=color:#66d9ef>int</span> len1<span style=color:#f92672>=</span>a.length();
+    <span style=color:#66d9ef>int</span> len2<span style=color:#f92672>=</span>b.length();
+    <span style=color:#66d9ef>int</span> len<span style=color:#f92672>=</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>while</span>(len<span style=color:#f92672>&lt;</span>len1<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span><span style=color:#f92672>||</span>len<span style=color:#f92672>&lt;</span>len2<span style=color:#f92672>*</span><span style=color:#ae81ff>2</span>)len<span style=color:#f92672>&lt;&lt;=</span><span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>len1;i<span style=color:#f92672>++</span>){
+        va[i].r<span style=color:#f92672>=</span>a[len1<span style=color:#f92672>-</span>i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>-</span><span style=color:#e6db74>&#39;0&#39;</span>;
+        va[i].i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>len1;i<span style=color:#f92672>&lt;</span>len;i<span style=color:#f92672>++</span>){
+        va[i].r<span style=color:#f92672>=</span>va[i].i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>len2;i<span style=color:#f92672>++</span>){
+        vb[i].r<span style=color:#f92672>=</span>b[len2<span style=color:#f92672>-</span>i<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>-</span><span style=color:#e6db74>&#39;0&#39;</span>;
+        vb[i].i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>len2;i<span style=color:#f92672>&lt;</span>len;i<span style=color:#f92672>++</span>)
+    vb[i].r<span style=color:#f92672>=</span>vb[i].i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    Conv(va,vb,len);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>len<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;i<span style=color:#f92672>&gt;=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>--</span>)
+    sum[i]<span style=color:#f92672>=</span>(<span style=color:#66d9ef>int</span>)(va[i].r<span style=color:#f92672>+</span><span style=color:#ae81ff>0.5</span>);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span>len;i<span style=color:#f92672>++</span>){
+        sum[i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>]<span style=color:#f92672>+=</span>sum[i]<span style=color:#f92672>/</span><span style=color:#ae81ff>10</span>;
+        sum[i]<span style=color:#f92672>%=</span><span style=color:#ae81ff>10</span>;
+    }
+    string str;
+    <span style=color:#66d9ef>int</span> k<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>len<span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;i<span style=color:#f92672>&gt;=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>--</span>){
+        <span style=color:#66d9ef>if</span>(sum[i]<span style=color:#f92672>!=</span><span style=color:#ae81ff>0</span>){
+            k<span style=color:#f92672>=</span>i;
+            <span style=color:#66d9ef>break</span>;
+        }
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span>k;i<span style=color:#f92672>&gt;=-</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>--</span>)
+    str<span style=color:#f92672>+=</span>(<span style=color:#66d9ef>char</span>)(sum[i]<span style=color:#f92672>+</span><span style=color:#e6db74>&#39;0&#39;</span>);
+    <span style=color:#66d9ef>return</span> str;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>2-SAT on Ptzu's blog</title><link>https://ptzu.github.io/tags/2-sat/</link><description>Recent content in 2-SAT on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 08 Mar 2018 12:02:59 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/2-sat/index.xml" rel="self" type="application/rss+xml"/><item><title>Uva 10319 - Manhattan</title><link>https://ptzu.github.io/posts/uva10319/</link><pubDate>Thu, 08 Mar 2018 12:02:59 +0000</pubDate><guid>https://ptzu.github.io/posts/uva10319/</guid><description>題目
+input 含多筆測資, 輸入 T, 代表 T 座城市 每筆測資開頭輸入 r, c, m (0 &amp;lt;= r,c &amp;lt;= 20)(0 &amp;lt;= m &amp;lt;= 200) 代表 street, avenue, route 數量 接著 m 條 route 輸入起點與終點
+題解 每座城市有 r 條 street(東西向), c 條 avenue(南北向) 替每條路指定方向(只能往東南西北一個方向) 定義一條合法的 route 為起點走到終點, 走的路都為指定方向 而一條 simple route, 就是路程中最多一次轉向
+給 M 對起點終點, 若有至少一條 simple route 就輸出 Yes 反之 No
+作法 判斷 2-SAT 是否為 true
+將一條路當成一個邏輯變數 先定義向東以及向南為 True 假設起點為 (r1, c1), 終點為 (r2, c2)</description></item></channel></rss>

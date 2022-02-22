@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>PHP on Ptzu's blog</title><link>https://ptzu.github.io/tags/php/</link><description>Recent content in PHP on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Sun, 04 Jun 2017 17:24:29 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/php/index.xml" rel="self" type="application/rss+xml"/><item><title>在 PHP 調用 Compiler</title><link>https://ptzu.github.io/posts/php-call-compiler/</link><pubDate>Sun, 04 Jun 2017 17:24:29 +0000</pubDate><guid>https://ptzu.github.io/posts/php-call-compiler/</guid><description>今天在做 Online Judge 時 來到了調用 Compiler 來編譯的步驟 在 PHP 方面有三個函數可以選擇 分別是 system(), exec(), shell_exec() 詳細差異就請自行去搜尋吧
+先講結論: 不需要 sudo 權限就可以執行 g++
+一開始我以為呼叫 g++ 需要 sudo權限 於是去找了怎麼使 apache 有權限 可以呼叫
+System(&amp;#39;id&amp;#39;); 來查看 apache 是用什麼身份 我的是 www-data 這個帳號 接著打 visudo 來編輯 sudoer file, 不建議直接修改 sudoer file 因為需要更改到 sudoer file 的權限, 改來改去可能會有權限上的問題 我在檔案內加了這行
+www-data ALL(ALL:ALL) NOPASSWD:ALL 其中 NOPASSWD 是呼叫 sudo 時不用打密碼 本來以為終於要可以執行了 結果跳出了訊息 sudo: no tty present and no askpass program specified 雖然在找資料過程已經知道 apache 沒有 tty, 所以會有這個問題 但網路上沒有一個方法可以解決阿！ 網路上幾乎都是提到 1.</description></item><item><title>在 Ubuntu 安裝 phpmyadmin</title><link>https://ptzu.github.io/posts/ubuntu-phpmyadmin/</link><pubDate>Wed, 31 May 2017 22:25:55 +0000</pubDate><guid>https://ptzu.github.io/posts/ubuntu-phpmyadmin/</guid><description>在 Ubuntu 安裝 phpmyadmin 非常簡單
+安裝 MySQL sudo apt-get install mysql-server 過程中會要求你輸入 root 密碼
+安裝 phpmyadmin sudo apt-get install phpmyadmin 過程會有 1.選擇伺服器(apache2) 2.剛剛設置的 mysql root 密碼
+phpMyAdmin的設置文件在: /etc/phpmyadmin/config.inc.php
+安裝好之後還不能馬上使用 需要在 apache2.conf 下添加
+Include /etc/phpmyadmin/apache.conf 之後在重啟 apache server
+就可以透過 host/phpmyadmin 來登入</description></item><item><title>HTML, PHP 如何上傳檔案？</title><link>https://ptzu.github.io/posts/htmlinputfile/</link><pubDate>Sat, 20 May 2017 14:31:01 +0000</pubDate><guid>https://ptzu.github.io/posts/htmlinputfile/</guid><description>要在 Html 有上傳檔案的介面 必須利用到
+&amp;lt;input type=&amp;#39;file&amp;#39; name=&amp;#39;upfile&amp;#39; class=&amp;#39;upfile&amp;#39;&amp;gt; 這樣就會產生大家熟悉的&amp;rsquo;選擇檔案&amp;rsquo;按鈕 接著利用表單把檔案送出去 如果表單中有 file 類型的 input enctype=&amp;ldquo;multipart/form-data&amp;rdquo; 是必須要加的
+&amp;lt;form action=&amp;#34;XXX.php&amp;#34; method=&amp;#34;post&amp;#34; enctype=&amp;#34;multipart/form-data&amp;#34; name=&amp;#34;upload&amp;#34;&amp;gt; &amp;lt;input type=&amp;#39;file&amp;#39; name=&amp;#39;upfile&amp;#39; class=&amp;#39;upfile&amp;#39;&amp;gt; &amp;lt;button type=&amp;#34;submit&amp;#34; class=&amp;#39;btn&amp;#39;&amp;gt; Upload&amp;lt;/button&amp;gt; &amp;lt;/form&amp;gt; PHP處理檔案 我們可以用 $_FILES 陣列來取得上傳的檔案 上傳之後會存在一個暫存資料夾 如果要把檔案存在伺服器, 記得利用 move_uploaded_file 移到你要的資料夾
+$_FILES[&amp;ldquo;upload&amp;rdquo;][&amp;ldquo;name&amp;rdquo;]：上傳檔案的原始名稱。 $_FILES[&amp;ldquo;upload&amp;rdquo;][&amp;ldquo;type&amp;rdquo;]：上傳的檔案類型。 $_FILES[&amp;ldquo;upload&amp;rdquo;][&amp;ldquo;size&amp;rdquo;]：上傳的檔案原始大小。 $_FILES[&amp;ldquo;upload&amp;rdquo;][&amp;ldquo;tmp_name&amp;rdquo;]：上傳檔案後的暫存資料夾位置。 $_FILES[&amp;ldquo;upload&amp;rdquo;][&amp;ldquo;error&amp;rdquo;]：如果檔案上傳有錯誤，可以顯示錯誤代碼。
+參考資料:
+http://www.webtech.tw/info.php?tid=24 https://www.tad0616.net/modules/tad_book3/html.php?tbdsn=100 http://forum.twbts.com/thread-3299-1-1.html</description></item><item><title>PHP 時間函數</title><link>https://ptzu.github.io/posts/php-time/</link><pubDate>Wed, 17 May 2017 20:57:24 +0000</pubDate><guid>https://ptzu.github.io/posts/php-time/</guid><description>設定時區 date_default_timezone_set(&amp;#34;Asia/Taipei&amp;#34;) 日期 date(&amp;#39;Y-m-j&amp;#39;); 2017-05-17
+年: Y(四位數字), y(兩位數字) 月: F(英文全稱), M(英文縮寫), m(數字前導), n(數字無前導) 日: j(沒前導), d(有前導)
+時:分:秒 date(&amp;#39;g:i:s a&amp;#39;); 11:19:30 pm
+時: g(12小時制無前導), h(12小時制有前導), 小寫 a 代表 am, pm, 大寫 A 代表 AM, PM
+echo date(&amp;#39;T&amp;#39;); UTC 大寫T表示伺服器的時間區域設置
+echo date(&amp;#39;U&amp;#39;); 1170769424 大寫U表示從1970年1月1日到現在的總秒數，就是Unix時間紀元的UNIX時間戳。</description></item></channel></rss>

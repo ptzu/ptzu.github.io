@@ -1,0 +1,62 @@
+<!doctype html><html lang=en-us><head><title>Uva 100 - The 3n + 1 problem // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Uva 100 - The 3n + 1 problem"><meta name=twitter:description content="題目
+input 多筆測資, 每筆測資含兩個正整數 a, b 0 < a, b < 1000000 (題目寫10000是錯的)
+題解 目前有一個猜測還未被證實 給任意一個數 n, 如果是奇數就 n * 3 + 1, 否則就 n / 2 則最後一定會變成 1 則中間變化的過程稱為 cycle length(包含自己) 給 a, b 兩數, 求之間的數最大的 cycle length 注意變化過程在 32 bits integer內 所以要用 unsigned
+作法 模擬
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:title" content="Uva 100 - The 3n + 1 problem"><meta property="og:description" content="題目
+input 多筆測資, 每筆測資含兩個正整數 a, b 0 < a, b < 1000000 (題目寫10000是錯的)
+題解 目前有一個猜測還未被證實 給任意一個數 n, 如果是奇數就 n * 3 + 1, 否則就 n / 2 則最後一定會變成 1 則中間變化的過程稱為 cycle length(包含自己) 給 a, b 兩數, 求之間的數最大的 cycle length 注意變化過程在 32 bits integer內 所以要用 unsigned
+作法 模擬
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/uva100/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-12-22T11:54:04+00:00"><meta property="article:modified_time" content="2017-12-22T11:54:04+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Uva 100 - The 3n + 1 problem</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Dec 22, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/uva/>Uva</a>
+<a class=tag href=https://ptzu.github.io/tags/implement/>Implement</a></div></div></header><div class=post-content><p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&category=3&problem=36">題目</a></p><h2 id=input>input</h2><p>多筆測資, 每筆測資含兩個正整數 a, b
+0 &lt; a, b &lt; 1000000 (題目寫10000是錯的)</p><h2 id=題解>題解</h2><p>目前有一個猜測還未被證實
+給任意一個數 n, 如果是奇數就 n * 3 + 1, 否則就 n / 2
+則最後一定會變成 1
+則中間變化的過程稱為 cycle length(包含自己)
+給 a, b 兩數, 求之間的數最大的 cycle length
+注意變化過程在 32 bits integer內
+所以要用 unsigned</p><h2 id=作法>作法</h2><p>模擬</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> arr[<span style=color:#ae81ff>2000000</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> a, b;
+    <span style=color:#66d9ef>while</span>(scanf(<span style=color:#e6db74>&#34;%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>a, <span style=color:#f92672>&amp;</span>b) <span style=color:#f92672>!=</span> EOF){
+        <span style=color:#66d9ef>int</span> mx <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>int</span> l <span style=color:#f92672>=</span> min(a, b), r <span style=color:#f92672>=</span> max(a, b);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> l; i <span style=color:#f92672>&lt;=</span> r; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>if</span>(arr[i]) mx <span style=color:#f92672>=</span> max(mx, arr[i]);
+            <span style=color:#66d9ef>else</span>{
+                <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; <span style=color:#75715e>// 含自己
+</span><span style=color:#75715e></span>                <span style=color:#66d9ef>unsigned</span> <span style=color:#66d9ef>int</span> num <span style=color:#f92672>=</span> i;
+                <span style=color:#66d9ef>while</span>(num <span style=color:#f92672>!=</span> <span style=color:#ae81ff>1</span>){
+                    <span style=color:#66d9ef>if</span>(num <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>) num <span style=color:#f92672>=</span> num <span style=color:#f92672>*</span> <span style=color:#ae81ff>3</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>;
+                    <span style=color:#66d9ef>else</span> num <span style=color:#f92672>/=</span> <span style=color:#ae81ff>2</span>;
+                    cnt<span style=color:#f92672>++</span>;
+                }
+                arr[i] <span style=color:#f92672>=</span> cnt;
+                mx <span style=color:#f92672>=</span> max(mx, arr[i]);
+            }
+        }    
+        printf(<span style=color:#e6db74>&#34;%d %d %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, a, b, mx);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

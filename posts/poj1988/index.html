@@ -1,0 +1,117 @@
+<!doctype html><html lang=en-us><head><title>POJ 1988 Cube Stacking // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="POJ 1988 Cube Stacking"><meta name=twitter:description content="題解 現在有 N 個 cube, 每個一開始都是自己一個堆疊 編號為 1 ~ N input 有兩種指令
+ M a b: 將含有 a 的堆疊放到含有 b 的堆疊上面 C a: 計算在編號 a cube 之下有幾個 cube  作法 算是併查集進階一點的應用 首先定義兩個陣列
+ num[i]: 以 i 為 root 的集合有幾個 cube under[i]: 在 i 之下有幾個 cube 接著在 unite 中 M 1 2 -> unite(1, 2) 是將 1 加到 2 的集合中 就很當然的 under[a] += num[b] 而 b 集合也會增加數量 num[b] += num[a] 而在 find 中 under+= under[temp] 似乎有點不直覺, 但只要想想一串接很長的集合 這些都是還未經過壓縮的(par不是根) 所以大家的 under 值都是 1 加起來便沒問題了 如果還是不清楚就畫一下圖吧  AC code #include <cstdio>#include <cstdlib>#include <cmath>#include <ctime>#include <cstring>#include <iostream>#include <algorithm>#include <vector>#include <queue>#include <stack>#include <map>#include <set>#include <list>#include <iomanip>#include <functional> // greater<T>#include <numeric> // for accumulate#include <string>#include <deque>#include <sstream> using namespace std; typedef pair<int,int> pii; typedef long long ll; typedef vector <ll> vec; typedef vector <vec> mat; #define pb push_back #define pf push_front #define mp make_pair #define sz(a) (int)a."><meta property="og:title" content="POJ 1988 Cube Stacking"><meta property="og:description" content="題解 現在有 N 個 cube, 每個一開始都是自己一個堆疊 編號為 1 ~ N input 有兩種指令
+ M a b: 將含有 a 的堆疊放到含有 b 的堆疊上面 C a: 計算在編號 a cube 之下有幾個 cube  作法 算是併查集進階一點的應用 首先定義兩個陣列
+ num[i]: 以 i 為 root 的集合有幾個 cube under[i]: 在 i 之下有幾個 cube 接著在 unite 中 M 1 2 -> unite(1, 2) 是將 1 加到 2 的集合中 就很當然的 under[a] += num[b] 而 b 集合也會增加數量 num[b] += num[a] 而在 find 中 under+= under[temp] 似乎有點不直覺, 但只要想想一串接很長的集合 這些都是還未經過壓縮的(par不是根) 所以大家的 under 值都是 1 加起來便沒問題了 如果還是不清楚就畫一下圖吧  AC code #include <cstdio>#include <cstdlib>#include <cmath>#include <ctime>#include <cstring>#include <iostream>#include <algorithm>#include <vector>#include <queue>#include <stack>#include <map>#include <set>#include <list>#include <iomanip>#include <functional> // greater<T>#include <numeric> // for accumulate#include <string>#include <deque>#include <sstream> using namespace std; typedef pair<int,int> pii; typedef long long ll; typedef vector <ll> vec; typedef vector <vec> mat; #define pb push_back #define pf push_front #define mp make_pair #define sz(a) (int)a."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/poj1988/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2016-08-09T23:07:00+00:00"><meta property="article:modified_time" content="2016-08-09T23:07:00+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>POJ 1988 Cube Stacking</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Aug 9, 2016</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/poj/>POJ</a>
+<a class=tag href=https://ptzu.github.io/tags/dsu/>dsu</a></div></div></header><div class=post-content><h2 id=題解>題解</h2><p>現在有 N 個 cube, 每個一開始都是自己一個堆疊
+編號為 1 ~ N
+input 有兩種指令</p><ol><li>M a b: 將含有 a 的堆疊放到含有 b 的堆疊上面</li><li>C a: 計算在編號 a cube 之下有幾個 cube</li></ol><h2 id=作法>作法</h2><p>算是併查集進階一點的應用
+首先定義兩個陣列</p><ol><li>num[i]: 以 i 為 root 的集合有幾個 cube</li><li>under[i]: 在 i 之下有幾個 cube
+接著在 unite 中
+M 1 2 -> unite(1, 2)
+是將 1 加到 2 的集合中
+就很當然的 under[a] += num[b]
+而 b 集合也會增加數量 num[b] += num[a]
+而在 find 中 under<input checked disabled type=checkbox> += under[temp]
+似乎有點不直覺, 但只要想想一串接很長的集合
+這些都是還未經過壓縮的(par不是根)
+所以大家的 under 值都是 1
+加起來便沒問題了
+如果還是不清楚就畫一下圖吧</li></ol><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdio&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdlib&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cmath&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;ctime&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstring&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iostream&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;queue&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;stack&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;map&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;set&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;list&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;iomanip&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;functional&gt; // greater&lt;T&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;numeric&gt; // for accumulate</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;string&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;deque&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;sstream&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+<span style=color:#66d9ef>typedef</span> vector <span style=color:#f92672>&lt;</span>ll<span style=color:#f92672>&gt;</span> vec;
+<span style=color:#66d9ef>typedef</span> vector <span style=color:#f92672>&lt;</span>vec<span style=color:#f92672>&gt;</span> mat;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define pf push_front
+</span><span style=color:#75715e>#define mp make_pair
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define i128 __int128
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> P;
+<span style=color:#66d9ef>int</span> pa[<span style=color:#ae81ff>30000</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>int</span> under[<span style=color:#ae81ff>30000</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>int</span> num[<span style=color:#ae81ff>30000</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> <span style=color:#ae81ff>30000</span>; i<span style=color:#f92672>++</span>){
+        pa[i] <span style=color:#f92672>=</span> i;
+        num[i] <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    }
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x){
+    <span style=color:#66d9ef>int</span> temp <span style=color:#f92672>=</span> pa[x];
+    <span style=color:#66d9ef>if</span>(pa[x] <span style=color:#f92672>==</span> x)
+        <span style=color:#66d9ef>return</span> x;
+    pa[x] <span style=color:#f92672>=</span> find(pa[x]);
+    under[x] <span style=color:#f92672>+=</span> under[temp];
+    <span style=color:#66d9ef>return</span> pa[x];
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>unite</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b){
+    a <span style=color:#f92672>=</span> find(a);
+    b <span style=color:#f92672>=</span> find(b);
+
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>==</span> b)
+        <span style=color:#66d9ef>return</span> ;
+    pa[a] <span style=color:#f92672>=</span> pa[b];
+    under[a] <span style=color:#f92672>+=</span> num[b];
+    num[b] <span style=color:#f92672>+=</span> num[a];
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+    cin.tie(<span style=color:#ae81ff>0</span>);
+
+    cin <span style=color:#f92672>&gt;&gt;</span> P;
+    init();
+    string s;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> P; i<span style=color:#f92672>++</span>){
+        cin <span style=color:#f92672>&gt;&gt;</span> s;
+        <span style=color:#66d9ef>if</span>(s[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;M&#39;</span>){
+            <span style=color:#66d9ef>int</span> a, b;
+            cin <span style=color:#f92672>&gt;&gt;</span> a <span style=color:#f92672>&gt;&gt;</span> b;
+            unite(a, b);
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(s[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;C&#39;</span>){
+            <span style=color:#66d9ef>int</span> a;
+            cin <span style=color:#f92672>&gt;&gt;</span> a;
+            <span style=color:#75715e>//更新值
+</span><span style=color:#75715e></span>            find(a);
+            cout <span style=color:#f92672>&lt;&lt;</span> under[a] <span style=color:#f92672>&lt;&lt;</span> endl;
+        }
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

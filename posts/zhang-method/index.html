@@ -1,0 +1,113 @@
+<!doctype html><html lang=en-us><head><title>相機校正 - 張正友法 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="相機校正 - 張正友法"><meta name=twitter:description content="為什麼需要校正 待補
+計算單應性矩陣 H 先前在相機模型中, 設三維世界點 {%math%}X = [X, Y, Z, 1]^{T}{%endmath%}, 二維相機像素座標 {%math%}m=[u, v, 1]^{T}{%endmath%} 我們知道這樣的轉換關係: {%math%}sm = K[R, T]X{%endmath%} 其中 s 是尺度因子, K 是內參 {%math%}K = \begin{bmatrix} f_{0} & \gamma & u\ 0 & f_{1}& v\ 0 & 0& 1 \end{bmatrix}{%endmath%} 在棋盤格上我們可以當成是 Z = 0 的平面: {%math%}s\begin{bmatrix} u\ v\ 1 \end{bmatrix} = K \begin{bmatrix} r_{1} & r_{2} & r_{3} & t \end{bmatrix} \begin{bmatrix} X\ Y\ 0\ 1 \end{bmatrix} = K \begin{bmatrix} r_{1} & r_{2} & t \end{bmatrix} \begin{bmatrix} X\ Y\ 1 \end{bmatrix}{%endmath%} 將 {%math%} K[r1, r2, t] {%endmath%} 稱為 單應性矩陣(Homography matrix) H 如此可以用 H 來約束內參和外參 而 H 可以透過棋盤和成像平面上的點對應計算出來(尚待學習) {%math%}s\begin{bmatrix} u\ v\ 1 \end{bmatrix} = H\begin{bmatrix} X\ Y\ 1 \end{bmatrix}{%endmath%} {%math%}H = [h_{1}\ h_{2}\ h_{3}] =\lambda K[r_{1}\ r_{2}\ t]{%endmath%}"><meta property="og:title" content="相機校正 - 張正友法"><meta property="og:description" content="為什麼需要校正 待補
+計算單應性矩陣 H 先前在相機模型中, 設三維世界點 {%math%}X = [X, Y, Z, 1]^{T}{%endmath%}, 二維相機像素座標 {%math%}m=[u, v, 1]^{T}{%endmath%} 我們知道這樣的轉換關係: {%math%}sm = K[R, T]X{%endmath%} 其中 s 是尺度因子, K 是內參 {%math%}K = \begin{bmatrix} f_{0} & \gamma & u\ 0 & f_{1}& v\ 0 & 0& 1 \end{bmatrix}{%endmath%} 在棋盤格上我們可以當成是 Z = 0 的平面: {%math%}s\begin{bmatrix} u\ v\ 1 \end{bmatrix} = K \begin{bmatrix} r_{1} & r_{2} & r_{3} & t \end{bmatrix} \begin{bmatrix} X\ Y\ 0\ 1 \end{bmatrix} = K \begin{bmatrix} r_{1} & r_{2} & t \end{bmatrix} \begin{bmatrix} X\ Y\ 1 \end{bmatrix}{%endmath%} 將 {%math%} K[r1, r2, t] {%endmath%} 稱為 單應性矩陣(Homography matrix) H 如此可以用 H 來約束內參和外參 而 H 可以透過棋盤和成像平面上的點對應計算出來(尚待學習) {%math%}s\begin{bmatrix} u\ v\ 1 \end{bmatrix} = H\begin{bmatrix} X\ Y\ 1 \end{bmatrix}{%endmath%} {%math%}H = [h_{1}\ h_{2}\ h_{3}] =\lambda K[r_{1}\ r_{2}\ t]{%endmath%}"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/zhang-method/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-09-16T21:17:55+00:00"><meta property="article:modified_time" content="2018-09-16T21:17:55+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>相機校正 - 張正友法</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Sep 16, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div></div></header><div class=post-content><h1 id=為什麼需要校正>為什麼需要校正</h1><p>待補</p><h1 id=計算單應性矩陣-h>計算單應性矩陣 H</h1><p>先前在相機模型中, 設三維世界點 {%math%}X = [X, Y, Z, 1]^{T}{%endmath%}, 二維相機像素座標 {%math%}m=[u, v, 1]^{T}{%endmath%}
+我們知道這樣的轉換關係: {%math%}sm = K[R, T]X{%endmath%}
+其中 s 是尺度因子, K 是內參
+{%math%}K = \begin{bmatrix}
+f_{0} & \gamma & u\
+0 & f_{1}& v\
+0 & 0& 1
+\end{bmatrix}{%endmath%}
+在棋盤格上我們可以當成是 Z = 0 的平面:
+{%math%}s\begin{bmatrix}
+u\
+v\
+1
+\end{bmatrix}
+= K \begin{bmatrix}
+r_{1} & r_{2} & r_{3} & t
+\end{bmatrix}
+\begin{bmatrix}
+X\
+Y\
+0\
+1
+\end{bmatrix}
+= K \begin{bmatrix}
+r_{1} & r_{2} & t
+\end{bmatrix}
+\begin{bmatrix}
+X\
+Y\
+1
+\end{bmatrix}{%endmath%}
+將 {%math%} K[r1, r2, t] {%endmath%} 稱為 <a href=http://www.cnblogs.com/wangguchangqing/p/8287585.html>單應性矩陣(Homography matrix) H</a>
+如此可以用 H 來約束內參和外參
+而 H 可以透過棋盤和成像平面上的點對應計算出來(尚待學習)
+{%math%}s\begin{bmatrix}
+u\
+v\
+1
+\end{bmatrix}
+= H\begin{bmatrix}
+X\
+Y\
+1
+\end{bmatrix}{%endmath%}
+{%math%}H = [h_{1}\ h_{2}\ h_{3}] =\lambda K[r_{1}\ r_{2}\ t]{%endmath%}</p><h1 id=計算內參>計算內參</h1><p>我們可以得到
+{%math%}\lambda = \frac{1}{s}
+\r_{1} = \frac{1}{\lambda }K^{-1}h_{1}
+\r_{2} = \frac{1}{\lambda }K^{-1}h_{2}{%endmath%}
+因為 r 1 和 r 2 為 互相垂直的正交基底(orthogonal basis)且為單範正交基底(orthonormal basis)，所以r 1 和 r 2的內積為 0 且向量長度均相同為 1
+{%math%}r_{1}^{T}r_{2} = 0
+\\left | r1 \right | = \left | r2 \right | = 1{%endmath%}
+代入得到:
+{%math%}h_{1}^{T}K^{-T}K^{-1}h_{2} = 0
+\h_{1}^{T}K^{-T}K^{-1}h_{1} = h_{2}^{T}K^{-T}K^{-1}h_{2}{%endmath%}
+代表每個 H 可以提供兩個方程式, 而內參有五個變數, 所以理論上要三張圖片才能求解(這邊還要再了解一下意思)
+為了方便計算, 我們定義 B:
+{%math%}K^{-1} = \frac{1}{f_{0}f_{1}}\begin{bmatrix}
+f_{1} & 0& 0\
+\gamma & f_{0}& 0\
+\gamma v-f_{1}u & v& 1
+\end{bmatrix}{%endmath%}
+{%math%}B = K^{-T}K^{-1} = \begin{bmatrix}
+B_{11} & B_{12} &B_{13} \
+B_{21} & B_{22} & B_{23}\
+B_{31} & B_{32} & B_{33}
+\end{bmatrix} =
+\begin{bmatrix}
+\frac{1}{f_{0}^{2}} & -\frac{\gamma }{f_{0}^{2}f_{1}} & \frac{\gamma v_{0} - f_{1}u}{f_{0}^{2}f_{1}}\
+-\frac{\gamma }{f_{0}^{2}f_{1}} & \frac{\gamma ^{2}}{f_{0}^{2}f_{1}^{2}}& -\frac {\gamma (\gamma v-f_{1}u)}{f_{0}^{2}f_{1}^{2}} - \frac{v}{f_{1}^{2}}\
+\frac{\gamma v_{0} - f_{1}u}{f_{0}^{2}f_{1}} & -\frac {\gamma (\gamma v-f_{1}u)}{f_{0}^{2}f_{1}^{2}} - \frac{v}{f_{1}^{2}}& \frac {(\gamma v-f_{1}u)^{2}}{f_{0}^{2}f_{1}^{2}} + \frac{v^{2}}{f_{1}^{2}} + 1
+\end{bmatrix}{%endmath%}
+發現 B 是斜對稱矩陣, 所以有效元素 6 個, 寫成 b:
+{%math%}b = [B_{11}\ B_{12}\ B_{22}\ B_{13}\ B_{23}\ B_{33}]^{T}{%endmath%}
+展開推導可得到:
+{%math%}h_{i}^{T}Bh_{j} = \begin{bmatrix}
+h_{i1}h_{j1}\
+h_{i1}h_{j2} + h_{i2}h_{j1}\
+h_{i2}h_{j2}\
+h_{i3}h_{j1} + h_{i1}h_{j3}\
+h_{i3}h_{j2} + h_{i2}h_{j3}\
+h_{i3}h_{j3}
+\end{bmatrix} ^{T}
+\begin{bmatrix}
+B_{11}\
+B_{12}\
+B_{22}\
+B_{13}\
+B_{23}\
+B_{33}
+\end{bmatrix}^{T}
+= v_{ij}^{T}b
+\ v_{ij}^{T} = [h_{i1}h_{j1}\ h_{i1}h_{j2} + h_{i2}h_{j1}\ h_{i2}h_{j2}\ h_{i3}h_{j1} + h_{i1}h_{j3}\ h_{i3}h_{j2} + h_{i2}h_{j3}\ h_{i3}h_{j3}]{%endmath%}
+回到我們一開始得到的約束式:
+{%math%}\left{\begin{matrix}
+h_{1}^{T}K^{-T}K^{-1}h_{2} = 0\
+\h_{1}^{T}K^{-T}K^{-1}h_{1} = h_{2}^{T}K^{-T}K^{-1}h_{2}
+\end{matrix}\right.
+\Rightarrow \left{\begin{matrix}
+v_{12}^{T} b= 0\<br>v_{11}b = v_{22}b</p><p>\end{matrix}\right.{%endmath%}
+寫成矩陣:
+{%math%}\begin{bmatrix}
+v_{12}^{T}\
+(v_{11}-v_{22})^{T}
+\end{bmatrix}b = 0
+{%endmath%}
+根據每個校正板, 都可以得到一個 {%math%} Vb = 0{%endmath%} 的式子
+我們就能得到內參的各個參數</p><h1 id=計算外參>計算外參</h1><p>待補</p><h1 id=參考>參考</h1><ol><li><a href=http://hackpad.g0v.link/YYvM1CE8lv2.html>Camera Calibration(相機校正)</a></li><li><a href=https://blog.csdn.net/u010128736/article/details/52860364>张正友标定算法原理详解</a></li><li><a href=https://www.cnblogs.com/wangguchangqing/p/8335131.html>SLAM入门之视觉里程计(6)：相机标定 张正友经典标定法详解</a></li><li><a href=https://blog.csdn.net/yangdashi888/article/details/51356385>内参、外参、畸变参数三种参数与相机的标定方法与相机坐标系的理解</a></li><li><a href=https://blog.csdn.net/dcrmg/article/details/52939318>张正友相机标定Opencv实现以及标定流程&&标定结果评价&&图像矫正流程解析（附标定程序和棋盘图</a></li><li><a href=http://wycwang.blogspot.com/2012/10/camera-calibration-part-2-calibration.html>攝像頭校正 camera calibration - part 2 calibration</a></li><li><a href=https://www.zhihu.com/question/29448299>机器视觉的相机标定到底是什么？</a></li><li><a href=https://blog.csdn.net/lql0716/article/details/71973318>相机标定（Camera calibration）原理、步骤</a></li></ol></div><div class=post-footer></div></article></main></body></html>

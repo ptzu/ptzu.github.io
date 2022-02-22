@@ -1,0 +1,85 @@
+<!doctype html><html lang=en-us><head><title>Uva 10130 - SuperSale // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Uva 10130 - SuperSale"><meta name=twitter:description content="題目
+input 1 <= T, N <= 1000 1 <= P <= 100 1 <= W <= 30 1 <= 背包容量 <= 30
+題解 給 n 個物品, 每個物品有價格和重量 每個人最多可以帶 MW 重量 每個人對某個物品最多只能拿一次 求全部人可以買多少價格的商品
+作法 01背包問題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX //const int MAX_N = 101010;  int V[1010], W[1010]; int dp[100], n; void solve(){ // 如果迴圈從重量開始, 會導致少算一些價值  // 例如求容量為 90 的最大價值, 可以放入重量 30, 60的物品  // 但是我們只會放入其中一個, 因為不管是 dp[90 - 30], dp[90 - 60] 都還沒計算  // 若迴圈從物品開始, 我們就可以計算每個容量的最大價值  // 可能有個疑問, 為什麼迴圈重量不從 0 開始跑就好, 這樣每個重量也都會被先計算阿？  // 因為這樣就變成多重背包問題(每個物品可以選不只一次)了=w=  // for(int i = 99; i >= 0; i--){  // for(int j = 0; j < n; j++){  // if(i >= W[j]){  // dp[i] = max(dp[i], dp[i - W[j]] + V[j]);  // }  // }  // }  for(int i = 0; i < n; i++){ for(int j = 99; j >= W[i]; j--){ dp[j] = max(dp[j], dp[j - W[i]] + V[i]); } } } int main(){ int TC; scanf(&#34;%d&#34;, &TC); while(TC--){ memset(dp, 0, sizeof(dp)); scanf(&#34;%d&#34;, &n); for(int i = 0; i < n; i++){ scanf(&#34;%d %d&#34;, &V[i], &W[i]); } solve(); int G; scanf(&#34;%d&#34;, &G); int ans = 0; for(int i = 0; i < G; i++){ int x; scanf(&#34;%d&#34;, &x); ans += dp[x]; } printf(&#34;%d\n&#34;, ans); } return 0; } "><meta property="og:title" content="Uva 10130 - SuperSale"><meta property="og:description" content="題目
+input 1 <= T, N <= 1000 1 <= P <= 100 1 <= W <= 30 1 <= 背包容量 <= 30
+題解 給 n 個物品, 每個物品有價格和重量 每個人最多可以帶 MW 重量 每個人對某個物品最多只能拿一次 求全部人可以買多少價格的商品
+作法 01背包問題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.tie(0) #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX //const int MAX_N = 101010;  int V[1010], W[1010]; int dp[100], n; void solve(){ // 如果迴圈從重量開始, 會導致少算一些價值  // 例如求容量為 90 的最大價值, 可以放入重量 30, 60的物品  // 但是我們只會放入其中一個, 因為不管是 dp[90 - 30], dp[90 - 60] 都還沒計算  // 若迴圈從物品開始, 我們就可以計算每個容量的最大價值  // 可能有個疑問, 為什麼迴圈重量不從 0 開始跑就好, 這樣每個重量也都會被先計算阿？  // 因為這樣就變成多重背包問題(每個物品可以選不只一次)了=w=  // for(int i = 99; i >= 0; i--){  // for(int j = 0; j < n; j++){  // if(i >= W[j]){  // dp[i] = max(dp[i], dp[i - W[j]] + V[j]);  // }  // }  // }  for(int i = 0; i < n; i++){ for(int j = 99; j >= W[i]; j--){ dp[j] = max(dp[j], dp[j - W[i]] + V[i]); } } } int main(){ int TC; scanf(&#34;%d&#34;, &TC); while(TC--){ memset(dp, 0, sizeof(dp)); scanf(&#34;%d&#34;, &n); for(int i = 0; i < n; i++){ scanf(&#34;%d %d&#34;, &V[i], &W[i]); } solve(); int G; scanf(&#34;%d&#34;, &G); int ans = 0; for(int i = 0; i < G; i++){ int x; scanf(&#34;%d&#34;, &x); ans += dp[x]; } printf(&#34;%d\n&#34;, ans); } return 0; } "><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/uva10130/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-11-30T11:51:23+00:00"><meta property="article:modified_time" content="2017-11-30T11:51:23+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Uva 10130 - SuperSale</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Nov 30, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/uva/>Uva</a>
+<a class=tag href=https://ptzu.github.io/tags/dp/>DP</a>
+<a class=tag href=https://ptzu.github.io/tags/knapsack/>Knapsack</a></div></div></header><div class=post-content><p><a href="https://uva.onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&category=13&page=show_problem&problem=1071">題目</a></p><h2 id=input>input</h2><p>1 &lt;= T, N &lt;= 1000
+1 &lt;= P &lt;= 100
+1 &lt;= W &lt;= 30
+1 &lt;= 背包容量 &lt;= 30</p><h2 id=題解>題解</h2><p>給 n 個物品, 每個物品有價格和重量
+每個人最多可以帶 MW 重量
+每個人對某個物品最多只能拿一次
+求全部人可以買多少價格的商品</p><h2 id=作法>作法</h2><p>01背包問題</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e>//const int MAX_N = 101010;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> V[<span style=color:#ae81ff>1010</span>], W[<span style=color:#ae81ff>1010</span>];
+<span style=color:#66d9ef>int</span> dp[<span style=color:#ae81ff>100</span>], n;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>solve</span>(){
+    <span style=color:#75715e>// 如果迴圈從重量開始, 會導致少算一些價值
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 例如求容量為 90 的最大價值, 可以放入重量 30, 60的物品
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 但是我們只會放入其中一個, 因為不管是 dp[90 - 30], dp[90 - 60] 都還沒計算
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 若迴圈從物品開始, 我們就可以計算每個容量的最大價值
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 可能有個疑問, 為什麼迴圈重量不從 0 開始跑就好, 這樣每個重量也都會被先計算阿？
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// 因為這樣就變成多重背包問題(每個物品可以選不只一次)了=w=
+</span><span style=color:#75715e></span>    
+    <span style=color:#75715e>// for(int i = 99; i &gt;= 0; i--){
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//     for(int j = 0; j &lt; n; j++){
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//         if(i &gt;= W[j]){
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//             dp[i] = max(dp[i], dp[i - W[j]] + V[j]);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//         }
+</span><span style=color:#75715e></span>    <span style=color:#75715e>//     }
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// }
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>99</span>; j <span style=color:#f92672>&gt;=</span> W[i]; j<span style=color:#f92672>--</span>){
+            dp[j] <span style=color:#f92672>=</span> max(dp[j], dp[j <span style=color:#f92672>-</span> W[i]] <span style=color:#f92672>+</span> V[i]);
+        }
+    }
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> TC;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>TC);
+    <span style=color:#66d9ef>while</span>(TC<span style=color:#f92672>--</span>){
+        memset(dp, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(dp));
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+            scanf(<span style=color:#e6db74>&#34;%d %d&#34;</span>, <span style=color:#f92672>&amp;</span>V[i], <span style=color:#f92672>&amp;</span>W[i]);
+        }
+        solve();
+        <span style=color:#66d9ef>int</span> G;
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>G);
+        <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> G; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> x;
+            scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>x);
+            ans <span style=color:#f92672>+=</span> dp[x];
+        }
+        printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

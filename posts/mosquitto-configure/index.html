@@ -1,0 +1,41 @@
+<!doctype html><html lang=en-us><head><title>Windows 上安裝 mosquitto // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Windows 上安裝 mosquitto"><meta name=twitter:description content="所需檔案   Mosquitto for Windows   Win32 OpenSSL   pthread-win32 根據路徑找到檔案下載   安裝 mosquitto 執行 mosquitto 安裝程式
+過程選擇安裝路徑 勾選下面那個 接著按 Next, 應該會出現以下錯誤畫面 因為我們缺少 libeay32.dll 和 ssleay32.dll
+安裝需要的元件 回到最上面說的, 在Win32 OpenSSL那裡有下載了安裝檔 我們要安裝它來取得 libeay32.dll 和 ssleay32.dll
+選擇安裝路徑 最後面的畫面是要你捐錢, 沒有要捐就把它勾掉吧 然後我們到安裝好的資料夾取出 libeay32.dll 和 ssleay32.dll 以及在 pthread-win32 下載的 pthreadVC2.dll 一起放到剛剛未完成安裝的 mosquitto 資料夾
+到這邊就安裝完成了！
+啟動 mosquitto 伺服器 到工作管理員/服務 找到 mosquitto 啟動它 簡單測試 subscribe 和 publish 本機當作伺服器測試 打開cmd
+訂閱 &#34;C:\Program Files (x86)\mosquitto\mosquitto_sub.exe&#34; -d -h 127."><meta property="og:title" content="Windows 上安裝 mosquitto"><meta property="og:description" content="所需檔案   Mosquitto for Windows   Win32 OpenSSL   pthread-win32 根據路徑找到檔案下載   安裝 mosquitto 執行 mosquitto 安裝程式
+過程選擇安裝路徑 勾選下面那個 接著按 Next, 應該會出現以下錯誤畫面 因為我們缺少 libeay32.dll 和 ssleay32.dll
+安裝需要的元件 回到最上面說的, 在Win32 OpenSSL那裡有下載了安裝檔 我們要安裝它來取得 libeay32.dll 和 ssleay32.dll
+選擇安裝路徑 最後面的畫面是要你捐錢, 沒有要捐就把它勾掉吧 然後我們到安裝好的資料夾取出 libeay32.dll 和 ssleay32.dll 以及在 pthread-win32 下載的 pthreadVC2.dll 一起放到剛剛未完成安裝的 mosquitto 資料夾
+到這邊就安裝完成了！
+啟動 mosquitto 伺服器 到工作管理員/服務 找到 mosquitto 啟動它 簡單測試 subscribe 和 publish 本機當作伺服器測試 打開cmd
+訂閱 &#34;C:\Program Files (x86)\mosquitto\mosquitto_sub.exe&#34; -d -h 127."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/mosquitto-configure/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-05-15T20:40:31+00:00"><meta property="article:modified_time" content="2017-05-15T20:40:31+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Windows 上安裝 mosquitto</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 15, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/iot/>IOT</a></div></div></header><div class=post-content><h1 id=所需檔案>所需檔案</h1><ol><li><p><a href=https://mosquitto.org/download/>Mosquitto for Windows</a>
+<img src=http://i.imgur.com/TRxLPbM.png alt></p></li><li><p><a href=https://slproweb.com/products/Win32OpenSSL.html>Win32 OpenSSL</a>
+<img src=http://i.imgur.com/icvPV92.png alt></p></li><li><p><a href=ftp://sourceware.org/pub/pthreads-win32>pthread-win32</a>
+根據路徑找到檔案下載
+<img src=http://i.imgur.com/QPxv1VQ.png alt>
+<img src=http://i.imgur.com/TW2E21R.png alt></p></li></ol><h1 id=安裝-mosquitto>安裝 mosquitto</h1><p>執行 mosquitto 安裝程式</p><p>過程選擇安裝路徑
+<img src=http://i.imgur.com/J2b4S4k.png alt></p><p>勾選下面那個
+<img src=http://i.imgur.com/AJu2mKj.png alt></p><p>接著按 Next, 應該會出現以下錯誤畫面
+因為我們缺少 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p><p><img src=http://i.imgur.com/jqaMO77.png alt>
+<img src=http://i.imgur.com/ktuOWuA.png alt></p><h2 id=安裝需要的元件>安裝需要的元件</h2><p>回到最上面說的, 在Win32 OpenSSL那裡有下載了安裝檔
+我們要安裝它來取得 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong></p><p>選擇安裝路徑
+<img src=http://i.imgur.com/vmE8fIq.png alt></p><p>最後面的畫面是要你捐錢, 沒有要捐就把它勾掉吧
+<img src=http://i.imgur.com/jJRhNSo.png alt></p><p>然後我們到安裝好的資料夾取出 <strong>libeay32.dll</strong> 和 <strong>ssleay32.dll</strong>
+<img src=http://i.imgur.com/2nnqHkJ.png alt></p><p>以及在 pthread-win32 下載的 <strong>pthreadVC2.dll</strong>
+一起放到剛剛未完成安裝的 mosquitto 資料夾</p><p><img src=http://i.imgur.com/KIHFQmy.png alt></p><p>到這邊就安裝完成了！</p><h1 id=啟動-mosquitto-伺服器>啟動 mosquitto 伺服器</h1><p>到工作管理員/服務
+找到 mosquitto 啟動它
+<img src=http://i.imgur.com/uYTgXjH.png alt></p><h1 id=簡單測試-subscribe-和-publish>簡單測試 subscribe 和 publish</h1><p>本機當作伺服器測試
+打開cmd</p><h2 id=訂閱>訂閱</h2><pre><code>&quot;C:\Program Files (x86)\mosquitto\mosquitto_sub.exe&quot; -d -h 127.0.0.1 -t test
+</code></pre><h2 id=發送>發送</h2><pre><code>&quot;C:\Program Files (x86)\mosquitto\mosquitto_pub.exe&quot; -d -h 127.0.0.1 -t test -m &quot;test message&quot;
+</code></pre><p>參數解釋
+-d: 開啟 debug 模式
+-h: 主機 IP address
+-t: 訂閱主題
+-m: 訊息內容</p><p>測試結果:
+<img src=http://i.imgur.com/xCVF8uJ.png alt></p><p><img src=http://i.imgur.com/oOexqvU.png alt></p><p><img src=http://i.imgur.com/EWZRPC4.png alt></p></div><div class=post-footer></div></article></main></body></html>

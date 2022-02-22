@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>BSGS Algorithm on Ptzu's blog</title><link>https://ptzu.github.io/tags/bsgs-algorithm/</link><description>Recent content in BSGS Algorithm on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Thu, 04 Jan 2018 12:04:29 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/bsgs-algorithm/index.xml" rel="self" type="application/rss+xml"/><item><title>XDoj 1077 - 循环节长度</title><link>https://ptzu.github.io/posts/xdoj1077/</link><pubDate>Thu, 04 Jan 2018 12:04:29 +0000</pubDate><guid>https://ptzu.github.io/posts/xdoj1077/</guid><description>題目
+input 多筆測資, 輸入 a, b 0 &amp;lt;= a, b &amp;lt;= 10^9
+題解 因為循環節長度最長不超過分母 而這題的分母很大, 不能用模擬除法 所以用 BSGS 來求離散對數
+作法 根據定理 a / b 的循環節長度為: {% math %} \min { e\in N,10^{e}\equiv 1(mod\ b) } {% endmath %} 但要注意的是當 e == 0 的時候恆成立 所以我們需要小修改一下 BSGS 演算法
+我們可以注意到當 e == 0 時, 是在列舉到 {% math %} a^{m} {% endmath %} 時相等 所以我們在建立 hash 表的時候, 只要建到 m - 1, 就可以避開這個 case 了</description></item><item><title>POJ 2417 Discrete Logging</title><link>https://ptzu.github.io/posts/poj2417/</link><pubDate>Sat, 28 Oct 2017 18:03:04 +0000</pubDate><guid>https://ptzu.github.io/posts/poj2417/</guid><description>題目
+input {% math %} 2\leq P&amp;lt; 2^{31},\ 2\leq B&amp;lt; P,\ 1\leq N&amp;lt; P {% endmath %}
+題解 求 {%math%} B^{L} \equiv N (mod\ P) {%endmath%} 之 L
+作法 BSGS 算法 裸題 這題時限卡蠻緊的, 如果用 int 去轉 long long 會超時 果斷全用 long long了
+AC code #include &amp;lt;cstdio&amp;gt;#include &amp;lt;cmath&amp;gt;#include &amp;lt;map&amp;gt; using namespace std; typedef pair &amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin.</description></item><item><title>求取循環節長度</title><link>https://ptzu.github.io/posts/repeatingdecimal/</link><pubDate>Sat, 28 Oct 2017 11:01:11 +0000</pubDate><guid>https://ptzu.github.io/posts/repeatingdecimal/</guid><description>任何有理數 p / q 皆可以用循環小數來表示 像是 1 / 3 = 0.33333&amp;hellip; 1 / 4 = 0.25000&amp;hellip;
+以下介紹一些定理以及方法 來求取 非循環節 以及 循環節
+定理 不循環節長度 - 2 / 5 定理： 分母拆解成 2 和 5 的乘積, 長度 = max(num_2, num_5);
+循環節長度: 如果 b 沒有 2 or 5 的質因數, 且 a, b 互質 則 a / b 的循環節長度為: {% math %} \min { e\in N,10^{e}\equiv 1(mod\ b) } {% endmath %} 然後我們就可以用 BSGS 演算法來求出 e</description></item></channel></rss>

@@ -1,0 +1,110 @@
+<!doctype html><html lang=en-us><head><title>強連通單元 SCC // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="強連通單元 SCC"><meta name=twitter:description content="強連通單元為一集合, 集合內任取兩點, 都可以互相連通 任何有向圖都能分解成幾個 SCC 將 SCC 縮成一個點就會變成 DAG 求 SCC 數量方法有兩種
+ Tarjan 跑兩次 DFS  Tarjan dfn[i]: DFS的順序(時間編號) low[i]: 能到達 i 的最小的時間編號 i 能達到的最小時間編號
+在理解的時候有幾個問題
+ stack 的作用？ 用來存放已經走過, 但還沒變成 SCC 的點 in_stack 陣列存在的必要性？ 在看網路很多模版的時候, 他們是取作 vis 陣列的 而我想說既然有 dfn 陣列, 那還沒有時間戳的點肯定是沒走過的 為何需要 vis 陣列？ 首先走過的點可分為兩種 一種是在 stack 裏面, 另一種是不在了 當一個點不在 stack 內, 代表已經成為一個 SCC 若我們拿別的 SCC 來更新自己 low 值肯定出錯 因為已成為 SCC 的點不可能再走到當前點了 所以我認為取做 in_stack 更加恰當, 只有在 stack 的點可以更新當前 low 值 要用 dfn 還是 low 更新？ 第 19 行網路上幾乎都是用 dfn 更新 但我想想, 在 stack 的點若可走到當前點 那個點的 low 值也一定可以走到當前點 所以用 low 值更新應該沒錯吧(?"><meta property="og:title" content="強連通單元 SCC"><meta property="og:description" content="強連通單元為一集合, 集合內任取兩點, 都可以互相連通 任何有向圖都能分解成幾個 SCC 將 SCC 縮成一個點就會變成 DAG 求 SCC 數量方法有兩種
+ Tarjan 跑兩次 DFS  Tarjan dfn[i]: DFS的順序(時間編號) low[i]: 能到達 i 的最小的時間編號 i 能達到的最小時間編號
+在理解的時候有幾個問題
+ stack 的作用？ 用來存放已經走過, 但還沒變成 SCC 的點 in_stack 陣列存在的必要性？ 在看網路很多模版的時候, 他們是取作 vis 陣列的 而我想說既然有 dfn 陣列, 那還沒有時間戳的點肯定是沒走過的 為何需要 vis 陣列？ 首先走過的點可分為兩種 一種是在 stack 裏面, 另一種是不在了 當一個點不在 stack 內, 代表已經成為一個 SCC 若我們拿別的 SCC 來更新自己 low 值肯定出錯 因為已成為 SCC 的點不可能再走到當前點了 所以我認為取做 in_stack 更加恰當, 只有在 stack 的點可以更新當前 low 值 要用 dfn 還是 low 更新？ 第 19 行網路上幾乎都是用 dfn 更新 但我想想, 在 stack 的點若可走到當前點 那個點的 low 值也一定可以走到當前點 所以用 low 值更新應該沒錯吧(?"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/template-scc/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-27T23:58:21+00:00"><meta property="article:modified_time" content="2018-02-27T23:58:21+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>強連通單元 SCC</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 27, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>2 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/template/>Template</a></div></div></header><div class=post-content><p>強連通單元為一集合, 集合內任取兩點, 都可以互相連通
+任何有向圖都能分解成幾個 SCC
+將 SCC 縮成一個點就會變成 DAG
+求 SCC 數量方法有兩種</p><ol><li>Tarjan</li><li>跑兩次 DFS</li></ol><h1 id=tarjan>Tarjan</h1><p>dfn[i]: DFS的順序(時間編號)
+low[i]: <del>能到達 i 的最小的時間編號</del> i 能達到的最小時間編號</p><p>在理解的時候有幾個問題</p><ol><li>stack 的作用？
+用來存放已經走過, 但還沒變成 SCC 的點</li><li>in_stack 陣列存在的必要性？
+在看網路很多模版的時候, 他們是取作 vis 陣列的
+而我想說既然有 dfn 陣列, 那還沒有時間戳的點肯定是沒走過的
+為何需要 vis 陣列？
+首先走過的點可分為兩種
+一種是在 stack 裏面, 另一種是不在了
+當一個點不在 stack 內, 代表已經成為一個 SCC
+若我們拿別的 SCC 來更新自己 low 值肯定出錯
+因為已成為 SCC 的點不可能再走到當前點了
+所以我認為取做 in_stack 更加恰當, 只有在 stack 的點可以更新當前 low 值</li><li>要用 dfn 還是 low 更新？
+第 19 行網路上幾乎都是用 dfn 更新
+但我想想, 在 stack 的點若可走到當前點
+那個點的 low 值也一定可以走到當前點
+所以用 low 值更新應該沒錯吧(?
+而且也比較好記</li></ol><h2 id=code>Code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_V <span style=color:#f92672>=</span> <span style=color:#ae81ff>10010</span>;
+<span style=color:#66d9ef>int</span> V, E;
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[MAX_V];
+<span style=color:#66d9ef>int</span> dfn[MAX_V], low[MAX_V], component[MAX_V], tot, ans, scc_cnt;
+stack <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> S;
+<span style=color:#66d9ef>bool</span> in_stack[MAX_V];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> x){
+    dfn[x] <span style=color:#f92672>=</span> low[x] <span style=color:#f92672>=</span> <span style=color:#f92672>++</span>tot;
+    in_stack[x] <span style=color:#f92672>=</span> true;
+    S.push(x);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[x]); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> g[x][i];
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[v]){
+            dfs(v);
+            low[x] <span style=color:#f92672>=</span> min(low[x], low[v]);
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(in_stack[v]){
+            low[x] <span style=color:#f92672>=</span> min(low[x], dfn[v]);
+        }
+    }
+    <span style=color:#66d9ef>if</span>(dfn[x] <span style=color:#f92672>==</span> low[x]){
+        <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>){
+            <span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> S.top(); S.pop();
+            in_stack[v] <span style=color:#f92672>=</span> false;
+            component[v] <span style=color:#f92672>=</span> scc_cnt;
+            <span style=color:#66d9ef>if</span>(v <span style=color:#f92672>==</span> x) <span style=color:#66d9ef>break</span>;
+        }
+        scc_cnt<span style=color:#f92672>++</span>;
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>tarjan</span>(){
+    scc_cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>dfn[i]) dfs(i);
+    }
+}
+</code></pre></div><h1 id=兩次-dfs>兩次 DFS</h1><p>首先建圖的時候還要額外建一個反向後的圖
+然後跑第一次 DFS, 回溯時替點加上編號, 也就是愈晚拜訪的編號愈小
+最後再從編號最大的跑第二次 DFS, 而這次 DFS 跑的是反向的邊
+所有經過的點就是一個 SCC</p><p>為何這樣就可以找到 SCC 呢？
+原因是 SCC 內的點互通, 反向後不影響連通性
+但 SCC 外的點由於是指向 SCC, 所以反向後就斷開了</p><p>時間複雜度： O(|V|+|E|)</p><h2 id=code-1>Code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_V <span style=color:#f92672>=</span> <span style=color:#ae81ff>10010</span>;
+<span style=color:#66d9ef>int</span> V, E;
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[MAX_V], rg[MAX_V], vs;
+<span style=color:#66d9ef>bool</span> vis[MAX_V];
+<span style=color:#66d9ef>int</span> component[MAX_V];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>dfs</span>(<span style=color:#66d9ef>int</span> x){
+    vis[x] <span style=color:#f92672>=</span> true;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(g[x]); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> g[x][i];
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>vis[u]) dfs(u);
+    }
+    vs.pb(x);
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>rdfs</span>(<span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> k){
+    vis[x] <span style=color:#f92672>=</span> true;
+    component[x] <span style=color:#f92672>=</span> k;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> sz(rg[x]); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> rg[x][i];
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>vis[u]) rdfs(u, k);
+    }
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>scc</span>(){
+    memset(vis, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(vis));
+    vs.clear();
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> V; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>vis[i]) dfs(i);
+    }
+    memset(vis, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(vis));
+    <span style=color:#66d9ef>int</span> k <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> sz(vs) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>; i<span style=color:#f92672>--</span>){
+        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>vis[vs[i]]) rdfs(vs[i], k<span style=color:#f92672>++</span>);
+    }
+    <span style=color:#66d9ef>return</span> k;
+}
+</code></pre></div><h2 id=例題>例題</h2><ol><li>POJ 2186(非裸題)</li><li>UOJ 146</li></ol></div><div class=post-footer></div></article></main></body></html>

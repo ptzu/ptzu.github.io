@@ -1,0 +1,147 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 446 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 446"><meta name=twitter:description content="目錄  分裝可樂 耙子殺人 GCD  A. Greed 題目
+input 第一列輸入 n (2 ≤ n ≤ 100 000) 代表 n 罐可樂 下一列輸入每罐剩餘的可樂 (0 ≤ a ≤ 10^9) 最後輸入每個罐子的容量 (a ≤ b ≤ 10^9)
+題解 有 n 罐可樂, 每個罐子有其剩餘的可樂和罐子容量 問是否能將全部剩餘的可樂分裝到兩個罐子內
+作法 sorting 後找最大的兩個罐子
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:title" content="Codeforces Round 446"><meta property="og:description" content="目錄  分裝可樂 耙子殺人 GCD  A. Greed 題目
+input 第一列輸入 n (2 ≤ n ≤ 100 000) 代表 n 罐可樂 下一列輸入每罐剩餘的可樂 (0 ≤ a ≤ 10^9) 最後輸入每個罐子的容量 (a ≤ b ≤ 10^9)
+題解 有 n 罐可樂, 每個罐子有其剩餘的可樂和罐子容量 問是否能將全部剩餘的可樂分裝到兩個罐子內
+作法 sorting 後找最大的兩個罐子
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf446/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-17T22:12:08+00:00"><meta property="article:modified_time" content="2018-02-17T22:12:08+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 446</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 17, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>分裝可樂</li><li>耙子殺人</li><li>GCD</li></ol><h1 id=a-greed>A. Greed</h1><p><a href=http://codeforces.com/contest/892/problem/A>題目</a></p><h2 id=input>input</h2><p>第一列輸入 n (2 ≤ n ≤ 100 000)
+代表 n 罐可樂
+下一列輸入每罐剩餘的可樂 (0 ≤ a ≤ 10^9)
+最後輸入每個罐子的容量 (a ≤ b ≤ 10^9)</p><h2 id=題解>題解</h2><p>有 n 罐可樂, 每個罐子有其剩餘的可樂和罐子容量
+問是否能將全部剩餘的可樂分裝到兩個罐子內</p><h2 id=作法>作法</h2><p>sorting 後找最大的兩個罐子</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INTf_MAX
+</span><span style=color:#75715e>// const int MAX_N = 100010;
+</span><span style=color:#75715e></span>
+vector <span style=color:#f92672>&lt;</span>pii<span style=color:#f92672>&gt;</span> v;
+<span style=color:#66d9ef>int</span> vol[<span style=color:#ae81ff>101010</span>], cap[<span style=color:#ae81ff>101010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>vol[i]);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>cap[i]);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        v.pb(pii{cap[i], vol[i]});
+    }
+    sort(v.begin(), v.end());
+    <span style=color:#66d9ef>int</span> mx <span style=color:#f92672>=</span> v[v.size() <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].st <span style=color:#f92672>+</span> v[v.size() <span style=color:#f92672>-</span> <span style=color:#ae81ff>2</span>].st;
+    ll sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+        sum <span style=color:#f92672>+=</span> v[i].nd;
+    <span style=color:#66d9ef>if</span>(sum <span style=color:#f92672>&gt;</span> mx) puts(<span style=color:#e6db74>&#34;NO&#34;</span>);
+    <span style=color:#66d9ef>else</span> puts(<span style=color:#e6db74>&#34;YES&#34;</span>);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-wrath>B. Wrath</h1><p><a href=http://codeforces.com/contest/892/problem/B>題目</a></p><h2 id=input-1>input</h2><p>第一列輸入 n (1 ≤ n ≤ 100 0000)
+代表 n 個罪人
+接著輸入每個人耙子的長度 L (0 ≤ L ≤ 10^9)</p><h2 id=題解-1>題解</h2><p>有 n 個罪人, 每個人都有一個長度 L 的耙子
+當鈴聲響起, 每個人同時殺了在他前方的人
+所有在耙子範圍下的人都會死
+請問有幾人活著</p><h2 id=作法-1>作法</h2><p>維護一個值, 代表在這個範圍之內的人都會死
+由右做到左邊更新值</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e>// const int MAX_N = 100010;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> n;
+<span style=color:#66d9ef>int</span> L[<span style=color:#ae81ff>1010101</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>L[i]);
+    }
+    <span style=color:#66d9ef>int</span> flag <span style=color:#f92672>=</span> INF, cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&gt;=</span> <span style=color:#ae81ff>0</span>; i<span style=color:#f92672>--</span>){
+        <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>&gt;=</span> flag) cnt<span style=color:#f92672>++</span>;
+        flag <span style=color:#f92672>=</span> min(flag, i <span style=color:#f92672>-</span> L[i]);
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, n <span style=color:#f92672>-</span> cnt);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-pride>C. Pride</h1><p><a href=http://codeforces.com/contest/892/problem/C>題目</a></p><h2 id=input-2>input</h2><p>第一列輸入 n (1 ≤ n ≤ 2000)
+接著輸入 n 個元素 a (1 ≤ a ≤ 10^9)</p><h2 id=題解-2>題解</h2><p>任選兩個相鄰的元素 a, b, 將其中之一換成 GCD(a, b)
+請問需要幾次操作才能使全部元素變成 1</p><h2 id=作法-2>作法</h2><p>若要使全部元素變為 1, 則全部元素的最大公因數必定要為 1
+只要元素出現 1, 則再做 n - 1 次即可
+所以列舉不同的位置作 gcd, 直到有元素出現 1
+找最小的次數</p><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> <span style=color:#ae81ff>1000010</span>;
+
+<span style=color:#66d9ef>int</span> n;
+<span style=color:#66d9ef>int</span> a[<span style=color:#ae81ff>2020</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>a[i]);
+        <span style=color:#66d9ef>if</span>(a[i] <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) cnt<span style=color:#f92672>++</span>;
+    }
+    <span style=color:#66d9ef>if</span>(cnt){
+        printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, n <span style=color:#f92672>-</span> cnt);
+        <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+    }
+    <span style=color:#66d9ef>int</span> mn <span style=color:#f92672>=</span> INF;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> g <span style=color:#f92672>=</span> a[i];
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> i; j <span style=color:#f92672>&lt;</span> n; j<span style=color:#f92672>++</span>){
+            g <span style=color:#f92672>=</span> __gcd(g, a[j]);
+            <span style=color:#66d9ef>if</span>(g <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>){
+                mn <span style=color:#f92672>=</span> min(mn, j <span style=color:#f92672>-</span> i);
+                <span style=color:#66d9ef>break</span>;
+            }
+        }
+    }
+    <span style=color:#66d9ef>if</span>(mn <span style=color:#f92672>==</span> INF) puts(<span style=color:#e6db74>&#34;-1&#34;</span>);
+    <span style=color:#66d9ef>else</span> printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, mn <span style=color:#f92672>+</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

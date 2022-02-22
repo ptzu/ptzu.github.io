@@ -1,0 +1,129 @@
+<!doctype html><html lang=en-us><head><title>POJ 1151 - Atlantis // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="POJ 1151 - Atlantis"><meta name=twitter:description content="題目
+input 1 <= n <= 100 0 <= x1 < x2 <= 100000, 0 <= y1 < y2 <= 100000
+題解 給 n 個矩形, 求所有矩形覆蓋面積
+作法 座標範圍有點大, 先離散化 y 軸 然後掃描線掃 x 軸 若掃到某個矩形的 x1, 就將 y1 ~ y2 區間 +1, 反之掃到 x2 就 -1 以每一段的 x 座標為一個區段, 則這一個區段的面積就是 (x軸變化 * y軸被覆蓋的長度) 將所有區段加起來就是答案
+AC code #include <cstdio>#include <algorithm>#include <cstring>#include <vector> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:title" content="POJ 1151 - Atlantis"><meta property="og:description" content="題目
+input 1 <= n <= 100 0 <= x1 < x2 <= 100000, 0 <= y1 < y2 <= 100000
+題解 給 n 個矩形, 求所有矩形覆蓋面積
+作法 座標範圍有點大, 先離散化 y 軸 然後掃描線掃 x 軸 若掃到某個矩形的 x1, 就將 y1 ~ y2 區間 +1, 反之掃到 x2 就 -1 以每一段的 x 座標為一個區段, 則這一個區段的面積就是 (x軸變化 * y軸被覆蓋的長度) 將所有區段加起來就是答案
+AC code #include <cstdio>#include <algorithm>#include <cstring>#include <vector> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/poj1151/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-12-09T22:18:31+00:00"><meta property="article:modified_time" content="2017-12-09T22:18:31+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>POJ 1151 - Atlantis</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Dec 9, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/poj/>POJ</a>
+<a class=tag href=https://ptzu.github.io/tags/%E9%9B%A2%E6%95%A3%E5%8C%96/>離散化</a>
+<a class=tag href=https://ptzu.github.io/tags/%E6%8E%83%E6%8F%8F%E7%B7%9A/>掃描線</a></div></div></header><div class=post-content><p><a href="http://poj.org/problem?id=1151">題目</a></p><h2 id=input>input</h2><p>1 &lt;= n &lt;= 100
+0 &lt;= x1 &lt; x2 &lt;= 100000, 0 &lt;= y1 &lt; y2 &lt;= 100000</p><h2 id=題解>題解</h2><p>給 n 個矩形, 求所有矩形覆蓋面積</p><h2 id=作法>作法</h2><p>座標範圍有點大, 先離散化 y 軸
+然後掃描線掃 x 軸
+若掃到某個矩形的 x1, 就將 y1 ~ y2 區間 +1, 反之掃到 x2 就 -1
+以每一段的 x 座標為一個區段, 則這一個區段的面積就是 (x軸變化 * y軸被覆蓋的長度)
+將所有區段加起來就是答案</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstdio&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;algorithm&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;cstring&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;vector&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> <span style=color:#ae81ff>10000</span>;
+
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Node</span>{
+    <span style=color:#66d9ef>double</span> pos;
+    <span style=color:#66d9ef>int</span> d, u, type;
+    <span style=color:#66d9ef>bool</span> <span style=color:#66d9ef>operator</span> <span style=color:#f92672>&lt;</span>(<span style=color:#66d9ef>const</span> Node<span style=color:#f92672>&amp;</span> a)<span style=color:#66d9ef>const</span>{
+        <span style=color:#66d9ef>if</span>(pos <span style=color:#f92672>==</span> a.pos) <span style=color:#66d9ef>return</span> type <span style=color:#f92672>&gt;</span> a.type;
+        <span style=color:#66d9ef>return</span> pos <span style=color:#f92672>&lt;</span> a.pos;
+    }
+};
+
+<span style=color:#66d9ef>int</span> n, SN;
+<span style=color:#66d9ef>double</span> x[<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>], y[<span style=color:#ae81ff>2</span> <span style=color:#f92672>*</span> MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>double</span><span style=color:#f92672>&gt;</span> yPool;
+<span style=color:#66d9ef>int</span> seg[<span style=color:#ae81ff>4</span> <span style=color:#f92672>*</span> MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+<span style=color:#66d9ef>double</span> cnt[<span style=color:#ae81ff>4</span> <span style=color:#f92672>*</span> MAX_N <span style=color:#f92672>+</span> <span style=color:#ae81ff>10</span>];
+vector <span style=color:#f92672>&lt;</span>Node<span style=color:#f92672>&gt;</span> sweep;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>discrete</span>(){
+    sort(yPool.begin(), yPool.end());
+    yPool.resize(unique(yPool.begin(), yPool.end()) <span style=color:#f92672>-</span> yPool.begin());
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    yPool.clear();
+    memset(seg, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(seg));
+    memset(cnt, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(cnt));
+    sweep.clear();
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_init</span>(<span style=color:#66d9ef>int</span> n){
+    SN <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>while</span>(SN <span style=color:#f92672>&lt;</span> n)
+        SN <span style=color:#f92672>&lt;&lt;=</span> <span style=color:#ae81ff>1</span>;
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_maintain</span>(<span style=color:#66d9ef>int</span> k, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(seg[k]){
+        cnt[k] <span style=color:#f92672>=</span> yPool[r] <span style=color:#f92672>-</span> yPool[l];
+    }
+    <span style=color:#66d9ef>else</span>{
+        cnt[k] <span style=color:#f92672>=</span> cnt[k <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> cnt[k <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>];
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_update</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b, <span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> k, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(l <span style=color:#f92672>&gt;=</span> b <span style=color:#f92672>||</span> r <span style=color:#f92672>&lt;=</span> a) <span style=color:#66d9ef>return</span> ;
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>&lt;=</span> l <span style=color:#f92672>&amp;&amp;</span> r <span style=color:#f92672>&lt;=</span> b){
+        seg[k] <span style=color:#f92672>+=</span> x;
+        <span style=color:#75715e>// cout &lt;&lt; k &lt;&lt; endl;
+</span><span style=color:#75715e></span>        seg_maintain(k, l, r);
+        <span style=color:#66d9ef>return</span> ;
+    }
+    <span style=color:#66d9ef>int</span> m <span style=color:#f92672>=</span> (l <span style=color:#f92672>+</span> r) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+    seg_update(a, b, x, k <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, l, m);
+    seg_update(a, b, x, k <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>, m, r);
+    seg_maintain(k, l, r);
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> TC <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>while</span>(scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n) <span style=color:#f92672>&amp;&amp;</span> n){
+        init();
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+            scanf(<span style=color:#e6db74>&#34;%lf%lf%lf%lf&#34;</span>, <span style=color:#f92672>&amp;</span>x[i], <span style=color:#f92672>&amp;</span>y[i], <span style=color:#f92672>&amp;</span>x[i <span style=color:#f92672>+</span> n], <span style=color:#f92672>&amp;</span>y[i <span style=color:#f92672>+</span> n]);
+            yPool.pb(y[i]);
+            yPool.pb(y[i <span style=color:#f92672>+</span> n]);
+        }
+        discrete();
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> y1 <span style=color:#f92672>=</span> lower_bound(yPool.begin(), yPool.end(), y[i]) <span style=color:#f92672>-</span> yPool.begin();
+            <span style=color:#66d9ef>int</span> y2 <span style=color:#f92672>=</span> lower_bound(yPool.begin(), yPool.end(), y[i <span style=color:#f92672>+</span> n]) <span style=color:#f92672>-</span> yPool.begin();
+            sweep.pb((Node){x[i], y1, y2, <span style=color:#ae81ff>1</span>});
+            sweep.pb((Node){x[i <span style=color:#f92672>+</span> n], y1, y2, <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>});
+        }
+        sort(sweep.begin(), sweep.end());
+        <span style=color:#66d9ef>double</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#75715e>// y 離散化後的數量, 可能為 2 * n
+</span><span style=color:#75715e></span>        seg_init(sz(yPool));
+        seg_update(sweep[<span style=color:#ae81ff>0</span>].d, sweep[<span style=color:#ae81ff>0</span>].u, sweep[<span style=color:#ae81ff>0</span>].type, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, SN <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;</span> sz(sweep); i<span style=color:#f92672>++</span>){
+            ans <span style=color:#f92672>+=</span> (sweep[i].pos <span style=color:#f92672>-</span> sweep[i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>].pos) <span style=color:#f92672>*</span> cnt[<span style=color:#ae81ff>0</span>];
+            seg_update(sweep[i].d, sweep[i].u, sweep[i].type, <span style=color:#ae81ff>0</span>, <span style=color:#ae81ff>0</span>, SN <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        }
+        printf(<span style=color:#e6db74>&#34;Test case #%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, TC<span style=color:#f92672>++</span>);
+        printf(<span style=color:#e6db74>&#34;Total explored area: %.2f</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans);
+        puts(<span style=color:#e6db74>&#34;&#34;</span>);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

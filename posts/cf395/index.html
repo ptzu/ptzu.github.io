@@ -1,0 +1,293 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 395 (Div. 2) // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 395 (Div. 2)"><meta name=twitter:description content="目錄  GCD/LCM 實作序列翻轉 子樹不能有相同顏色 奇數邊長長方形上色  A. Taymyr is calling you 題目
+input 數字 n, m, z: 1 ≤ n, m, z ≤ 10^4
+題解 一天長 z 分鐘, Ilia-alpinist 每 n, 2n, 3n&mldr;分鐘會打電話 Artists 每 m, 2m, 3m 會來房間 求要殺掉幾個人, 才能使打電話時, 房間沒有人 奇怪的題目敘述(?
+作法 求LCM就好
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ // ios::sync_with_stdio(false);  // cin."><meta property="og:title" content="Codeforces Round 395 (Div. 2)"><meta property="og:description" content="目錄  GCD/LCM 實作序列翻轉 子樹不能有相同顏色 奇數邊長長方形上色  A. Taymyr is calling you 題目
+input 數字 n, m, z: 1 ≤ n, m, z ≤ 10^4
+題解 一天長 z 分鐘, Ilia-alpinist 每 n, 2n, 3n&mldr;分鐘會打電話 Artists 每 m, 2m, 3m 會來房間 求要殺掉幾個人, 才能使打電話時, 房間沒有人 奇怪的題目敘述(?
+作法 求LCM就好
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0); // LLONG_MIN LLONG_MAX INT_MIN INT_MAX  int main(){ // ios::sync_with_stdio(false);  // cin."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf395/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-02-03T23:56:45+00:00"><meta property="article:modified_time" content="2017-02-03T23:56:45+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 395 (Div. 2)</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 3, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>5 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a>
+<a class=tag href=https://ptzu.github.io/tags/painting/>Painting</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>GCD/LCM</li><li>實作序列翻轉</li><li>子樹不能有相同顏色</li><li>奇數邊長長方形上色</li></ol><h1 id=a-taymyr-is-calling-you>A. Taymyr is calling you</h1><p><a href=http://codeforces.com/contest/764/problem/A>題目</a></p><h2 id=input>input</h2><p>數字 n, m, z: 1 ≤ n, m, z ≤ 10^4</p><h2 id=題解>題解</h2><p>一天長 z 分鐘, Ilia-alpinist 每 n, 2n, 3n&mldr;分鐘會打電話
+Artists 每 m, 2m, 3m 會來房間
+求要殺掉幾個人, 才能使打電話時, 房間沒有人
+奇怪的題目敘述(?</p><h2 id=作法>作法</h2><p>求LCM就好</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#75715e>// ios::sync_with_stdio(false);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// cin.tie(0);
+</span><span style=color:#75715e></span>
+    <span style=color:#66d9ef>int</span> n, m, z;
+    scanf(<span style=color:#e6db74>&#34;%d %d %d&#34;</span>, <span style=color:#f92672>&amp;</span>n, <span style=color:#f92672>&amp;</span>m, <span style=color:#f92672>&amp;</span>z);
+    <span style=color:#66d9ef>int</span> d <span style=color:#f92672>=</span> n <span style=color:#f92672>/</span> __gcd(n, m) <span style=color:#f92672>*</span> m;
+    <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>){
+        <span style=color:#66d9ef>if</span>(d <span style=color:#f92672>*</span> (cnt <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>&lt;=</span> z){
+            cnt<span style=color:#f92672>++</span>;
+        }
+        <span style=color:#66d9ef>else</span>
+            <span style=color:#66d9ef>break</span>;
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> cnt <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-timofey-and-cubes>B. Timofey and cubes</h1><p><a href=http://codeforces.com/contest/764/problem/B>題目</a></p><h2 id=input-1>input</h2><p>n 個 cube: 1 ≤ n ≤ 2·10^5
+cube值 a: - 10^9 ≤ a ≤ 10^9</p><h2 id=題解-1>題解</h2><p>Timofey 拿到 n 個 cube, 每個 cube 有數字 a, 編號 1 ~ n
+他哥哥會把編號第 i ~ (n - i + 1) 個做翻轉
+給 cube 翻轉後的情況
+求初始情況</p><h2 id=作法-1>作法</h2><p>跟著實作就好, 編號是偶數的等於沒翻轉</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> a[<span style=color:#ae81ff>202020</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    ios<span style=color:#f92672>::</span>sync_with_stdio(false);
+    cin.tie(<span style=color:#ae81ff>0</span>);
+    <span style=color:#66d9ef>int</span> n;
+    cin <span style=color:#f92672>&gt;&gt;</span> n;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>){
+        cin <span style=color:#f92672>&gt;&gt;</span> a[i];
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>)
+            swap(a[i], a[n <span style=color:#f92672>-</span> i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>]);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>; i <span style=color:#f92672>&lt;=</span> n; i<span style=color:#f92672>++</span>)
+        cout <span style=color:#f92672>&lt;&lt;</span> a[i] <span style=color:#f92672>&lt;&lt;</span> <span style=color:#e6db74>&#34; &#34;</span>;
+    cout <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-timofey-and-a-tree>C. Timofey and a tree</h1><p><a href=http://codeforces.com/contest/764/problem/C>題目</a></p><h2 id=input-2>input</h2><p>n 個點: 2 ≤ n ≤ 10^5
+n - 1條邊: u, v
+每個點的顏色: 1 ≤ c ≤ 10^5</p><h2 id=題解-2>題解</h2><p>有一棵 n 個點的樹, 選一個點當作 root
+而其他點會垂下變成子樹
+規則是子樹只能都是同一種顏色
+問是否能找到一個點作 root, 使得子樹符合條件</p><h2 id=作法-2>作法</h2><p>有兩種作法</p><ol><li>併查集</li><li>計算連接不同顏色的邊有幾個</li></ol><p>第一種作法是把同一種顏色弄成一團, 也就是 Union 起來
+如果要找到符合條件的 root, 那就代表該點必須連接到所有的 Union
+如果漏掉一個, 就等於有一個顏色你沒接到, 落在某個子樹中</p><p>第二種作法也是相同概念, 列舉所有的邊, 計算連接不同顏色的邊
+並且針對兩端點計算被接的次數
+如果最後有個邊被接的次數 = 不同顏色的邊的總數
+那該點就是答案</p><h2 id=第一種-ac-code>第一種 AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+
+<span style=color:#66d9ef>struct</span> <span style=color:#a6e22e>Union_Find</span> {
+    <span style=color:#66d9ef>int</span> par[<span style=color:#ae81ff>101010</span>];
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(<span style=color:#66d9ef>int</span> n){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+            par[i] <span style=color:#f92672>=</span> i;
+        }
+    }
+    <span style=color:#66d9ef>int</span> <span style=color:#a6e22e>find</span>(<span style=color:#66d9ef>int</span> x){
+        <span style=color:#66d9ef>if</span>(x <span style=color:#f92672>==</span> par[x])
+            <span style=color:#66d9ef>return</span> x;
+        <span style=color:#66d9ef>else</span>
+            <span style=color:#66d9ef>return</span> par[x] <span style=color:#f92672>=</span> find(par[x]);
+    }
+    <span style=color:#66d9ef>void</span> <span style=color:#a6e22e>unite</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b){
+        a <span style=color:#f92672>=</span> find(a);
+        b <span style=color:#f92672>=</span> find(b);
+
+        <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>==</span> b)
+            <span style=color:#66d9ef>return</span> ;
+        par[a] <span style=color:#f92672>=</span> b;
+    }
+}U;
+
+set <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> S;
+vector <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> g[<span style=color:#ae81ff>101010</span>];
+pii p[<span style=color:#ae81ff>101010</span>];
+<span style=color:#66d9ef>int</span> c[<span style=color:#ae81ff>101010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#75715e>// ios::sync_with_stdio(false);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// cin.tie(0);
+</span><span style=color:#75715e></span>
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    U.init(n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u, v;
+        scanf(<span style=color:#e6db74>&#34;%d %d&#34;</span>, <span style=color:#f92672>&amp;</span>u, <span style=color:#f92672>&amp;</span>v);
+        u<span style=color:#f92672>--</span>;v<span style=color:#f92672>--</span>;
+        p[i].st <span style=color:#f92672>=</span> u;
+        p[i].nd <span style=color:#f92672>=</span> v;
+        g[u].pb(v);
+        g[v].pb(u);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>c[i]);
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> p[i].st, v <span style=color:#f92672>=</span> p[i].nd;
+        <span style=color:#66d9ef>if</span>(c[u] <span style=color:#f92672>==</span> c[v]){
+            U.unite(u, v);
+        }
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        S.insert(U.find(i));
+    }
+
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        set <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> res;
+        res.insert(U.par[i]);
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> sz(g[i]); j<span style=color:#f92672>++</span>){
+            <span style=color:#66d9ef>int</span> p <span style=color:#f92672>=</span> g[i][j];
+            res.insert(U.par[p]);
+        }
+
+        <span style=color:#66d9ef>if</span>(sz(res) <span style=color:#f92672>==</span> sz(S)){
+            printf(<span style=color:#e6db74>&#34;YES</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+            printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+            <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+        }
+    }
+    printf(<span style=color:#e6db74>&#34;NO</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h2 id=第二種-ac-code>第二種 AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+pii p[<span style=color:#ae81ff>101010</span>];
+<span style=color:#66d9ef>int</span> c[<span style=color:#ae81ff>101010</span>];
+<span style=color:#66d9ef>int</span> num[<span style=color:#ae81ff>101010</span>];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#75715e>// ios::sync_with_stdio(false);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// cin.tie(0);
+</span><span style=color:#75715e></span>
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u, v;
+        scanf(<span style=color:#e6db74>&#34;%d %d&#34;</span>, <span style=color:#f92672>&amp;</span>u, <span style=color:#f92672>&amp;</span>v);
+        u<span style=color:#f92672>--</span>;v<span style=color:#f92672>--</span>;
+        p[i].st <span style=color:#f92672>=</span> u;
+        p[i].nd <span style=color:#f92672>=</span> v;
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>)
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>c[i]);
+    <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> p[i].st, v <span style=color:#f92672>=</span> p[i].nd;
+        <span style=color:#66d9ef>if</span>(c[u] <span style=color:#f92672>!=</span> c[v]){
+            cnt<span style=color:#f92672>++</span>;
+            num[u]<span style=color:#f92672>++</span>;
+            num[v]<span style=color:#f92672>++</span>;
+        }
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(cnt <span style=color:#f92672>==</span> num[i]){
+            printf(<span style=color:#e6db74>&#34;YES</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+            printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, i <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+            <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+        }
+    }
+    printf(<span style=color:#e6db74>&#34;NO</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=d-timofey-and-rectangles>D. Timofey and rectangles</h1><p><a href=http://codeforces.com/contest/764/problem/D>題目</a></p><h2 id=input-3>input</h2><p>n 個長方形: 1 ≤ n ≤ 5·10^5
+給每個長方形的左上和右下的座標
+保證長方形的邊長一定是奇數</p><h2 id=題解-3>題解</h2><p>長方形不會相交, 而且長方形的邊長一定是奇數
+相鄰的長方形顏色不可相同
+求是否可以用最多4個顏色將長方形上色？</p><h2 id=作法-3>作法</h2><p>重點提示在邊長是奇數
+如果針對每個長方形去檢查周圍的顏色, 這樣一定超時
+我們可以觀察到奇數邊長在座標上的變化
+如果邊長為 1, 則座標會是這樣 1 -> 2 -> 3 -> 4
+奇數會變偶數, 偶數會變奇數
+所以我們可以根據座標的奇偶去上色, 因為相鄰的座標奇偶一定不同</p><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#75715e>// ios::sync_with_stdio(false);
+</span><span style=color:#75715e></span>    <span style=color:#75715e>// cin.tie(0);
+</span><span style=color:#75715e></span>
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    puts(<span style=color:#e6db74>&#34;YES&#34;</span>);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> x1, y1, x2, y2;
+        scanf(<span style=color:#e6db74>&#34;%d %d %d %d&#34;</span>, <span style=color:#f92672>&amp;</span>x1, <span style=color:#f92672>&amp;</span>y1, <span style=color:#f92672>&amp;</span>x2, <span style=color:#f92672>&amp;</span>y2);
+        <span style=color:#66d9ef>if</span>(x1 <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>){
+            <span style=color:#66d9ef>if</span>(y1 <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>)
+                puts(<span style=color:#e6db74>&#34;1&#34;</span>);
+            <span style=color:#66d9ef>else</span>
+                puts(<span style=color:#e6db74>&#34;2&#34;</span>);
+        }
+        <span style=color:#66d9ef>else</span>{
+            <span style=color:#66d9ef>if</span>(y1 <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>)
+                puts(<span style=color:#e6db74>&#34;3&#34;</span>);
+            <span style=color:#66d9ef>else</span>
+                puts(<span style=color:#e6db74>&#34;4&#34;</span>);
+        }
+    }
+
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

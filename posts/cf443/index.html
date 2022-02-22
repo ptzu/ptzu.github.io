@@ -1,0 +1,184 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 443 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 443"><meta name=twitter:description content="目錄  模擬題 模擬題 位元操作  A. Borya&rsquo;s Diagnosis 題目
+input 1 <= n <= 1000 1 <= s, d <= 1000
+題解 Borya 要依序看 n 個醫生 每個醫生只在 si, si + di &mldr; 的日子營業 請問最快要幾天才能看完所有醫生
+作法 模擬題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:title" content="Codeforces Round 443"><meta property="og:description" content="目錄  模擬題 模擬題 位元操作  A. Borya&rsquo;s Diagnosis 題目
+input 1 <= n <= 1000 1 <= s, d <= 1000
+題解 Borya 要依序看 n 個醫生 每個醫生只在 si, si + di &mldr; 的日子營業 請問最快要幾天才能看完所有醫生
+作法 模擬題
+AC code #include <bits/stdc++.h> using namespace std; typedef pair <int,int> pii; typedef long long ll; #define pb push_back #define sz(a) (int)a.size() #define INF 0x3f3f3f3f #define st first #define nd second #define fio ios::sync_with_stdio(false), cin."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf443/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2017-10-27T17:05:13+00:00"><meta property="article:modified_time" content="2017-10-27T17:05:13+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 443</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Oct 27, 2017</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a>
+<a class=tag href=https://ptzu.github.io/tags/math/>Math</a></div></div></header><div class=post-content><h1 id=目錄>目錄</h1><ol><li>模擬題</li><li>模擬題</li><li>位元操作</li></ol><h1 id=a-boryas-diagnosis>A. Borya&rsquo;s Diagnosis</h1><p><a href=http://codeforces.com/contest/879/problem/A>題目</a></p><h2 id=input>input</h2><p>1 &lt;= n &lt;= 1000
+1 &lt;= s, d &lt;= 1000</p><h2 id=題解>題解</h2><p>Borya 要依序看 n 個醫生
+每個醫生只在 si, si + di &mldr; 的日子營業
+請問最快要幾天才能看完所有醫生</p><h2 id=作法>作法</h2><p>模擬題</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e>// const int MAX_N = 30000010;
+</span><span style=color:#75715e></span>
+pii d[<span style=color:#ae81ff>1010</span>];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> a, b;
+        scanf(<span style=color:#e6db74>&#34;%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>d[i].st, <span style=color:#f92672>&amp;</span>d[i].nd);
+    }
+    <span style=color:#66d9ef>int</span> day <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(day <span style=color:#f92672>&lt;</span> d[i].st)
+            day <span style=color:#f92672>=</span> d[i].st;
+        <span style=color:#66d9ef>else</span>
+            day <span style=color:#f92672>+=</span> d[i].nd <span style=color:#f92672>-</span> (day <span style=color:#f92672>-</span> d[i].st) <span style=color:#f92672>%</span> d[i].nd;
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, day);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-table-tennis>B. Table Tennis</h1><p><a href=http://codeforces.com/contest/879/problem/B>題目</a></p><h2 id=input-1>input</h2><p>2 &lt;= n &lt;= 500
+2 &lt;= k &lt;= 10^12</p><h2 id=題解-1>題解</h2><p>有 n 個人排成一列要比賽, 每個人都有 power 值
+輸的人要排去隊伍最後面, 先贏 k 場的人獲勝</p><h2 id=作法-1>作法</h2><p>模擬題, 先做完一輪, 如果有人達到條件則結束
+反之第一個人一定是贏家, 因為接下來他都會一直贏</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e>// const int MAX_N = 30000010;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> n;
+ll k;
+<span style=color:#66d9ef>int</span> a[<span style=color:#ae81ff>1000</span>];
+deque <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> dq;
+map <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>, ll<span style=color:#f92672>&gt;</span> mp;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    scanf(<span style=color:#e6db74>&#34;%d%lld&#34;</span>, <span style=color:#f92672>&amp;</span>n, <span style=color:#f92672>&amp;</span>k);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>a[i]);
+        dq.pb(a[i]);
+    }
+    <span style=color:#66d9ef>int</span> cnt <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>while</span>(<span style=color:#ae81ff>1</span>){
+        cnt<span style=color:#f92672>++</span>;
+        <span style=color:#66d9ef>if</span>(dq[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>&gt;</span> dq[<span style=color:#ae81ff>1</span>]){
+            mp[dq[<span style=color:#ae81ff>0</span>]]<span style=color:#f92672>++</span>;
+            swap(dq[<span style=color:#ae81ff>0</span>], dq[<span style=color:#ae81ff>1</span>]);
+            dq.pb(dq[<span style=color:#ae81ff>0</span>]);
+            dq.pop_front();
+        }
+        <span style=color:#66d9ef>else</span>{
+            mp[dq[<span style=color:#ae81ff>1</span>]]<span style=color:#f92672>++</span>;
+            dq.pb(dq[<span style=color:#ae81ff>0</span>]);
+            dq.pop_front();
+        }
+        <span style=color:#66d9ef>if</span>(mp[dq[<span style=color:#ae81ff>0</span>]] <span style=color:#f92672>==</span> k){
+            printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, dq[<span style=color:#ae81ff>0</span>]);
+            <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+        }
+        <span style=color:#66d9ef>if</span>(cnt <span style=color:#f92672>==</span> n <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>) <span style=color:#66d9ef>break</span>;
+    }
+    printf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, dq[<span style=color:#ae81ff>0</span>]);
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-short-program>C. Short Program</h1><p><a href=http://codeforces.com/contest/879/problem/C>題目</a></p><h2 id=input-2>input</h2><p>1 &lt;= n &lt;= 5 * 10^5
+0 &lt;= x &lt;= 1023</p><h2 id=題解-2>題解</h2><p>給 n 行指令, 會做 AND, OR, XOR
+現在要將指令縮短至 5 行內, 而且結果必須和原本相同</p><h2 id=作法-2>作法</h2><p>位元運算題目通常是要針對每個 bit 去看
+首先在範圍內設兩數 1023(填滿1), 0(填滿0)
+然後操作每個指令
+並針對兩數的每個 bit 去看, 有三種情況</p><ol><li>皆為0, 代表此 bit 永遠是0
+所以我們把 AND 的該 bit 設為0</li><li>1->0, 0->1, 代表此 bit 會 flip
+所以 XOR 該 bit 設為1</li><li>皆為1, 代表此 bit 永遠是 1
+所以 OR 的該 bit 設為1</li></ol><p>我們只要操作以上 3 個指令
+就可以得到相同結果
+註: 因為結果指令是針對每個 bit 去操作(每個bit只有一個操作)
+所以順序沒差</p><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e>// const int MAX_N = 30000010;
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    scanf(<span style=color:#e6db74>&#34;%d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, <span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>int</span> a <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, b <span style=color:#f92672>=</span> <span style=color:#ae81ff>1023</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>char</span> c;
+        <span style=color:#66d9ef>int</span> num;
+        scanf(<span style=color:#e6db74>&#34;%c %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, <span style=color:#f92672>&amp;</span>c, <span style=color:#f92672>&amp;</span>num);
+        <span style=color:#66d9ef>if</span>(c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;&amp;&#39;</span>){
+            a <span style=color:#f92672>&amp;=</span> num;
+            b <span style=color:#f92672>&amp;=</span> num;
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;|&#39;</span>){
+            a <span style=color:#f92672>|=</span> num;
+            b <span style=color:#f92672>|=</span> num;
+        }
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(c <span style=color:#f92672>==</span> <span style=color:#e6db74>&#39;^&#39;</span>){
+            a <span style=color:#f92672>^=</span> num;
+            b <span style=color:#f92672>^=</span> num;
+        }
+    }
+    <span style=color:#66d9ef>int</span> AND <span style=color:#f92672>=</span> <span style=color:#ae81ff>1023</span>, XOR <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>, OR <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> <span style=color:#ae81ff>10</span>; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> bita <span style=color:#f92672>=</span> (a <span style=color:#f92672>&gt;&gt;</span> i) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>int</span> bitb <span style=color:#f92672>=</span> (b <span style=color:#f92672>&gt;&gt;</span> i) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>;
+        <span style=color:#66d9ef>if</span>(bita <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span> <span style=color:#f92672>&amp;&amp;</span> bitb <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) AND <span style=color:#f92672>^=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> i);
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(bita <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> bitb <span style=color:#f92672>==</span> <span style=color:#ae81ff>0</span>) XOR <span style=color:#f92672>^=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> i);
+        <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(bita <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span> <span style=color:#f92672>&amp;&amp;</span> bitb <span style=color:#f92672>==</span> <span style=color:#ae81ff>1</span>) OR <span style=color:#f92672>^=</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> i);
+    }
+    puts(<span style=color:#e6db74>&#34;3&#34;</span>);
+    printf(<span style=color:#e6db74>&#34;| %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, OR);
+    printf(<span style=color:#e6db74>&#34;&amp; %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, AND);
+    printf(<span style=color:#e6db74>&#34;^ %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, XOR);
+    
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

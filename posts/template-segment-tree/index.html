@@ -1,0 +1,125 @@
+<!doctype html><html lang=en-us><head><title>線段樹 Segment Tree // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="線段樹 Segment Tree"><meta name=twitter:description content="可做到:
+ 範圍更新 範圍查詢   主要有兩種版本 一種是直接開 input 大小, 另一種是開滿 2 的倍數 陣列大小一定要開到 input 的 4 倍 原因是線段樹本身就需要 2 * N 的空間 樹高會是 {%math%}\left \lceil log_{2}N \right \rceil{%endmath%} 所以可能會多一層 (不管有沒有補滿 2 的倍數都會)
+經過測試 update 的時候一定要 push 再 pull query 可以只做 push 就好
+Code 這種寫法是直接開 input 大小 1-indexed, 閉區間 [l, r] 在時間上和空間上都比較優秀 缺點是要 trace 的時候不太好做
+#define L(x) (x<<1) #define R(x) (1+(x<<1)) #define mid ((l+r)>>1) const int MAX_N = 101010; int seg[MAX_N * 4], lazy[MAX_N * 4]; int a[MAX_N]; void seg_build(int idx, int l, int r){ if(l == r){ seg[idx] = a[l]; return ; } seg_build(L(idx), l, mid); seg_build(R(idx), mid + 1, r); seg[idx] = seg[L(idx)] + seg[R(idx)]; } void seg_push(int idx, int l, int r){ if(lazy[idx]){ seg[L(idx)] += lazy[idx] * (mid - l + 1); seg[R(idx)] += lazy[idx] * (r - (mid + 1) + 1); lazy[L(idx)] += lazy[idx]; lazy[R(idx)] += lazy[idx]; lazy[idx] = 0; } } void seg_update(int a, int b, int x, int idx, int l, int r){ if(r < a || l > b) return ; if(a <= l && r <= b){ seg[idx] += (r - l + 1) * x; lazy[idx] += x; return ; } seg_push(idx, l, r); seg_update(a, b, x, L(idx), l, mid); seg_update(a, b, x, R(idx), mid + 1, r); seg[idx] = seg[L(idx)] + seg[R(idx)]; } int seg_query(int a, int b, int idx, int l, int r){ if(r < a || l > b) return 0; if(a <= l && r <= b) return seg[idx]; seg_push(idx, l, r); return seg_query(a, b, L(idx), l, mid) + seg_query(a, b, R(idx), mid + 1, r); } Code 這是開滿 2 的倍數版本 0-indexed, 開區間 [l, r)"><meta property="og:title" content="線段樹 Segment Tree"><meta property="og:description" content="可做到:
+ 範圍更新 範圍查詢   主要有兩種版本 一種是直接開 input 大小, 另一種是開滿 2 的倍數 陣列大小一定要開到 input 的 4 倍 原因是線段樹本身就需要 2 * N 的空間 樹高會是 {%math%}\left \lceil log_{2}N \right \rceil{%endmath%} 所以可能會多一層 (不管有沒有補滿 2 的倍數都會)
+經過測試 update 的時候一定要 push 再 pull query 可以只做 push 就好
+Code 這種寫法是直接開 input 大小 1-indexed, 閉區間 [l, r] 在時間上和空間上都比較優秀 缺點是要 trace 的時候不太好做
+#define L(x) (x<<1) #define R(x) (1+(x<<1)) #define mid ((l+r)>>1) const int MAX_N = 101010; int seg[MAX_N * 4], lazy[MAX_N * 4]; int a[MAX_N]; void seg_build(int idx, int l, int r){ if(l == r){ seg[idx] = a[l]; return ; } seg_build(L(idx), l, mid); seg_build(R(idx), mid + 1, r); seg[idx] = seg[L(idx)] + seg[R(idx)]; } void seg_push(int idx, int l, int r){ if(lazy[idx]){ seg[L(idx)] += lazy[idx] * (mid - l + 1); seg[R(idx)] += lazy[idx] * (r - (mid + 1) + 1); lazy[L(idx)] += lazy[idx]; lazy[R(idx)] += lazy[idx]; lazy[idx] = 0; } } void seg_update(int a, int b, int x, int idx, int l, int r){ if(r < a || l > b) return ; if(a <= l && r <= b){ seg[idx] += (r - l + 1) * x; lazy[idx] += x; return ; } seg_push(idx, l, r); seg_update(a, b, x, L(idx), l, mid); seg_update(a, b, x, R(idx), mid + 1, r); seg[idx] = seg[L(idx)] + seg[R(idx)]; } int seg_query(int a, int b, int idx, int l, int r){ if(r < a || l > b) return 0; if(a <= l && r <= b) return seg[idx]; seg_push(idx, l, r); return seg_query(a, b, L(idx), l, mid) + seg_query(a, b, R(idx), mid + 1, r); } Code 這是開滿 2 的倍數版本 0-indexed, 開區間 [l, r)"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/template-segment-tree/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-24T10:14:23+00:00"><meta property="article:modified_time" content="2018-01-24T10:14:23+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>線段樹 Segment Tree</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Jan 24, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/template/>Template</a></div></div></header><div class=post-content><p>可做到:</p><ol><li>範圍更新</li><li>範圍查詢</li></ol><hr><p>主要有兩種版本
+一種是直接開 input 大小, 另一種是開滿 2 的倍數
+陣列大小一定要開到 input 的 4 倍
+原因是線段樹本身就需要 2 * N 的空間
+樹高會是 {%math%}\left \lceil log_{2}N \right \rceil{%endmath%}
+所以可能會多一層 (不管有沒有補滿 2 的倍數都會)</p><p>經過測試
+update 的時候一定要 push 再 pull
+query 可以只做 push 就好</p><h2 id=code>Code</h2><p>這種寫法是直接開 input 大小
+1-indexed, 閉區間 [l, r]
+在時間上和空間上都比較優秀
+缺點是要 trace 的時候不太好做</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#define L(x) (x&lt;&lt;1)
+</span><span style=color:#75715e>#define R(x) (1+(x&lt;&lt;1))
+</span><span style=color:#75715e>#define mid ((l+r)&gt;&gt;1)
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> <span style=color:#ae81ff>101010</span>;
+
+<span style=color:#66d9ef>int</span> seg[MAX_N <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>], lazy[MAX_N <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>];
+<span style=color:#66d9ef>int</span> a[MAX_N];
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_build</span>(<span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(l <span style=color:#f92672>==</span> r){
+        seg[idx] <span style=color:#f92672>=</span> a[l];
+        <span style=color:#66d9ef>return</span> ;
+    }
+    seg_build(L(idx), l, mid);
+    seg_build(R(idx), mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, r);
+    seg[idx] <span style=color:#f92672>=</span> seg[L(idx)] <span style=color:#f92672>+</span> seg[R(idx)];
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_push</span>(<span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(lazy[idx]){
+        seg[L(idx)] <span style=color:#f92672>+=</span> lazy[idx] <span style=color:#f92672>*</span> (mid <span style=color:#f92672>-</span> l <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        seg[R(idx)] <span style=color:#f92672>+=</span> lazy[idx] <span style=color:#f92672>*</span> (r <span style=color:#f92672>-</span> (mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>);
+        lazy[L(idx)] <span style=color:#f92672>+=</span> lazy[idx];
+        lazy[R(idx)] <span style=color:#f92672>+=</span> lazy[idx];
+        lazy[idx] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_update</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b, <span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(r <span style=color:#f92672>&lt;</span> a <span style=color:#f92672>||</span> l <span style=color:#f92672>&gt;</span> b) <span style=color:#66d9ef>return</span> ;
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>&lt;=</span> l <span style=color:#f92672>&amp;&amp;</span> r <span style=color:#f92672>&lt;=</span> b){
+        seg[idx] <span style=color:#f92672>+=</span> (r <span style=color:#f92672>-</span> l <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>) <span style=color:#f92672>*</span> x;
+        lazy[idx] <span style=color:#f92672>+=</span> x;
+        <span style=color:#66d9ef>return</span> ;
+    }
+    seg_push(idx, l, r);
+    seg_update(a, b, x, L(idx), l, mid);
+    seg_update(a, b, x, R(idx), mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, r);
+    seg[idx] <span style=color:#f92672>=</span> seg[L(idx)] <span style=color:#f92672>+</span> seg[R(idx)];
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>seg_query</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b, <span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(r <span style=color:#f92672>&lt;</span> a <span style=color:#f92672>||</span> l <span style=color:#f92672>&gt;</span> b) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>&lt;=</span> l <span style=color:#f92672>&amp;&amp;</span> r <span style=color:#f92672>&lt;=</span> b) <span style=color:#66d9ef>return</span> seg[idx];
+    seg_push(idx, l, r);
+    <span style=color:#66d9ef>return</span> seg_query(a, b, L(idx), l, mid) <span style=color:#f92672>+</span> seg_query(a, b, R(idx), mid <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, r);
+}
+</code></pre></div><h2 id=code-1>Code</h2><p>這是開滿 2 的倍數版本
+0-indexed, 開區間 [l, r)</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> ...;
+
+<span style=color:#66d9ef>int</span> seg[MAX_N <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>];
+<span style=color:#66d9ef>int</span> lazy[MAX_N <span style=color:#f92672>*</span> <span style=color:#ae81ff>4</span>];
+<span style=color:#66d9ef>int</span> SN;
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_init</span>(<span style=color:#66d9ef>int</span> N){
+    SN <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    <span style=color:#66d9ef>while</span>(SN <span style=color:#f92672>&lt;</span> N) SN <span style=color:#f92672>&lt;&lt;=</span> <span style=color:#ae81ff>1</span>;
+    memset(seg, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(seg));
+    memset(lazy, <span style=color:#ae81ff>0</span>, <span style=color:#66d9ef>sizeof</span>(lazy));
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_pull</span>(<span style=color:#66d9ef>int</span> idx){
+    seg[idx] <span style=color:#f92672>=</span> seg[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+</span> seg[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>];
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_push</span>(<span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> m, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(lazy[idx]){
+        seg[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+=</span> lazy[idx] <span style=color:#f92672>*</span> (m <span style=color:#f92672>-</span> l);
+        seg[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>+=</span> lazy[idx] <span style=color:#f92672>*</span> (r <span style=color:#f92672>-</span> m);
+        lazy[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>+=</span> lazy[idx];
+        lazy[idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>] <span style=color:#f92672>+=</span> lazy[idx];
+        lazy[idx] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    }
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>seg_update</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b, <span style=color:#66d9ef>int</span> x, <span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(r <span style=color:#f92672>&lt;=</span> a <span style=color:#f92672>||</span> l <span style=color:#f92672>&gt;=</span> b) <span style=color:#66d9ef>return</span> ;
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>&lt;=</span> l <span style=color:#f92672>&amp;&amp;</span> r <span style=color:#f92672>&lt;=</span> b){
+        seg[idx] <span style=color:#f92672>+=</span> x <span style=color:#f92672>*</span> (r <span style=color:#f92672>-</span> l);
+        lazy[idx] <span style=color:#f92672>+=</span> x;
+        <span style=color:#66d9ef>return</span> ;
+    }
+
+    <span style=color:#66d9ef>int</span> m <span style=color:#f92672>=</span> (l <span style=color:#f92672>+</span> r) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+    seg_push(idx, l, m, r);
+    seg_update(a, b, x, idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, l, m);
+    seg_update(a, b, x, idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>, m, r);
+    seg_pull(idx);
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>seg_query</span>(<span style=color:#66d9ef>int</span> a, <span style=color:#66d9ef>int</span> b, <span style=color:#66d9ef>int</span> idx, <span style=color:#66d9ef>int</span> l, <span style=color:#66d9ef>int</span> r){
+    <span style=color:#66d9ef>if</span>(r <span style=color:#f92672>&lt;=</span> a <span style=color:#f92672>||</span> l <span style=color:#f92672>&gt;=</span> b) <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>if</span>(a <span style=color:#f92672>&lt;=</span> l <span style=color:#f92672>&amp;&amp;</span> r <span style=color:#f92672>&lt;=</span> b) <span style=color:#66d9ef>return</span> seg[idx];
+
+    <span style=color:#66d9ef>int</span> m <span style=color:#f92672>=</span> (l <span style=color:#f92672>+</span> r) <span style=color:#f92672>/</span> <span style=color:#ae81ff>2</span>;
+    seg_push(idx, l, m, r);
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    ans <span style=color:#f92672>+=</span> seg_query(a, b, idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>, l, m);
+    ans <span style=color:#f92672>+=</span> seg_query(a, b, idx <span style=color:#f92672>*</span> <span style=color:#ae81ff>2</span> <span style=color:#f92672>+</span> <span style=color:#ae81ff>2</span>, m, r);
+    seg_pull(idx);
+    <span style=color:#66d9ef>return</span> ans;
+}
+</code></pre></div><h2 id=例題>例題</h2><ol><li>POJ 3468</li></ol></div><div class=post-footer></div></article></main></body></html>

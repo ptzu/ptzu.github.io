@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Ptzu's blog</title><link>https://ptzu.github.io/tags/linux/</link><description>Recent content in Linux on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Tue, 11 Sep 2018 21:25:58 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>藍芽鍵盤於 Windows 和 Ubuntu 雙系統之配對與開機</title><link>https://ptzu.github.io/posts/bluetooth-keyboard-dual-boot-ubuntu/</link><pubDate>Tue, 11 Sep 2018 21:25:58 +0000</pubDate><guid>https://ptzu.github.io/posts/bluetooth-keyboard-dual-boot-ubuntu/</guid><description>前言 最近組了一台新電腦放到交大宿舍 不過位置有點小 所以採用了無線滑鼠和鍵盤 其中鍵盤是 Logitech K810 藍芽 其實如果都選 2.4GHz 的接收器鍵鼠, 就沒有這篇了ＸＤ 但是 K810 的造型實在太生火了 所以還是買了下去 這篇主要解決了以下問題:
 藍芽鍵盤無法在開機選單選擇系統 藍芽在切換系統後需要重新配對 切換系統後時間不一致 藍芽於 BIOS 由於藍芽必須在系統啟動後才能配對 所以在 BIOS 階段是無法使用的ＱＱ 在我的搜尋下有兩個解法 一是將 Ubuntu grub 改成可以用滑鼠選擇 這裡我找到了 Gujin bootloader 號稱 mouse support 的開機選單 不過套件有點久遠, 又一直 build 不起來 只好放棄了 二是使用 EasyBCD 替 Windows 製作多系統開機選單 這個流程是已經載入 Windows 了 所以可以使用藍芽鍵鼠進行選擇
 系統背景 我的雙系統都是以 MBR 格式安裝的 並用 BIOS(Lagacy) 啟動 若是用 UEFI 的話不確定能否使用
-還原 Windows bootloader 首先我是先安裝 Windows 再裝 Ubuntu Windows 的 bootloader 在 MBR 磁區會被蓋掉 所以我們開機的時候會是 grub 但是因為找不到 grub 的解法ＸＤ 所以我們必須再把 grub 蓋掉 這部分我們可以到 Windows 安裝畫面(CD or USB) 然後按修復電腦 -&amp;gt; 使用命令提示字元 接著切換到開機的磁區(C槽) 輸入指令</description></item></channel></rss>
+還原 Windows bootloader 首先我是先安裝 Windows 再裝 Ubuntu Windows 的 bootloader 在 MBR 磁區會被蓋掉 所以我們開機的時候會是 grub 但是因為找不到 grub 的解法ＸＤ 所以我們必須再把 grub 蓋掉 這部分我們可以到 Windows 安裝畫面(CD or USB) 然後按修復電腦 -&amp;gt; 使用命令提示字元 接著切換到開機的磁區(C槽) 輸入指令</description></item><item><title>Mac OSX 遠端連線 GUI</title><link>https://ptzu.github.io/posts/mac-x11-forward/</link><pubDate>Wed, 18 Jul 2018 22:03:52 +0000</pubDate><guid>https://ptzu.github.io/posts/mac-x11-forward/</guid><description>最近沒 ubuntu 環境可以用 只好遠端連線到實驗室 server 但是要跑一些程式需要 GUI 介面 於是了解了一下如何用 ssh 開啟圖形介面
+架構 圖形介面呈現由 X window system 主要分為 X server 和 X cilent 詳細請見鳥哥 架構圖如下: 而我們的 X client 指的就是遠端伺服器(Linux) 必須先確定有裝 X window(Desktop Version) 接著 X server 就是我們的本地端(Mac) OSX 上有個 X window 的開源實作: XQuartz
+設定 Linux 在 /etc/ssh/sshd_config 中加入
+X11Forwarding yes X11DisplayOffset 10 MAC 在 /private/etc/ssh/ssh_config 中加入
+ForwardX11yes 不過我對這個保持懷疑 因為我沒修改也可以成功執行
+執行結果 在 XQuartz 打開終端機輸入
+ssh -X username@remoteaddress 執行 gvim 看看 有成功叫出圖形介面
+不過在 docker 環境下就沒辦法 之後再想辦法:</description></item></channel></rss>

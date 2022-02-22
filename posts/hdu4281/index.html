@@ -1,0 +1,136 @@
+<!doctype html><html lang=en-us><head><title>HDU 4281 - Judges' response (2012天津網路賽) // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="HDU 4281 - Judges' response (2012天津網路賽)"><meta name=twitter:description content="題目
+input 多筆測資, 每筆測資輸入 N, M, 2 <= N <= 16, 0 <= M <= 100000 代表 N - 1 位參賽者舉手發問, 裁判的耐心 M 接著輸入 N 個座標, 第一個座標為所有裁判的位置, 其餘為參賽者位置 再輸入 N 個解答問題所需要的時間, 同樣第一個為裁判
+題解 現有一場比賽, 有 N - 1 位參賽者同時舉手發問 我們知道解答某參賽者的問題, 需要耗費的時間 但是每位裁判有固定 M 的耐心, 也就是他最多只願意花 M 分鐘解答 因此需要多位裁判去替選手解答 現有兩個問題:(第一次遇到一次問兩題的XD)
+ 至少需要多少位裁判才能解答所有問題？ 假如裁判數量充足, 求一條路線使得所有裁判行走的時間總和最短 距離採歐基里得距離取 ceil, 且每位裁判的行走速度為 1 注意所有裁判的起始位置都一樣  作法 第一題可視為 n 個物品, 至少需要幾個箱子才能裝完(位元DP, 01背包(?)) 第二題是 MTSP, 上面那題我們已經將一個集合視為一個箱子, 也就是一位裁判負責的狀況 接著稍微解說一下作法:"><meta property="og:title" content="HDU 4281 - Judges' response (2012天津網路賽)"><meta property="og:description" content="題目
+input 多筆測資, 每筆測資輸入 N, M, 2 <= N <= 16, 0 <= M <= 100000 代表 N - 1 位參賽者舉手發問, 裁判的耐心 M 接著輸入 N 個座標, 第一個座標為所有裁判的位置, 其餘為參賽者位置 再輸入 N 個解答問題所需要的時間, 同樣第一個為裁判
+題解 現有一場比賽, 有 N - 1 位參賽者同時舉手發問 我們知道解答某參賽者的問題, 需要耗費的時間 但是每位裁判有固定 M 的耐心, 也就是他最多只願意花 M 分鐘解答 因此需要多位裁判去替選手解答 現有兩個問題:(第一次遇到一次問兩題的XD)
+ 至少需要多少位裁判才能解答所有問題？ 假如裁判數量充足, 求一條路線使得所有裁判行走的時間總和最短 距離採歐基里得距離取 ceil, 且每位裁判的行走速度為 1 注意所有裁判的起始位置都一樣  作法 第一題可視為 n 個物品, 至少需要幾個箱子才能裝完(位元DP, 01背包(?)) 第二題是 MTSP, 上面那題我們已經將一個集合視為一個箱子, 也就是一位裁判負責的狀況 接著稍微解說一下作法:"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/hdu4281/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-11T20:13:14+00:00"><meta property="article:modified_time" content="2018-02-11T20:13:14+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>HDU 4281 - Judges' response (2012天津網路賽)</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Feb 11, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/dp/>DP</a></div></div></header><div class=post-content><p><a href=https://vjudge.net/problem/HDU-4281>題目</a></p><h2 id=input>input</h2><p>多筆測資, 每筆測資輸入 N, M, 2 &lt;= N &lt;= 16, 0 &lt;= M &lt;= 100000
+代表 N - 1 位參賽者舉手發問, 裁判的耐心 M
+接著輸入 N 個座標, 第一個座標為所有裁判的位置, 其餘為參賽者位置
+再輸入 N 個解答問題所需要的時間, 同樣第一個為裁判</p><h2 id=題解>題解</h2><p>現有一場比賽, 有 N - 1 位參賽者同時舉手發問
+我們知道解答某參賽者的問題, 需要耗費的時間
+但是每位裁判有固定 M 的耐心, 也就是他最多只願意花 M 分鐘解答
+因此需要多位裁判去替選手解答
+現有兩個問題:(第一次遇到一次問兩題的XD)</p><ol><li>至少需要多少位裁判才能解答所有問題？</li><li>假如裁判數量充足, 求一條路線使得所有裁判行走的時間總和最短
+距離採歐基里得距離取 ceil, 且每位裁判的行走速度為 1
+注意所有裁判的起始位置都一樣</li></ol><h2 id=作法>作法</h2><p>第一題可視為 n 個物品, 至少需要幾個箱子才能裝完(位元DP, 01背包(?))
+第二題是 MTSP, 上面那題我們已經將一個集合視為一個箱子, 也就是一位裁判負責的狀況
+接著稍微解說一下作法:</p><ol><li>定義 dp[i]: 集合 i 需要幾位裁判, 列舉兩個集合, 去組出更大的集合(聯集)</li><li>定義 dp[S][v]: 跑完集合 S, 目前在 v, 所花費的時間, best[i]: 狀態 i 所花費的時間(包含回到起點)
+先跑一次 TSP, 可以知道每個集合需要花多少時間
+跑完之後, 針對每個狀態去列舉子集, 由於一個集合必定可以拆成兩個子集的聯集
+所以我們就可以算出這個狀態需要的最少時間</li></ol><hr><p>我認為以上兩題是同個想法
+但不同的作法, 一個是利用目前兩個子集去組出更大集合, 一個是目前集合拆成兩個子集
+都是 bottom-up, 應該兩種作法可以互換(待驗證)</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+<span style=color:#66d9ef>typedef</span> pair <span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e>#define st first
+</span><span style=color:#75715e>#define nd second
+</span><span style=color:#75715e>#define fio ios::sync_with_stdio(false), cin.tie(0)
+</span><span style=color:#75715e>#define DEBUG(x) printf(&#34;Here: %d\n&#34;, x), exit(0);
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MAX INT_MIN INT_MAX
+</span><span style=color:#75715e></span><span style=color:#66d9ef>const</span> <span style=color:#66d9ef>int</span> MAX_N <span style=color:#f92672>=</span> <span style=color:#ae81ff>16</span>;
+
+<span style=color:#66d9ef>int</span> N, M;
+<span style=color:#66d9ef>int</span> dp1[<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> MAX_N], dp2[<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> MAX_N][MAX_N];
+<span style=color:#66d9ef>bool</span> ok[<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> MAX_N];
+pii p[MAX_N];
+<span style=color:#66d9ef>int</span> dis[MAX_N][MAX_N];
+<span style=color:#66d9ef>int</span> cost[MAX_N];
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>get_dis</span>(pii a, pii b){
+    <span style=color:#66d9ef>return</span> ceil(sqrt((a.st <span style=color:#f92672>-</span> b.st)<span style=color:#f92672>*</span>(a.st <span style=color:#f92672>-</span> b.st) <span style=color:#f92672>+</span> (a.nd <span style=color:#f92672>-</span> b.nd)<span style=color:#f92672>*</span>(a.nd <span style=color:#f92672>-</span> b.nd)));
+}
+<span style=color:#75715e>// 判斷該狀態是否能在 M 分鐘內解決
+</span><span style=color:#75715e></span><span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>check</span>(<span style=color:#66d9ef>int</span> S){
+    <span style=color:#66d9ef>int</span> sum <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> N; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>((S <span style=color:#f92672>&gt;&gt;</span> i) <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>) sum <span style=color:#f92672>+=</span> cost[i];
+    }
+    <span style=color:#66d9ef>if</span>(sum <span style=color:#f92672>&lt;=</span> M) <span style=color:#66d9ef>return</span> true;
+    <span style=color:#66d9ef>return</span> false;
+}
+
+<span style=color:#66d9ef>void</span> <span style=color:#a6e22e>init</span>(){
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> N; i<span style=color:#f92672>++</span>)
+        scanf(<span style=color:#e6db74>&#34;%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>p[i].st, <span style=color:#f92672>&amp;</span>p[i].nd);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> N; i<span style=color:#f92672>++</span>)
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>, <span style=color:#f92672>&amp;</span>cost[i]);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> N; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> N; j<span style=color:#f92672>++</span>){
+            dis[i][j] <span style=color:#f92672>=</span> get_dis(p[i], p[j]);
+        }
+    }
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(check(i)) ok[i] <span style=color:#f92672>=</span> true;
+        <span style=color:#66d9ef>else</span> ok[i] <span style=color:#f92672>=</span> false;
+    }
+}
+
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>solve1</span>(){
+    fill(dp1, dp1 <span style=color:#f92672>+</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N), INF);
+    dp1[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(ok[i]){
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; j <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); j<span style=color:#f92672>++</span>){
+                <span style=color:#66d9ef>int</span> S <span style=color:#f92672>=</span> i <span style=color:#f92672>|</span> j;
+                <span style=color:#66d9ef>if</span>(dp1[j] <span style=color:#f92672>==</span> INF) <span style=color:#66d9ef>continue</span>; <span style=color:#75715e>// 狀態 j 不可能
+</span><span style=color:#75715e></span>                <span style=color:#66d9ef>if</span>(i <span style=color:#f92672>&amp;</span> j) <span style=color:#66d9ef>continue</span>; <span style=color:#75715e>// 有裝重複的物品
+</span><span style=color:#75715e></span>                dp1[S] <span style=color:#f92672>=</span> min(dp1[S], dp1[j] <span style=color:#f92672>+</span> <span style=color:#ae81ff>1</span>); <span style=color:#75715e>// 1 代表是狀態 i 需要的
+</span><span style=color:#75715e></span>            }
+        }
+    }
+    <span style=color:#66d9ef>return</span> (dp1[(<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> INF) <span style=color:#f92672>?</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span> <span style=color:#f92672>:</span> dp1[(<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>solve2</span>(){
+    <span style=color:#66d9ef>int</span> best[<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> MAX_N];
+    fill(best, best <span style=color:#f92672>+</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> MAX_N), INF);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; i <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); i<span style=color:#f92672>++</span>)
+        fill(dp2[i], dp2[i] <span style=color:#f92672>+</span> N, INF);
+    dp2[<span style=color:#ae81ff>1</span>][<span style=color:#ae81ff>0</span>] <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> S <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; S <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); S<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(ok[S]){
+            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> v <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; v <span style=color:#f92672>&lt;</span> N; v<span style=color:#f92672>++</span>){
+                <span style=color:#66d9ef>if</span>(S <span style=color:#f92672>&amp;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> v)){
+                    best[S] <span style=color:#f92672>=</span> min(best[S], dp2[S][v] <span style=color:#f92672>+</span> dis[v][<span style=color:#ae81ff>0</span>]);
+                    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> u <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; u <span style=color:#f92672>&lt;</span> N; u<span style=color:#f92672>++</span>){
+                        <span style=color:#66d9ef>if</span>(<span style=color:#f92672>!</span>(S <span style=color:#f92672>&amp;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> u))){
+                            dp2[S <span style=color:#f92672>|</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> u)][u] <span style=color:#f92672>=</span> min(dp2[S <span style=color:#f92672>|</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> u)][u], dp2[S][v] <span style=color:#f92672>+</span> dis[v][u]);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    <span style=color:#75715e>// 技巧: 列舉子集
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> S <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>; S <span style=color:#f92672>&lt;</span> (<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N); S<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>if</span>(S <span style=color:#f92672>&amp;</span> <span style=color:#ae81ff>1</span>){ <span style=color:#75715e>// 有包含起點的集合
+</span><span style=color:#75715e></span>            <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i <span style=color:#f92672>=</span> S <span style=color:#f92672>&amp;</span> (S <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>); i; i <span style=color:#f92672>=</span> S <span style=color:#f92672>&amp;</span> (i <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>)){
+                best[S] <span style=color:#f92672>=</span> min(best[S], best[i] <span style=color:#f92672>+</span> best[(S <span style=color:#f92672>-</span> i) <span style=color:#f92672>|</span> <span style=color:#ae81ff>1</span>]);
+            }
+        }
+    }
+    <span style=color:#66d9ef>return</span> best[(<span style=color:#ae81ff>1</span> <span style=color:#f92672>&lt;&lt;</span> N) <span style=color:#f92672>-</span> <span style=color:#ae81ff>1</span>];
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>while</span>(scanf(<span style=color:#e6db74>&#34;%d%d&#34;</span>, <span style=color:#f92672>&amp;</span>N, <span style=color:#f92672>&amp;</span>M) <span style=color:#f92672>!=</span> EOF){
+        init();
+        <span style=color:#66d9ef>int</span> ans1 <span style=color:#f92672>=</span> solve1(), ans2 <span style=color:#f92672>=</span> solve2();
+        <span style=color:#66d9ef>if</span>(ans1 <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>) printf(<span style=color:#e6db74>&#34;-1 -1</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>);
+        <span style=color:#66d9ef>else</span> printf(<span style=color:#e6db74>&#34;%d %d</span><span style=color:#ae81ff>\n</span><span style=color:#e6db74>&#34;</span>, ans1, ans2);
+    }
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>
