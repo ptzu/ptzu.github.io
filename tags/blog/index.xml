@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Ptzu's blog</title><link>https://ptzu.github.io/tags/blog/</link><description>Recent content in Blog on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 04 Feb 2022 10:44:02 +0800</lastBuildDate><atom:link href="https://ptzu.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>從 Hexo 遷移至 Hugo 上</title><link>https://ptzu.github.io/posts/from-hexo-to-hugo/</link><pubDate>Fri, 04 Feb 2022 10:44:02 +0800</pubDate><guid>https://ptzu.github.io/posts/from-hexo-to-hugo/</guid><description>此 blog 參考了 Hugo 貼身打造個人部落格
-原先使用 Hexo 需要使用 Node.js, 用久了感覺整個專案有點龐大
-看了一些文章分享 Hugo 的 render 速度蠻快的, 於是來試用看看
-Hugo 也是使用 markdown 來寫作, 所以遷移上沒什麼問題
-Hugo themes 數量蠻多的, 此 blog 使用 &amp;ldquo;m10c&amp;rdquo;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Blog on Ptzu's blog</title><link>https://ptzu.github.io/tags/blog/</link><description>Recent content in Blog on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 04 Feb 2022 10:44:02 +0800</lastBuildDate><atom:link href="https://ptzu.github.io/tags/blog/index.xml" rel="self" type="application/rss+xml"/><item><title>從 Hexo 遷移至 Hugo 上</title><link>https://ptzu.github.io/posts/from-hexo-to-hugo/</link><pubDate>Fri, 04 Feb 2022 10:44:02 +0800</pubDate><guid>https://ptzu.github.io/posts/from-hexo-to-hugo/</guid><description>移植 此 blog 參考了 Hugo 貼身打造個人部落格
+原先使用 Hexo 需要使用 Node.js, 用久了感覺各種 Node.js 模組相依有點亂,
+剛好看了一些文章分享 Hugo 的 render 速度蠻快的, 於是來試用看看,
+Hugo 也是使用 markdown 來寫作, 所以遷移上沒什麼問題(雖然還是花了點時間改格式)。 然後 Hugo themes 數量蠻多的, 此 blog 使用 &amp;ldquo;m10c&amp;rdquo;。
+但有些文章使用到了數學式, 目前還沒找到 Hugo 對應的套件處理, 只能有時間再弄了&amp;hellip;
 自動化佈署 參考了 將Hugo部落格佈署到Github上 這篇
 使用 Github Action 的功能, 可以在新增文章的時候只需要上傳 markdown, 剩下會自動渲染成靜態網頁
 使用上還蠻方便的</description></item></channel></rss>
