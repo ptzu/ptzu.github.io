@@ -2,7 +2,7 @@
 title: "從 Hexo 遷移至 Hugo 上"
 date: 2022-02-04T10:44:02+08:00
 draft: false
-tags: ["blog"]
+tags: ["Blog"]
 ---
 
 此 blog 參考了 [Hugo 貼身打造個人部落格](https://ithelp.ithome.com.tw/articles/10252313)  
