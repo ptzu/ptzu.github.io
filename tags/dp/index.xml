@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>DP on Ptzu's blog</title><link>https://ptzu.github.io/tags/dp/</link><description>Recent content in DP on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Fri, 15 Jul 2016 16:34:29 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/tags/dp/index.xml" rel="self" type="application/rss+xml"/><item><title>Codeforces Beta Round 89 (Div. 2) (not finished)</title><link>https://ptzu.github.io/posts/cf89/</link><pubDate>Fri, 15 Jul 2016 16:34:29 +0000</pubDate><guid>https://ptzu.github.io/posts/cf89/</guid><description>D. Caesar&amp;rsquo;s Legions 題目
+題解 給 n1, n2, k1, k2 現有一排軍隊, n1 個步兵, n2個騎兵 步兵不能連續站在一起超過 k1 個, 騎兵不能超過 k2 個 求有多少種排法符合條件
+作法 一開始想到的DP定義 dp[i][j][k] : i 位士兵, 最後一串連續的士兵為 j: 0 是步兵, 1 是騎兵, 連續的長度為k
+但這樣會有個問題,用了 i 位士兵,無法判定那兩種士兵各用了幾位(可能會超過(n1 or n2)
+所以改成 dp[i][j][k][l] : i, j 分別代表步兵和騎兵各有幾位 其他定義相同
+答案為dp[n1][n2][0][1~k1] + dp[n1][n2][1][1~k2] 總和 % 100000000
+DP遞迴 if(連續長度 &amp;gt; 1) //直接補上一個數字,方法數等同前一長度的方法數 dp[i][j][k][l] = dp[i][j][k][l - 1] else if(連續長度 == 1) //選擇另一種士兵,連續長度為 1 &amp;lt;= s &amp;lt;= (k1 or k2)的總和, 要注意 s 不能超過 i 或 j, 不然會多算 dp[i][j][k][l] = sum(dp[i][j][!</description></item></channel></rss>

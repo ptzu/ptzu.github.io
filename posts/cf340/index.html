@@ -1,0 +1,165 @@
+<!doctype html><html lang=en-us><head><title>Codeforces Round 340 (Div. 2) // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="Codeforces Round 340 (Div. 2)"><meta name=twitter:description content="A. Elephant 題目
+題解 簡單題 一次可走 1~5 求到終點最少要走幾次
+作法 終點座標除以 5 再看是否整除
+AC code #include <bits/stdc++.h> using namespace std; typedef pair<int,int> pii; typedef long long ll; #define pb push_back #define pf push_front #define make_pair mp #define sz(a) (int)a.size() #define i128 __int128 #define INF 0x3f3f3f3f // LLONG_MIN LLONG_MaX INT_MIN INT_MaX  int main(){ int x; cin >> x; int ans = x / 5; if(x % 5 != 0) ans++; cout << ans << endl; return 0; } B."><meta property="og:title" content="Codeforces Round 340 (Div. 2)"><meta property="og:description" content="A. Elephant 題目
+題解 簡單題 一次可走 1~5 求到終點最少要走幾次
+作法 終點座標除以 5 再看是否整除
+AC code #include <bits/stdc++.h> using namespace std; typedef pair<int,int> pii; typedef long long ll; #define pb push_back #define pf push_front #define make_pair mp #define sz(a) (int)a.size() #define i128 __int128 #define INF 0x3f3f3f3f // LLONG_MIN LLONG_MaX INT_MIN INT_MaX  int main(){ int x; cin >> x; int ans = x / 5; if(x % 5 != 0) ans++; cout << ans << endl; return 0; } B."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/cf340/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2016-05-28T23:48:37+00:00"><meta property="article:modified_time" content="2016-05-28T23:48:37+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>Codeforces Round 340 (Div. 2)</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>May 28, 2016</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>3 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg><a class=tag href=https://ptzu.github.io/tags/codeforces/>Codeforces</a></div></div></header><div class=post-content><h1 id=a-elephant>A. Elephant</h1><p><a href=http://codeforces.com/contest/617/problem/A>題目</a></p><h2 id=題解>題解</h2><p>簡單題
+一次可走 1~5
+求到終點最少要走幾次</p><h2 id=作法>作法</h2><p>終點座標除以 5
+再看是否整除</p><h2 id=ac-code>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define pf push_front
+</span><span style=color:#75715e>#define make_pair mp
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define i128 __int128
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MaX INT_MIN INT_MaX
+</span><span style=color:#75715e></span>
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> x;
+    cin <span style=color:#f92672>&gt;&gt;</span> x;
+    <span style=color:#66d9ef>int</span> ans <span style=color:#f92672>=</span> x <span style=color:#f92672>/</span> <span style=color:#ae81ff>5</span>;
+    <span style=color:#66d9ef>if</span>(x <span style=color:#f92672>%</span> <span style=color:#ae81ff>5</span> <span style=color:#f92672>!=</span> <span style=color:#ae81ff>0</span>)
+        ans<span style=color:#f92672>++</span>;
+    cout <span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span> endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=b-chocolate>B. Chocolate</h1><p><a href=http://codeforces.com/contest/617/problem/B>題目</a></p><p>##題解
+問有幾種不同的切法
+使得每塊巧克力都含有nut</p><p>##作法
+計算每段1和1之間，含有幾種可能切法</p><p>##AC code</p><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define ll long long
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e></span>
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n;
+    <span style=color:#66d9ef>int</span> now <span style=color:#f92672>=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>;
+    ll ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>1</span>;
+    scanf(<span style=color:#e6db74>&#34;%d&#34;</span>,<span style=color:#f92672>&amp;</span>n);
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i<span style=color:#f92672>&lt;</span>n; i<span style=color:#f92672>++</span>)
+    {
+        <span style=color:#66d9ef>int</span> x;
+        scanf(<span style=color:#e6db74>&#34;%d&#34;</span>,<span style=color:#f92672>&amp;</span>x);
+        <span style=color:#66d9ef>if</span>(x)
+        {
+            <span style=color:#66d9ef>if</span>(now <span style=color:#f92672>!=</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+                ans <span style=color:#f92672>*=</span> i<span style=color:#f92672>-</span>now;
+            now <span style=color:#f92672>=</span> i;
+        }
+    }
+    <span style=color:#66d9ef>if</span>(now <span style=color:#f92672>==</span> <span style=color:#f92672>-</span><span style=color:#ae81ff>1</span>)
+        ans <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+    cout<span style=color:#f92672>&lt;&lt;</span> ans <span style=color:#f92672>&lt;&lt;</span>endl;
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div><h1 id=c-watering-flowers>C. Watering Flowers</h1><p><a href=http://codeforces.com/contest/617/problem/C>題目</a></p><h2 id=題解-1>題解</h2><p>給兩座噴水池座標
+和n朵花的座標
+調整兩座噴水池的灑水半徑 r1, r2
+使所有的花都可以被澆到
+求r1^2 + r2^2 最小值</p><h2 id=作法-1>作法</h2><p>利用pair 將每朵花和兩座噴水池的距離存起來
+排序之後
+列舉每個固定當作 r1, 然後去求最大的 r2
+相加之後求最小值</p><p>註: 多排序一個點為(0,0)，是因為可能只需要 r1, r2 其中一個就好, 另外一個為 0</p><h2 id=ac-code-1>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define pf push_front
+</span><span style=color:#75715e>#define mp make_pair
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define i128 __int128
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MaX INT_MIN INT_MaX
+</span><span style=color:#75715e></span>
+pair <span style=color:#f92672>&lt;</span>ll, ll<span style=color:#f92672>&gt;</span> d[<span style=color:#ae81ff>2020</span>];
+
+ll <span style=color:#a6e22e>getdis</span>(ll x, ll y, ll p1, ll p2){
+    <span style=color:#66d9ef>return</span> (x <span style=color:#f92672>-</span> p1)<span style=color:#f92672>*</span>(x <span style=color:#f92672>-</span> p1) <span style=color:#f92672>+</span> (y <span style=color:#f92672>-</span> p2)<span style=color:#f92672>*</span>(y <span style=color:#f92672>-</span> p2);
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>int</span> n, x1, y1, x2, y2;
+    cin <span style=color:#f92672>&gt;&gt;</span> n <span style=color:#f92672>&gt;&gt;</span> x1 <span style=color:#f92672>&gt;&gt;</span> y1 <span style=color:#f92672>&gt;&gt;</span> x2 <span style=color:#f92672>&gt;&gt;</span> y2;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i<span style=color:#f92672>&lt;</span>n; i<span style=color:#f92672>++</span>){
+        <span style=color:#66d9ef>int</span> x, y;
+        scanf(<span style=color:#e6db74>&#34;%d %d&#34;</span>, <span style=color:#f92672>&amp;</span>x, <span style=color:#f92672>&amp;</span>y);
+        d[i] <span style=color:#f92672>=</span> make_pair(getdis(x1, y1, x, y), getdis(x2, y2, x, y));
+    }
+    sort(d, d<span style=color:#f92672>+</span>n<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>);
+    ll mn <span style=color:#f92672>=</span> <span style=color:#ae81ff>1e18</span>;
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>; i<span style=color:#f92672>&lt;=</span>n; i<span style=color:#f92672>++</span>){
+        ll circle2 <span style=color:#f92672>=</span> <span style=color:#ae81ff>0</span>;
+        <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> j<span style=color:#f92672>=</span>i<span style=color:#f92672>+</span><span style=color:#ae81ff>1</span>; j<span style=color:#f92672>&lt;=</span>n; j<span style=color:#f92672>++</span>){
+            circle2 <span style=color:#f92672>=</span> max(circle2, d[j].second);
+        }
+        mn <span style=color:#f92672>=</span> min(mn, d[i].first <span style=color:#f92672>+</span> circle2);
+    }
+    cout <span style=color:#f92672>&lt;&lt;</span> mn <span style=color:#f92672>&lt;&lt;</span> endl;
+}
+</code></pre></div><h1 id=d-polyline>D. Polyline</h1><p><a href=http://codeforces.com/contest/617/problem/D>題目</a></p><h2 id=題解-2>題解</h2><p>給三個點的座標
+求最少可以組成幾個線段
+線段之間不可相交</p><h2 id=作法-2>作法</h2><p>有三種可能</p><ol><li>直線
+只會有一個線段，輸出1</li><li>含一個轉角
+注意第三個點必須在 x1~x2 或 y1~y2 的範圍之"外"
+否則會形成兩個轉角</li><li>兩個轉角
+輸出3</li></ol><h2 id=ac-code-2>AC code</h2><div class=highlight><pre style=color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4><code class=language-cpp data-lang=cpp><span style=color:#75715e>#include</span> <span style=color:#75715e>&lt;bits/stdc++.h&gt;</span><span style=color:#75715e>
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>using</span> <span style=color:#66d9ef>namespace</span> std;
+
+<span style=color:#66d9ef>typedef</span> pair<span style=color:#f92672>&lt;</span><span style=color:#66d9ef>int</span>,<span style=color:#66d9ef>int</span><span style=color:#f92672>&gt;</span> pii;
+<span style=color:#66d9ef>typedef</span> <span style=color:#66d9ef>long</span> <span style=color:#66d9ef>long</span> ll;
+
+<span style=color:#75715e>#define pb push_back
+</span><span style=color:#75715e>#define pf push_front
+</span><span style=color:#75715e>#define mp make_pair
+</span><span style=color:#75715e>#define sz(a) (int)a.size()
+</span><span style=color:#75715e>#define i128 __int128
+</span><span style=color:#75715e>#define INF 0x3f3f3f3f
+</span><span style=color:#75715e></span><span style=color:#75715e>// LLONG_MIN LLONG_MaX INT_MIN INT_MaX
+</span><span style=color:#75715e></span>
+<span style=color:#66d9ef>int</span> x[<span style=color:#ae81ff>3</span>],y[<span style=color:#ae81ff>3</span>];
+
+<span style=color:#66d9ef>bool</span> <span style=color:#a6e22e>corner</span>(<span style=color:#66d9ef>int</span> i, <span style=color:#66d9ef>int</span> j, <span style=color:#66d9ef>int</span> k)
+{
+    <span style=color:#66d9ef>if</span>(x[i] <span style=color:#f92672>==</span> x[j] <span style=color:#f92672>&amp;&amp;</span> (y[k] <span style=color:#f92672>&lt;=</span> min(y[i],y[j]) <span style=color:#f92672>||</span> y[k] <span style=color:#f92672>&gt;=</span> max(y[i],y[j])))
+        <span style=color:#66d9ef>return</span> true;
+    <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(y[i] <span style=color:#f92672>==</span> y[j] <span style=color:#f92672>&amp;&amp;</span> (x[k] <span style=color:#f92672>&lt;=</span> min(x[i],x[j]) <span style=color:#f92672>||</span> x[k] <span style=color:#f92672>&gt;=</span> max(x[i],x[j])))
+        <span style=color:#66d9ef>return</span> true;
+    <span style=color:#66d9ef>return</span> false;
+}
+
+<span style=color:#66d9ef>int</span> <span style=color:#a6e22e>main</span>(){
+    <span style=color:#66d9ef>for</span>(<span style=color:#66d9ef>int</span> i<span style=color:#f92672>=</span><span style=color:#ae81ff>0</span>;i<span style=color:#f92672>&lt;</span><span style=color:#ae81ff>3</span>;i<span style=color:#f92672>++</span>)
+        scanf(<span style=color:#e6db74>&#34;%d %d&#34;</span>,<span style=color:#f92672>&amp;</span>x[i],<span style=color:#f92672>&amp;</span>y[i]);
+    <span style=color:#75715e>//Straight line
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>if</span>(x[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> x[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> x[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> x[<span style=color:#ae81ff>2</span>] <span style=color:#f92672>||</span> y[<span style=color:#ae81ff>0</span>] <span style=color:#f92672>==</span> y[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>&amp;&amp;</span> y[<span style=color:#ae81ff>1</span>] <span style=color:#f92672>==</span> y[<span style=color:#ae81ff>2</span>])
+        puts(<span style=color:#e6db74>&#34;1&#34;</span>);
+    <span style=color:#75715e>// 順序有差, 考慮到 0,1 一組, 0,2 一組, 1,2 一組
+</span><span style=color:#75715e></span>    <span style=color:#66d9ef>else</span> <span style=color:#66d9ef>if</span>(corner(<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>2</span>) <span style=color:#f92672>||</span> corner(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>1</span>,<span style=color:#ae81ff>0</span>) <span style=color:#f92672>||</span> corner(<span style=color:#ae81ff>2</span>,<span style=color:#ae81ff>0</span>,<span style=color:#ae81ff>1</span>))
+        puts(<span style=color:#e6db74>&#34;2&#34;</span>);
+    <span style=color:#66d9ef>else</span>
+        puts(<span style=color:#e6db74>&#34;3&#34;</span>);
+
+    <span style=color:#66d9ef>return</span> <span style=color:#ae81ff>0</span>;
+}
+</code></pre></div></div><div class=post-footer></div></article></main></body></html>

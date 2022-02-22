@@ -1,0 +1,98 @@
+<!doctype html><html lang=en-us><head><title>相機座標系、世界座標系 // Ptzu's blog</title><link rel="shortcut icon" href=/favicon.ico><meta charset=utf-8><meta name=generator content="Hugo 0.81.0"><meta name=viewport content="width=device-width,initial-scale=1"><meta name=author content="Roger Lin"><meta name=description content><link rel=stylesheet href=https://ptzu.github.io/css/main.min.4a7ec8660f9a44b08c4da97c5f2e31b1192df1d4d0322e65c0dbbc6ecb1b863f.css><meta name=twitter:card content="summary"><meta name=twitter:title content="相機座標系、世界座標系"><meta name=twitter:description content="最近在讀 SLAM 相關 paper 時 常看到 camera/world frame 我原本想說是和 keyframe 類似的東西 結果是完全不同的東西呀～ 這邊指的是座標系(雖然我還是不知道為什麼要用frame)
+順手整理一下相機的相關座標轉換 相機模型中主要有四個平面座標系:
+ 畫素平面座標系（u,v): 圖像在像素中的位置 像平面座標系 (影像物理座標（x,y)): 以相機主點為原點，場景點在圖像平面上的投影座標。 相機座標系（Xc,Yc,Zc): 以相機為中心的三維座標。 世界座標系（Xw,Yw,Zw): 絕對座標系統中的三維座標。  當我們能將這四個座標軸作轉換, 那麼就能從二維影像得知在三維世界中的位置
+畫素平面 <=> 像平面 因為畫素不能反映圖像真實尺寸 像平面可以想成是一張二維影像 只是被縮小成像素大小(物理層面) 畫素單位是 pixel(微米大小), 而像平面單位是 mm
+假設畫素座標為 {%math%}(u, v, 1)^{T}{%endmath%} (這邊用的是齊次座標, 當成是(u, v)就好了) 像平面座標 {%math%}(x, y){%endmath%} 每個像素的真實尺寸為 dx * dy
+我們以圖像中心當作像平面座標的原點 {%math%}(u_{0}, v_{0}){%endmath%} 所以: {%math%}\left{\begin{matrix} u=\frac{x}{dx}+u_{0}\ v=\frac{y}{dy}+v_{0} \end{matrix}\right.{%endmath%} {%math%}\left{\begin{matrix} x=udx-u_{0}dx\ y=udy-u_{0}dy \end{matrix}\right.{%endmath%}
+若以矩陣來表示: {%math%}\begin{bmatrix} u\ v\ 1 \end{bmatrix} \begin{bmatrix} \frac{1}{dx} & 0 & u_{0}\ 0& \frac{1}{dy} & v_{0}\ 0& 0 & 1 \end{bmatrix}\begin{bmatrix} x\ y\ 1 \end{bmatrix}{%endmath%}"><meta property="og:title" content="相機座標系、世界座標系"><meta property="og:description" content="最近在讀 SLAM 相關 paper 時 常看到 camera/world frame 我原本想說是和 keyframe 類似的東西 結果是完全不同的東西呀～ 這邊指的是座標系(雖然我還是不知道為什麼要用frame)
+順手整理一下相機的相關座標轉換 相機模型中主要有四個平面座標系:
+ 畫素平面座標系（u,v): 圖像在像素中的位置 像平面座標系 (影像物理座標（x,y)): 以相機主點為原點，場景點在圖像平面上的投影座標。 相機座標系（Xc,Yc,Zc): 以相機為中心的三維座標。 世界座標系（Xw,Yw,Zw): 絕對座標系統中的三維座標。  當我們能將這四個座標軸作轉換, 那麼就能從二維影像得知在三維世界中的位置
+畫素平面 <=> 像平面 因為畫素不能反映圖像真實尺寸 像平面可以想成是一張二維影像 只是被縮小成像素大小(物理層面) 畫素單位是 pixel(微米大小), 而像平面單位是 mm
+假設畫素座標為 {%math%}(u, v, 1)^{T}{%endmath%} (這邊用的是齊次座標, 當成是(u, v)就好了) 像平面座標 {%math%}(x, y){%endmath%} 每個像素的真實尺寸為 dx * dy
+我們以圖像中心當作像平面座標的原點 {%math%}(u_{0}, v_{0}){%endmath%} 所以: {%math%}\left{\begin{matrix} u=\frac{x}{dx}+u_{0}\ v=\frac{y}{dy}+v_{0} \end{matrix}\right.{%endmath%} {%math%}\left{\begin{matrix} x=udx-u_{0}dx\ y=udy-u_{0}dy \end{matrix}\right.{%endmath%}
+若以矩陣來表示: {%math%}\begin{bmatrix} u\ v\ 1 \end{bmatrix} \begin{bmatrix} \frac{1}{dx} & 0 & u_{0}\ 0& \frac{1}{dy} & v_{0}\ 0& 0 & 1 \end{bmatrix}\begin{bmatrix} x\ y\ 1 \end{bmatrix}{%endmath%}"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/camera-frame-world-frame/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-08-08T23:15:18+00:00"><meta property="article:modified_time" content="2018-08-08T23:15:18+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+-
+<a class=app-header-menu-item href=/tags/>Tags</a>
+-
+<a class=app-header-menu-item href=/about/>About</a></nav><p>Record of My Life.</p><div class=app-header-social><a href=https://github.com/ptzu target=_blank rel="noreferrer noopener"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-github"><title>My Github</title><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77 5.44 5.44.0 003.5 8.55c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg></a></div></header><main class=app-container><article class=post><header class=post-header><h1 class=post-title>相機座標系、世界座標系</h1><div class=post-meta><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-calendar"><title>calendar</title><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>Aug 8, 2018</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-clock"><title>clock</title><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>1 min read</div><div><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tag"><title>tag</title><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83.0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg></div></div></header><div class=post-content><p>最近在讀 SLAM 相關 paper 時
+常看到 camera/world frame
+我原本想說是和 keyframe 類似的東西
+結果是完全不同的東西呀～
+這邊指的是座標系(雖然我還是不知道為什麼要用frame)</p><p>順手整理一下相機的相關座標轉換
+相機模型中主要有四個平面座標系:</p><ol><li>畫素平面座標系（u,v): 圖像在像素中的位置</li><li>像平面座標系 (影像物理座標（x,y)): 以相機主點為原點，場景點在圖像平面上的投影座標。</li><li>相機座標系（Xc,Yc,Zc): 以相機為中心的三維座標。</li><li>世界座標系（Xw,Yw,Zw): 絕對座標系統中的三維座標。</li></ol><p>當我們能將這四個座標軸作轉換, 那麼就能從二維影像得知在三維世界中的位置</p><h1 id=畫素平面--像平面>畫素平面 &lt;=> 像平面</h1><p>因為畫素不能反映圖像真實尺寸
+像平面可以想成是一張二維影像
+只是被縮小成像素大小(物理層面)
+畫素單位是 pixel(微米大小), 而像平面單位是 mm</p><p>假設畫素座標為 {%math%}(u, v, 1)^{T}{%endmath%} (這邊用的是齊次座標, 當成是(u, v)就好了)
+像平面座標 {%math%}(x, y){%endmath%}
+每個像素的真實尺寸為 dx * dy</p><p>我們以圖像中心當作像平面座標的原點 {%math%}(u_{0}, v_{0}){%endmath%}
+所以:
+{%math%}\left{\begin{matrix}
+u=\frac{x}{dx}+u_{0}\
+v=\frac{y}{dy}+v_{0}
+\end{matrix}\right.{%endmath%}
+{%math%}\left{\begin{matrix}
+x=udx-u_{0}dx\
+y=udy-u_{0}dy
+\end{matrix}\right.{%endmath%}</p><h1 id=endbmatrix>若以矩陣來表示:
+{%math%}\begin{bmatrix}
+u\
+v\
+1
+\end{bmatrix}</h1><p>\begin{bmatrix}
+\frac{1}{dx} & 0 & u_{0}\
+0& \frac{1}{dy} & v_{0}\
+0& 0 & 1
+\end{bmatrix}\begin{bmatrix}
+x\
+y\
+1
+\end{bmatrix}{%endmath%}</p><h1 id=像平面--相機>像平面 &lt;=> 相機</h1><p>相機座標系是一個三維空間
+假設三維坐標中的一點 P, 投影到平面一點 p
+可以先參考這張圖:
+<img src=https://i.imgur.com/xRh9odS.jpg alt></p><h1 id=endbmatrix-1>f 是焦距, P 為在 camera frame 上的一點, 投影到像平面上一點 p
+根據相似三角形: {%math%}\frac{f}{Z} = \frac{x}{X} = \frac{y}{Y}{%endmath%}
+得到像平面座標(x, y):
+{%math%}
+\left{\begin{matrix}
+x=\frac{fX}{Z}\
+y=\frac{fY}{Z}
+\end{matrix}\right.
+{%endmath%}
+以矩陣表示:
+{%math%}
+Z_{c}\begin{bmatrix}
+x\
+y\
+1
+\end{bmatrix}</h1><p>\begin{bmatrix}
+f & 0 & 0\
+0 & f& 0\
+0 & 0 & 1
+\end{bmatrix}\begin{bmatrix}
+X_{c}\
+Y_{c}\<br>Z_{c}
+\end{bmatrix}
+{%endmath%}</p><h1 id=相機--世界>相機 &lt;=> 世界</h1><h1 id=endbmatrix-2>三維世界之間的座標轉換
+可以用一個旋轉和平移矩陣表示
+故:
+{%math%}
+\begin{bmatrix}
+X_{c}\
+Y_{c}\
+Z_{c}\
+1
+\end{bmatrix}</h1><p>\begin{bmatrix}
+R & T\
+0 & 1
+\end{bmatrix}
+\begin{bmatrix}
+X_{w}\
+Y_{w}\
+Z_{w}\
+1
+\end{bmatrix}
+{%endmath%}</p><p>到這邊我們就可以完成相素到世界座標的轉移
+在相機校正的時候會看到所謂的內參和外參數
+相素到相機的轉移矩陣就稱為內參數矩陣
+而相機到世界的轉移就稱為外參數矩陣
+以上式子整理一下就可以得到</p><h1 id=參考>參考</h1><ol><li><a href=https://www.zhihu.com/question/58489965>机器视觉相机标定？</a></li><li><a href=https://codertw.com/%E7%A8%8B%E5%BC%8F%E8%AA%9E%E8%A8%80/415506/>世界座標系和相機座標系,影象座標系的關係</a></li><li><a href=https://blog.csdn.net/Aoulun/article/details/78768570>相机参数标定（camera calibration）及标定结果如何使用</a></li><li><a href=http://silverwind1982.pixnet.net/blog/post/134551091>http://silverwind1982.pixnet.net/blog/post/134551091</a></li><li><a href=https://blog.csdn.net/liulina603/article/details/52953414>https://blog.csdn.net/liulina603/article/details/52953414</a></li><li><a href=https://blog.techbridge.cc/2018/04/22/intro-to-pinhole-camera-model/>https://blog.techbridge.cc/2018/04/22/intro-to-pinhole-camera-model/</a></li></ol></div><div class=post-footer></div></article></main></body></html>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Codeforces on Ptzu's blog</title><link>https://ptzu.github.io/categories/codeforces/</link><description>Recent content in Codeforces on Ptzu's blog</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><lastBuildDate>Mon, 01 Aug 2016 21:10:58 +0000</lastBuildDate><atom:link href="https://ptzu.github.io/categories/codeforces/index.xml" rel="self" type="application/rss+xml"/><item><title>Codeforces Beta Round 93 (Div. 1 Only)</title><link>https://ptzu.github.io/posts/cf93/</link><pubDate>Mon, 01 Aug 2016 21:10:58 +0000</pubDate><guid>https://ptzu.github.io/posts/cf93/</guid><description>B. Password # string 題目
+題解 給一字串 尋找是否有一子字串 出現在前綴(開頭), 中間, 以及後綴 輸出符合條件的最長子字串 如果沒有就輸出 Just a legend
+作法 字串搜尋類型的題目 暴力搜尋會花上 O(nm) 的時間 為了這題, 又去重新理解一次KMP 果然這東西還是很難記住啊~~
+這題有兩種作法
+用failure function 的特性 用rolling hash(尚未研究) 如果還不懂何謂KMP 先去看看演算法教學吧~~ &amp;mdash;-以下開始&amp;mdash;- 當建好 f 函數時 把所有有匹配到的字元, 做上標記(不標記最後一字元) 然後看字串最後一個字元的 f 函數值是多少 假如前綴和後綴都有, 那我們就要來看中間是否有出現過啦 作法就是以最後一字元的函數值做回溯
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair&amp;lt;int,int&amp;gt; pii; typedef long long ll; typedef vector &amp;lt;ll&amp;gt; vec; typedef vector &amp;lt;vec&amp;gt; mat; #define pb push_back #define pf push_front #define mp make_pair #define sz(a) (int)a.</description></item><item><title>Codeforces Beta Round 89 (Div. 2) (not finished)</title><link>https://ptzu.github.io/posts/cf89/</link><pubDate>Fri, 15 Jul 2016 16:34:29 +0000</pubDate><guid>https://ptzu.github.io/posts/cf89/</guid><description>D. Caesar&amp;rsquo;s Legions 題目
+題解 給 n1, n2, k1, k2 現有一排軍隊, n1 個步兵, n2個騎兵 步兵不能連續站在一起超過 k1 個, 騎兵不能超過 k2 個 求有多少種排法符合條件
+作法 一開始想到的DP定義 dp[i][j][k] : i 位士兵, 最後一串連續的士兵為 j: 0 是步兵, 1 是騎兵, 連續的長度為k
+但這樣會有個問題,用了 i 位士兵,無法判定那兩種士兵各用了幾位(可能會超過(n1 or n2)
+所以改成 dp[i][j][k][l] : i, j 分別代表步兵和騎兵各有幾位 其他定義相同
+答案為dp[n1][n2][0][1~k1] + dp[n1][n2][1][1~k2] 總和 % 100000000
+DP遞迴 if(連續長度 &amp;gt; 1) //直接補上一個數字,方法數等同前一長度的方法數 dp[i][j][k][l] = dp[i][j][k][l - 1] else if(連續長度 == 1) //選擇另一種士兵,連續長度為 1 &amp;lt;= s &amp;lt;= (k1 or k2)的總和, 要注意 s 不能超過 i 或 j, 不然會多算 dp[i][j][k][l] = sum(dp[i][j][!</description></item><item><title>Codeforces Round 340 (Div. 2)</title><link>https://ptzu.github.io/posts/cf340/</link><pubDate>Sat, 28 May 2016 23:48:37 +0000</pubDate><guid>https://ptzu.github.io/posts/cf340/</guid><description>A. Elephant 題目
+題解 簡單題 一次可走 1~5 求到終點最少要走幾次
+作法 終點座標除以 5 再看是否整除
+AC code #include &amp;lt;bits/stdc++.h&amp;gt; using namespace std; typedef pair&amp;lt;int,int&amp;gt; pii; typedef long long ll; #define pb push_back #define pf push_front #define make_pair mp #define sz(a) (int)a.size() #define i128 __int128 #define INF 0x3f3f3f3f // LLONG_MIN LLONG_MaX INT_MIN INT_MaX int main(){ int x; cin &amp;gt;&amp;gt; x; int ans = x / 5; if(x % 5 != 0) ans++; cout &amp;lt;&amp;lt; ans &amp;lt;&amp;lt; endl; return 0; } B.</description></item></channel></rss>
