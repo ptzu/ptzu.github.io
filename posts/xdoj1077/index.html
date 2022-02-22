@@ -6,7 +6,7 @@ input 多筆測資, 輸入 a, b 0 <= a, b <= 10^9
 input 多筆測資, 輸入 a, b 0 <= a, b <= 10^9
 題解 因為循環節長度最長不超過分母 而這題的分母很大, 不能用模擬除法 所以用 BSGS 來求離散對數
 作法 根據定理 a / b 的循環節長度為: {% math %} \min { e\in N,10^{e}\equiv 1(mod\ b) } {% endmath %} 但要注意的是當 e == 0 的時候恆成立 所以我們需要小修改一下 BSGS 演算法
-我們可以注意到當 e == 0 時, 是在列舉到 {% math %} a^{m} {% endmath %} 時相等 所以我們在建立 hash 表的時候, 只要建到 m - 1, 就可以避開這個 case 了"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/xdoj1077/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-04T12:04:29+00:00"><meta property="article:modified_time" content="2018-01-04T12:04:29+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+我們可以注意到當 e == 0 時, 是在列舉到 {% math %} a^{m} {% endmath %} 時相等 所以我們在建立 hash 表的時候, 只要建到 m - 1, 就可以避開這個 case 了"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/xdoj1077/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-01-04T12:04:29+00:00"><meta property="article:modified_time" content="2018-01-04T12:04:29+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=https://i.imgur.com/I4wI7XV.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
 -
 <a class=app-header-menu-item href=/tags/>Tags</a>
 -

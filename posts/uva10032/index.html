@@ -6,7 +6,7 @@ AC code #include <bits/stdc++."><meta property="og:title" content="Uva 10032 - T
 input 第一列輸入 T, 代表 T case 每筆測資開頭輸入 n, n 最多 100 接著輸入 n 個人的體重
 題解 將人分成兩堆, 使兩隊的體重和相差最小 並且兩隊人數最多只能差 1
 作法 這題類似 Uva 562, 分成兩堆, 使得總和差最小 但是多了一個限制是人數只能差 1 原本是 dp[人數][重量] = 0 or 1, 代表該重量能否組出 現在多一個條件 dp[人數][重量][目前人數] = 0 or 1 的三維DP 但是會超時 我們把第三維度利用位元操作, 轉為 64 bits 的資料 也就是 dp[人數][重量] = bitset 而那個 bitset 代表的是組出這個重量, 那一隊可以有幾人 例如 dp[人數][重量] = 1110(二進位) 就代表他可以用 1(2^1)、2(2^2)、3(2^3) 這些人數組成 最後只要看 n/2、n/2+1(偶數人數), n/2(奇數人數)的 bit 是否成立即可
-AC code #include <bits/stdc++."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/uva10032/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-05T15:07:23+00:00"><meta property="article:modified_time" content="2018-02-05T15:07:23+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+AC code #include <bits/stdc++."><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/uva10032/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-02-05T15:07:23+00:00"><meta property="article:modified_time" content="2018-02-05T15:07:23+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=https://i.imgur.com/I4wI7XV.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
 -
 <a class=app-header-menu-item href=/tags/>Tags</a>
 -

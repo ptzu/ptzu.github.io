@@ -8,7 +8,7 @@ input 多筆測資, 每筆開頭輸入 n, k (n <= 10000) 代表 n 個點, 路徑
 題解 給一棵樹 求點對 (u, v) 長度不超過 k 有幾個點對
 作法 利用重心分解的技巧 每次都從重心做樹分治 複雜度: {%math%}O(logn){%endmath%} 針對每個重心, 跑一次DFS 每個子樹我們可以求點到根的距離 cal(x) 可以求取以 x 為根, 經過 x 的路徑有幾條 經過排序後, 可以在 O(n) 時間內求取所有點對 瓶頸在排序, 複雜度：{%math%}O(nlogn){%endmath%}
 由於當 k 夠大時, cal(x) 會計算到不經過 x, 但長度為 <= k 的路徑 因此每次都要扣掉子樹的數量
-總複雜度: {%math%}O(nlog^{2}n){%endmath%}"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/poj1741/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-17T16:11:25+00:00"><meta property="article:modified_time" content="2018-03-17T16:11:25+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=/avatar.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
+總複雜度: {%math%}O(nlog^{2}n){%endmath%}"><meta property="og:type" content="article"><meta property="og:url" content="https://ptzu.github.io/posts/poj1741/"><meta property="article:section" content="posts"><meta property="article:published_time" content="2018-03-17T16:11:25+00:00"><meta property="article:modified_time" content="2018-03-17T16:11:25+00:00"></head><body><header class=app-header><a href=https://ptzu.github.io/><img class=app-header-avatar src=https://i.imgur.com/I4wI7XV.jpg alt="Roger Lin"></a><h1>Ptzu's blog</h1><nav class=app-header-menu><a class=app-header-menu-item href=/>Home</a>
 -
 <a class=app-header-menu-item href=/tags/>Tags</a>
 -
