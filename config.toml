@@ -25,6 +25,7 @@ paginate = 8
 [params]
   author = "Roger Lin"
   description = "Record of My Life."
+  avatar = 'https://i.imgur.com/I4wI7XV.jpg'
   [[params.social]]
     icon = "github"
     name = "My Github"
